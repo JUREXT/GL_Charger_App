@@ -1,0 +1,4 @@
+enum ChargerType {
+  AUTO,
+  MANUAL,
+}
