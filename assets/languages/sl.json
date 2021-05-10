@@ -1,0 +1,9 @@
+{
+  "hello": "Pozdravljeni!",
+  "fruits": {
+    "banana": "Banana",
+    "apple": "Jabolko",
+    "cherry": "Višnja"
+  },
+  "format": "Dober dan {name}."
+}
