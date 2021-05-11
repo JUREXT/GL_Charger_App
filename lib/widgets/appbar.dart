@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 
-AppBar header(context) {
+import '../utils/constants.dart';
+
+Widget appBar1(String title) {
   return AppBar(
-    title: Text('Wooble'),
-    centerTitle: true,
-    actions: [Padding(
-      padding: const EdgeInsets.only(right:20.0),
-      child: Icon(Feather.bell),
-    )],
+    title: Text(title, style: TextStyle(fontSize: 24.0, color: Constants.lightBG)),
+    bottom: PreferredSize(
+        child: Container(
+          color: Colors.orange,
+          height: 2.0,
+        ),
+        preferredSize: Size.fromHeight(2.0)),
   );
 }
