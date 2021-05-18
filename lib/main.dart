@@ -14,6 +14,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Config.init();
   runApp(MyApp());
+ // runApp(AppSplashScreen());
 }
 
 class MyApp extends StatefulWidget {
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
                 if (snapshot.hasData && snapshot.data) {
                   return TabsScreenHolder();
                 } else
-                  return Landing();
+                  return LandingPage();
               },
             ),
           );
@@ -56,3 +57,5 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+// https://pub.dev/packages/sizer // https://stackoverflow.com/questions/49704497/how-to-make-flutter-app-responsive-according-to-different-screen-size

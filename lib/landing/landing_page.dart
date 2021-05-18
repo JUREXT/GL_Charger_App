@@ -1,115 +1,90 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/authentication/login/login.dart';
-import 'package:gl_charge_app/authentication/register/register.dart';
+import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/widgets/appText.dart';
 
-class Landing extends StatefulWidget {
+class LandingPage extends StatefulWidget {
   @override
-  _LandingState createState() => _LandingState();
+  _LandingPageState createState() => _LandingPageState();
 }
 
-class _LandingState extends State<Landing> {
+// https://mightytechno.com/rounded-button-flutter/
+
+class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
+      backgroundColor: Constants.ColorLightGrey,
+      body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: EdgeInsets.only(left: 10.0),
-                child: Image.asset(
-                  'assets/images/full_battery_charge.jpg',
-                  height: 200.0,
-                  width: 200.0,
-                  fit: BoxFit.cover,
-                ),
+            SizedBox(height: 60),
+            Container(
+              //color: Colors.black87,
+              height: 150,
+              child: Center(
+                child: Image.asset("assets/images/logo.png", height: 46),
               ),
             ),
-            Text(
-              'APP',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.w900,
-                fontFamily: 'Ubuntu-Regular',
+            SizedBox(height: 100),
+            Container(
+            //  color: Colors.red,
+              height: 50,
+              child: Center(
+                child: appText("Sign Up", 40.0, Constants.ColorYellow),
+              ),
+            ),
+            SizedBox(height: 150),
+            Container(
+              margin: EdgeInsets.only(left: 16, right: 16),
+              width: double.infinity,
+              height: 80,
+              child: RaisedButton(
+                child: appText("Sign up for free", 17.0, Constants.ColorBlack),
+                color: Colors.amber,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                onPressed: () {
+                  // TODO: handle click
+                },
+              ),
+            ),
+            SizedBox(height: 15),
+            Container(
+              margin: EdgeInsets.only(left: 16, right: 16),
+              width: double.infinity,
+              height: 80,
+              child: RaisedButton(
+                child: appText("Continue with Google", 17.0, Constants.ColorYellow),
+                color: Constants.ColorBlack,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                onPressed: () {
+                  // TODO: handle click
+                },
+              ),
+            ),
+            SizedBox(height: 10),
+            Container(
+             // color: Colors.redAccent,
+              height: 90,
+              width: double.infinity,
+              child: Stack(
+                children: [
+                  Positioned(
+                      top: 17,
+                      left: 35,
+                      child: appText("Already have an account?", 17.0,
+                          Constants.ColorLightPurple)),
+                  Positioned(
+                      top: 17,
+                      right: 45,
+                      child: appText("Sign In", 17.0,
+                          Constants.ColorYellow))
+                ],
               ),
             )
           ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 0.0,
-        child: Padding(
-          padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushReplacement(CupertinoPageRoute(builder: (_) => Login()));
-                },
-                child: Container(
-                  height: 45.0,
-                  width: 130.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40.0),
-                    border: Border.all(color: Colors.grey),
-                    gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [
-                        Theme.of(context).accentColor,
-                        Color(0xff597FDB),
-                      ],
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'LOGIN',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushReplacement(CupertinoPageRoute(builder: (_) => Register()));
-                },
-                child: Container(
-                  height: 45.0,
-                  width: 130.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40.0),
-                    border: Border.all(color: Colors.white),
-                    gradient: LinearGradient(
-                      begin: Alignment.topRight,
-                      end: Alignment.bottomLeft,
-                      colors: [
-                        Theme.of(context).accentColor,
-                        Color(0xff597FDB),
-                      ],
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'SIGN UP',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
         ),
       ),
     );
