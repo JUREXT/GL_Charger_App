@@ -136,7 +136,7 @@ class _TextFormBuilderState extends State<TextFormBuilder> {
   border(BuildContext context) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.all(
-        Radius.circular(30.0),
+        Radius.circular(10.0),
       ),
       borderSide: BorderSide(
         color: Colors.white,
@@ -148,7 +148,7 @@ class _TextFormBuilderState extends State<TextFormBuilder> {
   focusBorder(BuildContext context) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.all(
-        Radius.circular(30.0),
+        Radius.circular(10.0),
       ),
       borderSide: BorderSide(
         color: Theme.of(context).accentColor,

@@ -31,7 +31,7 @@ class _LandingPageState extends State<LandingPage> {
             //  color: Colors.red,
               height: 50,
               child: Center(
-                child: appText("Sign Up", 40.0, Constants.ColorYellow),
+                child: appText("Sign Up", 40.0, Constants.ColorYellow, TextDecoration.none),
               ),
             ),
             SizedBox(height: 150),
@@ -40,7 +40,7 @@ class _LandingPageState extends State<LandingPage> {
               width: double.infinity,
               height: 80,
               child: RaisedButton(
-                child: appText("Sign up for free", 17.0, Constants.ColorBlack),
+                child: appText("Sign up for free", 17.0, Constants.ColorBlack, TextDecoration.none),
                 color: Colors.amber,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -55,7 +55,7 @@ class _LandingPageState extends State<LandingPage> {
               width: double.infinity,
               height: 80,
               child: RaisedButton(
-                child: appText("Continue with Google", 17.0, Constants.ColorYellow),
+                child: appText("Continue with Google", 17.0, Constants.ColorYellow, TextDecoration.none),
                 color: Constants.ColorBlack,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -75,12 +75,12 @@ class _LandingPageState extends State<LandingPage> {
                       top: 17,
                       left: 35,
                       child: appText("Already have an account?", 17.0,
-                          Constants.ColorLightPurple)),
+                          Constants.ColorLightPurple, TextDecoration.none)),
                   Positioned(
                       top: 17,
                       right: 45,
                       child: appText("Sign In", 17.0,
-                          Constants.ColorYellow))
+                          Constants.ColorYellow, TextDecoration.underline))
                 ],
               ),
             )
