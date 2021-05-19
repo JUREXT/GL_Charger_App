@@ -21,6 +21,7 @@ class Constants {
   static const ColorLightPurple = Color(0xFF8B91A8); // #8B91A8
   static const ColorLightGreen = Color(0xFF20C997); // #20C997
   static const ColorRed = Color(0xFFFF4D4F); // #FF4D4F
+  static const ColorDivider = Color(0xFFCDD4D9); // #CDD4D9
 
   static ThemeData lightTheme = ThemeData(
     fontFamily: 'SF',
@@ -93,7 +94,7 @@ class ThemeNotifier extends ChangeNotifier {
     _loadfromPrefs();
   }
 
-  toggleTheme() {
+  toggleTheme() { // TODO: later when light and dark colors are defined trough out the app
     _darkTheme = !_darkTheme;
     _saveToPrefs();
     notifyListeners();

@@ -4,6 +4,7 @@ import '../utils/constants.dart';
 
 Widget appBar1(String title) {
   return AppBar(
+    backgroundColor: Constants.ColorLightGrey,
     title: Text(title, style: TextStyle(fontSize: 24.0, color: Constants.lightBG)),
     bottom: PreferredSize(
         child: Container(color: Colors.orange, height: 2.0),

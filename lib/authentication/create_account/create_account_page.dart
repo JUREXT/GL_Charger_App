@@ -7,18 +7,18 @@ import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/validation.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 import 'package:provider/provider.dart';
-import 'login_view_model.dart';
 
-class LogInPage extends StatefulWidget {
+class CreateAccountPage extends StatefulWidget {
   @override
-  _LogInPageState createState() => _LogInPageState();
+  _CreateAccountPageState createState() => _CreateAccountPageState();
 }
 
 // https://mightytechno.com/rounded-button-flutter/
 
-class _LogInPageState extends State<LogInPage> {
+class _CreateAccountPageState extends State<CreateAccountPage> {
   @override
   Widget build(BuildContext context) {
+
     // LoginViewModel viewModel = Provider.of<LoginViewModel>(context);
 
     return Scaffold(
@@ -39,7 +39,7 @@ class _LogInPageState extends State<LogInPage> {
               //  color: Colors.red,
               height: 50,
               child: Center(
-                child: appText("Sign Up", 40.0, Constants.ColorYellow, TextDecoration.none),
+                child: appText("Create an account", 40.0, Constants.ColorYellow, TextDecoration.none),
               ),
             ),
             SizedBox(height: 80),
@@ -66,12 +66,51 @@ class _LogInPageState extends State<LogInPage> {
             Container(
               margin: EdgeInsets.only(left: 16, right: 16),
               width: double.infinity,
+              height: 66,
+              child: Theme(
+                  data: ThemeData(
+                    primaryColor: Constants.ColorYellow,
+                    primaryColorDark: Constants.ColorWhite,
+                    hintColor: Constants.ColorLightPurple,
+                  ),
+                  child: TextField(
+                    style: TextStyle(color: Constants.ColorWhite, fontSize: 17),
+                    decoration: InputDecoration(
+                        hintText: "Create a strong password",
+                        labelText: "Your password",
+                        labelStyle: TextStyle(
+                            color: Constants.ColorYellow, fontSize: 14)),
+                  )),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 16, right: 16),
+              width: double.infinity,
+              height: 66,
+              child: Theme(
+                  data: ThemeData(
+                    primaryColor: Constants.ColorYellow,
+                    primaryColorDark: Constants.ColorWhite,
+                    hintColor: Constants.ColorLightPurple,
+                  ),
+                  child: TextField(
+                    style: TextStyle(color: Constants.ColorWhite, fontSize: 17),
+                    decoration: InputDecoration(
+                        hintText: "Repeat password",
+                        labelText: "Repeat password",
+                        labelStyle: TextStyle(
+                            color: Constants.ColorYellow, fontSize: 14)),
+                  )),
+            ),
+            SizedBox(height: 15.0),
+            Container(
+              margin: EdgeInsets.only(left: 16, right: 16),
+              width: double.infinity,
               height: 80,
               child: Container(
                 width: double.infinity,
                 height: 80,
                 child: RaisedButton(
-                  child: appText("Continue", 17.0, Constants.ColorBlack, TextDecoration.none),
+                  child: appText("Continue an account", 17.0, Constants.ColorBlack, TextDecoration.none),
                   color: Colors.amber,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
@@ -82,59 +121,6 @@ class _LogInPageState extends State<LogInPage> {
               ),
             ),
             SizedBox(height: 30),
-            Container(
-              // color: Colors.greenAccent,
-              width: double.infinity,
-              height: 20,
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Divider(
-                      height: 1,
-                      thickness: 1,
-                      indent: 16,
-                      endIndent: 0,
-                      color: Constants.ColorYellow,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      child: appText("or", 15.0, Constants.ColorLightPurple, TextDecoration.none),
-                      alignment: Alignment.center,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Divider(
-                      height: 1,
-                      thickness: 1,
-                      indent: 0,
-                      endIndent: 16,
-                      color: Constants.ColorYellow,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
-              width: double.infinity,
-              height: 80,
-              child: RaisedButton(
-                child: appText(
-                    "Continue with Google", 17.0, Constants.ColorYellow, TextDecoration.none),
-                color: Constants.ColorBlack,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                onPressed: () {
-                  // TODO: handle click
-                },
-              ),
-            ),
-            SizedBox(height: 10),
             Container(
               // color: Colors.redAccent,
               height: 130,

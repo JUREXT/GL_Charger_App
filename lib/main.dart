@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/authentication/landing/landing_page.dart';
 import 'package:gl_charge_app/authentication/log_in/login_page.dart';
+import 'package:gl_charge_app/authentication/register/register.dart';
+import 'package:gl_charge_app/screens/settings.dart';
 import 'package:gl_charge_app/screens/tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/config.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/providers.dart';
 import 'package:provider/provider.dart';
-
+import 'authentication/create_account/create_account_page.dart';
 import 'components/life_cycle_event_handler.dart';
 import 'services/auth_test.dart';
 import 'services/user_service.dart';
@@ -48,7 +51,7 @@ class _MyAppState extends State<MyApp> {
                 if (snapshot.hasData && snapshot.data) {
                   return TabsScreenHolder();
                 } else
-                  return LogInPage();
+                  return SettingScreen();
               },
             ),
           );

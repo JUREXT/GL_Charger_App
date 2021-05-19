@@ -79,8 +79,7 @@ class _UsersScreenState extends State<UsersScreen> {
           //SvgPicture.asset(),
          // Image.asset(ImagesApp.ImageLogoPng),
           SizedBox(height: 30.0),
-          Text('Dummy Data 1', style: TextStyle(fontFamily: 'SF', fontSize: 32.0, fontWeight: FontWeight.normal, color: Constants.ColorWhite)),
-          Text('Dummy Data 2', style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.normal, color: Constants.ColorWhite)),
+          Text('Users Screen', style: TextStyle(fontFamily: 'SF', fontSize: 32.0, fontWeight: FontWeight.normal, color: Constants.ColorWhite)),
         ],
       ),
     );

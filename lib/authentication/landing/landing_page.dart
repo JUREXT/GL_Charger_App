@@ -40,7 +40,7 @@ class _LandingPageState extends State<LandingPage> {
               width: double.infinity,
               height: 80,
               child: RaisedButton(
-                child: appText("Sign up for free", 17.0, Constants.ColorBlack, TextDecoration.none),
+                child: appText("Sign up free", 17.0, Constants.ColorBlack, TextDecoration.none),
                 color: Colors.amber,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
