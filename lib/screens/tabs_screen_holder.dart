@@ -74,7 +74,7 @@ class _TabsScreenHolderState extends State<TabsScreenHolder> {
           UsersScreen(),
           ChargersScreen(),
           ChargeScreen(),
-          SettingsScreen(),
+          SettingScreen(),
           ShopScreen()
         ],
       ),

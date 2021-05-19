@@ -74,6 +74,7 @@ flutter:
     - assets/images/full_battery_charge.jpg
     - assets/images/logo2.svg
     - assets/images/logo.png
+    - assets/charging_station.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
