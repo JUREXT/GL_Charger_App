@@ -65,3 +65,4 @@ class _MyAppState extends State<MyApp> {
 // https://www.geeksforgeeks.org/how-to-add-images-in-flutter-app/
 // https://fluttergems.dev/switch/
 // https://pusher.com/tutorials/flutter-listviews
+// https://blog.logrocket.com/flutter-tabbar-a-complete-tutorial-with-examples/

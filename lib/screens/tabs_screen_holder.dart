@@ -35,7 +35,7 @@ class _TabsScreenHolderState extends State<TabsScreenHolder> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Constants.ColorBlack,
-        selectedItemColor: Constants.ColorLightGreen,
+        selectedItemColor: Constants.ColorYellow,
         unselectedItemColor: Constants.ColorWhite, // TODO: needs to be ColorLightGrey, but not looking good
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
