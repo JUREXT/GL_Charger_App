@@ -7,6 +7,8 @@ import 'package:gl_charge_app/widgets/appSettingsListTile.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/constants.dart';
+
 class SettingScreen extends StatefulWidget {
   @override
   _SettingScreenState createState() => _SettingScreenState();
@@ -23,16 +25,20 @@ class _SettingScreenState extends State<SettingScreen> {
         child: ListView(
           children: <Widget>[
 
-            Container(
-                child: appSettingsListTile("General Settings"), height: 65),
-            appSettingsDivider(),
-            SizedBox(height: 2.0),
-            Container(
-                child: appSettingsListTile("Account Settings"), height: 65),
-            appSettingsDivider(),
-            SizedBox(height: 2.0),
             ListTile(
-              leading: Icon(Icons.settings),
+              leading: Icon(Icons.settings, color: Constants.ColorYellow),
+              title: appText("General Settings", 15.0, Constants.ColorWhite, TextDecoration.none),
+            ),
+            appSettingsDivider(),
+
+            ListTile(
+              leading: Icon(Icons.settings, color: Constants.ColorYellow),
+              title: appText("Account Settings", 15.0, Constants.ColorWhite, TextDecoration.none),
+            ),
+            appSettingsDivider(),
+
+            ListTile(
+              leading: Icon(Icons.settings, color: Constants.ColorYellow),
               title: appText("Notifications", 15.0, Constants.ColorWhite, TextDecoration.none),
               trailing: Consumer<ThemeNotifier>(
                 builder: (context, notifier, child) => CupertinoSwitch(
@@ -46,17 +52,25 @@ class _SettingScreenState extends State<SettingScreen> {
               ),
             ),
             appSettingsDivider(),
-            SizedBox(height: 2.0),
-            Container(
-                child: appSettingsListTile("Default Charger"), height: 65),
+
+            ListTile(
+              leading: Icon(Icons.settings, color: Constants.ColorYellow),
+              title: appText("Default Charger", 15.0, Constants.ColorWhite, TextDecoration.none),
+            ),
             appSettingsDivider(),
-            SizedBox(height: 2.0),
-            Container(
-                child: appSettingsListTile("Default Charging method"),
-                height: 65),
+
+            ListTile(
+              leading: Icon(Icons.settings, color: Constants.ColorYellow),
+              title: appText("Default Charging method", 15.0, Constants.ColorWhite, TextDecoration.none),
+            ),
             appSettingsDivider(),
-            SizedBox(height: 2.0),
-            Container(child: appSettingsListTile("Authentication"), height: 65),
+
+            ListTile(
+              leading: Icon(Icons.settings, color: Constants.ColorYellow),
+              title: appText("Authentication", 15.0, Constants.ColorWhite, TextDecoration.none),
+            ),
+            appSettingsDivider(),
+
           ],
         ),
       ),

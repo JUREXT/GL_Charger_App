@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 
+import '../utils/constants.dart';
 import 'appText.dart';
 
 Widget appChargerListItem() {
@@ -12,12 +13,8 @@ Widget appChargerListItem() {
     child: Column(
       children: [
         ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Constants.ColorYellow,
-            backgroundImage: AssetImage('assets/charging_station.png'),
-          ),
-          title: appText(
-              "Home Charger", 15.0, Constants.ColorWhite, TextDecoration.none),
+          leading: Container(height: 60, width: 60, child: CircleAvatar(child: Image.asset('assets/images/charging_station.png'), backgroundColor: Constants.ColorYellow)),
+          title: appText("Home Charger", 15.0, Constants.ColorWhite, TextDecoration.none),
           subtitle: Row(
             children: [
               Container(
@@ -27,40 +24,22 @@ Widget appChargerListItem() {
                 // color: Constants.ColorYellow,
                 child: Padding(
                   padding: EdgeInsets.all(3.0),
-                  child: appText(
-                      "ONLINE", 12, Constants.ColorBlack, TextDecoration.none),
-                ),
-              ),
-              //
+                  child: appText("ONLINE", 12, Constants.ColorBlack, TextDecoration.none))),
               SizedBox(width: 5),
-              appText(
-                  "Charging", 12, Constants.ColorYellow, TextDecoration.none),
+              appText("Charging", 12, Constants.ColorYellow, TextDecoration.none),
             ],
           ),
         ),
 
         // SizedBox(height: 10),
         Expanded(
-          flex: 2,
-          child: Divider(
-            height: 1,
-            thickness: 1,
-            indent: 16,
-            endIndent: 16,
-            color: Constants.ColorDivider2,
-          ),
+          child: Divider(height: 1, thickness: 1, indent: 16, endIndent: 16, color: Constants.ColorDivider2),
         ),
 
         ListTile(
-          leading: Icon(Icons.location_on),
-          title: appText(
-              "Ljubljana", 15.0, Constants.ColorWhite, TextDecoration.none),
-          subtitle: appText(
-              "Charger ID: 189894984",
-              12.0,
-              Constants.ColorLightPurple,
-              TextDecoration
-                  .none), //Text('93 million miles away'), //           <-- subtitle
+          leading: Icon(Icons.location_on, color: Constants.ColorYellow),
+          title: appText("Ljubljana", 15.0, Constants.ColorWhite, TextDecoration.none),
+          subtitle: appText("Charger ID: 189894984", 12.0, Constants.ColorLightPurple,  TextDecoration.none),
         ),
       ],
     ),

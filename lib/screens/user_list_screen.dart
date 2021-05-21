@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/tab_bar_pages/user_lits_page.dart';
+import 'package:gl_charge_app/tab_bar_pages/user_list_all_page.dart';
+import 'package:gl_charge_app/tab_bar_pages/user_list_approved_page.dart';
+import 'package:gl_charge_app/tab_bar_pages/user_list_pending_page.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 
-class UsersScreen extends StatefulWidget {
-  UsersScreen({Key key}) : super(key: key);
+import '../utils/constants.dart';
+
+class UserListScreen extends StatefulWidget {
+  UserListScreen({Key key}) : super(key: key);
 
   @override
-  _UsersScreenState createState() => _UsersScreenState();
+  _UserListScreenState createState() => _UserListScreenState();
 }
 
-class _UsersScreenState extends State<UsersScreen> {
+class _UserListScreenState extends State<UserListScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -18,12 +22,13 @@ class _UsersScreenState extends State<UsersScreen> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Constants.ColorBlack,
           title: PreferredSize(
               child: Padding(
                   padding: EdgeInsets.only(left: 10, right: 10),
                   child: Column(
                     children: [
-                      Text("User List", style: TextStyle(fontSize: 24.0, color: Constants.lightBG)),
+                      Text("User List", style: TextStyle(fontSize: 24.0, color: Constants.ColorWhite)),
                       Container(color: Colors.orange, height: 2.0),
                     ],
                   )),
@@ -42,9 +47,9 @@ class _UsersScreenState extends State<UsersScreen> {
         ),
         body: TabBarView(
           children: [
-            UserListPage(),
-            Icon(Icons.transfer_within_a_station, size: 350),
-            Icon(Icons.transfer_within_a_station, size: 350),
+            UserListAllPage(),
+            UserListPendingPage(),
+            UserListApprovedPage()
           ],
         ),
       ),

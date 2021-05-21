@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             title: Constants.appName,
             debugShowCheckedModeBanner: false,
-            theme:notifier.dark ? Constants.darkTheme : Constants.lightTheme,
+          //  theme:notifier.dark ? Constants.darkTheme : Constants.lightTheme,
             home: StreamBuilder(
               stream: AuthTest.getBoolValue().asStream(),
               builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
@@ -66,3 +66,4 @@ class _MyAppState extends State<MyApp> {
 // https://fluttergems.dev/switch/
 // https://pusher.com/tutorials/flutter-listviews
 // https://blog.logrocket.com/flutter-tabbar-a-complete-tutorial-with-examples/
+// https://www.woolha.com/tutorials/flutter-display-and-adjust-images-from-assets

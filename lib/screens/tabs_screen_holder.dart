@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/screens/settings_screen.dart';
 import 'package:gl_charge_app/screens/shop_screen.dart';
-import 'package:gl_charge_app/screens/users_screen.dart';
+import 'package:gl_charge_app/screens/user_list_screen.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 
 import 'charge_screen.dart';
@@ -71,7 +71,7 @@ class _TabsScreenHolderState extends State<TabsScreenHolder> {
           });
         },
         children: <Widget>[
-          UsersScreen(),
+          UserListScreen(),
           ChargersScreen(),
           ChargeScreen(),
           SettingScreen(),
