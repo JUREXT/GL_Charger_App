@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/tab_bar_pages/user_lits_page.dart';
-import 'dart:async';
-
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appBar1.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 
 class UsersScreen extends StatefulWidget {
