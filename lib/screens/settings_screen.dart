@@ -7,6 +7,7 @@ import 'package:gl_charge_app/widgets/appSettingsListTile.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 import 'package:provider/provider.dart';
 
+import '../authentication/log_in/login_page.dart';
 import '../utils/constants.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -68,6 +69,14 @@ class _SettingScreenState extends State<SettingScreen> {
             ListTile(
               leading: Icon(Icons.settings, color: Constants.ColorYellow),
               title: appText("Authentication", 15.0, Constants.ColorWhite, TextDecoration.none),
+            ),
+            appSettingsDivider(),
+            ListTile(
+              leading: Icon(Icons.settings, color: Constants.ColorYellow),
+              title: appText("Logout", 15.0, Constants.ColorWhite, TextDecoration.none),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LogInPage()));
+                }
             ),
             appSettingsDivider(),
 

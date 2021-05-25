@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/widgets/appBar2.dart';
+import 'package:gl_charge_app/widgets/appContainerDecoration.dart';
+import 'package:gl_charge_app/widgets/appSpannedText.dart';
+
+import '../utils/constants.dart';
+import '../widgets/appText.dart';
 
 class ChargeScreen extends StatefulWidget {
   ChargeScreen({Key key}) : super(key: key);
@@ -8,64 +14,181 @@ class ChargeScreen extends StatefulWidget {
 }
 
 class _ChargeScreenState extends State<ChargeScreen> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    var _value = 10.0;
+
     return Scaffold(
-      body: getDataTable(),
-    );
+        appBar: appBar2("Home", "Charger 1"),
+        backgroundColor: Constants.ColorLightGrey,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
+            child: Column(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 75,
+                  decoration: BoxDecoration(
+                    color: Constants.ColorBlack,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(9, 9, 9, 9),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          appText("LAST SESSION", 12.0, Constants.ColorYellow,
+                              TextDecoration.none),
+                          SizedBox(height: 6),
+                          appSpannedText("Consumed Energy:", "150kW", 12,
+                              Constants.ColorWhite, Constants.ColorYellow),
+                          SizedBox(height: 6),
+                          appSpannedText("Duration:", "1h 30min", 12,
+                              Constants.ColorWhite, Constants.ColorYellow),
+                        ]),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 162,
+                  // color: Constants.ColorWhite,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            width: 150,
+                            height: 70,
+                            decoration: appContainerBoxDecoration(),
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 2),
+                                  appText("CURRENT", 8.0, Constants.ColorYellow,
+                                      TextDecoration.none),
+                                  SizedBox(height: 10),
+                                  appText("0 A", 24.0, Constants.ColorWhite,
+                                      TextDecoration.none),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 150,
+                            height: 70,
+                            decoration: appContainerBoxDecoration(),
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 2),
+                                  appText("ENERGY", 8.0, Constants.ColorYellow,
+                                      TextDecoration.none),
+                                  SizedBox(height: 10),
+                                  appText("0 kW", 24.0, Constants.ColorWhite,
+                                      TextDecoration.none),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 22),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            width: 150,
+                            height: 70,
+                            decoration: appContainerBoxDecoration(),
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 2),
+                                  appText("POWER", 8.0, Constants.ColorYellow,
+                                      TextDecoration.none),
+                                  SizedBox(height: 10),
+                                  appText("0 kW", 24.0, Constants.ColorWhite,
+                                      TextDecoration.none),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 150,
+                            height: 70,
+                            decoration: appContainerBoxDecoration(),
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 2),
+                                  appText(
+                                      "DURATION",
+                                      8.0,
+                                      Constants.ColorYellow,
+                                      TextDecoration.none),
+                                  SizedBox(height: 10),
+                                  appText("0 min", 24.0, Constants.ColorWhite,
+                                      TextDecoration.none),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 30),
+                Container(
+                 // color: Colors.lightGreen,
+                  child: Center(
+                    child: appText("Change Current", 16.0, Constants.ColorWhite,
+                        TextDecoration.none),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Container(
+                  height: 30,
+                  color: Colors.blue,
+                  child: SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      activeTrackColor: Colors.red[700],
+                      inactiveTrackColor: Colors.red[100],
+                      trackShape: RoundedRectSliderTrackShape(),
+                      trackHeight: 4.0,
+                      thumbShape:RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                      thumbColor: Colors.redAccent,
+                      overlayColor: Colors.red.withAlpha(32),
+                      overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
+                      tickMarkShape: RoundSliderTickMarkShape(),
+                      activeTickMarkColor: Colors.red[700],
+                      inactiveTickMarkColor: Colors.red[100],
+                      valueIndicatorShape: PaddleSliderValueIndicatorShape(),
+                      valueIndicatorColor: Colors.redAccent,
+                      valueIndicatorTextStyle: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    child: Slider(
+                      value: _value,
+                      min: 0,
+                      max: 100,
+                      label: '$_value',
+                      onChanged: (value) {
+                        setState(() {
+                            _value = value;
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
-
-  DataColumn createColumn(String columnName) {
-    return DataColumn(label: Text(columnName, style: TextStyle(fontStyle: FontStyle.normal)));
-  }
-
-  DataRow createRow(String date, String power, String time) {
-    return DataRow(
-      cells: <DataCell>[
-        DataCell(Text(date)),
-        DataCell(Text(power)),
-        DataCell(Text(time)),
-      ],
-    );
-  }
-
-  Widget getDataTable() {
-    List<DataRow> dataRows = [];
-    for(int i=0; i<30; i++) {
-      dataRows.add(createRow("21.02.2021", "3." + i.toString() + " Kw", "13:2"+ i.toString()));
-    }
-
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
-        child: DataTable(
-          columns: <DataColumn>[
-            createColumn("Date"),
-            createColumn("Power"),
-            createColumn("Time"),
-          ],
-          rows: dataRows,
-        ),
-      ),
-    );
-  }
-
 }
-
-// StatisticData data = StatisticData();
-// class StatisticData {
-//   List<StatisticInfo> dataInfo = [];
-//
-//   void initData(int size) {
-//     for (int i = 0; i < size; i++) {
-//       dataInfo.add(StatisticInfo("21.02.2021", "3.5"));
-//     }
-//   }
-// }
-

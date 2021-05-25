@@ -9,6 +9,7 @@ import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/providers.dart';
 import 'package:provider/provider.dart';
 import 'authentication/create_account/create_account_page.dart';
+import 'authentication/landing/landing_page.dart';
 import 'components/life_cycle_event_handler.dart';
 import 'services/auth_test.dart';
 import 'services/user_service.dart';
@@ -50,8 +51,9 @@ class _MyAppState extends State<MyApp> {
               builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                 if (snapshot.hasData && snapshot.data) {
                   return TabsScreenHolder();
-                } else
-                  return TabsScreenHolder();
+                } else {
+                  return LandingPage();
+                }
               },
             ),
           );

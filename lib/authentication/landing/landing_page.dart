@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 
+import '../../screens/tabs_screen_holder.dart';
+import '../log_in/login_page.dart';
+
 class LandingPage extends StatefulWidget {
   @override
   _LandingPageState createState() => _LandingPageState();
@@ -46,6 +49,8 @@ class _LandingPageState extends State<LandingPage> {
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
                   // TODO: handle click
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => LogInPage()),
+                  );
                 },
               ),
             ),
@@ -61,6 +66,9 @@ class _LandingPageState extends State<LandingPage> {
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
                   // TODO: handle click
+                 // Navigator.pushReplacementNamed(context, MaterialPageRoute(builder: (context) => TabsScreenHolder()));
+                  Route route = MaterialPageRoute(builder: (context) => TabsScreenHolder());
+                  Navigator.pushReplacement(context, route);
                 },
               ),
             ),

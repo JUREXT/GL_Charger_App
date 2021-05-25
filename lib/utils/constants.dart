@@ -23,6 +23,7 @@ class Constants {
   static const ColorRed = Color(0xFFFF4D4F); // #FF4D4F
   static const ColorDivider = Color(0xFFCDD4D9); // #CDD4D9
   static const ColorDivider2 = Color(0xFF707070); // #707070
+  static const ColorGreenish = Color(0xFF424322); // #424322
 
   // static ThemeData lightTheme = ThemeData(
   //   fontFamily: 'SF',

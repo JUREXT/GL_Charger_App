@@ -51,7 +51,7 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#212123"
-  image: assets/images/output.png
+  image: assets/images/logo.png
   android_gravity: center
   ios_content_mode: center
   fullscreen: true
@@ -72,7 +72,7 @@ flutter:
     - 'assets/languages/'
     - assets/images/full_battery_charge.jpg
     - assets/images/charging_station.png
-    - assets/images/output.png
+    - assets/images/logo.png
     - assets/images/ic_user.png
     - assets/images/ic_clear_24px.png
     - assets/images/ic_done_24px.png

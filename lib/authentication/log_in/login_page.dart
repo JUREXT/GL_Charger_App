@@ -1,13 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/components/password_text_field.dart';
-import 'package:gl_charge_app/components/text_form_builder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/utils/validation.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
-import 'package:provider/provider.dart';
-import 'login_view_model.dart';
 
 class LogInPage extends StatefulWidget {
   @override
@@ -39,7 +34,8 @@ class _LogInPageState extends State<LogInPage> {
               //  color: Colors.red,
               height: 50,
               child: Center(
-                child: appText("Sign Up", 40.0, Constants.ColorYellow, TextDecoration.none),
+                child: appText("Sign Up", 40.0, Constants.ColorYellow,
+                    TextDecoration.none),
               ),
             ),
             SizedBox(height: 80),
@@ -71,12 +67,14 @@ class _LogInPageState extends State<LogInPage> {
                 width: double.infinity,
                 height: 80,
                 child: RaisedButton(
-                  child: appText("Continue", 17.0, Constants.ColorBlack, TextDecoration.none),
+                  child: appText("Continue", 17.0, Constants.ColorBlack,
+                      TextDecoration.none),
                   color: Colors.amber,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   onPressed: () {
                     // TODO: handle click
+                    Navigator.pop(context);
                   },
                 ),
               ),
@@ -101,7 +99,8 @@ class _LogInPageState extends State<LogInPage> {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      child: appText("or", 15.0, Constants.ColorLightPurple, TextDecoration.none),
+                      child: appText("or", 15.0, Constants.ColorLightPurple,
+                          TextDecoration.none),
                       alignment: Alignment.center,
                     ),
                   ),
@@ -124,8 +123,8 @@ class _LogInPageState extends State<LogInPage> {
               width: double.infinity,
               height: 80,
               child: RaisedButton(
-                child: appText(
-                    "Continue with Google", 17.0, Constants.ColorYellow, TextDecoration.none),
+                child: appText("Continue with Google", 17.0,
+                    Constants.ColorYellow, TextDecoration.none),
                 color: Constants.ColorBlack,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -149,7 +148,8 @@ class _LogInPageState extends State<LogInPage> {
                   Positioned(
                       top: 17,
                       right: 45,
-                      child: appText("Sign In", 17.0, Constants.ColorYellow, TextDecoration.underline)),
+                      child: appText("Sign In", 17.0, Constants.ColorYellow,
+                          TextDecoration.underline)),
                   Positioned(
                       top: 70,
                       left: 37,
@@ -180,5 +180,4 @@ class _LogInPageState extends State<LogInPage> {
       ),
     );
   }
-
 }
