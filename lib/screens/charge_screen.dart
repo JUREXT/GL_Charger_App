@@ -1,8 +1,13 @@
+import 'package:circle_button/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/widgets/appBar2.dart';
 import 'package:gl_charge_app/widgets/appContainerDecoration.dart';
 import 'package:gl_charge_app/widgets/appSpannedText.dart';
 
+import '../utils/constants.dart';
+import '../utils/constants.dart';
+import '../utils/constants.dart';
+import '../utils/constants.dart';
 import '../utils/constants.dart';
 import '../widgets/appText.dart';
 
@@ -143,10 +148,9 @@ class _ChargeScreenState extends State<ChargeScreen> {
                 ),
                 SizedBox(height: 30),
                 Container(
-                 // color: Colors.lightGreen,
+                  // color: Colors.lightGreen,
                   child: Center(
-                    child: appText("Change Current", 16.0, Constants.ColorWhite,
-                        TextDecoration.none),
+                    child: appText("Change Current", 16.0, Constants.ColorWhite, TextDecoration.none),
                   ),
                 ),
                 SizedBox(height: 30),
@@ -159,10 +163,12 @@ class _ChargeScreenState extends State<ChargeScreen> {
                       inactiveTrackColor: Colors.red[100],
                       trackShape: RoundedRectSliderTrackShape(),
                       trackHeight: 4.0,
-                      thumbShape:RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                      thumbShape:
+                          RoundSliderThumbShape(enabledThumbRadius: 12.0),
                       thumbColor: Colors.redAccent,
                       overlayColor: Colors.red.withAlpha(32),
-                      overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 28.0),
                       tickMarkShape: RoundSliderTickMarkShape(),
                       activeTickMarkColor: Colors.red[700],
                       inactiveTickMarkColor: Colors.red[100],
@@ -178,11 +184,41 @@ class _ChargeScreenState extends State<ChargeScreen> {
                       max: 100,
                       label: '$_value',
                       onChanged: (value) {
-                        setState(() {
+                        setState(
+                          () {
                             _value = value;
                           },
                         );
                       },
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Container(
+                //  color: Colors.green,
+                  child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        // just an empty SizedBox to add some spacing
+                        SizedBox(height: 20),
+                        Container(
+                          width: 175,
+                          height: 175,
+                          child: Center(
+                            child: CircleButton(
+                              onTap: () => {},
+                              width: 175.0,
+                              height: 175.0,
+                              borderColor: Constants.ColorYellow,
+                              borderWidth: 10.0,
+                              borderStyle: BorderStyle.solid,
+                              backgroundColor: Constants.ColorGreenish,
+                              child:appText("Start", 24.0, Constants.ColorWhite,
+                                  TextDecoration.none),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 )
