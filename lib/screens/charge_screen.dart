@@ -16,7 +16,7 @@ class ChargeScreen extends StatefulWidget {
 
 class _ChargeScreenState extends State<ChargeScreen> {
 
-  double _startSliderValue = 10.0;
+  double _startSliderValue = 30.0;
   String _currentSliderValue;
   String _chosenValue;
 
@@ -227,8 +227,8 @@ class _ChargeScreenState extends State<ChargeScreen> {
                   child: DropdownButton<String>(
                     value: _chosenValue,
                     isExpanded: true,
-                    //elevation: 5,
-                    style: TextStyle(color: Colors.black),
+                   // elevation: 16,
+                   // style: TextStyle(color: Colors.black),
                     items: <String>[
                       'MAX POWER',
                       'Economy',
@@ -244,14 +244,14 @@ class _ChargeScreenState extends State<ChargeScreen> {
                         _chosenValue = value;
                       });
                     },
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
                 SizedBox(height: 5),
                 Container(
-                //  color: Colors.green,
+                  //  color: Colors.green,
                   child: Center(
                     child: Column(
                       children: <Widget>[
@@ -262,17 +262,15 @@ class _ChargeScreenState extends State<ChargeScreen> {
                           height: 175,
                           child: Center(
                             child: CircleButton(
-                              onTap: () => {
-                                print("CircleButton Tap")
-                              },
+                              onTap: () => {print("CircleButton Tap")},
                               width: 175.0,
                               height: 175.0,
                               borderColor: Constants.ColorYellow,
                               borderWidth: 10.0,
                               borderStyle: BorderStyle.solid,
                               backgroundColor: Constants.ColorGreenish,
-                              child:appText("Start", 24.0, Constants.ColorWhite,
-                                  TextDecoration.none),
+                              child: appText("Start", 24.0,
+                                  Constants.ColorWhite, TextDecoration.none),
                             ),
                           ),
                         )
