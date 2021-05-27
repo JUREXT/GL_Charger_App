@@ -19,9 +19,18 @@ class ChargeScreen extends StatefulWidget {
 }
 
 class _ChargeScreenState extends State<ChargeScreen> {
+
+  double _startSliderValue = 10.0;
+  String _currentSliderValue;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentSliderValue = _startSliderValue.toStringAsFixed(0);
+  }
+
   @override
   Widget build(BuildContext context) {
-    var _value = 10.0;
 
     return Scaffold(
         appBar: appBar2("Home", "Charger 1"),
@@ -75,8 +84,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
                                   appText("CURRENT", 8.0, Constants.ColorYellow,
                                       TextDecoration.none),
                                   SizedBox(height: 10),
-                                  appText("0 A", 24.0, Constants.ColorWhite,
-                                      TextDecoration.none),
+                                  appText("$_currentSliderValue A", 24.0, Constants.ColorWhite, TextDecoration.none),
                                 ],
                               ),
                             ),
@@ -92,7 +100,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
                                   appText("ENERGY", 8.0, Constants.ColorYellow,
                                       TextDecoration.none),
                                   SizedBox(height: 10),
-                                  appText("0 kW", 24.0, Constants.ColorWhite,
+                                  appText("$_currentSliderValue kW", 24.0, Constants.ColorWhite,
                                       TextDecoration.none),
                                 ],
                               ),
@@ -115,7 +123,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
                                   appText("POWER", 8.0, Constants.ColorYellow,
                                       TextDecoration.none),
                                   SizedBox(height: 10),
-                                  appText("0 kW", 24.0, Constants.ColorWhite,
+                                  appText("$_currentSliderValue kW", 24.0, Constants.ColorWhite,
                                       TextDecoration.none),
                                 ],
                               ),
@@ -135,7 +143,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
                                       Constants.ColorYellow,
                                       TextDecoration.none),
                                   SizedBox(height: 10),
-                                  appText("0 min", 24.0, Constants.ColorWhite,
+                                  appText("$_currentSliderValue min", 24.0, Constants.ColorWhite,
                                       TextDecoration.none),
                                 ],
                               ),
@@ -150,63 +158,79 @@ class _ChargeScreenState extends State<ChargeScreen> {
                 Container(
                   // color: Colors.lightGreen,
                   child: Center(
-                    child: appText("Change Current", 16.0, Constants.ColorWhite, TextDecoration.none),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        appText("Change Current:", 16.0, Constants.ColorWhite, TextDecoration.none),
+                        SizedBox(width: 3),
+                        appText("$_currentSliderValue", 16.0, Constants.ColorWhite, TextDecoration.none),
+                        appText("A", 16.0, Constants.ColorWhite, TextDecoration.none),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 30),
                 Container(
                   height: 30,
-                  color: Colors.blue,
+                 // color: Colors.blue,
                   child: SliderTheme(
                     data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: Colors.red[700],
-                      inactiveTrackColor: Colors.red[100],
+                      activeTrackColor: Constants.ColorGreenish,
+                      inactiveTrackColor: Constants.ColorGreenish,
                       trackShape: RoundedRectSliderTrackShape(),
-                      trackHeight: 4.0,
-                      thumbShape:
-                          RoundSliderThumbShape(enabledThumbRadius: 12.0),
-                      thumbColor: Colors.redAccent,
-                      overlayColor: Colors.red.withAlpha(32),
-                      overlayShape:
-                          RoundSliderOverlayShape(overlayRadius: 28.0),
-                      tickMarkShape: RoundSliderTickMarkShape(),
-                      activeTickMarkColor: Colors.red[700],
-                      inactiveTickMarkColor: Colors.red[100],
-                      valueIndicatorShape: PaddleSliderValueIndicatorShape(),
-                      valueIndicatorColor: Colors.redAccent,
-                      valueIndicatorTextStyle: TextStyle(
-                        color: Colors.white,
-                      ),
+                      trackHeight: 13.0,
+                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      thumbColor: Constants.ColorYellow,
+                      overlayColor: Constants.ColorYellow,
+                      overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
+                      tickMarkShape: RoundSliderTickMarkShape()
                     ),
                     child: Slider(
-                      value: _value,
+                      value: _startSliderValue,
                       min: 0,
                       max: 100,
-                      label: '$_value',
-                      onChanged: (value) {
-                        setState(
-                          () {
-                            _value = value;
-                          },
-                        );
+                     // label: "Value: $_currentSliderValue",
+                      //divisions: 10,
+                      onChanged: (newValue) {
+                        print("Slider Value: " + newValue.toStringAsFixed(0));
+                        setState(() {
+                           _startSliderValue = newValue;
+                           _currentSliderValue = _startSliderValue.toStringAsFixed(0);
+                        });
                       },
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                Container(
+                 // color: Colors.blue,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, right: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        appText("MIN", 12.0, Constants.ColorLightPurple, TextDecoration.none),
+                        appText("MAX", 12.0, Constants.ColorLightPurple, TextDecoration.none),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 5),
                 Container(
                 //  color: Colors.green,
                   child: Center(
                     child: Column(
                       children: <Widget>[
                         // just an empty SizedBox to add some spacing
-                        SizedBox(height: 20),
+                        SizedBox(height: 10),
                         Container(
                           width: 175,
                           height: 175,
                           child: Center(
                             child: CircleButton(
-                              onTap: () => {},
+                              onTap: () => {
+                                print("CircleButton Tap")
+                              },
                               width: 175.0,
                               height: 175.0,
                               borderColor: Constants.ColorYellow,
@@ -221,7 +245,8 @@ class _ChargeScreenState extends State<ChargeScreen> {
                       ],
                     ),
                   ),
-                )
+                ),
+                SizedBox(height: 20),
               ],
             ),
           ),
