@@ -5,10 +5,6 @@ import 'package:gl_charge_app/widgets/appContainerDecoration.dart';
 import 'package:gl_charge_app/widgets/appSpannedText.dart';
 
 import '../utils/constants.dart';
-import '../utils/constants.dart';
-import '../utils/constants.dart';
-import '../utils/constants.dart';
-import '../utils/constants.dart';
 import '../widgets/appText.dart';
 
 class ChargeScreen extends StatefulWidget {
@@ -22,6 +18,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
 
   double _startSliderValue = 10.0;
   String _currentSliderValue;
+  String _chosenValue;
 
   @override
   void initState() {
@@ -215,6 +212,43 @@ class _ChargeScreenState extends State<ChargeScreen> {
                     ),
                   ),
                 ),
+                SizedBox(height: 5),
+          Container(
+           // color: Colors.red,
+           // height: 20,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: Constants.ColorGreenish,
+                  ),
+                  child: DropdownButton<String>(
+                    value: _chosenValue,
+                    isExpanded: true,
+                    //elevation: 5,
+                    style: TextStyle(color: Colors.black),
+                    items: <String>[
+                      'MAX POWER',
+                      'Economy',
+                    ].map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: appText(value, 14.0, Constants.ColorLightPurple, TextDecoration.none),
+                      );
+                    }).toList(),
+                    hint: appText("Choose profile", 14.0, Constants.ColorLightPurple, TextDecoration.none),
+                    onChanged: (String value) {
+                      setState(() {
+                        _chosenValue = value;
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
                 SizedBox(height: 5),
                 Container(
                 //  color: Colors.green,
