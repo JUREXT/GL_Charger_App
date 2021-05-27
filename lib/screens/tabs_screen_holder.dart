@@ -42,15 +42,15 @@ class _TabsScreenHolderState extends State<TabsScreenHolder> {
         onTap: whenOnTap,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle), // TODO: string need to be translated later
-            label: "Users",
+            icon: Icon(Icons.account_circle),
+            label: "Users", // TODO: string need to be translated later
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.battery_alert_sharp),
             label: "Chargers",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.wb_iridescent), // TODO: correct icon later
+            icon: Icon(Icons.power),
             label: "Charge",
           ),
           BottomNavigationBarItem(
