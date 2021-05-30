@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/authentication/create_account/create_account_page.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 
@@ -49,8 +50,11 @@ class _LandingPageState extends State<LandingPage> {
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
                   // TODO: handle click
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LogInPage()),
-                  );
+                //  Navigator.push(context, MaterialPageRoute(builder: (context) => LogInPage()),
+
+                  Route route = MaterialPageRoute(builder: (context) => LogInPage());
+                  Navigator.pushReplacement(context, route);
+
                 },
               ),
             ),
@@ -87,8 +91,14 @@ class _LandingPageState extends State<LandingPage> {
                   Positioned(
                       top: 17,
                       right: 45,
-                      child: appText("Sign In", 17.0,
-                          Constants.ColorYellow, TextDecoration.underline))
+                      child: GestureDetector(
+                        onTap: () {
+                          Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
+                          Navigator.pushReplacement(context, route);
+                        },
+                        child: appText("Sign In", 17.0,
+                            Constants.ColorYellow, TextDecoration.underline),
+                      ))
                 ],
               ),
             )

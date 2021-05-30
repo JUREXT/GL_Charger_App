@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/authentication/landing/landing_page.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBar1.dart';
 import 'package:gl_charge_app/widgets/appSettingsDivider.dart';
@@ -75,7 +76,10 @@ class _SettingScreenState extends State<SettingScreen> {
               leading: Icon(Icons.settings, color: Constants.ColorYellow),
               title: appText("Logout", 15.0, Constants.ColorWhite, TextDecoration.none),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LogInPage()));
+                 // Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage()));
+                  Route route = MaterialPageRoute(builder: (context) => LandingPage());
+                  Navigator.pushReplacement(context, route);
+                  //Navigator.pop(context);
                 }
             ),
             appSettingsDivider(),

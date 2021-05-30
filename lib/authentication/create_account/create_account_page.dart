@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/authentication/landing/landing_page.dart';
 import 'package:gl_charge_app/components/password_text_field.dart';
 import 'package:gl_charge_app/components/text_form_builder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
@@ -116,6 +117,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       borderRadius: BorderRadius.circular(10)),
                   onPressed: () {
                     // TODO: handle click
+                    Route route = MaterialPageRoute(builder: (context) => LandingPage());
+                    Navigator.pushReplacement(context, route);
                   },
                 ),
               ),
