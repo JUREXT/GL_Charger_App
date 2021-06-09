@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Constants {
   // App related strings
   static String appName = "GL Charger";
+  static const shopUrl = "https://www.google.com/";
 
   // Colors for theme
   // static Color lightPrimary = Color(0xfff3f4f9);

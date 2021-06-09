@@ -10,8 +10,6 @@ class ShopScreen extends StatefulWidget {
 }
 
 class _ShopScreen extends State<ShopScreen> {
-
-  static const _url = 'https://flutter.dev';
   var networkSubscription;
   var connectionResult;
 
@@ -26,36 +24,51 @@ class _ShopScreen extends State<ShopScreen> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Constants.ColorLightGrey,
-      child: Center(
-        child: appText("Navigate to Shop Web Page Later", 17.0, Constants.ColorWhite, TextDecoration.none),
-      )
+  Widget openWebPage() {
+    return Center(
+      child: Container(
+        margin: EdgeInsets.only(left: 16, right: 16),
+        width: double.infinity,
+        height: 80,
+        child: RaisedButton(
+          child: appText("Continue to Shop Web Page", 17.0,
+              Constants.ColorYellow, TextDecoration.none),
+          color: Constants.ColorBlack,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          onPressed: () {
+            _openShopWebsite();
+          },
+        ),
+      ),
     );
-    // if (connectionResult == ConnectivityResult.wifi ||
-    //     connectionResult == ConnectivityResult.mobile) {
-    //   launchURL();
-    //   return Text("Navigate to Shop Web Page Later");
-    // } else {
-    //   return Container(
-    //     color: Constants.ColorBlack,
-    //     child: Align(
-    //       alignment: Alignment.center,
-    //       child: Text("Connectivity problem \n Check Wi-Fi connection",
-    //           textAlign: TextAlign.center,
-    //           style: TextStyle(
-    //               fontFamily: 'SF',
-    //               fontSize: 16.0,
-    //               fontWeight: FontWeight.bold,
-    //               color: Constants.ColorWhite)),
-    //     ),
-    //   );
-    // }
   }
 
-  void launchURL() async => await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: Constants.ColorLightGrey, child: openWebPage());
+  }
+
+  _openShopWebsite() async {
+    const url = Constants.shopUrl;
+    if (connectionResult == ConnectivityResult.wifi ||
+        connectionResult == ConnectivityResult.mobile) {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        snackBar("Web page can't be opened!");
+      }
+    } else {
+      snackBar("No internet connection!");
+    }
+  }
+
+  snackBar(String text) {
+    var snackBar = SnackBar(
+      content: Text(text),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   @override
   dispose() {
