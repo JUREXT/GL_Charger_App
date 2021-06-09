@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/screens/dev_tools_screen.dart';
 import 'package:gl_charge_app/screens/settings_screen.dart';
 import 'package:gl_charge_app/screens/shop_screen.dart';
 import 'package:gl_charge_app/screens/user_list_screen.dart';
@@ -53,9 +54,13 @@ class _TabsScreenHolderState extends State<TabsScreenHolder> {
             icon: Icon(Icons.power),
             label: "Charge",
           ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.settings),
+          //   label: "Settings",
+          // ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
+            icon: Icon(Icons.keyboard),
+            label: "Dev Tools",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_basket),
@@ -74,7 +79,8 @@ class _TabsScreenHolderState extends State<TabsScreenHolder> {
           UserListScreen(),
           ChargersScreen(),
           ChargeScreen(),
-          SettingScreen(),
+          //SettingScreen(),
+          DevToolsScreen(),
           ShopScreen()
         ],
       ),
