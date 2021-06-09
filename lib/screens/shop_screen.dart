@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/widgets/appSimpleSnackBar.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:connectivity/connectivity.dart';
@@ -56,19 +57,13 @@ class _ShopScreen extends State<ShopScreen> {
       if (await canLaunch(url)) {
         await launch(url);
       } else {
-        snackBar("Web page can't be opened!");
+        appSimpleSnackBar(context, "Web page can't be opened!");
       }
     } else {
-      snackBar("No internet connection!");
+      appSimpleSnackBar(context, "No internet connection!");
     }
   }
 
-  snackBar(String text) {
-    var snackBar = SnackBar(
-      content: Text(text),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
 
   @override
   dispose() {
