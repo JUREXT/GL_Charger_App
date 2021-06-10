@@ -5,6 +5,8 @@ class Constants {
   // App related strings
   static String appName = "GL Charger";
   static const shopUrl = "https://www.google.com/";
+  static const switchSpeedMainTabHolder = 500;
+  static const switchSpeedSelectChargerTabHolder = 500;
 
   // Colors for theme
   // static Color lightPrimary = Color(0xfff3f4f9);

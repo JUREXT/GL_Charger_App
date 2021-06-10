@@ -13,7 +13,7 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar1("Chargers"),
+      appBar: appBar1("Chargers List"),
       backgroundColor: Constants.ColorLightGrey,
       body: Padding(
         padding: EdgeInsets.all(10.0),

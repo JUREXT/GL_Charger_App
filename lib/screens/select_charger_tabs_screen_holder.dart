@@ -31,7 +31,7 @@ class _SelectChargerTabsScreenHolderState extends State<SelectChargerTabsScreenH
   void whenOnTap(int index) {
     log("WhenOnTap Index: $index");
     currentIndex = index;
-    _pageController.animateToPage(currentIndex,  duration: Duration(milliseconds: 200), curve: Curves.linear);
+    _pageController.animateToPage(currentIndex,  duration: Duration(milliseconds: Constants.switchSpeedSelectChargerTabHolder), curve: Curves.linear);
   }
 
   @override

@@ -16,7 +16,7 @@ class _ScanQRCodeScreenState extends State<ScanQRCodeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar1("Test Screen"),
+      appBar: appBar1("Scan Charger"),
       backgroundColor: Constants.ColorLightGrey,
       body: Padding(
         padding: EdgeInsets.all(10.0),

@@ -28,7 +28,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
   void whenOnTap(int index) {
     log("WhenOnTap Index: $index");
     currentIndex = index;
-    _pageController.animateToPage(currentIndex,  duration: Duration(milliseconds: 200), curve: Curves.linear);
+    _pageController.animateToPage(currentIndex,  duration: Duration(milliseconds: Constants.switchSpeedMainTabHolder), curve: Curves.linear);
   }
 
   @override
