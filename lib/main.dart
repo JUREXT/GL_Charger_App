@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/screens/tabs_screen_holder.dart';
+import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
 import 'package:gl_charge_app/services/auth_test.dart';
 import 'package:gl_charge_app/utils/config.dart';
 import 'package:gl_charge_app/utils/constants.dart';

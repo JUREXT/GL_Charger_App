@@ -4,12 +4,12 @@ import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBar1.dart';
 import 'package:gl_charge_app/widgets/appChargerListItem.dart';
 
-class ChargersScreen extends StatefulWidget {
+class SelectChargerScreen extends StatefulWidget {
   @override
-  _ChargersScreenState createState() => _ChargersScreenState();
+  _SelectChargerScreenState createState() => _SelectChargerScreenState();
 }
 
-class _ChargersScreenState extends State<ChargersScreen> {
+class _SelectChargerScreenState extends State<SelectChargerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

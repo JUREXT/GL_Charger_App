@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/screens/tabs_screen_holder.dart';
+import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
 import 'package:gl_charge_app/services/auth_service.dart';
 import 'package:gl_charge_app/utils/validation.dart';
 
@@ -31,7 +31,7 @@ class LoginViewModel extends ChangeNotifier {
         bool success = await auth.loginUser(email: email, password: password,);
         print(success);
         if (success) {
-          Navigator.of(context).pushReplacement(CupertinoPageRoute(builder: (_) => TabsScreenHolder()));
+          Navigator.of(context).pushReplacement(CupertinoPageRoute(builder: (_) => MainTabsScreenHolder()));
         }
       } catch (e) {
         loading = false;

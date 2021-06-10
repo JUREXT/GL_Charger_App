@@ -9,12 +9,12 @@ import 'package:gl_charge_app/utils/constants.dart';
 import 'charge_screen.dart';
 import 'chargers_screen.dart';
 
-class TabsScreenHolder extends StatefulWidget {
+class MainTabsScreenHolder extends StatefulWidget {
   @override
-  _TabsScreenHolderState createState() => _TabsScreenHolderState();
+  _MainTabsScreenHolderState createState() => _MainTabsScreenHolderState();
 }
 
-class _TabsScreenHolderState extends State<TabsScreenHolder> {
+class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
 
   PageController _pageController = PageController(initialPage: 0);
   int currentIndex = 0;

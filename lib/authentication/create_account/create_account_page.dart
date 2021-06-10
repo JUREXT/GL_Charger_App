@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/landing/landing_page.dart';
-import 'package:gl_charge_app/screens/tabs_screen_holder.dart';
+import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBarBackNavigation.dart';
 import 'package:gl_charge_app/widgets/appCustomButtonYellow.dart';
@@ -104,7 +104,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             AppCustomButtonYellow(
                 text: "Create an account",
                 onPressed: () {
-                  Route route = MaterialPageRoute(builder: (context) => TabsScreenHolder());
+                  Route route = MaterialPageRoute(builder: (context) => MainTabsScreenHolder());
                   Navigator.pushReplacement(context, route);
                 }),
             SizedBox(height: 30),
