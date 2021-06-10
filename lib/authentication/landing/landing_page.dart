@@ -2,17 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/create_account/create_account_page.dart';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/widgets/appCustomButtonYellow.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
-
-import '../../screens/tabs_screen_holder.dart';
 import '../log_in/login_page.dart';
 
 class LandingPage extends StatefulWidget {
   @override
   _LandingPageState createState() => _LandingPageState();
 }
-
-// https://mightytechno.com/rounded-button-flutter/
 
 class _LandingPageState extends State<LandingPage> {
   @override
@@ -38,44 +35,13 @@ class _LandingPageState extends State<LandingPage> {
                 child: appText("Sign Up", 40.0, Constants.ColorYellow, TextDecoration.none),
               ),
             ),
-            SizedBox(height: 150),
-            Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
-              width: double.infinity,
-              height: 80,
-              child: RaisedButton(
-                child: appText("Sign up free", 17.0, Constants.ColorBlack, TextDecoration.none),
-                color: Colors.amber,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+            SizedBox(height: 280),
+            AppCustomButtonYellow(
+                text: "Sign up free",
                 onPressed: () {
-                  // TODO: handle click
-                //  Navigator.push(context, MaterialPageRoute(builder: (context) => LogInPage()),
-
-                  Route route = MaterialPageRoute(builder: (context) => LogInPage());
-                  Navigator.pushReplacement(context, route);
-
-                },
-              ),
-            ),
-            SizedBox(height: 15),
-            Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
-              width: double.infinity,
-              height: 80,
-              child: RaisedButton(
-                child: appText("Continue with Google", 17.0, Constants.ColorYellow, TextDecoration.none),
-                color: Constants.ColorBlack,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                onPressed: () {
-                  // TODO: handle click
-                 // Navigator.pushReplacementNamed(context, MaterialPageRoute(builder: (context) => TabsScreenHolder()));
-                  Route route = MaterialPageRoute(builder: (context) => TabsScreenHolder());
-                  Navigator.pushReplacement(context, route);
-                },
-              ),
-            ),
+                  Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
+                  Navigator.push(context, route);
+                }),
             SizedBox(height: 10),
             Container(
              // color: Colors.redAccent,
@@ -86,15 +52,21 @@ class _LandingPageState extends State<LandingPage> {
                   Positioned(
                       top: 17,
                       left: 35,
-                      child: appText("Already have an account?", 17.0,
-                          Constants.ColorLightPurple, TextDecoration.none)),
+                      child: GestureDetector(
+                        // onTap: () {
+                        //   Route route = MaterialPageRoute(builder: (context) => LogInPage());
+                        //   Navigator.push(context, route);
+                        // },
+                        child: appText("Already have an account?", 17.0,
+                            Constants.ColorLightPurple, TextDecoration.none),
+                      )),
                   Positioned(
                       top: 17,
                       right: 45,
                       child: GestureDetector(
                         onTap: () {
-                          Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
-                          Navigator.pushReplacement(context, route);
+                          Route route = MaterialPageRoute(builder: (context) => LogInPage());
+                          Navigator.push(context, route);
                         },
                         child: appText("Sign In", 17.0,
                             Constants.ColorYellow, TextDecoration.underline),
@@ -108,3 +80,6 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 }
+
+// Route route = MaterialPageRoute(builder: (context) => TabsScreenHolder());
+// Navigator.pushReplacement(context, route);

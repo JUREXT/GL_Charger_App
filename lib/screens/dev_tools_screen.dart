@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/authentication/landing/landing_page.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBar1.dart';
-import 'package:gl_charge_app/widgets/appCustomButton1.dart';
+import 'package:gl_charge_app/widgets/appCustomButtonBlack.dart';
+import 'package:gl_charge_app/widgets/appCustomButtonYellow.dart';
 import 'package:gl_charge_app/widgets/appSimpleSnackBar.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -31,22 +33,34 @@ class _ShopScreen extends State<DevToolsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar1("Dev Tools"),
-      backgroundColor: Constants.ColorLightGrey,
+      backgroundColor: Constants.ColorGreenish,
       body: Padding(
         padding: EdgeInsets.all(10.0),
         child: ListView(
           children: <Widget>[
-            
-            AppCustomButton1(text: "Test Btn", onPressed: () {
-              appSimpleSnackBar(context, "Test");
-            }),
+            AppCustomButtonBlack(
+                text: "Logout User",
+                onPressed: () {
+                  appSimpleSnackBar(context, "User Signed Out!");
+                  Route route =
+                      MaterialPageRoute(builder: (context) => LandingPage());
+                  Navigator.pushReplacement(context, route);
+                }),
+            SizedBox(height: 10),
+            AppCustomButtonYellow(
+                text: "Logout User",
+                onPressed: () {
+                  appSimpleSnackBar(context, "User Signed Out!");
+                  Route route = MaterialPageRoute(builder: (context) => LandingPage());
+                  Navigator.pushReplacement(context, route);
+                }),
+
 
           ],
         ),
       ),
     );
   }
-
 
   @override
   dispose() {

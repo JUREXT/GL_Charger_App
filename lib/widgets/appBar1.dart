@@ -6,6 +6,7 @@ Widget appBar1(String title) {
   return AppBar(
     backgroundColor: Constants.ColorLightGrey,
     title: Text(title, style: TextStyle(fontSize: 24.0, color: Constants.ColorWhite)),
+    automaticallyImplyLeading: false,
     bottom: PreferredSize(
         child: Padding(
             padding: EdgeInsets.only(left: 10, right: 10),

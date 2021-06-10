@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../utils/constants.dart';
-import '../utils/constants.dart';
 
 Widget appBar2(String title1, String title2) {
   return AppBar(
     backgroundColor: Constants.ColorLightGrey,
+    automaticallyImplyLeading: false,
     title: RichText(
       text: TextSpan(
         text: title1,

@@ -2,19 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/landing/landing_page.dart';
-import 'package:gl_charge_app/components/password_text_field.dart';
-import 'package:gl_charge_app/components/text_form_builder.dart';
+import 'package:gl_charge_app/screens/tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/utils/validation.dart';
+import 'package:gl_charge_app/widgets/appBarBackNavigation.dart';
+import 'package:gl_charge_app/widgets/appCustomButtonYellow.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
-import 'package:provider/provider.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
   _CreateAccountPageState createState() => _CreateAccountPageState();
 }
-
-// https://mightytechno.com/rounded-button-flutter/
 
 class _CreateAccountPageState extends State<CreateAccountPage> {
   @override
@@ -24,6 +21,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
 
     return Scaffold(
       backgroundColor: Constants.ColorLightGrey,
+      appBar: appBarBackNavigation(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -103,26 +101,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   )),
             ),
             SizedBox(height: 15.0),
-            Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
-              width: double.infinity,
-              height: 80,
-              child: Container(
-                width: double.infinity,
-                height: 80,
-                child: RaisedButton(
-                  child: appText("Continue an account", 17.0, Constants.ColorBlack, TextDecoration.none),
-                  color: Colors.amber,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  onPressed: () {
-                    // TODO: handle click
-                    Route route = MaterialPageRoute(builder: (context) => LandingPage());
-                    Navigator.pushReplacement(context, route);
-                  },
-                ),
-              ),
-            ),
+            AppCustomButtonYellow(
+                text: "Create an account",
+                onPressed: () {
+                  Route route = MaterialPageRoute(builder: (context) => TabsScreenHolder());
+                  Navigator.pushReplacement(context, route);
+                }),
             SizedBox(height: 30),
             Container(
               // color: Colors.redAccent,

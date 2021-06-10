@@ -4,7 +4,7 @@ import 'package:gl_charge_app/tab_bar_pages/user_list_approved_page.dart';
 import 'package:gl_charge_app/tab_bar_pages/user_list_pending_page.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBar1.dart';
-import 'package:gl_charge_app/widgets/appChargerListItem.dart';
+import 'package:gl_charge_app/widgets/appBar2.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 
 import '../utils/constants.dart';

@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/authentication/create_account/create_account_page.dart';
 import 'package:gl_charge_app/authentication/landing/landing_page.dart';
+import 'package:gl_charge_app/screens/tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/widgets/appBarBackNavigation.dart';
+import 'package:gl_charge_app/widgets/appCustomButtonYellow.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 
 class LogInPage extends StatefulWidget {
   @override
   _LogInPageState createState() => _LogInPageState();
 }
-
-// https://mightytechno.com/rounded-button-flutter/
 
 class _LogInPageState extends State<LogInPage> {
   @override
@@ -20,6 +20,7 @@ class _LogInPageState extends State<LogInPage> {
 
     return Scaffold(
       backgroundColor: Constants.ColorLightGrey,
+      appBar: appBarBackNavigation(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -61,84 +62,16 @@ class _LogInPageState extends State<LogInPage> {
                   )),
             ),
             SizedBox(height: 15.0),
-            Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
-              width: double.infinity,
-              height: 80,
-              child: Container(
-                width: double.infinity,
-                height: 80,
-                child: RaisedButton(
-                  child: appText("Continue", 17.0, Constants.ColorBlack,
-                      TextDecoration.none),
-                  color: Colors.amber,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  onPressed: () {
-                    // TODO: handle click
-                    Route route = MaterialPageRoute(builder: (context) => LandingPage());
-                    Navigator.pushReplacement(context, route);
-                  },
-                ),
-              ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              // color: Colors.greenAccent,
-              width: double.infinity,
-              height: 20,
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Divider(
-                      height: 1,
-                      thickness: 1,
-                      indent: 16,
-                      endIndent: 0,
-                      color: Constants.ColorYellow,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      child: appText("or", 15.0, Constants.ColorLightPurple,
-                          TextDecoration.none),
-                      alignment: Alignment.center,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Divider(
-                      height: 1,
-                      thickness: 1,
-                      indent: 0,
-                      endIndent: 16,
-                      color: Constants.ColorYellow,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
-              width: double.infinity,
-              height: 80,
-              child: RaisedButton(
-                child: appText("Continue with Google", 17.0,
-                    Constants.ColorYellow, TextDecoration.none),
-                color: Constants.ColorBlack,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+            AppCustomButtonYellow(
+                text: "Continue",
                 onPressed: () {
-                  // TODO: handle click
-                  Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
+                  Route route = MaterialPageRoute(builder: (context) => TabsScreenHolder());
                   Navigator.pushReplacement(context, route);
-                },
-              ),
-            ),
-            SizedBox(height: 10),
+                }),
+            SizedBox(height: 30),
+           // appCustomSeparatorText(),
+            SizedBox(height: 30),
+
             Container(
               // color: Colors.redAccent,
               height: 130,
