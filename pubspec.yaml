@@ -73,7 +73,6 @@ flutter:
     - 'assets/languages/'
     - assets/images/full_battery_charge.jpg
     - assets/images/charging_station.png
-    - assets/images/logo.png
     - assets/images/logo_25_size.png
     - assets/images/logo_50_size.png
     - assets/images/logo_100_size.png

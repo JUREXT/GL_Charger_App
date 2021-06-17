@@ -17,6 +17,7 @@ class LogInPage extends StatefulWidget {
 class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
+
     // LoginViewModel viewModel = Provider.of<LoginViewModel>(context);
 
     return Scaffold(
@@ -30,7 +31,7 @@ class _LogInPageState extends State<LogInPage> {
               //color: Colors.black87,
               height: 150,
               child: Center(
-                child: Image.asset("assets/images/logo.png", height: 46),
+                child: Image.asset("assets/images/logo_25_size.png", height: 46),
               ),
             ),
             SizedBox(height: 30),

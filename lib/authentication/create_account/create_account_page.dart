@@ -30,7 +30,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               //color: Colors.black87,
               height: 150,
               child: Center(
-                child: Image.asset("assets/images/logo.png", height: 46),
+                child: Image.asset("assets/images/logo_25_size.png", height: 46),
               ),
             ),
             SizedBox(height: 30),

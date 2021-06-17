@@ -1,7 +1,9 @@
 import 'package:circle_button/circle_button.dart';
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/models/enum/energy_unit_name_type.dart';
 import 'package:gl_charge_app/widgets/appBar2.dart';
 import 'package:gl_charge_app/widgets/appContainerDecoration.dart';
+import 'package:gl_charge_app/widgets/appEnergyCard.dart';
 import 'package:gl_charge_app/widgets/appSpannedText.dart';
 
 import '../utils/constants.dart';
@@ -70,22 +72,23 @@ class _ChargeScreenState extends State<ChargeScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            width: 150,
-                            height: 70,
-                            decoration: appContainerBoxDecoration(),
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 2),
-                                  appText("CURRENT", 8.0, Constants.ColorYellow,
-                                      TextDecoration.none),
-                                  SizedBox(height: 10),
-                                  appText("$_currentSliderValue A", 24.0, Constants.ColorWhite, TextDecoration.none),
-                                ],
-                              ),
-                            ),
-                          ),
+                          // Container(
+                          //   width: 150,
+                          //   height: 70,
+                          //   decoration: appContainerBoxDecoration(),
+                          //   child: Center(
+                          //     child: Column(
+                          //       children: [
+                          //         SizedBox(height: 2),
+                          //         appText("CURRENT", 8.0, Constants.ColorYellow,
+                          //             TextDecoration.none),
+                          //         SizedBox(height: 10),
+                          //         appText("$_currentSliderValue A", 24.0, Constants.ColorWhite, TextDecoration.none),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+                          appEnergyCard("$_currentSliderValue", EnergyUnitNameType.CURRENT),
                           Container(
                             width: 150,
                             height: 70,
