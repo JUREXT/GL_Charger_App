@@ -72,23 +72,6 @@ class _ChargeScreenState extends State<ChargeScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          // Container(
-                          //   width: 150,
-                          //   height: 70,
-                          //   decoration: appContainerBoxDecoration(),
-                          //   child: Center(
-                          //     child: Column(
-                          //       children: [
-                          //         SizedBox(height: 2),
-                          //         appText("CURRENT", 8.0, Constants.ColorYellow,
-                          //             TextDecoration.none),
-                          //         SizedBox(height: 10),
-                          //         appText("$_currentSliderValue A", 24.0, Constants.ColorWhite, TextDecoration.none),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
-                          appEnergyCard("$_currentSliderValue", EnergyUnitNameType.CURRENT),
                           Container(
                             width: 150,
                             height: 70,
@@ -96,10 +79,27 @@ class _ChargeScreenState extends State<ChargeScreen> {
                             child: Center(
                               child: Column(
                                 children: [
-                                  SizedBox(height: 2),
-                                  appText("ENERGY", 8.0, Constants.ColorYellow,
+                                  SizedBox(height: 4),
+                                  appText("CURRENT", 12.0, Constants.ColorYellow,
                                       TextDecoration.none),
-                                  SizedBox(height: 10),
+                                  SizedBox(height: 5),
+                                  appText("$_currentSliderValue A", 24.0, Constants.ColorWhite, TextDecoration.none),
+                                ],
+                              ),
+                            ),
+                          ),
+                        //  appEnergyCard("$_currentSliderValue", EnergyUnitNameType.CURRENT),
+                          Container(
+                            width: 150,
+                            height: 70,
+                            decoration: appContainerBoxDecoration(),
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 4),
+                                  appText("ENERGY", 12.0, Constants.ColorYellow,
+                                      TextDecoration.none),
+                                  SizedBox(height: 5),
                                   appText("$_currentSliderValue kW", 24.0, Constants.ColorWhite,
                                       TextDecoration.none),
                                 ],
@@ -119,10 +119,10 @@ class _ChargeScreenState extends State<ChargeScreen> {
                             child: Center(
                               child: Column(
                                 children: [
-                                  SizedBox(height: 2),
-                                  appText("POWER", 8.0, Constants.ColorYellow,
+                                  SizedBox(height: 4),
+                                  appText("POWER", 12.0, Constants.ColorYellow,
                                       TextDecoration.none),
-                                  SizedBox(height: 10),
+                                  SizedBox(height: 5),
                                   appText("$_currentSliderValue kW", 24.0, Constants.ColorWhite,
                                       TextDecoration.none),
                                 ],
@@ -136,13 +136,10 @@ class _ChargeScreenState extends State<ChargeScreen> {
                             child: Center(
                               child: Column(
                                 children: [
-                                  SizedBox(height: 2),
-                                  appText(
-                                      "DURATION",
-                                      8.0,
-                                      Constants.ColorYellow,
+                                  SizedBox(height: 4),
+                                  appText("DURATION", 12.0, Constants.ColorYellow,
                                       TextDecoration.none),
-                                  SizedBox(height: 10),
+                                  SizedBox(height: 5),
                                   appText("$_currentSliderValue min", 24.0, Constants.ColorWhite,
                                       TextDecoration.none),
                                 ],
@@ -162,7 +159,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        appText("Change Current:", 16.0, Constants.ColorWhite, TextDecoration.none),
+                        appText("Charging Current:", 16.0, Constants.ColorWhite, TextDecoration.none),
                         SizedBox(width: 3),
                         appText("$_currentSliderValue", 16.0, Constants.ColorWhite, TextDecoration.none),
                         appText("A", 16.0, Constants.ColorWhite, TextDecoration.none),
@@ -241,7 +238,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
                         child: appText(value, 14.0, Constants.ColorLightPurple, TextDecoration.none),
                       );
                     }).toList(),
-                    hint: appText("Choose profile", 14.0, Constants.ColorLightPurple, TextDecoration.none),
+                    hint: appText("Charging Profile", 14.0, Constants.ColorLightPurple, TextDecoration.none),
                     onChanged: (String value) {
                       setState(() {
                         _chosenValue = value;
