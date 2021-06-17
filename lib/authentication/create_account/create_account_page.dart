@@ -61,7 +61,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                             color: Constants.ColorYellow, fontSize: 14)),
                   )),
             ),
-            SizedBox(height: 15.0),
             Container(
               margin: EdgeInsets.only(left: 16, right: 16),
               width: double.infinity,
@@ -102,7 +101,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             ),
             SizedBox(height: 15.0),
             AppCustomButtonYellow(
-                text: "Create an account",
+                text: "Create Account",
                 onPressed: () {
                   Route route = MaterialPageRoute(builder: (context) => MainTabsScreenHolder());
                   Navigator.pushReplacement(context, route);

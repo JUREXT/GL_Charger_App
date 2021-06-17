@@ -37,7 +37,7 @@ class _LandingPageState extends State<LandingPage> {
             ),
             SizedBox(height: 280),
             AppCustomButtonYellow(
-                text: "Sign up free",
+                text: "Sign up",
                 onPressed: () {
                   Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
                   Navigator.push(context, route);

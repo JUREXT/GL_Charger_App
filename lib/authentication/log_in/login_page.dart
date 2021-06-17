@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/authentication/landing/landing_page.dart';
-import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
 import 'package:gl_charge_app/screens/select_charger_tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBarBackNavigation.dart';
@@ -26,7 +24,7 @@ class _LogInPageState extends State<LogInPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 60),
+            SizedBox(height: 10),
             Container(
               //color: Colors.black87,
               height: 150,
@@ -34,7 +32,7 @@ class _LogInPageState extends State<LogInPage> {
                 child: Image.asset("assets/images/logo_25_size.png", height: 46),
               ),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 80),
             Container(
               //  color: Colors.red,
               height: 50,
