@@ -33,8 +33,6 @@ class _MyAppState extends State<MyApp> {
     ));
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -75,3 +73,10 @@ class _MyAppState extends State<MyApp> {
 // https://pub.dev/packages/tap_debouncer
 // MVVM-REST https://morioh.com/p/065577fc11ef?f=5c21fb01c16e2556b555ab32&fbclid=IwAR1jxZXadxJsY30grdYGReuksH8N2AsYAI0Rb-q-KvPYTDU5jtsuVGWC-Hw
 // App Bar Navigation Rules https://stackoverflow.com/questions/44978216/flutter-remove-back-button-on-appbar
+// App Example: https://github.com/GeekySingh/flutter_stacked_architecture_with_retrofit
+// OK: https://github.com/azamsharp/Movies-App-Flutter-MVVM -- https://morioh.com/p/065577fc11ef?f=5c21fb01c16e2556b555ab32&fbclid=IwAR1jxZXadxJsY30grdYGReuksH8N2AsYAI0Rb-q-KvPYTDU5jtsuVGWC-Hw
+// Form Validatin: https://www.youtube.com/watch?v=m9Mc2Ze_-hE
+// Release APP: https://morioh.com/p/aa2300ef37f8?f=5c21fb01c16e2556b555ab32&fbclid=IwAR0IIniVcLWXx1e9BSsknV4HFHzZr7Srzc_09nNVhL0TlQyn7beVLXCRxuU
+// Learn stuff: https://medium.com/swlh/the-differences-between-provider-pattern-and-bloc-pattern-fc93dc523672
+// https://dev.to/dzun_n/no-need-postman-your-vscode-is-enough-for-testing-your-api-2khg?fbclid=IwAR2dfvO1tJzOJ4CFyqoQyR1VkyZ65UmFI4vC3SzsAwT_r2nLJy_KXaPr88A
+// UI Studio: https://jetspike.medium.com/introducing-flutter-widget-designer-with-built-in-data-binding-958a1ca33fc2
