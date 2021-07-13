@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/screens/select_charger_tabs_screen_holder.dart';
+import 'package:gl_charge_app/screens/start_tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBarBackNavigation.dart';
 import 'package:gl_charge_app/widgets/appCustomButtonYellow.dart';
@@ -65,7 +65,7 @@ class _LogInPageState extends State<LogInPage> {
             AppCustomButtonYellow(
                 text: "Continue",
                 onPressed: () {
-                  Route route = MaterialPageRoute(builder: (context) => SelectChargerTabsScreenHolder());
+                  Route route = MaterialPageRoute(builder: (context) => StartTabsScreenHolder());
                   Navigator.pushReplacement(context, route);
                 }),
             SizedBox(height: 30),

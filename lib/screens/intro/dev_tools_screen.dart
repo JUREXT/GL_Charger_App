@@ -5,8 +5,6 @@ import 'package:gl_charge_app/widgets/appBar1.dart';
 import 'package:gl_charge_app/widgets/appCustomButtonBlack.dart';
 import 'package:gl_charge_app/widgets/appCustomButtonYellow.dart';
 import 'package:gl_charge_app/widgets/appSimpleSnackBar.dart';
-import 'package:gl_charge_app/widgets/appText.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:connectivity/connectivity.dart';
 
 class DevToolsScreen extends StatefulWidget {

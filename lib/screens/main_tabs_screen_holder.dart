@@ -1,13 +1,13 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/screens/dev_tools_screen.dart';
-import 'package:gl_charge_app/screens/settings_screen.dart';
-import 'package:gl_charge_app/screens/shop_screen.dart';
-import 'package:gl_charge_app/screens/user_list_screen.dart';
+import 'package:gl_charge_app/screens/intro/dev_tools_screen.dart';
+import 'package:gl_charge_app/screens/main/settings_screen.dart';
+import 'package:gl_charge_app/screens/main/shop_screen.dart';
+import 'package:gl_charge_app/screens/main/user_list_screen.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 
-import 'charge_screen.dart';
-import 'chargers_screen.dart';
+import 'main/charge_screen.dart';
+import 'main/chargers_screen.dart';
 
 class MainTabsScreenHolder extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
   void whenOnTap(int index) {
     log("WhenOnTap Index: $index");
     currentIndex = index;
-    _pageController.animateToPage(currentIndex,  duration: Duration(milliseconds: Constants.switchSpeedMainTabHolder), curve: Curves.linear);
+    _pageController.animateToPage(currentIndex,  duration: Duration(milliseconds: Constants.switchSpeedMainTabsScreenHolder), curve: Curves.linear);
   }
 
   @override
@@ -42,10 +42,10 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
         currentIndex: currentIndex,
         onTap: whenOnTap,
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: "Users", // TODO: string need to be translated later
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.account_circle),
+          //   label: "Users", // TODO: string need to be translated later
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.battery_alert_sharp),
             label: "Chargers",
@@ -58,10 +58,10 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
           //   icon: Icon(Icons.settings),
           //   label: "Settings",
           // ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.keyboard),
-            label: "Dev Tools",
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.keyboard),
+          //   label: "Dev Tools",
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_basket),
             label: "Shop",
@@ -76,11 +76,11 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
           });
         },
         children: <Widget>[
-          UserListScreen(),
+         // UserListScreen(),
           ChargersScreen(),
           ChargeScreen(),
           //SettingScreen(),
-          DevToolsScreen(),
+         // DevToolsScreen(),
           ShopScreen()
         ],
       ),

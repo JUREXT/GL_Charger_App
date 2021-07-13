@@ -4,7 +4,7 @@ import 'package:gl_charge_app/utils/constants.dart';
 import '../utils/constants.dart';
 import 'appText.dart';
 
-Widget appChargerListItem(String chargerName, bool isOnline, bool chargingState, String chargerLocation, String chargerId) {
+Widget appChargerListItem(String chargerName, bool isOnline, bool chargingState, String chargerLocation, String maxPower) {
   return Container(
     height: 150,
     decoration: BoxDecoration(
@@ -39,7 +39,7 @@ Widget appChargerListItem(String chargerName, bool isOnline, bool chargingState,
         ListTile(
           leading: Icon(Icons.location_on, color: Constants.ColorYellow),
           title: appText(chargerLocation, 15.0, Constants.ColorWhite, TextDecoration.none),
-          subtitle: appText("Charger ID: $chargerId", 12.0, Constants.ColorLightPurple,  TextDecoration.none),
+          subtitle: appText("Max Power: $maxPower kW", 12.0, Constants.ColorLightPurple,  TextDecoration.none),
         ),
       ],
     ),

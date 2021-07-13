@@ -7,7 +7,7 @@ import 'package:gl_charge_app/widgets/appBar1.dart';
 import 'package:gl_charge_app/widgets/appBar2.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 
-import '../utils/constants.dart';
+import '../../utils/constants.dart';
 
 class UserListScreen extends StatefulWidget {
   UserListScreen({Key key}) : super(key: key);

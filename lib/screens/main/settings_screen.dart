@@ -8,8 +8,8 @@ import 'package:gl_charge_app/widgets/appSettingsListTile.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 import 'package:provider/provider.dart';
 
-import '../authentication/log_in/login_page.dart';
-import '../utils/constants.dart';
+import '../../authentication/log_in/login_page.dart';
+import '../../utils/constants.dart';
 
 class SettingScreen extends StatefulWidget {
   @override

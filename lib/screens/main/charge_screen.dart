@@ -1,13 +1,11 @@
 import 'package:circle_button/circle_button.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/models/enum/energy_unit_name_type.dart';
 import 'package:gl_charge_app/widgets/appBar2.dart';
 import 'package:gl_charge_app/widgets/appContainerDecoration.dart';
-import 'package:gl_charge_app/widgets/appEnergyCard.dart';
 import 'package:gl_charge_app/widgets/appSpannedText.dart';
 
-import '../utils/constants.dart';
-import '../widgets/appText.dart';
+import '../../utils/constants.dart';
+import '../../widgets/appText.dart';
 
 class ChargeScreen extends StatefulWidget {
   ChargeScreen({Key key}) : super(key: key);

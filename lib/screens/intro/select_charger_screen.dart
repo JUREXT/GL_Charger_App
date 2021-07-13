@@ -19,13 +19,13 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
         padding: EdgeInsets.all(10.0),
         child: ListView(
           children: <Widget>[
-            appChargerListItem("Home Charger 1", true, true, "Ljubljana", "1978523"),
+            appChargerListItem("Home Charger 1", true, true, "Ljubljana", "1.5"),
             SizedBox(height: 22.0),
-            appChargerListItem("Home Charger 2", false, false, "Celje", "197881213"),
+            appChargerListItem("Home Charger 2", false, false, "Celje", "1.9"),
             SizedBox(height: 22.0),
-            appChargerListItem("Home Charger 3", false, false, "Koper", "19785148989"),
+            appChargerListItem("Home Charger 3", false, false, "Koper", "0.5"),
             SizedBox(height: 22.0),
-            appChargerListItem("Home Charger 4", true, true, "Maribor", "197847/2"),
+            appChargerListItem("Home Charger 4", true, true, "Maribor", "3.0"),
             SizedBox(height: 22.0),
           ],
         ),
