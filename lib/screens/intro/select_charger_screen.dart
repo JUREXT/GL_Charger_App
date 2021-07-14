@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/components/charger_list_item.dart';
+import 'package:gl_charge_app/models/FakeData.dart';
 import 'package:gl_charge_app/models/charger.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBar1.dart';
+
+import '../main_tabs_screen_holder.dart';
 
 class SelectChargerScreen extends StatefulWidget {
   @override
@@ -12,28 +15,13 @@ class SelectChargerScreen extends StatefulWidget {
 
 class _SelectChargerScreenState extends State<SelectChargerScreen> {
 
-  List<ChargerModel> list = [
-    ChargerModel(chargerName: "Home Charger 1",
-        isOnline: true,
-        chargingState: true,
-        chargerLocation: "Ljubljana",
-        maxPower: "1.5"),
-    ChargerModel(chargerName: "Home Charger 2",
-        isOnline: false,
-        chargingState: true,
-        chargerLocation: "Ljubljana",
-        maxPower: "1.5"),
-    ChargerModel(chargerName: "Home Charger 3",
-        isOnline: true,
-        chargingState: false,
-        chargerLocation: "Ljubljana",
-        maxPower: "1.5"),
-    ChargerModel(chargerName: "Home Charger 4",
-        isOnline: true,
-        chargingState: false,
-        chargerLocation: "Ljubljana",
-        maxPower: "1.5"),
-  ];
+  List<ChargerModel> list = listOfChargersFake;
+
+  void navigate(BuildContext context) {
+    Route route =
+    MaterialPageRoute(builder: (context) => MainTabsScreenHolder());
+    Navigator.pushReplacement(context, route);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +38,7 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
                 onSelectedVoidCallback: () => print("onSelectedVoidCallback"),
                 onSelectedChargerCallback: (ChargerModel charger) {
                   print("onSelectedChargerCallback: " + charger.toString());
+                  navigate(context);
                 },
               );
             },

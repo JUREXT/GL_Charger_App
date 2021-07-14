@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/components/charger_list_item.dart';
+import 'package:gl_charge_app/models/FakeData.dart';
 import 'package:gl_charge_app/models/charger.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBar1.dart';
@@ -12,28 +13,7 @@ class ChargersScreen extends StatefulWidget {
 
 class _ChargersScreenState extends State<ChargersScreen> {
 
-  List<ChargerModel> list = [
-    ChargerModel(chargerName: "Home Charger 1",
-        isOnline: true,
-        chargingState: true,
-        chargerLocation: "Ljubljana",
-        maxPower: "1.5"),
-    ChargerModel(chargerName: "Home Charger 2",
-        isOnline: false,
-        chargingState: true,
-        chargerLocation: "Ljubljana",
-        maxPower: "1.5"),
-    ChargerModel(chargerName: "Home Charger 3",
-        isOnline: true,
-        chargingState: false,
-        chargerLocation: "Ljubljana",
-        maxPower: "1.5"),
-    ChargerModel(chargerName: "Home Charger 4",
-        isOnline: true,
-        chargingState: false,
-        chargerLocation: "Ljubljana",
-        maxPower: "1.5"),
-  ];
+  List<ChargerModel> list = listOfChargersFake;
 
   @override
   Widget build(BuildContext context) {

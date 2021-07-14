@@ -13,6 +13,9 @@ class ChargerListItem extends StatelessWidget {
 
   const ChargerListItem({@required this.charger, @required this.onSelectedChargerCallback, this.onSelectedVoidCallback});
 
+  // Add click ripple -> https://flutter.dev/docs/cookbook/gestures/ripples
+  // Add a click event to any widget of -> https://dev.to/rkowase/how-to-add-a-click-event-to-any-widget-of-flutter-2len
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
