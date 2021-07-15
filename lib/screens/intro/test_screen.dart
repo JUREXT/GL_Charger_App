@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBar1.dart';
-import 'package:gl_charge_app/widgets/appCustomButtonBlack.dart';
+import 'package:gl_charge_app/components/button_black.dart';
 
 class TestScreen extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class _TestScreenState extends State<TestScreen> {
         padding: EdgeInsets.all(10.0),
         child: ListView(
           children: <Widget>[
-            AppCustomButtonBlack(
+            ButtonBlack(
                 text: "Go To Main Screen",
                 onPressed: () {
                   Route route =

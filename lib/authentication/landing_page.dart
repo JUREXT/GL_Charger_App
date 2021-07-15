@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/create_account/create_account_page.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appCustomButtonYellow.dart';
+import 'package:gl_charge_app/components/button_yellow.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 import '../log_in/login_page.dart';
 
@@ -36,7 +36,7 @@ class _LandingPageState extends State<LandingPage> {
               ),
             ),
             SizedBox(height: 280),
-            AppCustomButtonYellow(
+            ButtonYellow(
                 text: "Sign up",
                 onPressed: () {
                   Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());

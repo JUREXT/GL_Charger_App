@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gl_charge_app/screens/start_tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBarBackNavigation.dart';
-import 'package:gl_charge_app/widgets/appCustomButtonYellow.dart';
+import 'package:gl_charge_app/components/button_yellow.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 
 class LogInPage extends StatefulWidget {
@@ -62,7 +62,7 @@ class _LogInPageState extends State<LogInPage> {
                   )),
             ),
             SizedBox(height: 15.0),
-            AppCustomButtonYellow(
+            ButtonYellow(
                 text: "Continue",
                 onPressed: () {
                   Route route = MaterialPageRoute(builder: (context) => StartTabsScreenHolder());

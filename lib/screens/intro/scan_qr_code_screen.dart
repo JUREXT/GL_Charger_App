@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBar1.dart';
-import 'package:gl_charge_app/widgets/appCustomButtonBlack.dart';
+import 'package:gl_charge_app/components/button_black.dart';
 import 'package:gl_charge_app/widgets/appSimpleSnackBar.dart';
 
 class ScanQRCodeScreen extends StatefulWidget {
@@ -20,7 +20,7 @@ class _ScanQRCodeScreenState extends State<ScanQRCodeScreen> {
         padding: EdgeInsets.all(10.0),
         child: ListView(
           children: <Widget>[
-            AppCustomButtonBlack(
+            ButtonBlack(
                 text: "Scan QR Code",
                 onPressed: () {
                   appSimpleSnackBar(context, "QR Code Scan Completed!");

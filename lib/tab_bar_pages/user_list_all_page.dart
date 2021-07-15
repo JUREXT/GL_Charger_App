@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/components/user_list_item.dart';
-import 'package:gl_charge_app/models/FakeData.dart';
+import 'package:gl_charge_app/models/fake_data.dart';
 import 'package:gl_charge_app/models/user.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 

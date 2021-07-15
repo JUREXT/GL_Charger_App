@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/landing/landing_page.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appBar1.dart';
-import 'package:gl_charge_app/widgets/appCustomButtonBlack.dart';
-import 'package:gl_charge_app/widgets/appCustomButtonYellow.dart';
+import 'package:gl_charge_app/components/button_black.dart';
+import 'package:gl_charge_app/components/button_yellow.dart';
 import 'package:gl_charge_app/widgets/appSimpleSnackBar.dart';
 import 'package:connectivity/connectivity.dart';
 
@@ -36,7 +36,7 @@ class _ShopScreen extends State<DevToolsScreen> {
         padding: EdgeInsets.all(10.0),
         child: ListView(
           children: <Widget>[
-            AppCustomButtonBlack(
+            ButtonBlack(
                 text: "Logout User",
                 onPressed: () {
                   appSimpleSnackBar(context, "User Signed Out!");
@@ -45,7 +45,7 @@ class _ShopScreen extends State<DevToolsScreen> {
                   Navigator.pushReplacement(context, route);
                 }),
             SizedBox(height: 10),
-            AppCustomButtonYellow(
+            ButtonYellow(
                 text: "Logout User",
                 onPressed: () {
                   appSimpleSnackBar(context, "User Signed Out!");

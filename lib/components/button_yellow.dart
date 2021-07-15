@@ -2,14 +2,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 
-import 'appText.dart';
+import '../widgets/appText.dart';
 
-class AppCustomButtonBlack extends StatelessWidget {
+class ButtonYellow extends StatelessWidget {
 
   final GestureTapCallback onPressed;
   final String text;
 
-  AppCustomButtonBlack({@required this.onPressed, @required this.text});
+  ButtonYellow({@required this.onPressed, @required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class AppCustomButtonBlack extends StatelessWidget {
       width: double.infinity,
       height: 80,
       child: RaisedButton(
-        child: appText(text, 17.0, Constants.ColorYellow, TextDecoration.none),
-        color: Constants.ColorBlack,
+        child: appText(text, 17.0, Constants.ColorBlack, TextDecoration.none),
+        color: Constants.ColorYellow,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onPressed: onPressed,
       ),
