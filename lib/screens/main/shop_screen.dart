@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/components/button_yellow.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appSimpleSnackBar.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:connectivity/connectivity.dart';
+import 'package:gl_charge_app/utils/url_navigation.dart';
 
 class ShopScreen extends StatefulWidget {
   @override
@@ -38,24 +36,11 @@ class _ShopScreen extends State<ShopScreen> {
             SizedBox(height: 30),
             ButtonYellow(
                 text: "Continue to shop Web page",
-                onPressed: () => _openShopWebsite()),
+                onPressed: () => UrlNavigation.navigateTo(context, Constants.shopUrl)),
           ],
         ),
       ),
     );
-  }
-
-  _openShopWebsite() async {
-    const url = Constants.shopUrl;
-  //  if (connectionResult == ConnectivityResult.wifi || connectionResult == ConnectivityResult.mobile) {
-      if (await canLaunch(url)) {
-        await launch(url);
-      } else {
-        appSimpleSnackBar(context, "Web page can't be opened!");
-      }
-    // } else {
-    //   appSimpleSnackBar(context, "No internet connection!");
-    // }
   }
 
   @override

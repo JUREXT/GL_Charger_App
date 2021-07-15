@@ -3,16 +3,17 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/screens/start_tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/utils/url_navigation.dart';
 import 'package:gl_charge_app/widgets/appBarBackNavigation.dart';
 import 'package:gl_charge_app/components/button_yellow.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 
-class LogInPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   @override
-  _LogInPageState createState() => _LogInPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _LogInPageState extends State<LogInPage> {
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
 
@@ -92,22 +93,21 @@ class _LogInPageState extends State<LogInPage> {
                       top: 70,
                       left: 37,
                       right: 37,
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'By signing up you agree to our ',
-                          style: TextStyle(
-                              fontSize: 12, color: Constants.ColorLightPurple),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: 'Privacy Policy and Terms.',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    decoration: TextDecoration.underline),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    // TODO: Single tapped.. to the terms website
-                                  }),
-                          ],
+                      child: GestureDetector(
+                        onTap: () =>  UrlNavigation.navigateTo(context, Constants.privacyPolicyUrl),
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'By signing up you agree to our ',
+                            style: TextStyle(
+                                fontSize: 12, color: Constants.ColorLightPurple),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: 'Privacy Policy and Terms.',
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      decoration: TextDecoration.underline)),
+                            ],
+                          ),
                         ),
                       ))
                 ],

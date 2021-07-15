@@ -1,7 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
-// import 'package:gl_charge_app/authentication/log_in/login_page.dart';
+// import 'package:gl_charge_app/authentication/log_in/sign_up_page.dart';
 // import 'package:gl_charge_app/components/password_text_field.dart';
 // import 'package:gl_charge_app/components/text_form_builder.dart';
 // import 'package:gl_charge_app/utils/validation.dart';

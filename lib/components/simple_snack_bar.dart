@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-appSimpleSnackBar(BuildContext context, String text) {
+simpleSnackBar(BuildContext context, String text) async {
   var snackBar = SnackBar(
     content: Text(text),
   );

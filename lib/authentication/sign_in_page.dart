@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/authentication/create_account/create_account_page.dart';
+import 'package:gl_charge_app/authentication/create_account_page.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/components/button_yellow.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
-import '../log_in/login_page.dart';
+import 'sign_up_page.dart';
 
-class LandingPage extends StatefulWidget {
+class SignInPage extends StatefulWidget {
   @override
-  _LandingPageState createState() => _LandingPageState();
+  _SignInPageState createState() => _SignInPageState();
 }
 
-class _LandingPageState extends State<LandingPage> {
+class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,12 +32,12 @@ class _LandingPageState extends State<LandingPage> {
             //  color: Colors.red,
               height: 50,
               child: Center(
-                child: appText("Sign Up", 40.0, Constants.ColorYellow, TextDecoration.none),
+                child: appText("Sign In", 40.0, Constants.ColorYellow, TextDecoration.none),
               ),
             ),
             SizedBox(height: 280),
             ButtonYellow(
-                text: "Sign up",
+                text: "Sign In",
                 onPressed: () {
                   Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
                   Navigator.push(context, route);
@@ -65,10 +65,10 @@ class _LandingPageState extends State<LandingPage> {
                       right: 45,
                       child: GestureDetector(
                         onTap: () {
-                          Route route = MaterialPageRoute(builder: (context) => LogInPage());
+                          Route route = MaterialPageRoute(builder: (context) => SignUpPage());
                           Navigator.push(context, route);
                         },
-                        child: appText("Sign In", 17.0,
+                        child: appText("Sign Up", 17.0,
                             Constants.ColorYellow, TextDecoration.underline),
                       ))
                 ],

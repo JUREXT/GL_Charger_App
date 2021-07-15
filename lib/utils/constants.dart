@@ -5,6 +5,7 @@ class Constants {
   // App related strings
   static String appName = "GL Charger";
   static const shopUrl = "https://www.google.com/";
+  static const privacyPolicyUrl = "https://www.google.com/";
   static const switchSpeedMainTabsScreenHolder = 500;
   static const switchSpeedStartTabsScreenHolder = 500;
 
