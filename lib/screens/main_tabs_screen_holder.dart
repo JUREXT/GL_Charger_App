@@ -54,10 +54,10 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
             icon: Icon(Icons.power),
             label: "Charge",
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.settings),
-          //   label: "Settings",
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Settings",
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.keyboard),
             label: "Dev Tools",
@@ -79,7 +79,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
          // UserListScreen(),
           ChargersScreen(),
           ChargeScreen(),
-          //SettingScreen(),
+          SettingScreen(),
           DevToolsScreen(),
           ShopScreen()
         ],

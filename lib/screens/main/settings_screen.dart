@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/sign_in_page.dart';
 import 'package:gl_charge_app/components/app_bar1.dart';
+import 'package:gl_charge_app/components/settings_divider.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appSettingsDivider.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 import 'package:provider/provider.dart';
 import '../../utils/constants.dart';
@@ -28,13 +28,13 @@ class _SettingScreenState extends State<SettingScreen> {
               leading: Icon(Icons.settings, color: Constants.ColorYellow),
               title: appText("General Settings", 15.0, Constants.ColorWhite, TextDecoration.none),
             ),
-            appSettingsDivider(),
+            SettingsDivider(),
 
             ListTile(
               leading: Icon(Icons.settings, color: Constants.ColorYellow),
               title: appText("Account Settings", 15.0, Constants.ColorWhite, TextDecoration.none),
             ),
-            appSettingsDivider(),
+            SettingsDivider(),
 
             ListTile(
               leading: Icon(Icons.settings, color: Constants.ColorYellow),
@@ -50,25 +50,26 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ),
             ),
-            appSettingsDivider(),
+            SettingsDivider(),
 
             ListTile(
               leading: Icon(Icons.settings, color: Constants.ColorYellow),
               title: appText("Default Charger", 15.0, Constants.ColorWhite, TextDecoration.none),
             ),
-            appSettingsDivider(),
+            SettingsDivider(),
 
             ListTile(
               leading: Icon(Icons.settings, color: Constants.ColorYellow),
               title: appText("Default Charging method", 15.0, Constants.ColorWhite, TextDecoration.none),
             ),
-            appSettingsDivider(),
+            SettingsDivider(),
 
             ListTile(
               leading: Icon(Icons.settings, color: Constants.ColorYellow),
               title: appText("Authentication", 15.0, Constants.ColorWhite, TextDecoration.none),
             ),
-            appSettingsDivider(),
+            SettingsDivider(),
+
             ListTile(
               leading: Icon(Icons.settings, color: Constants.ColorYellow),
               title: appText("Logout", 15.0, Constants.ColorWhite, TextDecoration.none),
@@ -79,7 +80,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   //Navigator.pop(context);
                 }
             ),
-            appSettingsDivider(),
+            SettingsDivider(),
 
           ],
         ),
