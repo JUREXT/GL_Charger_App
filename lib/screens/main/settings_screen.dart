@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/sign_in_page.dart';
 import 'package:gl_charge_app/components/app_bar1.dart';
 import 'package:gl_charge_app/components/settings_divider.dart';
+import 'package:gl_charge_app/components/settings_list_item.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 import 'package:provider/provider.dart';
@@ -24,16 +25,10 @@ class _SettingScreenState extends State<SettingScreen> {
         child: ListView(
           children: <Widget>[
 
-            ListTile(
-              leading: Icon(Icons.settings, color: Constants.ColorYellow),
-              title: appText("General Settings", 15.0, Constants.ColorWhite, TextDecoration.none),
-            ),
+            SettingsListItem(title: "General Settings", onSettingsItemCallback: () => { print("General Settings Clicked") }),
             SettingsDivider(),
 
-            ListTile(
-              leading: Icon(Icons.settings, color: Constants.ColorYellow),
-              title: appText("Account Settings", 15.0, Constants.ColorWhite, TextDecoration.none),
-            ),
+            SettingsListItem(title: "Account Settings", onSettingsItemCallback: () => { print("Account Settings Clicked") }),
             SettingsDivider(),
 
             ListTile(
@@ -52,34 +47,20 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             SettingsDivider(),
 
-            ListTile(
-              leading: Icon(Icons.settings, color: Constants.ColorYellow),
-              title: appText("Default Charger", 15.0, Constants.ColorWhite, TextDecoration.none),
-            ),
+            SettingsListItem(title: "Default Charger", onSettingsItemCallback: () => { print("Default Charger Clicked") }),
             SettingsDivider(),
 
-            ListTile(
-              leading: Icon(Icons.settings, color: Constants.ColorYellow),
-              title: appText("Default Charging method", 15.0, Constants.ColorWhite, TextDecoration.none),
-            ),
+            SettingsListItem(title: "Default Charging method", onSettingsItemCallback: () => { print("Default Charging method Clicked") }),
             SettingsDivider(),
 
-            ListTile(
-              leading: Icon(Icons.settings, color: Constants.ColorYellow),
-              title: appText("Authentication", 15.0, Constants.ColorWhite, TextDecoration.none),
-            ),
+            SettingsListItem(title: "Authentication", onSettingsItemCallback: () => { print("Authentication Clicked") }),
             SettingsDivider(),
 
-            ListTile(
-              leading: Icon(Icons.settings, color: Constants.ColorYellow),
-              title: appText("Logout", 15.0, Constants.ColorWhite, TextDecoration.none),
-                onTap: () {
-                 // Navigator.push(context, MaterialPageRoute(builder: (context) => LandingPage()));
-                  Route route = MaterialPageRoute(builder: (context) => SignInPage());
-                  Navigator.pushReplacement(context, route);
-                  //Navigator.pop(context);
-                }
-            ),
+            SettingsListItem(title: "Logout", onSettingsItemCallback: () {
+              print("Logout Clicked");
+            Route route = MaterialPageRoute(builder: (context) => SignInPage());
+                Navigator.pushReplacement(context, route);
+            }),
             SettingsDivider(),
 
           ],
