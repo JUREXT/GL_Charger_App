@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/screens/start_tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
-import 'package:gl_charge_app/widgets/appBarBackNavigation.dart';
+import 'package:gl_charge_app/components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/components/button_yellow.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 
@@ -21,7 +20,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     return Scaffold(
       backgroundColor: Constants.ColorLightGrey,
-      appBar: appBarBackNavigation(context),
+      appBar: AppBarWithBackNavigation(onNavigateBackCallback: () => { Navigator.pop(context, false) }),
       body: SingleChildScrollView(
         child: Column(
           children: [
