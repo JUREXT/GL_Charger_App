@@ -42,10 +42,10 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
         currentIndex: currentIndex,
         onTap: whenOnTap,
         items: [
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.account_circle),
-          //   label: "Users", // TODO: string need to be translated later
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: "Users", // TODO: string need to be translated later
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.battery_alert_sharp),
             label: "Chargers",
@@ -76,7 +76,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
           });
         },
         children: <Widget>[
-         // UserListScreen(),
+          UserListScreen(),
           ChargersScreen(),
           ChargeScreen(),
           //SettingScreen(),

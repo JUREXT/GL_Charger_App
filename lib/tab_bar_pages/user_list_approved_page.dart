@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/components/user_list_item.dart';
+import 'package:gl_charge_app/models/FakeData.dart';
+import 'package:gl_charge_app/models/user.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appUserListItem.dart';
 
 class UserListApprovedPage extends StatefulWidget {
   @override
@@ -11,6 +13,9 @@ class UserListApprovedPage extends StatefulWidget {
 // https://mightytechno.com/rounded-button-flutter/
 
 class _UserListApprovedPageState extends State<UserListApprovedPage> {
+
+  List<UserModel> list = listOfUsersFake;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,29 +27,21 @@ class _UserListApprovedPageState extends State<UserListApprovedPage> {
           radius: Radius.circular(20),
           thickness: 3,
           isAlwaysShown: true,
-          child: ListView(
-            children: <Widget>[
-              SizedBox(height: 20.0),
-              appUserListItem(),
-              SizedBox(height: 20.0),
-              appUserListItem(),
-              SizedBox(height: 20.0),
-              appUserListItem(),
-              SizedBox(height: 20.0),
-              appUserListItem(),
-              SizedBox(height: 20.0),
-              appUserListItem(),
-              SizedBox(height: 20.0),
-              appUserListItem(),
-              SizedBox(height: 20.0),
-              appUserListItem(),
-              SizedBox(height: 20.0),
-              appUserListItem(),
-              SizedBox(height: 20.0),
-              appUserListItem(),
-              SizedBox(height: 20.0),
-
-            ],
+          child: Scrollbar(
+            thickness: 5,
+            isAlwaysShown: true,
+            child: ListView.builder(
+              itemCount: list.length,
+              itemBuilder: (context, index) {
+                return UserListItem(
+                  user: list[index],
+                  onSelectedUserCallback: (UserModel charger) {
+                    print("onSelectedUserCallback: " + charger.toString());
+                    //navigate(context);
+                  },
+                );
+              },
+            ),
           ),
         ),
       ),

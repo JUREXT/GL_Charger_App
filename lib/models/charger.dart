@@ -1,4 +1,6 @@
 
+import 'package:flutter/cupertino.dart';
+
 class ChargerModel {
   String chargerName;
   bool isOnline;
@@ -7,11 +9,11 @@ class ChargerModel {
   String maxPower;
 
   ChargerModel({
-    this.chargerName,
-    this.isOnline,
-    this.chargingState,
-    this.chargerLocation,
-    this.maxPower,
+    @required this.chargerName,
+    @required this.isOnline,
+    @required this.chargingState,
+    @required this.chargerLocation,
+    @required this.maxPower,
   });
 
   @override
