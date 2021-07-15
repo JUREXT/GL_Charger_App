@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/sign_in_page.dart';
+import 'package:gl_charge_app/components/app_bar1.dart';
 import 'package:gl_charge_app/components/simple_snack_bar.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appBar1.dart';
 import 'package:gl_charge_app/components/button_black.dart';
 import 'package:gl_charge_app/components/button_yellow.dart';
 import 'package:connectivity/connectivity.dart';
@@ -30,7 +30,7 @@ class _ShopScreen extends State<DevToolsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar1("Dev Tools"),
+      appBar: AppBar1(title: 'Dev Tools'),
       backgroundColor: Constants.ColorGreenish,
       body: Padding(
         padding: EdgeInsets.all(10.0),

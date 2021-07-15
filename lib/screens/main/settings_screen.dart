@@ -1,14 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/sign_in_page.dart';
+import 'package:gl_charge_app/components/app_bar1.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appBar1.dart';
 import 'package:gl_charge_app/widgets/appSettingsDivider.dart';
-import 'package:gl_charge_app/widgets/appSettingsListTile.dart';
 import 'package:gl_charge_app/widgets/appText.dart';
 import 'package:provider/provider.dart';
-
-import '../../authentication/sign_up_page.dart';
 import '../../utils/constants.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -20,7 +17,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar1("Settings"),
+      appBar: AppBar1(title: 'Settings'),
       backgroundColor: Constants.ColorLightGrey,
       body: Padding(
         padding: EdgeInsets.all(10.0),

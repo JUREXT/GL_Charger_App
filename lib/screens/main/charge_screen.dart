@@ -1,6 +1,6 @@
 import 'package:circle_button/circle_button.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/widgets/appBar2.dart';
+import 'package:gl_charge_app/components/app_bar2.dart';
 import 'package:gl_charge_app/widgets/appContainerDecoration.dart';
 import 'package:gl_charge_app/widgets/appSpannedText.dart';
 
@@ -30,7 +30,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-        appBar: appBar2("Home", "Charger 1"),
+        appBar: AppBar2(title1: "Home", title2: "Charger 1"),
         backgroundColor: Constants.ColorLightGrey,
         body: SingleChildScrollView(
           child: Padding(

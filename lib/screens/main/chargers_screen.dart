@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/components/app_bar1.dart';
 import 'package:gl_charge_app/components/charger_list_item.dart';
 import 'package:gl_charge_app/models/fake_data.dart';
 import 'package:gl_charge_app/models/charger.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appBar1.dart';
 
 class ChargersScreen extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _ChargersScreenState extends State<ChargersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar1("Chargers"),
+      appBar: AppBar1(title: "Chargers"),
       backgroundColor: Constants.ColorLightGrey,
       body: Padding(
         padding: EdgeInsets.all(10.0),
