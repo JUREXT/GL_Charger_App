@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/stateless_widget_components/life_cycle_event_handler.dart';
+import 'package:gl_charge_app/app_life_cycle/life_cycle_event_handler.dart';
 import 'package:gl_charge_app/utils/config.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/providers.dart';
@@ -7,10 +7,9 @@ import 'package:provider/provider.dart';
 import 'authentication/sign_in_page.dart';
 import 'services/user_service.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  Config.init();
+ // Config.init(); // TODO: todo stuff on start
   runApp(MyApp());
  // runApp(AppSplashScreen());
 }
@@ -25,8 +24,10 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(LifecycleEventHandler(
-      detachedCallBack: () => UserService().setUserStatus(false),
-      resumeCallBack: () => UserService().setUserStatus(true),
+      onInactiveCallBack: () => { print("LifecycleEvent :: onInactiveCallBack") },
+      onPausedCallBack: () => { print("LifecycleEvent :: onPausedCallBack") },
+      onDetachedCallBack: () => { UserService().setUserStatus(false), print("LifecycleEvent :: onDetachedCallBack") },
+      onResumedCallBack: () => { UserService().setUserStatus(true), print("LifecycleEvent :: onResumedCallBack") },
     ));
   }
 
