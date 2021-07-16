@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/components/text_custom.dart';
 import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
+import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
+import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
+import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
-import 'package:gl_charge_app/components/app_bar_with_back_navigation.dart';
-import 'package:gl_charge_app/components/button_yellow.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -99,10 +98,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   )),
             ),
             SizedBox(height: 15.0),
-            ButtonYellow(
-                text: "Create Account",
-                onPressed: () {
-                  Route route = MaterialPageRoute(builder: (context) => MainTabsScreenHolder());
+            ButtonYellow(text: "Create Account", onPressed: () {
+              Route route = MaterialPageRoute(builder: (context) => MainTabsScreenHolder());
                   Navigator.pushReplacement(context, route);
                 }),
             SizedBox(height: 30),

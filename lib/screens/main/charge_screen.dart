@@ -1,9 +1,9 @@
 import 'package:circle_button/circle_button.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/components/app_bar2.dart';
-import 'package:gl_charge_app/components/text_custom.dart';
-import 'package:gl_charge_app/widgets/container_decoration.dart';
-import 'package:gl_charge_app/widgets/appSpannedText.dart';
+import 'package:gl_charge_app/stateless_widget_components/app_bar2.dart';
+import 'package:gl_charge_app/stateless_widget_components/spanned_text.dart';
+import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
+import 'package:gl_charge_app/widgets/container_box_decoration.dart';
 
 import '../../utils/constants.dart';
 
@@ -51,9 +51,9 @@ class _ChargeScreenState extends State<ChargeScreen> {
                         children: <Widget>[
                           TextCustom(text: "LAST SESSION", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
                           SizedBox(height: 6),
-                          appSpannedText("Consumed Energy:", "150kW", 12,   Constants.ColorWhite, Constants.ColorYellow),
+                          SpannedText(text1: "Consumed Energy:", text2: "150kW", fontSize: 12.0, textColor1: Constants.ColorWhite, textColor2: Constants.ColorYellow),
                           SizedBox(height: 6),
-                          appSpannedText("Duration:", "1h 30min", 12, Constants.ColorWhite, Constants.ColorYellow),
+                          SpannedText(text1: "Duration:", text2: "1h 30min", fontSize: 12.0, textColor1: Constants.ColorWhite, textColor2: Constants.ColorYellow)
                         ]),
                   ),
                 ),

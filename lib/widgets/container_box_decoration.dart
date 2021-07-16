@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../utils/constants.dart';
+import 'package:gl_charge_app/utils/constants.dart';
 
 BoxDecoration containerBoxDecoration() {
   return BoxDecoration(

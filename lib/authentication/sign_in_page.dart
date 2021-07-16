@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/create_account_page.dart';
-import 'package:gl_charge_app/components/text_custom.dart';
+import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
+import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/components/button_yellow.dart';
 import 'sign_up_page.dart';
 
 class SignInPage extends StatefulWidget {

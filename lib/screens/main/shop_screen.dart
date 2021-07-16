@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/components/button_yellow.dart';
+import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
 
@@ -34,9 +34,7 @@ class _ShopScreen extends State<ShopScreen> {
           children: <Widget>[
             Image.asset("assets/images/logo_25_size.png", width: 200),
             SizedBox(height: 30),
-            ButtonYellow(
-                text: "Continue to shop Web page",
-                onPressed: () => UrlNavigation.navigateTo(context, Constants.shopUrl)),
+            ButtonYellow(text: "Continue to shop Web page", onPressed: () => UrlNavigation.navigateTo(context, Constants.shopUrl)),
           ],
         ),
       ),

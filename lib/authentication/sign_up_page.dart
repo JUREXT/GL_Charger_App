@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/components/text_custom.dart';
 import 'package:gl_charge_app/screens/start_tabs_screen_holder.dart';
+import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
+import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
+import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
-import 'package:gl_charge_app/components/app_bar_with_back_navigation.dart';
-import 'package:gl_charge_app/components/button_yellow.dart';
 
 class SignUpPage extends StatefulWidget {
   @override

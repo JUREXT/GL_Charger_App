@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/stateless_widget_components/life_cycle_event_handler.dart';
 import 'package:gl_charge_app/utils/config.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/providers.dart';
 import 'package:provider/provider.dart';
 import 'authentication/sign_in_page.dart';
-import 'components/life_cycle_event_handler.dart';
 import 'services/user_service.dart';
 
 

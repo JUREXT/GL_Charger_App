@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/sign_in_page.dart';
-import 'package:gl_charge_app/components/app_bar1.dart';
-import 'package:gl_charge_app/components/settings_divider.dart';
-import 'package:gl_charge_app/components/settings_list_item.dart';
-import 'package:gl_charge_app/components/text_custom.dart';
+import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
+import 'package:gl_charge_app/stateless_widget_components/settings_divider.dart';
+import 'package:gl_charge_app/stateless_widget_components/settings_list_item.dart';
+import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:provider/provider.dart';
 import '../../utils/constants.dart';

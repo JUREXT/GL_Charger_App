@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:gl_charge_app/components/simple_snack_bar.dart';
+import 'package:gl_charge_app/widgets/simple_snack_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
  class UrlNavigation {

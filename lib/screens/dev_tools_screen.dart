@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/sign_in_page.dart';
-import 'package:gl_charge_app/components/app_bar1.dart';
-import 'package:gl_charge_app/components/simple_snack_bar.dart';
+import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
+import 'package:gl_charge_app/stateless_widget_components/button_black.dart';
+import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/components/button_black.dart';
-import 'package:gl_charge_app/components/button_yellow.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:gl_charge_app/widgets/simple_snack_bar.dart';
 
 class DevToolsScreen extends StatefulWidget {
   @override
@@ -27,6 +27,13 @@ class _ShopScreen extends State<DevToolsScreen> {
     });
   }
 
+  logOut(BuildContext context) {
+    simpleSnackBar(context, "User Signed Out!");
+    Route route =
+    MaterialPageRoute(builder: (context) => SignInPage());
+    Navigator.pushReplacement(context, route);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,24 +43,9 @@ class _ShopScreen extends State<DevToolsScreen> {
         padding: EdgeInsets.all(10.0),
         child: ListView(
           children: <Widget>[
-            ButtonBlack(
-                text: "Logout User",
-                onPressed: () {
-                  simpleSnackBar(context, "User Signed Out!");
-                  Route route =
-                      MaterialPageRoute(builder: (context) => SignInPage());
-                  Navigator.pushReplacement(context, route);
-                }),
+            ButtonBlack(text: "Logout User", onPressed: () => logOut(context)),
             SizedBox(height: 10),
-            ButtonYellow(
-                text: "Logout User",
-                onPressed: () {
-                  simpleSnackBar(context, "User Signed Out!");
-                  Route route = MaterialPageRoute(builder: (context) => SignInPage());
-                  Navigator.pushReplacement(context, route);
-                }),
-
-
+            ButtonYellow(text: "Logout User",onPressed: () => logOut(context)),
           ],
         ),
       ),

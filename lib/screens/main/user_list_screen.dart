@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/components/app_bar1.dart';
-import 'package:gl_charge_app/components/text_custom.dart';
+import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
+import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/tab_bar_pages/user_list_all_page.dart';
 import 'package:gl_charge_app/tab_bar_pages/user_list_approved_page.dart';
 import 'package:gl_charge_app/tab_bar_pages/user_list_pending_page.dart';
