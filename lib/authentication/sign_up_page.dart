@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/components/text_custom.dart';
 import 'package:gl_charge_app/screens/start_tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
 import 'package:gl_charge_app/components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/components/button_yellow.dart';
-import 'package:gl_charge_app/widgets/appText.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -37,9 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
               //  color: Colors.red,
               height: 50,
               child: Center(
-                child: appText("Sign Up", 40.0, Constants.ColorYellow,
-                    TextDecoration.none),
-              ),
+                child: TextCustom(text: "Sign Up", textSize: 40.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none)),
             ),
             SizedBox(height: 80),
             Container(
@@ -81,13 +79,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   Positioned(
                       top: 17,
                       left: 35,
-                      child: appText("Already have an account?", 17.0,
-                          Constants.ColorLightPurple, TextDecoration.none)),
+                      child: TextCustom(text: "Already have an account?", textSize: 17.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none)),
                   Positioned(
                       top: 17,
                       right: 45,
-                      child: appText("Sign In", 17.0, Constants.ColorYellow,
-                          TextDecoration.underline)),
+                      child: TextCustom(text: "Sign In", textSize: 17.0, textColor: Constants.ColorYellow, decoration: TextDecoration.underline)),
                   Positioned(
                       top: 70,
                       left: 37,
@@ -96,15 +92,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         onTap: () =>  UrlNavigation.navigateTo(context, Constants.privacyPolicyUrl),
                         child: RichText(
                           text: TextSpan(
-                            text: 'By signing up you agree to our ',
-                            style: TextStyle(
-                                fontSize: 12, color: Constants.ColorLightPurple),
+                            text: TextCustom(text: "By signing up you agree to our ", textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none).toString(),
                             children: <TextSpan>[
-                              TextSpan(
-                                  text: 'Privacy Policy and Terms.',
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      decoration: TextDecoration.underline)),
+                              TextSpan(text: TextCustom(text: "Privacy Policy and Terms.", textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.underline).toString()),
                             ],
                           ),
                         ),

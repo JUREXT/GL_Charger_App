@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/create_account_page.dart';
+import 'package:gl_charge_app/components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/components/button_yellow.dart';
-import 'package:gl_charge_app/widgets/appText.dart';
 import 'sign_up_page.dart';
 
 class SignInPage extends StatefulWidget {
@@ -32,7 +32,7 @@ class _SignInPageState extends State<SignInPage> {
             //  color: Colors.red,
               height: 50,
               child: Center(
-                child: appText("Sign In", 40.0, Constants.ColorYellow, TextDecoration.none),
+                child: TextCustom(text: "Sign In", textSize: 40.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
               ),
             ),
             SizedBox(height: 280),
@@ -57,9 +57,8 @@ class _SignInPageState extends State<SignInPage> {
                         //   Route route = MaterialPageRoute(builder: (context) => LogInPage());
                         //   Navigator.push(context, route);
                         // },
-                        child: appText("Already have an account?", 17.0,
-                            Constants.ColorLightPurple, TextDecoration.none),
-                      )),
+                        child: TextCustom(text: "Already have an account?", textSize: 17.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none))
+                  ),
                   Positioned(
                       top: 17,
                       right: 45,
@@ -68,8 +67,7 @@ class _SignInPageState extends State<SignInPage> {
                           Route route = MaterialPageRoute(builder: (context) => SignUpPage());
                           Navigator.push(context, route);
                         },
-                        child: appText("Sign Up", 17.0,
-                            Constants.ColorYellow, TextDecoration.underline),
+                        child: TextCustom(text: "Sign Up", textSize: 17.0, textColor: Constants.ColorYellow, decoration: TextDecoration.underline),
                       ))
                 ],
               ),

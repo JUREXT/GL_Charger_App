@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appText.dart';
 
 class SettingsListItem extends StatelessWidget {
-  
+
   final VoidCallback onSettingsItemCallback;
   final String title;
 
@@ -13,7 +13,7 @@ class SettingsListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Icon(Icons.settings, color: Constants.ColorYellow),
-      title: appText(title, 15.0, Constants.ColorWhite, TextDecoration.none),
+      title: TextCustom(text: title, textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
       onTap: () => onSettingsItemCallback(),
     );
   }

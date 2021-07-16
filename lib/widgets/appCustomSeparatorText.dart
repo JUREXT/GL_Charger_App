@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/components/text_custom.dart';
 
 import '../utils/constants.dart';
-import 'appText.dart';
 
-Widget appCustomSeparatorText() {
+Widget appCustomSeparatorText() { // TODO: use it and updated it to StatelessWidget somewhere
   return Container(
     // color: Colors.greenAccent,
     width: double.infinity,
@@ -23,7 +23,7 @@ Widget appCustomSeparatorText() {
         Expanded(
           flex: 1,
           child: Container(
-            child: appText("or", 15.0, Constants.ColorLightPurple, TextDecoration.none),
+            child: TextCustom(text: "or", textSize: 15.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
             alignment: Alignment.center,
           ),
         ),

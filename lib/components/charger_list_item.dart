@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/components/text_custom.dart';
 import 'package:gl_charge_app/models/charger.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appText.dart';
 
 import '../utils/constants.dart';
 
@@ -34,7 +34,7 @@ class ChargerListItem extends StatelessWidget {
             children: [
               ListTile(
                 leading: Container(height: 60, width: 60, child: CircleAvatar(child: Image.asset('assets/images/charging_station.png'), backgroundColor: Constants.ColorYellow)),
-                title: appText(charger.chargerName, 15.0, Constants.ColorWhite, TextDecoration.none),
+                title: TextCustom(text: charger.chargerName, textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                 subtitle: Row(
                   children: [
                     Container(
@@ -44,9 +44,9 @@ class ChargerListItem extends StatelessWidget {
                         // color: Constants.ColorYellow,
                         child: Padding(
                             padding: EdgeInsets.all(3.0),
-                            child: appText(charger.isOnline ? "ONLINE" : "OFFLINE", 12, Constants.ColorBlack, TextDecoration.none))),
+                            child: TextCustom(text: charger.isOnline ? "ONLINE" : "OFFLINE", textSize: 12.0, textColor: Constants.ColorBlack, decoration: TextDecoration.none))),
                     SizedBox(width: 5),
-                    appText(charger.chargingState ? "Charging" : "Not Charging", 12, Constants.ColorYellow, TextDecoration.none),
+                    TextCustom(text: charger.chargingState ? "Charging" : "Not Charging", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
                   ],
                 ),
               ),
@@ -58,8 +58,8 @@ class ChargerListItem extends StatelessWidget {
 
               ListTile(
                 leading: Icon(Icons.location_on, color: Constants.ColorYellow),
-                title: appText(charger.chargerLocation, 15.0, Constants.ColorWhite, TextDecoration.none),
-                subtitle: appText("Max Power: " + charger.maxPower + " kW", 12.0, Constants.ColorLightPurple,  TextDecoration.none),
+                title: TextCustom(text: charger.chargerLocation, textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                subtitle: TextCustom(text: "Max Power: " + charger.maxPower + " kW", textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
               ),
             ],
           ),

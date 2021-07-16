@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/components/app_bar1.dart';
+import 'package:gl_charge_app/components/text_custom.dart';
 import 'package:gl_charge_app/tab_bar_pages/user_list_all_page.dart';
 import 'package:gl_charge_app/tab_bar_pages/user_list_approved_page.dart';
 import 'package:gl_charge_app/tab_bar_pages/user_list_pending_page.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/appText.dart';
 
 import '../../utils/constants.dart';
 
@@ -37,9 +37,9 @@ class _UserListScreenState extends State<UserListScreen> {
                   indicatorColor: Constants.ColorYellow,
                   unselectedLabelColor: Constants.ColorBlack,
                   tabs: [
-                    Tab(child: appText("ALL", 14.0, Constants.ColorYellow, TextDecoration.none)),
-                    Tab(child: appText("PENDING", 14.0, Constants.ColorYellow, TextDecoration.none)),
-                    Tab(child: appText("APPROVED", 14.0, Constants.ColorYellow, TextDecoration.none)),
+                    Tab(child: TextCustom(text: "ALL", textSize: 14.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none)),
+                    Tab(child: TextCustom(text: "PENDING", textSize: 14.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none)),
+                    Tab(child: TextCustom(text: "APPROVED", textSize: 14.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none)),
                   ],
                 ),
               ),

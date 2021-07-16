@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/components/text_custom.dart';
 import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
 import 'package:gl_charge_app/components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/components/button_yellow.dart';
-import 'package:gl_charge_app/widgets/appText.dart';
 
 class CreateAccountPage extends StatefulWidget {
   @override
@@ -38,8 +38,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               //  color: Colors.red,
               height: 50,
               child: Center(
-                child: appText("Create an account", 40.0, Constants.ColorYellow, TextDecoration.none),
-              ),
+                child: TextCustom(text: "Create an account", textSize: 40.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none)),
             ),
             SizedBox(height: 80),
             Container(
@@ -116,12 +115,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   Positioned(
                       top: 17,
                       left: 35,
-                      child: appText("Already have an account?", 17.0,
-                          Constants.ColorLightPurple, TextDecoration.none)),
+                      child: TextCustom(text: "Already have an account?", textSize: 17.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none)),
                   Positioned(
                       top: 17,
                       right: 45,
-                      child: appText("Sign In", 17.0, Constants.ColorYellow, TextDecoration.underline)),
+                      child: TextCustom(text: "Sign In", textSize: 17.0, textColor: Constants.ColorYellow, decoration: TextDecoration.underline)),
                   Positioned(
                       top: 70,
                       left: 37,

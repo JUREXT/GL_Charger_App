@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../utils/constants.dart';
 
-Widget appSpannedText(String text1, String text2, double fontSize, Color textColor1, Color textColor2) {
+Widget appSpannedText(String text1, String text2, double fontSize, Color textColor1, Color textColor2) { // TODO: add correct font family, like in TextCustom
   return RichText(
     text: TextSpan(
       text: text1,

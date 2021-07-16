@@ -1,11 +1,11 @@
 import 'package:circle_button/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/components/app_bar2.dart';
+import 'package:gl_charge_app/components/text_custom.dart';
 import 'package:gl_charge_app/widgets/container_decoration.dart';
 import 'package:gl_charge_app/widgets/appSpannedText.dart';
 
 import '../../utils/constants.dart';
-import '../../widgets/appText.dart';
 
 class ChargeScreen extends StatefulWidget {
   ChargeScreen({Key key}) : super(key: key);
@@ -49,14 +49,11 @@ class _ChargeScreenState extends State<ChargeScreen> {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          appText("LAST SESSION", 12.0, Constants.ColorYellow,
-                              TextDecoration.none),
+                          TextCustom(text: "LAST SESSION", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
                           SizedBox(height: 6),
-                          appSpannedText("Consumed Energy:", "150kW", 12,
-                              Constants.ColorWhite, Constants.ColorYellow),
+                          appSpannedText("Consumed Energy:", "150kW", 12,   Constants.ColorWhite, Constants.ColorYellow),
                           SizedBox(height: 6),
-                          appSpannedText("Duration:", "1h 30min", 12,
-                              Constants.ColorWhite, Constants.ColorYellow),
+                          appSpannedText("Duration:", "1h 30min", 12, Constants.ColorWhite, Constants.ColorYellow),
                         ]),
                   ),
                 ),
@@ -78,10 +75,9 @@ class _ChargeScreenState extends State<ChargeScreen> {
                               child: Column(
                                 children: [
                                   SizedBox(height: 4),
-                                  appText("CURRENT", 12.0, Constants.ColorYellow,
-                                      TextDecoration.none),
+                                  TextCustom(text: "CURRENT", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
                                   SizedBox(height: 5),
-                                  appText("$_currentSliderValue A", 24.0, Constants.ColorWhite, TextDecoration.none),
+                                  TextCustom(text: "$_currentSliderValue A", textSize: 24.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                                 ],
                               ),
                             ),
@@ -95,11 +91,9 @@ class _ChargeScreenState extends State<ChargeScreen> {
                               child: Column(
                                 children: [
                                   SizedBox(height: 4),
-                                  appText("ENERGY", 12.0, Constants.ColorYellow,
-                                      TextDecoration.none),
+                                  TextCustom(text: "ENERGY", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
                                   SizedBox(height: 5),
-                                  appText("$_currentSliderValue kW", 24.0, Constants.ColorWhite,
-                                      TextDecoration.none),
+                                  TextCustom(text: "$_currentSliderValue A", textSize: 24.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                                 ],
                               ),
                             ),
@@ -118,11 +112,9 @@ class _ChargeScreenState extends State<ChargeScreen> {
                               child: Column(
                                 children: [
                                   SizedBox(height: 4),
-                                  appText("POWER", 12.0, Constants.ColorYellow,
-                                      TextDecoration.none),
+                                  TextCustom(text: "POWER", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
                                   SizedBox(height: 5),
-                                  appText("$_currentSliderValue kW", 24.0, Constants.ColorWhite,
-                                      TextDecoration.none),
+                                  TextCustom(text: "$_currentSliderValue A", textSize: 24.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                                 ],
                               ),
                             ),
@@ -135,11 +127,9 @@ class _ChargeScreenState extends State<ChargeScreen> {
                               child: Column(
                                 children: [
                                   SizedBox(height: 4),
-                                  appText("DURATION", 12.0, Constants.ColorYellow,
-                                      TextDecoration.none),
+                                  TextCustom(text: "DURATION", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
                                   SizedBox(height: 5),
-                                  appText("$_currentSliderValue min", 24.0, Constants.ColorWhite,
-                                      TextDecoration.none),
+                                  TextCustom(text: "$_currentSliderValue A", textSize: 24.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                                 ],
                               ),
                             ),
@@ -157,10 +147,10 @@ class _ChargeScreenState extends State<ChargeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        appText("Charging Current:", 16.0, Constants.ColorWhite, TextDecoration.none),
+                        TextCustom(text: "Charging Current:", textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                         SizedBox(width: 3),
-                        appText("$_currentSliderValue", 16.0, Constants.ColorWhite, TextDecoration.none),
-                        appText("A", 16.0, Constants.ColorWhite, TextDecoration.none),
+                        TextCustom(text: "$_currentSliderValue A", textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                        TextCustom(text: "A", textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                       ],
                     ),
                   ),
@@ -204,8 +194,8 @@ class _ChargeScreenState extends State<ChargeScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        appText("MIN", 12.0, Constants.ColorLightPurple, TextDecoration.none),
-                        appText("MAX", 12.0, Constants.ColorLightPurple, TextDecoration.none),
+                        TextCustom(text: "MIN", textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
+                        TextCustom(text: "MAX", textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
                       ],
                     ),
                   ),
@@ -233,10 +223,9 @@ class _ChargeScreenState extends State<ChargeScreen> {
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: appText(value, 14.0, Constants.ColorLightPurple, TextDecoration.none),
-                      );
+                        child: TextCustom(text: value, textSize: 14.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none));
                     }).toList(),
-                    hint: appText("Charging Profile", 14.0, Constants.ColorLightPurple, TextDecoration.none),
+                    hint: TextCustom(text: "Charging Profile", textSize: 14.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
                     onChanged: (String value) {
                       setState(() {
                         _chosenValue = value;
@@ -267,8 +256,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
                               borderWidth: 10.0,
                               borderStyle: BorderStyle.solid,
                               backgroundColor: Constants.ColorGreenish,
-                              child: appText("Start", 24.0,
-                                  Constants.ColorWhite, TextDecoration.none),
+                              child: TextCustom(text: "Start", textSize: 24.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none)
                             ),
                           ),
                         )
