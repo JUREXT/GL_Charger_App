@@ -14,12 +14,11 @@ class SelectChargerScreen extends StatefulWidget {
 }
 
 class _SelectChargerScreenState extends State<SelectChargerScreen> {
-
   List<ChargerModel> list = listOfChargersFake;
 
   void navigate(BuildContext context) {
     Route route =
-    MaterialPageRoute(builder: (context) => MainTabsScreenHolder());
+        MaterialPageRoute(builder: (context) => MainTabsScreenHolder());
     Navigator.pushReplacement(context, route);
   }
 

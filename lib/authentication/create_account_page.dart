@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
+import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
+import 'package:gl_charge_app/stateless_widget_components/password_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
@@ -40,63 +42,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 child: TextCustom(text: "Create an account", textSize: 40.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none)),
             ),
             SizedBox(height: 80),
-            Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
-              width: double.infinity,
-              height: 66,
-              child: Theme(
-                  data: ThemeData(
-                    primaryColor: Constants.ColorYellow,
-                    primaryColorDark: Constants.ColorWhite,
-                    hintColor: Constants.ColorLightPurple,
-                  ),
-                  child: TextField(
-                    style: TextStyle(color: Constants.ColorWhite, fontSize: 17),
-                    decoration: InputDecoration(
-                        hintText: "michael@gmail.com",
-                        labelText: "Your Email",
-                        labelStyle: TextStyle(
-                            color: Constants.ColorYellow, fontSize: 14)),
-                  )),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
-              width: double.infinity,
-              height: 66,
-              child: Theme(
-                  data: ThemeData(
-                    primaryColor: Constants.ColorYellow,
-                    primaryColorDark: Constants.ColorWhite,
-                    hintColor: Constants.ColorLightPurple,
-                  ),
-                  child: TextField(
-                    style: TextStyle(color: Constants.ColorWhite, fontSize: 17),
-                    decoration: InputDecoration(
-                        hintText: "Create a strong password",
-                        labelText: "Your password",
-                        labelStyle: TextStyle(
-                            color: Constants.ColorYellow, fontSize: 14)),
-                  )),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
-              width: double.infinity,
-              height: 66,
-              child: Theme(
-                  data: ThemeData(
-                    primaryColor: Constants.ColorYellow,
-                    primaryColorDark: Constants.ColorWhite,
-                    hintColor: Constants.ColorLightPurple,
-                  ),
-                  child: TextField(
-                    style: TextStyle(color: Constants.ColorWhite, fontSize: 17),
-                    decoration: InputDecoration(
-                        hintText: "Repeat password",
-                        labelText: "Repeat password",
-                        labelStyle: TextStyle(
-                            color: Constants.ColorYellow, fontSize: 14)),
-                  )),
-            ),
+            EmailInput(hintText: "your@gmail.com", labelText: "Your Email"),
+            PasswordInput(hintText: "Create a strong password", labelText: "Your password"),
+            PasswordInput(hintText: "Repeat password", labelText: "Repeat password"),
             SizedBox(height: 15.0),
             ButtonYellow(text: "Create Account", onPressed: () {
               Route route = MaterialPageRoute(builder: (context) => MainTabsScreenHolder());
