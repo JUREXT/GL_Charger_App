@@ -35,7 +35,7 @@ class AuthScreenBottomView extends StatelessWidget {
               top: 17,
               right: 45,
               child: GestureDetector(
-                onTap: () => onSignCallback,
+                onTap: () => onSignCallback(),
                 child: TextCustom(
                     text: accountClickText,
                     textSize: 17.0,
@@ -46,13 +46,16 @@ class AuthScreenBottomView extends StatelessWidget {
               top: 70,
               left: 37,
               right: 37,
-              child: RichText(
-                text: TextSpan(
-                  text: privacyText1,
-                  style: TextStyle(fontSize: 12, color: Constants.ColorLightPurple),
-                  children: <TextSpan>[
-                    TextSpan(text: privacyText2, style: TextStyle(fontSize: 12,decoration: TextDecoration.underline)),
-                  ],
+              child: GestureDetector(
+                onTap: () => onPrivacyCallback(),
+                child: RichText(
+                  text: TextSpan(
+                    text: privacyText1,
+                    style: TextStyle(fontSize: 12, color: Constants.ColorLightPurple),
+                    children: <TextSpan>[
+                      TextSpan(text: privacyText2, style: TextStyle(fontSize: 12,decoration: TextDecoration.underline)),
+                    ],
+                  ),
                 ),
               )),
         ],

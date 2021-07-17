@@ -1,10 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/authentication/create_account_page.dart';
+import 'package:gl_charge_app/authentication/forgot_password_page.dart';
+import 'package:gl_charge_app/screens/intro/select_charger_screen.dart';
+import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
+import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
+import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
+import 'package:gl_charge_app/stateless_widget_components/auth_screen_image_title.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
+import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
+import 'package:gl_charge_app/stateless_widget_components/password_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'sign_up_page.dart';
+import 'package:gl_charge_app/utils/url_navigation.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -14,70 +22,70 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
+
+    // LoginViewModel viewModel = Provider.of<LoginViewModel>(context);
+
     return Scaffold(
       backgroundColor: Constants.ColorLightGrey,
+      appBar: AppBarWithBackNavigation(backIconVisible: false),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 60),
-            Container(
-              //color: Colors.black87,
-              height: 150,
-              child: Center(
-                child: Image.asset("assets/images/logo_25_size.png", height: 46),
+           // SizedBox(height: 20),
+            AuthScreenImageTitle(title: "Sign In"),
+            SizedBox(height: 30),
+            EmailInput(hintText: "your@gmail.com", labelText: "Your Email"),
+            SizedBox(height: 12.0),
+            PasswordInput(hintText: "Create a strong password", labelText: "Your password"),
+            SizedBox(height: 20.0),
+            ButtonYellow(text: "Continue", onPressed: () => signInClick()),
+            SizedBox(height: 25),
+            GestureDetector(
+              onTap: () => forgotPasswordClick(),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Align(alignment: Alignment.centerLeft, child: TextCustom(text: "Forgot password?", textSize: 15.0, textColor: Constants.ColorYellow, decoration: TextDecoration.underline)),
               ),
             ),
-            SizedBox(height: 100),
-            Container(
-            //  color: Colors.red,
-              height: 50,
-              child: Center(
-                child: TextCustom(text: "Sign In", textSize: 40.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
-              ),
-            ),
-            SizedBox(height: 280),
-            ButtonYellow(
-                text: "Sign In",
-                onPressed: () {
-                  Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
-                  Navigator.push(context, route);
-                }),
-            SizedBox(height: 10),
-            Container(
-             // color: Colors.redAccent,
-              height: 90,
-              width: double.infinity,
-              child: Stack(
-                children: [
-                  Positioned(
-                      top: 17,
-                      left: 35,
-                      child: GestureDetector(
-                        // onTap: () {
-                        //   Route route = MaterialPageRoute(builder: (context) => LogInPage());
-                        //   Navigator.push(context, route);
-                        // },
-                        child: TextCustom(text: "Already have an account?", textSize: 17.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none))
-                  ),
-                  Positioned(
-                      top: 17,
-                      right: 45,
-                      child: GestureDetector(
-                        onTap: () {
-                          Route route = MaterialPageRoute(builder: (context) => SignUpPage());
-                          Navigator.push(context, route);
-                        },
-                        child: TextCustom(text: "Sign Up", textSize: 17.0, textColor: Constants.ColorYellow, decoration: TextDecoration.underline),
-                      ))
-                ],
-              ),
-            )
+            SizedBox(height: 30),
+            AuthScreenBottomView(
+                accountText: "Don't have account?",
+                accountClickText: "Sign Up",
+                privacyText1: "By signing up you agree to our ",
+                privacyText2: "Privacy Policy and Terms",
+                onPrivacyCallback: () => privacyClick(),
+                onSignCallback: () => signActionClick()),
           ],
         ),
       ),
     );
   }
-}
 
-// Route route = MaterialPageRoute(builder: (context) => TabsScreenHolder());
-// Navigator.pushReplacement(context, route);
+  // navigateBackClick() {
+  //   print("navigateBackClick");
+  //   Navigator.pop(context, false);
+  // }
+
+  signInClick() {
+    Route route = MaterialPageRoute(builder: (context) => SelectChargerScreen());
+    Navigator.pushReplacement(context, route);
+  }
+
+  privacyClick() {
+    print("privacyClick");
+    UrlNavigation.navigateTo(context, Constants.privacyPolicyUrl);
+  }
+
+  signActionClick() {
+    print("signActionClick");
+    Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
+    Navigator.pushReplacement(context, route);
+  }
+
+  forgotPasswordClick() {
+    print("forgotPasswordClick");
+    Route route = MaterialPageRoute(builder: (context) => ForgotPasswordPage());
+    Navigator.pushReplacement(context, route);
+  }
+
+}

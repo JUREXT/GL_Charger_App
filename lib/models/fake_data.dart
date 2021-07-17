@@ -1,6 +1,4 @@
-
 import 'package:gl_charge_app/models/user.dart';
-
 import 'charger.dart';
 
 List<ChargerModel> listOfChargersFake = [
@@ -24,6 +22,16 @@ List<ChargerModel> listOfChargersFake = [
       chargingState: false,
       chargerLocation: "Ljubljana",
       maxPower: "1.5"),
+  ChargerModel(chargerName: "Home Charger 5",
+      isOnline: true,
+      chargingState: false,
+      chargerLocation: "Celje",
+      maxPower: "1.9"),
+  ChargerModel(chargerName: "Home Charger 6",
+      isOnline: false,
+      chargingState: true,
+      chargerLocation: "Novo Mesto",
+      maxPower: "8,6"),
 ];
 
 List<UserModel> listOfUsersFake = [

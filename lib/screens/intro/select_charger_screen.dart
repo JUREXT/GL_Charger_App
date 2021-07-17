@@ -16,12 +16,6 @@ class SelectChargerScreen extends StatefulWidget {
 class _SelectChargerScreenState extends State<SelectChargerScreen> {
   List<ChargerModel> list = listOfChargersFake;
 
-  void navigate(BuildContext context) {
-    Route route =
-        MaterialPageRoute(builder: (context) => MainTabsScreenHolder());
-    Navigator.pushReplacement(context, route);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,4 +38,10 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
           ),
         ));
   }
+
+  void navigate(BuildContext context) {
+    Route route = MaterialPageRoute(builder: (context) => MainTabsScreenHolder());
+    Navigator.pushReplacement(context, route);
+  }
+
 }
