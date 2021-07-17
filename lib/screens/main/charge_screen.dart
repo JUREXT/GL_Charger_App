@@ -34,7 +34,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
         backgroundColor: Constants.ColorLightGrey,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
+            padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
             child: Column(
               children: [
                 Container(
@@ -57,7 +57,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
                         ]),
                   ),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 15),
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: 162,
