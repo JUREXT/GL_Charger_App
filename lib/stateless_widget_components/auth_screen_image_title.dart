@@ -13,7 +13,7 @@ class AuthScreenImageTitle extends StatelessWidget {
       children: [
         Container(
           //color: Colors.black87,
-          height: 150,
+          height: 130, //150
           child: Center(
             child: Image.asset("assets/images/logo_25_size.png", height: 46))),
         SizedBox(height: 30),
@@ -23,7 +23,7 @@ class AuthScreenImageTitle extends StatelessWidget {
           child: Center(
               child: TextCustom(
                   text: title,
-                  textSize: 40.0,
+                  textSize: 34.0,
                   textColor: Constants.ColorYellow,
                   decoration: TextDecoration.none)),
         )
