@@ -78,3 +78,5 @@ class _MyAppState extends State<MyApp> {
 // Learn stuff: https://medium.com/swlh/the-differences-between-provider-pattern-and-bloc-pattern-fc93dc523672
 // https://dev.to/dzun_n/no-need-postman-your-vscode-is-enough-for-testing-your-api-2khg?fbclid=IwAR2dfvO1tJzOJ4CFyqoQyR1VkyZ65UmFI4vC3SzsAwT_r2nLJy_KXaPr88A
 // UI Studio: https://jetspike.medium.com/introducing-flutter-widget-designer-with-built-in-data-binding-958a1ca33fc2
+
+// GOOD: https://pub.dev/packages/back_button_interceptor
