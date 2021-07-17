@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
+import 'package:gl_charge_app/stateless_widget_components/auth_screen_image_title.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
 import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/password_input.dart';
@@ -27,20 +28,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         child: Column(
           children: [
             SizedBox(height: 60),
-            Container(
-              //color: Colors.black87,
-              height: 150,
-              child: Center(
-                child: Image.asset("assets/images/logo_25_size.png", height: 46),
-              ),
-            ),
-            SizedBox(height: 30),
-            Container(
-              //  color: Colors.red,
-              height: 50,
-              child: Center(
-                child: TextCustom(text: "Create an account", textSize: 40.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none)),
-            ),
+            AuthScreenImageTitle(title: "Create account"),
             SizedBox(height: 80),
             EmailInput(hintText: "your@gmail.com", labelText: "Your Email"),
             PasswordInput(hintText: "Create a strong password", labelText: "Your password"),
