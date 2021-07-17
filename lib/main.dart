@@ -4,6 +4,7 @@ import 'package:gl_charge_app/utils/config.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/providers.dart';
 import 'package:provider/provider.dart';
+import 'authentication/forgot_password_page.dart';
 import 'authentication/sign_in_page.dart';
 import 'services/user_service.dart';
 
@@ -41,7 +42,7 @@ class _MyAppState extends State<MyApp> {
           //  title: Constants.appName,
             debugShowCheckedModeBanner: true,
           //  theme:notifier.dark ? Constants.darkTheme : Constants.lightTheme,
-            home: SignInPage(),
+            home: ForgotPasswordPage() //SignInPage(),
           //   home: StreamBuilder(
           //     stream: AuthTest.getBoolValue().asStream(),
           //     builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {

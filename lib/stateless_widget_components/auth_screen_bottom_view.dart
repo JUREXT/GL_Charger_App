@@ -21,7 +21,7 @@ class AuthScreenBottomView extends StatelessWidget {
       // color: Colors.redAccent,
       height: 130,
       width: double.infinity,
-      child: Stack(
+      child: Stack( // TODO: update with better solution, column?
         children: [
           Positioned(
               top: 17,
@@ -46,21 +46,13 @@ class AuthScreenBottomView extends StatelessWidget {
               top: 70,
               left: 37,
               right: 37,
-              child: GestureDetector(
-                onTap: () => onPrivacyCallback,
-                child: RichText(
-                  text: TextSpan(
-                    text: privacyText1,
-                    style: TextStyle(
-                        fontSize: 12, color: Constants.ColorLightPurple),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: privacyText2,
-                          style: TextStyle(
-                              fontSize: 12,
-                              decoration: TextDecoration.underline)),
-                    ],
-                  ),
+              child: RichText(
+                text: TextSpan(
+                  text: privacyText1,
+                  style: TextStyle(fontSize: 12, color: Constants.ColorLightPurple),
+                  children: <TextSpan>[
+                    TextSpan(text: privacyText2, style: TextStyle(fontSize: 12,decoration: TextDecoration.underline)),
+                  ],
                 ),
               )),
         ],
