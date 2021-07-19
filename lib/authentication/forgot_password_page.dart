@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/authentication/sign_in_page.dart';
+import 'package:gl_charge_app/providers/auth/navigation_provider.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_image_title.dart';
@@ -8,6 +8,7 @@ import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
 import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
+import 'package:provider/provider.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   @override
@@ -18,11 +19,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
 
-    // LoginViewModel viewModel = Provider.of<LoginViewModel>(context);
+    final navigate = Provider.of<NavigationNotifier>(context);
 
     return Scaffold(
       backgroundColor: Constants.ColorLightGrey,
-      appBar: AppBarWithBackNavigation(onNavigateBackCallback: () => navigateBackClick()),
+      appBar: AppBarWithBackNavigation(onNavigateBackCallback: () => navigateBackClick(navigate)),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -31,7 +32,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             SizedBox(height: 100),
             EmailInput(hintText: "your@gmail.com", labelText: "Your Email"),
             SizedBox(height: 15.0),
-            ButtonYellow(text: "Continue", onPressed: () => resetPasswordClick()),
+            ButtonYellow(text: "Continue", onPressed: () => resetPasswordClick(navigate)),
             SizedBox(height: 100),
             AuthScreenBottomView(
                 accountText: "Already have an account?",
@@ -39,22 +40,20 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 privacyText1: "By signing up you agree to our ",
                 privacyText2: "Privacy Policy and Terms",
                 onPrivacyCallback: () => privacyClick(),
-                onSignCallback: () => signActionClick()),
+                onSignCallback: () => forgotPasswordActionClick(navigate)),
           ],
         ),
       ),
     );
   }
 
-  navigateBackClick() {
+  navigateBackClick(NavigationNotifier navigate) {
     print("navigateBackClick");
-    //Navigator.pop(context, false);
-    resetPasswordClick();
+    navigate.goToSignIn();
   }
 
-  resetPasswordClick() {
-    Route route = MaterialPageRoute(builder: (context) => SignInPage());
-    Navigator.pushReplacement(context, route);
+  resetPasswordClick(NavigationNotifier navigate) {
+    navigate.goToSignIn();
   }
 
   privacyClick() {
@@ -62,9 +61,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     UrlNavigation.navigateTo(context, Constants.privacyPolicyUrl);
   }
 
-  signActionClick() {
+  forgotPasswordActionClick(NavigationNotifier navigate) {
     print("signActionClick");
-    resetPasswordClick();
+    navigate.goToSignIn();
   }
 
 }

@@ -7,7 +7,7 @@ import 'constants.dart';
 
 // TODO: import later other screens
 List<SingleChildWidget> providers = [
-  ChangeNotifierProvider(create: (_) => RegisterViewModel()),
+ // ChangeNotifierProvider(create: (_) => RegisterViewModel()),
   ChangeNotifierProvider(create: (_) => LoginViewModel()),
   ChangeNotifierProvider(create: (_) => UserViewModel()),
 ];

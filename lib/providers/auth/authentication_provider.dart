@@ -14,12 +14,14 @@ enum AuthenticationStatus {
   Authenticating,
   Authenticated,
   LoggedIn,
-  Unauthenticated
+  Unauthenticated,
+  Undefined
 }
+
 
 class AuthenticationNotifier with ChangeNotifier {
 
-  AuthenticationStatus _authenticationStatus = AuthenticationStatus.NotLoggedIn;
+  AuthenticationStatus _authenticationStatus = AuthenticationStatus.Undefined;
   AuthenticationStatus get authenticationStatus => _authenticationStatus;
 
   logOut() {
@@ -27,8 +29,15 @@ class AuthenticationNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  forgotPassword(String email) {
-  }
+  // register(String email) {
+  //   _authenticationStatus = AuthenticationStatus.Register;
+  //   notifyListeners();
+  // }
+  //
+  // forgotPassword(String email) {
+  //   _authenticationStatus = AuthenticationStatus.ForgotPassword;
+  //   notifyListeners();
+  // }
 
   bool getCurrentLoggedInUser() {
     return true;
@@ -83,7 +92,7 @@ class AuthenticationNotifier with ChangeNotifier {
   //  // return result = {'status': true, 'message': 'Successful', 'user': authUser};
   // }
 
-  Future<Map<String, dynamic>> register(String email, String password, String passwordConfirmation) async {
+  Future<Map<String, dynamic>> register1(String email, String password, String passwordConfirmation) async {
 
     final Map<String, dynamic> registrationData = {
       'user': {

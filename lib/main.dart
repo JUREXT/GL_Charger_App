@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/app_life_cycle/life_cycle_event_handler.dart';
+import 'package:gl_charge_app/authentication/create_account_page.dart';
+import 'package:gl_charge_app/authentication/forgot_password_page.dart';
 import 'package:gl_charge_app/authentication/sign_in_page.dart';
-import 'package:gl_charge_app/providers/auth/authentication_provider.dart';
+import 'package:gl_charge_app/providers/auth/navigation_provider.dart';
+import 'package:gl_charge_app/screens/intro/select_charger_screen.dart';
 import 'package:provider/provider.dart';
 import 'services/user_service.dart';
 
@@ -9,7 +12,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // Config.init(); // TODO: todo stuff on start
   runApp(ChangeNotifierProvider(
-      create: (_) => AuthenticationNotifier(),
+      create: (_) => NavigationNotifier(),
       child: MaterialApp(
         debugShowCheckedModeBanner: true,
         home: MyApp(),
@@ -37,23 +40,18 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final authentication = Provider.of<AuthenticationNotifier>(context);
+    final navigate = Provider.of<NavigationNotifier>(context);
 
-
-    switch (authentication.authenticationStatus) {
-
+    switch (navigate.navigation) {
+      case Navigation.CreateAccount:
+        return CreateAccountPage();
+      case Navigation.ForgotPassword:
+        return ForgotPasswordPage();
+      case Navigation.SelectCharger:
+        return SelectChargerScreen();
+      default:
+        return SignInPage();
     }
-    return SignInPage();
-    //   case Status.Uninitialized:
-    //     return Splash();
-    //   case Status.Unauthenticated:
-    //   case Status.Authenticating:
-    //     return LoginScreen();
-    //   case Status.Authenticated:
-    //     return Home();
-    //   default:
-    //     return SignInPage();
-    // }
   }
 }
 

@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/authentication/create_account_page.dart';
-import 'package:gl_charge_app/authentication/forgot_password_page.dart';
-import 'package:gl_charge_app/screens/intro/select_charger_screen.dart';
-import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
+import 'package:gl_charge_app/providers/auth/navigation_provider.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_image_title.dart';
@@ -13,6 +10,7 @@ import 'package:gl_charge_app/stateless_widget_components/password_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
+import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -23,7 +21,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
 
-    // LoginViewModel viewModel = Provider.of<LoginViewModel>(context);
+    final navigate = Provider.of<NavigationNotifier>(context);
 
     return Scaffold(
       backgroundColor: Constants.ColorLightGrey,
@@ -38,10 +36,10 @@ class _SignInPageState extends State<SignInPage> {
             SizedBox(height: 12.0),
             PasswordInput(hintText: "Create a strong password", labelText: "Your password"),
             SizedBox(height: 20.0),
-            ButtonYellow(text: "Continue", onPressed: () => signInClick()),
+            ButtonYellow(text: "Continue", onPressed: () => signInClick(navigate)),
             SizedBox(height: 25),
             GestureDetector(
-              onTap: () => forgotPasswordClick(),
+              onTap: () => forgotPasswordClick(navigate),
               child: Padding(
                 padding: const EdgeInsets.only(left: 16.0),
                 child: Align(alignment: Alignment.centerLeft, child: TextCustom(text: "Forgot password?", textSize: 15.0, textColor: Constants.ColorYellow, decoration: TextDecoration.underline)),
@@ -54,21 +52,17 @@ class _SignInPageState extends State<SignInPage> {
                 privacyText1: "By signing up you agree to our ",
                 privacyText2: "Privacy Policy and Terms",
                 onPrivacyCallback: () => privacyClick(),
-                onSignCallback: () => signActionClick()),
+                onSignCallback: () => signUpActionClick(navigate)),
           ],
         ),
       ),
     );
   }
 
-  // navigateBackClick() {
-  //   print("navigateBackClick");
-  //   Navigator.pop(context, false);
-  // }
-
-  signInClick() {
-    Route route = MaterialPageRoute(builder: (context) => SelectChargerScreen());
-    Navigator.pushReplacement(context, route);
+  signInClick(NavigationNotifier navigate) {
+    // Route route = MaterialPageRoute(builder: (context) => SelectChargerScreen());
+    // Navigator.pushReplacement(context, route);
+    navigate.goToSelectCharger();
   }
 
   privacyClick() {
@@ -76,16 +70,17 @@ class _SignInPageState extends State<SignInPage> {
     UrlNavigation.navigateTo(context, Constants.privacyPolicyUrl);
   }
 
-  signActionClick() {
-    print("signActionClick");
-    Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
-    Navigator.pushReplacement(context, route);
+  signUpActionClick(NavigationNotifier navigate) {
+    print("signUpActionClick");
+    // Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
+    // Navigator.pushReplacement(context, route);
+    navigate.goToCreateAccount();
   }
 
-  forgotPasswordClick() {
+  forgotPasswordClick(NavigationNotifier navigate) {
     print("forgotPasswordClick");
-    Route route = MaterialPageRoute(builder: (context) => ForgotPasswordPage());
-    Navigator.pushReplacement(context, route);
+    // Route route = MaterialPageRoute(builder: (context) => ForgotPasswordPage());
+    // Navigator.pushReplacement(context, route);
+    navigate.goToForgotPassword();
   }
-
 }
