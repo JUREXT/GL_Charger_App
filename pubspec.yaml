@@ -43,6 +43,8 @@ dependencies:
   flutter_icons: ^1.1.0
   flutter_native_splash: ^1.1.8+4
   circle_button: ^1.0.1
+  http: ^0.12.1
+  flushbar: ^1.10.4
 
 dev_dependencies:
   #auto_route_generator: ^2.1.0

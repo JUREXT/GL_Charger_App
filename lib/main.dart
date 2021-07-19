@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/app_life_cycle/life_cycle_event_handler.dart';
-import 'package:gl_charge_app/utils/config.dart';
-import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/utils/providers.dart';
+import 'package:gl_charge_app/authentication/sign_in_page.dart';
+import 'package:gl_charge_app/providers/auth/authentication_provider.dart';
 import 'package:provider/provider.dart';
-import 'authentication/create_account_page.dart';
-import 'authentication/forgot_password_page.dart';
-import 'authentication/sign_in_page.dart';
 import 'services/user_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
- // Config.init(); // TODO: todo stuff on start
-  runApp(MyApp());
- // runApp(AppSplashScreen());
+  // Config.init(); // TODO: todo stuff on start
+  runApp(ChangeNotifierProvider(
+      create: (_) => AuthenticationNotifier(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: true,
+        home: MyApp(),
+      )
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -22,42 +23,37 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(LifecycleEventHandler(
       onInactiveCallBack: () => { print("LifecycleEvent :: onInactiveCallBack") },
       onPausedCallBack: () => { print("LifecycleEvent :: onPausedCallBack") },
-      onDetachedCallBack: () => { UserService().setUserStatus(false), print("LifecycleEvent :: onDetachedCallBack") },
-      onResumedCallBack: () => { UserService().setUserStatus(true), print("LifecycleEvent :: onResumedCallBack") },
+      onDetachedCallBack: () => { UserService().setUserStatusOnline(false), print("LifecycleEvent :: onDetachedCallBack") },
+      onResumedCallBack: () => { UserService().setUserStatusOnline(true), print("LifecycleEvent :: onResumedCallBack") },
     ));
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: providers,
-      child: Consumer<ThemeNotifier>(
-        builder: (context, ThemeNotifier notifier, child) {
-          return MaterialApp(
-          //  title: Constants.appName,
-            debugShowCheckedModeBanner: false,
-          //  theme:notifier.dark ? Constants.darkTheme : Constants.lightTheme,
-            home: SignInPage()
-          //   home: StreamBuilder(
-          //     stream: AuthTest.getBoolValue().asStream(),
-          //     builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          //       if (snapshot.hasData && snapshot.data) {
-          //         return TabsScreenHolder();
-          //       } else {
-          //         return LandingPage();
-          //       }
-          //     },
-          //   ),
-          );
-        },
-      ),
-    );
+    final authentication = Provider.of<AuthenticationNotifier>(context);
+
+
+    switch (authentication.authenticationStatus) {
+
+    }
+    return SignInPage();
+    //   case Status.Uninitialized:
+    //     return Splash();
+    //   case Status.Unauthenticated:
+    //   case Status.Authenticating:
+    //     return LoginScreen();
+    //   case Status.Authenticated:
+    //     return Home();
+    //   default:
+    //     return SignInPage();
+    // }
   }
 }
 

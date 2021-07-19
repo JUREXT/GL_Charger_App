@@ -78,46 +78,46 @@ class Constants {
   //   ),
   // );
 
-  static List<T> map<T>(List list, Function handler) {
-    List<T> result = [];
-    for (var i = 0; i < list.length; i++) {
-      result.add(handler(i, list[i]));
-    }
-
-    return result;
-  }
+  // static List<T> map<T>(List list, Function handler) {
+  //   List<T> result = [];
+  //   for (var i = 0; i < list.length; i++) {
+  //     result.add(handler(i, list[i]));
+  //   }
+  //
+  //   return result;
+  // }
 }
 
-class ThemeNotifier extends ChangeNotifier {
-  final String key = 'theme';
-  SharedPreferences _prefs;
-  bool _darkTheme;
-
-  bool get dark => _darkTheme;
-
-  ThemeNotifier() {
-    _darkTheme = true;
-    _loadfromPrefs();
-  }
-
-  toggleTheme() { // TODO: later when light and dark colors are defined trough out the app
-    _darkTheme = !_darkTheme;
-    _saveToPrefs();
-    notifyListeners();
-  }
-
-  _initPrefs() async {
-    if (_prefs == null) _prefs = await SharedPreferences.getInstance();
-  }
-
-  _loadfromPrefs() async {
-    await _initPrefs();
-    _darkTheme = _prefs.getBool(key) ?? true;
-    notifyListeners();
-  }
-
-  _saveToPrefs() async {
-    await _initPrefs();
-    _prefs.setBool(key, _darkTheme);
-  }
-}
+// class ThemeNotifier extends ChangeNotifier {
+//   final String key = 'theme';
+//   SharedPreferences _prefs;
+//   bool _darkTheme;
+//
+//   bool get dark => _darkTheme;
+//
+//   ThemeNotifier() {
+//     _darkTheme = true;
+//     _loadfromPrefs();
+//   }
+//
+//   toggleTheme() { // TODO: later when light and dark colors are defined trough out the app
+//     _darkTheme = !_darkTheme;
+//     _saveToPrefs();
+//     notifyListeners();
+//   }
+//
+//   _initPrefs() async {
+//     if (_prefs == null) _prefs = await SharedPreferences.getInstance();
+//   }
+//
+//   _loadfromPrefs() async {
+//     await _initPrefs();
+//     _darkTheme = _prefs.getBool(key) ?? true;
+//     notifyListeners();
+//   }
+//
+//   _saveToPrefs() async {
+//     await _initPrefs();
+//     _prefs.setBool(key, _darkTheme);
+//   }
+// }
