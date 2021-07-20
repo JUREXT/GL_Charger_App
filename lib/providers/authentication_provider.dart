@@ -41,9 +41,15 @@ class AuthenticationProvider with ChangeNotifier {
       }
     };
 
-
     _loggedInStatus = Status.Authenticating;
     notifyListeners();
+
+    Future.delayed(const Duration(seconds: 5), () {
+      _loggedInStatus = Status.NotLoggedIn;
+      notifyListeners();
+    });
+
+
 
     // Response response = await post(
     //   AppUrl.login,
@@ -63,8 +69,8 @@ class AuthenticationProvider with ChangeNotifier {
 
       UserPreferences().saveUser(authUser);
 
-      _loggedInStatus = Status.LoggedIn;
-      notifyListeners();
+      // _loggedInStatus = Status.LoggedIn;
+      // notifyListeners();
 
       result = {'status': true, 'message': 'Successful', 'user': authUser};
     } else {

@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
+import 'package:gl_charge_app/utils/constants.dart';
 
 class CircularLoader extends StatelessWidget {
 
@@ -16,7 +18,8 @@ class CircularLoader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           CircularProgressIndicator(),
-          Text(" Authenticating ... Please wait") // TODO: use TextCustom later
+          SizedBox(width: 20),
+          TextCustom(text: text, textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none)
         ],
       ),
     );
