@@ -24,11 +24,10 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => AuthenticationProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
-        //ChangeNotifierProvider(create: (_) => NavigationNotifier()),
       ],
       child: MaterialApp(
           theme: ThemeData(
-            primarySwatch: Colors.red,
+           // primarySwatch: Colors.amber,
             visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
           home: FutureBuilder(

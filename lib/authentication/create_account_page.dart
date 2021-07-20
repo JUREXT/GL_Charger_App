@@ -30,7 +30,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
            // SizedBox(height: 20),
             AuthScreenImageTitle(title: "Create and account"),
             SizedBox(height: 30),
-            EmailInput(hintText: "your@gmail.com", labelText: "Your Email"),
+            EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: true, onValueCallback: (email) => { print("Entered Email $email") }),
             SizedBox(height: 12.0),
             PasswordInput(hintText: "Create a strong password", labelText: "Your password"),
             SizedBox(height: 12.0),

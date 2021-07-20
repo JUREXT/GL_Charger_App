@@ -29,7 +29,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
            // SizedBox(height: 20),
             AuthScreenImageTitle(title: "Forgot Password"),
             SizedBox(height: 100),
-            EmailInput(hintText: "your@gmail.com", labelText: "Your Email"),
+            EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: true, onValueCallback: (email) => { print("Entered Email $email") }),
             SizedBox(height: 15.0),
             ButtonYellow(text: "Continue", onPressed: () => resetPasswordClick()),
             SizedBox(height: 100),
