@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/authentication/sign_in_page.dart';
-import 'package:gl_charge_app/providers/auth/navigation_provider.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/settings_divider.dart';
 import 'package:gl_charge_app/stateless_widget_components/settings_list_item.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:provider/provider.dart';
 import '../../utils/constants.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -17,7 +14,8 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
-    final navigate = Provider.of<NavigationNotifier>(context);
+
+   // var navigate = Provider.of<NavigationNotifier>(context);
 
     return Scaffold(
       appBar: AppBar1(title: 'Settings'),
@@ -58,11 +56,7 @@ class _SettingScreenState extends State<SettingScreen> {
             // SettingsListItem(title: "Authentication", onSettingsItemCallback: () => { print("Authentication Clicked") }),
             // SettingsDivider(),
 
-            SettingsListItem(title: "Logout", onSettingsItemCallback: () {
-              print("Logout Clicked");
-            Route route = MaterialPageRoute(builder: (context) => SignInPage());
-                Navigator.pushReplacement(context, route);
-            }),
+            SettingsListItem(title: "Logout", onSettingsItemCallback: () => { }),
             SettingsDivider(),
 
           ],

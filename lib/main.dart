@@ -1,57 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/app_life_cycle/life_cycle_event_handler.dart';
 import 'package:gl_charge_app/authentication/create_account_page.dart';
 import 'package:gl_charge_app/authentication/forgot_password_page.dart';
 import 'package:gl_charge_app/authentication/sign_in_page.dart';
-import 'package:gl_charge_app/providers/auth/navigation_provider.dart';
-import 'package:gl_charge_app/screens/intro/select_charger_screen.dart';
+import 'package:gl_charge_app/providers/authentication_provider.dart';
+import 'package:gl_charge_app/providers/user_provider.dart';
+import 'package:gl_charge_app/utils/shared_preference.dart';
 import 'package:provider/provider.dart';
-import 'services/user_service.dart';
+import 'models/user2.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // Config.init(); // TODO: todo stuff on start
-  runApp(ChangeNotifierProvider(
-      create: (_) => NavigationNotifier(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: true,
-        home: MyApp(),
-      )
-  ));
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(LifecycleEventHandler(
-      onInactiveCallBack: () => { print("LifecycleEvent :: onInactiveCallBack") },
-      onPausedCallBack: () => { print("LifecycleEvent :: onPausedCallBack") },
-      onDetachedCallBack: () => { UserService().setUserStatusOnline(false), print("LifecycleEvent :: onDetachedCallBack") },
-      onResumedCallBack: () => { UserService().setUserStatusOnline(true), print("LifecycleEvent :: onResumedCallBack") },
-    ));
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final navigate = Provider.of<NavigationNotifier>(context);
 
-    switch (navigate.navigation) {
-      case Navigation.CreateAccount:
-        return CreateAccountPage();
-      case Navigation.ForgotPassword:
-        return ForgotPasswordPage();
-      case Navigation.SelectCharger:
-        return SelectChargerScreen();
-      default:
-        return SignInPage();
-    }
+    Future<User2> getUserData() => UserPreferences().getUser();
+
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthenticationProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        //ChangeNotifierProvider(create: (_) => NavigationNotifier()),
+      ],
+      child: MaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.red,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          home: FutureBuilder(
+              future: getUserData(),
+              builder: (context, snapshot) {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                  case ConnectionState.waiting:
+                    return CircularProgressIndicator();
+                  default:
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else if (snapshot.data.token == null) {
+                      return SignInPage();
+                    } else {
+                      UserPreferences().removeUser();
+                      return SignInPage();
+                    }
+                }
+              }),
+          routes: {
+            '/createAccount': (context) => CreateAccountPage(),
+            '/signInPage': (context) => SignInPage(),
+            '/forgotPassword': (context) => ForgotPasswordPage(),
+          }),
+    );
   }
 }
 

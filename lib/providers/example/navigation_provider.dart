@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 enum Navigation { SignIn, CreateAccount, ForgotPassword, SelectCharger, Undefined }
 
 class NavigationNotifier with ChangeNotifier {
-  Navigation _navigation = Navigation.Undefined;
 
+  Navigation _navigation = Navigation.Undefined;
   Navigation get navigation => _navigation;
 
   goToSignIn() {

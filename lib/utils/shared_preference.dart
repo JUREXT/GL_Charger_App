@@ -4,7 +4,7 @@ import 'dart:async';
 
 class UserPreferences {
 
-  Future<bool> saveUser(User user) async {
+  Future<bool> saveUser(User2 user) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setInt("userId", user.userId);
@@ -21,7 +21,7 @@ class UserPreferences {
     return prefs.commit();
   }
 
-  Future<User> getUser() async {
+  Future<User2> getUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     int userId = prefs.getInt("userId");
@@ -40,7 +40,7 @@ class UserPreferences {
     //     type: type,
     //     token: token,
     //     renewalToken: renewalToken);
-   return User.test(userId, name, email, phone, type, token, renewalToken);
+   return User2.test(userId, name, email, phone, type, token, renewalToken);
   }
 
   void removeUser() async {

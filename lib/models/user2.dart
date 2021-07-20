@@ -1,4 +1,4 @@
-class User {
+class User2 {
 
   int userId;
   String name;
@@ -9,9 +9,9 @@ class User {
   String renewalToken;
 
 
-  User();
+  User2();
 
-  User.test(this.userId, this.name, this.email, this.phone, this.type, this.token,
+  User2.test(this.userId, this.name, this.email, this.phone, this.type, this.token,
       this.renewalToken);
 
   // factory User.fromJson(Map<String, dynamic> responseData) {
