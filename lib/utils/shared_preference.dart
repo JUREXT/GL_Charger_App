@@ -40,7 +40,14 @@ class UserPreferences {
     //     type: type,
     //     token: token,
     //     renewalToken: renewalToken);
-   return User.createUserByName(userId, name, email);
+
+    // var user;
+    // Future.delayed(const Duration(seconds: 5), () {
+    //   user = User.createUserByName(userId, name, email, "juhf");
+    //  });
+    // return user;
+
+    return User.createUserByName(userId, name, email, null);
   }
 
   void removeUser() async {

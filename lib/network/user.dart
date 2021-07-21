@@ -10,7 +10,7 @@ class User {
 
   User();
   User.createUser(this.userId, this.name, this.email, this.phone, this.type, this.token, this.renewalToken);
-  User.createUserByName(this.userId, this.name, this.surname);
+  User.createUserByName(this.userId, this.name, this.surname, this.token);
 
   @override
   String toString() {

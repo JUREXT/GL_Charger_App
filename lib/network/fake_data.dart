@@ -35,5 +35,5 @@ List<Charger> listOfChargersFake = [
 ];
 
 List<User> listOfUsersFake = [
-  User.createUserByName(1, "User 1", "Surname"),
+  User.createUserByName(1, "User 1", "Surname", null),
 ];
