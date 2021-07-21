@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:gl_charge_app/models/user2.dart';
+import 'package:gl_charge_app/network/user.dart';
 import 'package:gl_charge_app/utils/app_url.dart';
 import 'package:gl_charge_app/utils/shared_preference.dart';
 import 'package:http/http.dart';
@@ -65,7 +65,7 @@ class AuthenticationProvider with ChangeNotifier {
 
     //  var userData = responseData['data'];
 
-      User2 authUser = User2.test(1, "Jure", "loki@email.com", "128998", "Type", "125458", "51"); //User.fromJson(userData);
+      User authUser = User.createUser(1, "Jure", "loki@email.com", "128998", "Type", "125458", "51"); //User.fromJson(userData);
 
       UserPreferences().saveUser(authUser);
 
@@ -111,7 +111,7 @@ class AuthenticationProvider with ChangeNotifier {
 
       var userData = responseData['data'];
 
-      User2 authUser = null; //User.fromJson(userData);
+      User authUser = null; //User.fromJson(userData);
 
       UserPreferences().saveUser(authUser);
       result = {

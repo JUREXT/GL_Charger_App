@@ -1,10 +1,10 @@
-import 'package:gl_charge_app/models/user2.dart';
+import 'package:gl_charge_app/network/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 
 class UserPreferences {
 
-  Future<bool> saveUser(User2 user) async {
+  Future<bool> saveUser(User user) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setInt("userId", user.userId);
@@ -21,7 +21,7 @@ class UserPreferences {
     return prefs.commit();
   }
 
-  Future<User2> getUser() async {
+  Future<User> getUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     int userId = prefs.getInt("userId");
@@ -40,7 +40,7 @@ class UserPreferences {
     //     type: type,
     //     token: token,
     //     renewalToken: renewalToken);
-   return User2.test(userId, name, email, phone, type, token, renewalToken);
+   return User.createUserByName(userId, name, email);
   }
 
   void removeUser() async {

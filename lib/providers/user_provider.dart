@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
-import 'package:gl_charge_app/models/user2.dart';
+import 'package:gl_charge_app/network/user.dart';
 
 class UserProvider with ChangeNotifier {
-  User2 _user = new User2();
+  User _user = new User();
 
-  User2 get user => _user;
+  User get user => _user;
 
-  void setUser(User2 user) {
+  void setUser(User user) {
     _user = user;
     notifyListeners();
   }

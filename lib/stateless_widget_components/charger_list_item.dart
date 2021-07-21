@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/models/charger.dart';
+import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 
@@ -7,8 +7,8 @@ import '../utils/constants.dart';
 
 class ChargerListItem extends StatelessWidget {
 
-  final ChargerModel charger;
-  final Function(ChargerModel) onSelectedChargerCallback;
+  final Charger charger;
+  final Function(Charger) onSelectedChargerCallback;
   final VoidCallback onSelectedVoidCallback;
 
   const ChargerListItem({@required this.charger, @required this.onSelectedChargerCallback, this.onSelectedVoidCallback});

@@ -45,6 +45,7 @@ dependencies:
   circle_button: ^1.0.1
   http: ^0.12.1
   flushbar: ^1.10.4
+  json_annotation: ^2.0.0
 
 dev_dependencies:
   #auto_route_generator: ^2.1.0

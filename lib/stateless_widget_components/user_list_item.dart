@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/models/user.dart';
+import 'package:gl_charge_app/network/user.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 
 class UserListItem extends StatelessWidget {
 
-  final UserModel user;
-  final Function(UserModel) onSelectedUserCallback;
+  final User user;
+  final Function(User) onSelectedUserCallback;
 
   const UserListItem({Key key, @required this.user, @required this.onSelectedUserCallback}) : super(key: key);
 
@@ -26,8 +26,8 @@ class UserListItem extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10))),
             child: ListTile(
               leading: Container(child: CircleAvatar(child: Image.asset('assets/images/ic_user.png'), backgroundColor: Constants.ColorYellow)),
-              title: TextCustom(text: user.nameSurname, textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
-              subtitle: TextCustom(text: "ID: " + user.id, textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
+              title: TextCustom(text: user.name, textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+              subtitle: TextCustom(text: "ID: " + user.userId.toString(), textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
               trailing: Wrap(
                 spacing: 18, // space between two icons
                 children: <Widget>[

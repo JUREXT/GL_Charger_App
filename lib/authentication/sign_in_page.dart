@@ -37,7 +37,8 @@ class _SignInPageState extends State<SignInPage> {
 
         final Future<Map<String, dynamic>> successfulMessage = auth.login(_email, _password);
         successfulMessage.then((value) => {
-          print("What: $value")
+          print("What: $value"),
+          Navigator.pushReplacementNamed(context, '/createAccount')
         });
 
         // successfulMessage.then((response) {

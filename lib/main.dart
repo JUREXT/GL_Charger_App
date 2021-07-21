@@ -6,7 +6,8 @@ import 'package:gl_charge_app/providers/authentication_provider.dart';
 import 'package:gl_charge_app/providers/user_provider.dart';
 import 'package:gl_charge_app/utils/shared_preference.dart';
 import 'package:provider/provider.dart';
-import 'models/user2.dart';
+
+import 'network/user.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Future<User2> getUserData() => UserPreferences().getUser();
+    Future<User> getUserData() => UserPreferences().getUser();
 
     return MultiProvider(
       providers: [
@@ -78,3 +79,4 @@ class MyApp extends StatelessWidget {
 // UI Studio: https://jetspike.medium.com/introducing-flutter-widget-designer-with-built-in-data-binding-958a1ca33fc2
 
 // GOOD: https://pub.dev/packages/back_button_interceptor
+// https://mightytechno.com/rounded-button-flutter/

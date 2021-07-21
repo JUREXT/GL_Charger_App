@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/models/fake_data.dart';
-import 'package:gl_charge_app/models/charger.dart';
+import 'package:gl_charge_app/network/charger.dart';
+import 'package:gl_charge_app/network/fake_data.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/charger_list_item.dart';
 import 'package:gl_charge_app/utils/constants.dart';
@@ -14,7 +14,7 @@ class SelectChargerScreen extends StatefulWidget {
 }
 
 class _SelectChargerScreenState extends State<SelectChargerScreen> {
-  List<ChargerModel> list = listOfChargersFake;
+  List<Charger> list = listOfChargersFake;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
               return ChargerListItem(
                 charger: list[index],
                 onSelectedVoidCallback: () => print("onSelectedVoidCallback"),
-                onSelectedChargerCallback: (ChargerModel charger) {
+                onSelectedChargerCallback: (Charger charger) {
                   print("onSelectedChargerCallback: " + charger.toString());
                   navigate(context);
                 },
