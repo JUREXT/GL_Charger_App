@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/utils/validators.dart';
+import 'package:gl_charge_app/utils/validation.dart';
 
 class PasswordInput extends StatelessWidget {
 
@@ -24,7 +24,7 @@ class PasswordInput extends StatelessWidget {
           ),
           child: TextFormField(
             autofocus: autofocus,
-            validator: passwordValidator,
+            validator: (value) => Validations.validatePassword(value),
             onSaved: (value) => onValueCallback(value),
             style: TextStyle(color: Constants.ColorWhite, fontSize: 17),
             decoration: InputDecoration(

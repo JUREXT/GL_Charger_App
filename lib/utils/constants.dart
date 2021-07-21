@@ -2,10 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Constants {
+  // REST Api related strings
+  static const String liveBaseURL = "https://shiny-awful-wildebeast.gigalixirapp.com/api/v1";
+  static const String localBaseURL = "http://10.0.2.2:4000/api/v1";
+  static const String baseURL = liveBaseURL;
+  static const String login = baseURL + "/session";
+  static const String register = baseURL + "/registration";
+  static const String forgotPassword = baseURL + "/forgot-password";
+
   // App related strings
   static String appName = "GL Charger";
+  // Privacy and shop related strings
   static const shopUrl = "https://www.google.com/";
   static const privacyPolicyUrl = "https://www.google.com/";
+  // Transition speed
   static const switchSpeedMainTabsScreenHolder = 500;
   static const switchSpeedStartTabsScreenHolder = 500;
 

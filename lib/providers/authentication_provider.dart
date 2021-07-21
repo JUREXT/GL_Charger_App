@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:gl_charge_app/network/user.dart';
-import 'package:gl_charge_app/utils/app_url.dart';
+import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/shared_preference.dart';
 import 'package:http/http.dart';
 
@@ -95,7 +95,7 @@ class AuthenticationProvider with ChangeNotifier {
         'password_confirmation': passwordConfirmation
       }
     };
-    return await post(Uri(path: AppUrl.register),
+    return await post(Uri(path: Constants.register),
         body: json.encode(registrationData),
         headers: {'Content-Type': 'application/json'})
         .then(onValue)
