@@ -3,13 +3,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Constants {
   // REST Api related strings
-  static const String liveBaseURL = "https://jsonplaceholder.typicode.com";
+  static const String liveBaseURLTest = "https://jsonplaceholder.typicode.com";
+  static const String liveBaseURL = "https://home.dev.glcharge.com/api/v1";
   static const String localBaseURL = "http://10.0.2.2:4000/api/v1";
   static const String baseURL = liveBaseURL;
-  static const String login = "/session";
-  static const String register = "/registration";
-  static const String forgotPassword = "/forgot-password";
-  static const String userEndPoint = "/users/1";
+  static const String logInEndPoint = "/login";
+ // static const String register = "/registration";
+ // static const String forgotPassword = "/forgot-password";
   getBaseUrl() {
     return baseURL;
   }

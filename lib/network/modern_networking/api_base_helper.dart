@@ -9,59 +9,59 @@ class ApiBaseHelper {
   final String _baseUrl = Constants().getBaseUrl();
 
   Future<dynamic> get(String url) async {
-    print('Api Get, url $url');
+    print('Api Get, url $_baseUrl + $url');
     var responseJson;
     try {
       final response = await http.get(_baseUrl + url);
       responseJson = _returnResponse(response);
     } on SocketException {
-      print('No net');
+      print('No network');
       throw FetchDataException('No Internet connection');
     }
-    print('api get recieved!');
+    print('Api Get Received!');
     return responseJson;
   }
 
   Future<dynamic> post(String url, dynamic body) async {
-    print('Api Post, url $url');
+    print('Api Post, url $_baseUrl + $url');
     var responseJson;
     try {
       final response = await http.post(_baseUrl + url, body: body);
       responseJson = _returnResponse(response);
     } on SocketException {
-      print('No net');
+      print('No network');
       throw FetchDataException('No Internet connection');
     }
-    print('api post.');
+    print('Api Post Completed!');
     return responseJson;
   }
 
   Future<dynamic> put(String url, dynamic body) async {
-    print('Api Put, url $url');
+    print('Api Put, url $_baseUrl + $url');
     var responseJson;
     try {
       final response = await http.put(_baseUrl + url, body: body);
       responseJson = _returnResponse(response);
     } on SocketException {
-      print('No net');
+      print('No network');
       throw FetchDataException('No Internet connection');
     }
-    print('api put.');
+    print('Api Put Completed!');
     print(responseJson.toString());
     return responseJson;
   }
 
   Future<dynamic> delete(String url) async {
-    print('Api delete, url $url');
+    print('Api delete, url $_baseUrl + $url');
     var apiResponse;
     try {
       final response = await http.delete(_baseUrl + url);
       apiResponse = _returnResponse(response);
     } on SocketException {
-      print('No net');
+      print('No network');
       throw FetchDataException('No Internet connection');
     }
-    print('api delete.');
+    print('Api Delete Completed!');
     return apiResponse;
   }
 }

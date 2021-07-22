@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/network/modern_networking/TestUser.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
-import 'package:gl_charge_app/network/modern_networking/sign_in_bloc.dart';
+import 'package:gl_charge_app/network/modern_networking/authentication_bloc.dart';
 import 'package:gl_charge_app/providers/authentication_provider.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
@@ -25,6 +25,7 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
 
   final _formKey = new GlobalKey<FormState>();
+  TextEditingController controllerPassword = new TextEditingController();
   String _email, _password;
   SignInBloc _signInBloc;
 
@@ -42,7 +43,7 @@ class _SignInPageState extends State<SignInPage> {
    // AuthenticationProvider auth = Provider.of<AuthenticationProvider>(context);
 
     signInClick() {
-      _signInBloc.getUser();
+      _signInBloc.signIn("lokovsek.jure@gmail.com", "123456Jl");
 
       // final form = _formKey.currentState;
       // if (form.validate()) {
@@ -88,11 +89,12 @@ class _SignInPageState extends State<SignInPage> {
                   return CircularLoader(text: "Signing In");
                   break;
                 case Status.COMPLETED:
-                  return ButtonYellow(text: "Continue", onPressed: () => signInClick());
+                //  return ButtonYellow(text: "Continue", onPressed: () => signInClick());
                   break;
                 case Status.ERROR:
+                 // controllerPassword.text = "Server Error";
                  // snackBar(context, "Err", "Err", 10);
-                  return ButtonYellow(text: "Continue", onPressed: () => signInClick());
+                 // return ButtonYellow(text: "Continue", onPressed: () => signInClick());
                   break;
               }
             }
@@ -114,7 +116,7 @@ class _SignInPageState extends State<SignInPage> {
               AuthScreenImageTitle(title: "Sign In"),
               SizedBox(height: 30),
               EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { _email = value }),
-              PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { _password = value }),
+              PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { _password = value }, controller: controllerPassword),
               SizedBox(height: 20.0),
               streamBuilderContainer(),
               SizedBox(height: 25),

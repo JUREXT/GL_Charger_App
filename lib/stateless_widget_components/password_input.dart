@@ -8,7 +8,8 @@ class PasswordInput extends StatelessWidget {
   final String labelText;
   final bool autofocus;
   final Function(String) onValueCallback;
-  PasswordInput({@required this.hintText, @required this.labelText, this.autofocus = false, @required this.onValueCallback});
+  final TextEditingController controller;
+  PasswordInput({@required this.hintText, @required this.labelText, this.autofocus = false, @required this.onValueCallback, this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,8 @@ class PasswordInput extends StatelessWidget {
             autofocus: autofocus,
             validator: (value) => Validations.validatePassword(value),
             onSaved: (value) => onValueCallback(value),
+            obscureText: true,
+            controller: controller,
             style: TextStyle(color: Constants.ColorWhite, fontSize: 17),
             decoration: InputDecoration(
                 hintText: hintText,
