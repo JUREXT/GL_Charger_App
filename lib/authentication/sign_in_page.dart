@@ -68,7 +68,7 @@ class _SignInPageState extends State<SignInPage> {
                 case Status.ERROR:
                   print("ERROR");
                   WidgetsBinding.instance.addPostFrameCallback((_) => {
-                    print("Show Error to user!"),
+                    print("Show Error to user! :: " + snapshot.data.message),
                     showSnackBar(context, "Error Title", snapshot.data.message, 5),
                   });
                   return ButtonYellow(text: "Continue", onPressed: () => signInClick());

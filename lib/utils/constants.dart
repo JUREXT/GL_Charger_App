@@ -8,7 +8,7 @@ class Constants {
   static const String localBaseURL = "http://10.0.2.2:4000/api/v1";
   static const String baseURL = liveBaseURL;
   static const String logInEndPoint = "/login";
- // static const String register = "/registration";
+  static const String registerEndPoint = "/register";
  // static const String forgotPassword = "/forgot-password";
   getBaseUrl() {
     return baseURL;
