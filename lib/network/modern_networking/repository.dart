@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:gl_charge_app/network/modern_networking/sign_in_response.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-
 import 'TestUser.dart';
 import 'api_base_helper.dart';
-import 'sign_in_data  .dart';
-import 'sign_in_reponse .dart';
+import 'sign_in_data .dart';
 
 class Repository {
   ApiBaseHelper _helper = ApiBaseHelper();

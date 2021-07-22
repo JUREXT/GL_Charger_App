@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/network/modern_networking/TestUser.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
 import 'package:gl_charge_app/network/modern_networking/authentication_bloc.dart';
-import 'package:gl_charge_app/providers/authentication_provider.dart';
+import 'package:gl_charge_app/network/modern_networking/sign_in_response.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_image_title.dart';
@@ -15,7 +14,6 @@ import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/snack_bar.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
-import 'package:provider/provider.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -27,77 +25,57 @@ class _SignInPageState extends State<SignInPage> {
   final _formKey = new GlobalKey<FormState>();
   TextEditingController controllerPassword = new TextEditingController();
   String _email, _password;
-  SignInBloc _signInBloc;
+  AuthenticationBloc _authenticationBloc;
 
   @override
   void initState() {
     super.initState();
-    _signInBloc = SignInBloc();
+    _authenticationBloc = AuthenticationBloc();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
 
-   // AuthenticationProvider auth = Provider.of<AuthenticationProvider>(context);
-
     signInClick() {
-      _signInBloc.signIn("lokovsek.jure@gmail.com", "123456Jl");
-
-      // final form = _formKey.currentState;
-      // if (form.validate()) {
-      //   form.save();
-      //   print("Email is valid $_email");
-      //   print("Password is valid $_password");
-      //
-      //  // _signInBloc.getUser();
-      //
-      //   // final Future<Map<String, dynamic>> successfulMessage = auth.logIn(_email, _password);
-      //   // successfulMessage.then((value) => {
-      //   //   print("What: $value"),
-      //   //  // Navigator.pushReplacementNamed(context, '/createAccount')
-      //   // });
-      //
-      //   // successfulMessage.then((response) {
-      //   //   if (response['status']) {
-      //   //     User user = response['user'];
-      //   //     Provider.of<UserProvider>(context, listen: false).setUser(user);
-      //   //     Navigator.pushReplacementNamed(context, '/dashboard');
-      //   //   } else {
-      //   //     Flushbar(
-      //   //       title: "Failed Login",
-      //   //       message: response['message']['message'].toString(),
-      //   //       duration: Duration(seconds: 3),
-      //   //     ).show(context);
-      //   //   }
-      //   // });
-      //
-      // } else {
-      //   print("Form is invalid");
-      // }
+      _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
+      final form = _formKey.currentState;
+      if (form.validate()) {
+        form.save();
+        print("Email is valid $_email");
+        print("Password is valid $_password");
+        _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
+      } else {
+        print("Form is invalid");
+      }
     }
 
     Widget streamBuilderContainer() {
       return Container(
-        child: StreamBuilder<ApiResponse<TestUser>>(
-          stream: _signInBloc.userStream,
+        child: StreamBuilder<ApiResponse<SignInResponse>>(
+          stream: _authenticationBloc.signInStream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               switch (snapshot.data.status) {
                 case Status.LOADING:
-                  return CircularLoader(text: "Signing In");
+                  print("LOADING");
+                  return CircularLoader(text: "Signing In", visibleProgress: true);
                   break;
                 case Status.COMPLETED:
-                //  return ButtonYellow(text: "Continue", onPressed: () => signInClick());
+                  print("COMPLETED");
+                  print("Navigate....");
+                  return ButtonYellow(text: "Continue", onPressed: () => signInClick());
                   break;
                 case Status.ERROR:
-                 // controllerPassword.text = "Server Error";
-                 // snackBar(context, "Err", "Err", 10);
-                 // return ButtonYellow(text: "Continue", onPressed: () => signInClick());
+                  print("ERROR");
+                  WidgetsBinding.instance.addPostFrameCallback((_) => {
+                    print("Show Error to user!"),
+                    showSnackBar(context, "Error Title", snapshot.data.message, 5),
+                  });
+                  return ButtonYellow(text: "Continue", onPressed: () => signInClick());
                   break;
               }
             }
+            print("DEFAULT");
             return ButtonYellow(text: "Continue", onPressed: () => signInClick());
           },
         ),
@@ -142,8 +120,6 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-
-
   privacyClick() {
     print("privacyClick");
     UrlNavigation.navigateTo(context, Constants.privacyPolicyUrl);
@@ -159,8 +135,6 @@ class _SignInPageState extends State<SignInPage> {
     print("forgotPasswordClick");
     // Route route = MaterialPageRoute(builder: (context) => ForgotPasswordPage());
     // Navigator.pushReplacement(context, route);
-
   }
-
 
 }

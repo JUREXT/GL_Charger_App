@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:gl_charge_app/network/modern_networking/TestUser.dart';
 import 'api_response.dart';
 import 'repository.dart';
-import 'sign_in_reponse .dart';
+import 'sign_in_response.dart';
 
 class AuthenticationBloc {
 
