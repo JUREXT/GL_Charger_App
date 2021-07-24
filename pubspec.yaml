@@ -45,9 +45,10 @@ dependencies:
   http: ^0.12.1
   another_flushbar: ^1.10.24
   json_annotation: ^2.0.0
+  # State & Navigation Management
+  get: ^3.25.6
 
 dev_dependencies:
-  #auto_route_generator: ^2.1.0
   build_runner:
   flutter_test:
     sdk: flutter
