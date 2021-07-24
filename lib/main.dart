@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:gl_charge_app/authentication/create_account_page.dart';
 import 'package:gl_charge_app/authentication/forgot_password_page.dart';
 import 'package:gl_charge_app/authentication/sign_in_page.dart';
-import 'package:gl_charge_app/providers/authentication_provider.dart';
 import 'package:gl_charge_app/providers/user_provider.dart';
 import 'package:gl_charge_app/utils/shared_preference.dart';
 import 'package:provider/provider.dart';
 
 import 'network/user.dart';
+import 'utils/config.dart';
+import 'utils/log.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // Config.init(); // TODO: todo stuff on start
+  Config.init();
   runApp(MyApp());
+  Log.enableLogger(true);
+  Log.i("main", "Started");
 }
 
 class MyApp extends StatelessWidget {
+  final tag = "MyApp";
+
   @override
   Widget build(BuildContext context) {
 
     Future<User> getUserData() => UserPreferences().getUser();
+    Log.d(tag, "getUserData");
 
     return MultiProvider(
       providers: [
