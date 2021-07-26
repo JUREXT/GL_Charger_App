@@ -12,7 +12,7 @@ class ApiBaseHelper {
     print('Api Get, url $_baseUrl + $url');
     var responseJson;
     try {
-      final response = await http.get(_baseUrl + url);
+      final response = await http.get(Uri(path: _baseUrl + url), headers: headers());
       responseJson = _returnResponse(response);
     } on SocketException {
       print('No network');
@@ -26,7 +26,7 @@ class ApiBaseHelper {
     print('Api Post, url $_baseUrl + $url');
     var responseJson;
     try {
-      final response = await http.post(_baseUrl + url, body: body);
+      final response = await http.post(Uri(path: _baseUrl + url), headers: headers(), body: body);
       responseJson = _returnResponse(response);
     } on SocketException {
       print('No network');
@@ -40,7 +40,7 @@ class ApiBaseHelper {
     print('Api Put, url $_baseUrl + $url');
     var responseJson;
     try {
-      final response = await http.put(_baseUrl + url, body: body);
+      final response = await http.put(Uri(path: _baseUrl + url), headers: headers(), body: body);
       responseJson = _returnResponse(response);
     } on SocketException {
       print('No network');
@@ -55,7 +55,7 @@ class ApiBaseHelper {
     print('Api delete, url $_baseUrl + $url');
     var apiResponse;
     try {
-      final response = await http.delete(_baseUrl + url);
+      final response = await http.delete(Uri(path: _baseUrl + url), headers: headers());
       apiResponse = _returnResponse(response);
     } on SocketException {
       print('No network');
@@ -81,4 +81,10 @@ dynamic _returnResponse(http.Response response) {
     default:
       throw FetchDataException('Error occurred while Communication with Server with StatusCode : ${response.statusCode}');
   }
+}
+
+headers() {
+  return <String, String>{
+    'Content-Type': 'application/json; charset=UTF-8',
+  };
 }
