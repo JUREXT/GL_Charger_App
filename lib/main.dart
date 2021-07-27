@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:gl_charge_app/authentication/create_account_page.dart';
-import 'package:gl_charge_app/authentication/forgot_password_page.dart';
-import 'package:gl_charge_app/authentication/sign_in_page.dart';
-import 'package:gl_charge_app/providers/user_provider.dart';
-import 'package:gl_charge_app/utils/shared_preference.dart';
-import 'package:provider/provider.dart';
-
-import 'network/user.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'routes/app_pages.dart';
 import 'utils/config.dart';
 import 'utils/log.dart';
 
@@ -19,48 +13,29 @@ void main() {
   Log.i("main", "Started");
 }
 
-class MyApp extends StatelessWidget {
-  final tag = "MyApp";
+// return CircularProgressIndicator();
+// final tag = "MyApp";
+// Future<User> getUserData() => UserPreferences().getUser();
+// Log.d(tag, "getUserData");
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    Future<User> getUserData() => UserPreferences().getUser();
-    Log.d(tag, "getUserData");
-
-    return MultiProvider(
-      providers: [
-      //  ChangeNotifierProvider(create: (_) => AuthenticationProvider()),
-        ChangeNotifierProvider(create: (_) => UserProvider()),
-      ],
-      child: MaterialApp(
-          theme: ThemeData(
-           // primarySwatch: Colors.amber,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          home: FutureBuilder(
-              future: getUserData(),
-              builder: (context, snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.none:
-                  case ConnectionState.waiting:
-                    return CircularProgressIndicator();
-                  default:
-                    if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else if (snapshot.data.token == null) {
-                      return SignInPage();
-                    } else {
-                      UserPreferences().removeUser();
-                      return SignInPage();
-                    }
-                }
-              }),
-          routes: {
-            '/createAccount': (context) => CreateAccountPage(),
-            '/signInPage': (context) => SignInPage(),
-            '/forgotPassword': (context) => ForgotPasswordPage(),
-          }),
+    return GetMaterialApp(
+     // title: 'App',
+      theme: ThemeData(
+       // primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+       // textTheme: GoogleFonts.muliTextTheme(),
+      ),
+      debugShowCheckedModeBanner: false,
+      defaultTransition: Transition.cupertino,
+      opaqueRoute: Get.isOpaqueRouteDefault,
+      popGesture: Get.isPopGestureEnable,
+      transitionDuration: Duration(milliseconds: 230),
+      //initialBinding: MainBinding(),
+      initialRoute: AppPages.INITIAL,
+      getPages: AppPages.routes,
     );
   }
 }

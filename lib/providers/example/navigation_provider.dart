@@ -1,29 +1,29 @@
 import 'package:flutter/foundation.dart';
 
-enum Navigation { SignIn, CreateAccount, ForgotPassword, SelectCharger, Undefined }
+enum NavigationTyp { SignIn, CreateAccount, ForgotPassword, SelectCharger, Undefined }
 
 class NavigationNotifier with ChangeNotifier {
 
-  Navigation _navigation = Navigation.Undefined;
-  Navigation get navigation => _navigation;
+  NavigationTyp _navigation = NavigationTyp.Undefined;
+  NavigationTyp get navigation => _navigation;
 
   goToSignIn() {
-    _navigation = Navigation.SignIn;
+    _navigation = NavigationTyp.SignIn;
     notifyListeners();
   }
 
   goToCreateAccount() {
-    _navigation = Navigation.CreateAccount;
+    _navigation = NavigationTyp.CreateAccount;
     notifyListeners();
   }
 
   goToForgotPassword() {
-    _navigation = Navigation.ForgotPassword;
+    _navigation = NavigationTyp.ForgotPassword;
     notifyListeners();
   }
 
   goToSelectCharger() {
-    _navigation = Navigation.SelectCharger;
+    _navigation = NavigationTyp.SelectCharger;
     notifyListeners();
   }
 }

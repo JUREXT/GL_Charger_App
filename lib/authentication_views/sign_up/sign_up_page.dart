@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
 import 'package:gl_charge_app/network/modern_networking/authentication_bloc.dart';
 import 'package:gl_charge_app/network/modern_networking/register_response.dart';
@@ -16,12 +17,12 @@ import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/snack_bar.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
 
-class CreateAccountPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   @override
-  _CreateAccountPageState createState() => _CreateAccountPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _CreateAccountPageState extends State<CreateAccountPage> {
+class _SignUpPageState extends State<SignUpPage> {
 
   final _formKey = new GlobalKey<FormState>();
   TextEditingController controllerPassword = new TextEditingController();
@@ -115,6 +116,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
 
   navigateBackClick() {
     print("navigateBackClick");
+    Get.back();
   }
 
   privacyClick() {

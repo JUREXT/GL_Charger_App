@@ -11,9 +11,13 @@ import 'package:gl_charge_app/stateless_widget_components/circular_loader.dart';
 import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/password_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
+import 'package:gl_charge_app/utils/Navigation.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/snack_bar.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
+
+import '../sign_up/sign_up_page.dart';
+import '../forgot_password/forgot_password_page.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -127,14 +131,12 @@ class _SignInPageState extends State<SignInPage> {
 
   signUpActionClick() {
     print("signUpActionClick");
-    // Route route = MaterialPageRoute(builder: (context) => CreateAccountPage());
-    // Navigator.pushReplacement(context, route);
+    Navigation.to(SignUpPage(), null);
   }
 
   forgotPasswordClick() {
     print("forgotPasswordClick");
-    // Route route = MaterialPageRoute(builder: (context) => ForgotPasswordPage());
-    // Navigator.pushReplacement(context, route);
+    Navigation.to(ForgotPasswordPage(), null);
   }
 
 }

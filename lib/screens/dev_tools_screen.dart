@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/authentication/sign_in_page.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_black.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
@@ -29,9 +28,9 @@ class _ShopScreen extends State<DevToolsScreen> {
 
   logOut(BuildContext context) {
     simpleSnackBar(context, "User Signed Out!");
-    Route route =
-    MaterialPageRoute(builder: (context) => SignInPage());
-    Navigator.pushReplacement(context, route);
+    // Route route =
+    // MaterialPageRoute(builder: (context) => SignInPage());
+    // Navigator.pushReplacement(context, route);
   }
 
   @override

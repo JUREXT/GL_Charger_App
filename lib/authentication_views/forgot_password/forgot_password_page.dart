@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_image_title.dart';
@@ -48,7 +49,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   navigateBackClick() {
     print("navigateBackClick");
-
+    Get.back();
   }
 
   resetPasswordClick() {
