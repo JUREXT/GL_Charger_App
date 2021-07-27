@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/screens/main_tabs_screen_holder.dart';
+import 'package:gl_charge_app/screens_for_later/main_tabs_screen_holder.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_black.dart';
 import 'package:gl_charge_app/utils/constants.dart';

@@ -1,12 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/screens/dev_tools_screen.dart';
-import 'package:gl_charge_app/screens/main/settings_screen.dart';
-import 'package:gl_charge_app/screens/main/shop_screen.dart';
+import 'package:gl_charge_app/pages/main_views/charge_screen.dart';
+import 'package:gl_charge_app/pages/main_views/chargers_screen.dart';
+import 'package:gl_charge_app/pages/main_views/settings_screen.dart';
+import 'package:gl_charge_app/pages/main_views/shop_screen.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-
-import 'main/charge_screen.dart';
-import 'main/chargers_screen.dart';
 
 class MainTabsScreenHolder extends StatefulWidget {
   @override

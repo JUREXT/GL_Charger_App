@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
-import 'package:gl_charge_app/authentication_views/forgot_password/forgot_password_binding.dart';
-import 'package:gl_charge_app/authentication_views/forgot_password/forgot_password_page.dart';
-import 'package:gl_charge_app/authentication_views/sign_in/sign_in_binding.dart';
-import 'package:gl_charge_app/authentication_views/sign_in/sign_in_controller.dart';
-import 'package:gl_charge_app/authentication_views/sign_in/sign_in_page.dart';
-import 'package:gl_charge_app/authentication_views/sign_up/sign_up_binding.dart';
-import 'package:gl_charge_app/authentication_views/sign_up/sign_up_page.dart';
+import 'package:gl_charge_app/pages/authentication_pages/forgot_password/forgot_password_binding.dart';
+import 'package:gl_charge_app/pages/authentication_pages/forgot_password/forgot_password_page.dart';
+import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_binding.dart';
+import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_page.dart';
+import 'package:gl_charge_app/pages/authentication_pages/sign_up/sign_up_binding.dart';
+import 'package:gl_charge_app/pages/authentication_pages/sign_up/sign_up_page.dart';
 part 'app_routes.dart';
 
 class AppPages {
