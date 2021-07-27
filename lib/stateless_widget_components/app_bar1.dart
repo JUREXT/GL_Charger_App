@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../utils/constants.dart';
 
@@ -10,6 +11,8 @@ class AppBar1 extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backwardsCompatibility: false,
+      systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Constants.ColorYellow),
       backgroundColor: Constants.ColorLightGrey,
       title: Text(title, style: TextStyle(fontSize: 24.0, color: Constants.ColorWhite)),
       automaticallyImplyLeading: false,

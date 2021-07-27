@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../utils/constants.dart';
 
@@ -11,6 +12,8 @@ class AppBarWithBackNavigation extends StatelessWidget implements PreferredSizeW
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        backwardsCompatibility: false,
+        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Constants.ColorYellow),
         backgroundColor: Constants.ColorLightGrey,
         elevation: 0, // removes shadow under toolbar
         automaticallyImplyLeading: true,
