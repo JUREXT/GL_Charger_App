@@ -10,10 +10,10 @@ class AuthScreenBottomView extends StatelessWidget {
   final String privacyText1; // by signing up you agree privacy text
   final String privacyText2; // privacy policy and terms
 
-  final GestureTapCallback onSignCallback;
+  final GestureTapCallback onActionCallback;
   final GestureTapCallback onPrivacyCallback;
 
-  const AuthScreenBottomView({Key key, @required this.accountText, @required this.accountClickText, @required this.privacyText1, @required this.onSignCallback, @required this.onPrivacyCallback, this.privacyText2}) : super(key: key);
+  const AuthScreenBottomView({Key key, @required this.accountText, @required this.accountClickText, @required this.privacyText1, @required this.onActionCallback, @required this.onPrivacyCallback, this.privacyText2}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class AuthScreenBottomView extends StatelessWidget {
               top: 17,
               right: 45,
               child: GestureDetector(
-                onTap: () => onSignCallback(),
+                onTap: () => onActionCallback(),
                 child: TextCustom(
                     text: accountClickText,
                     textSize: 17.0,

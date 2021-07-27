@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.cupertino,
       opaqueRoute: Get.isOpaqueRouteDefault,
       popGesture: Get.isPopGestureEnable,
-      transitionDuration: Duration(milliseconds: 230),
+      transitionDuration: Duration(milliseconds: 750),
       //initialBinding: MainBinding(),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,

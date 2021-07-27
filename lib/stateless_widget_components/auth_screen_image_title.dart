@@ -16,7 +16,7 @@ class AuthScreenImageTitle extends StatelessWidget {
           height: 130, //150
           child: Center(
             child: Image.asset("assets/images/logo_25_size.png", height: 46))),
-        SizedBox(height: 30),
+        SizedBox(height: 10),
         Container(
           //color: Colors.red,
           height: 50,

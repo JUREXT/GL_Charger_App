@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
 import 'package:gl_charge_app/network/modern_networking/authentication_bloc.dart';
 import 'package:gl_charge_app/network/modern_networking/sign_in_response.dart';
+import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_image_title.dart';
@@ -13,11 +14,9 @@ import 'package:gl_charge_app/stateless_widget_components/password_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/Navigation.dart';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/utils/log.dart';
 import 'package:gl_charge_app/utils/snack_bar.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
-
-import '../sign_up/sign_up_page.dart';
-import '../forgot_password/forgot_password_page.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -25,6 +24,7 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  final tag = "SignInPage";
 
   final _formKey = new GlobalKey<FormState>();
   TextEditingController controllerPassword = new TextEditingController();
@@ -41,16 +41,18 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
 
     signInClick() {
-      _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
-      final form = _formKey.currentState;
-      if (form.validate()) {
-        form.save();
-        print("Email is valid $_email");
-        print("Password is valid $_password");
-        _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
-      } else {
-        print("Form is invalid");
-      }
+      Log.i(tag, "signInClick");
+     // _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
+
+      // final form = _formKey.currentState;
+      // if (form.validate()) {
+      //   form.save();
+      //   Log.i(tag, "Email is valid $_email");
+      //   Log.i(tag,"Password is valid $_password");
+      //   _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
+      // } else {
+      //   print("Form is invalid");
+      // }
     }
 
     Widget streamBuilderContainer() {
@@ -61,25 +63,24 @@ class _SignInPageState extends State<SignInPage> {
             if (snapshot.hasData) {
               switch (snapshot.data.status) {
                 case Status.LOADING:
-                  print("LOADING");
+                  Log.d(tag, "LOADING");
                   return CircularLoader(text: "Signing In", visibleProgress: true);
                   break;
                 case Status.COMPLETED:
-                  print("COMPLETED");
-                  print("Navigate....");
+                  Log.d(tag, "COMPLETED");
                   return ButtonYellow(text: "Continue", onPressed: () => signInClick());
                   break;
                 case Status.ERROR:
-                  print("ERROR");
+                  Log.d(tag, "ERROR");
                   WidgetsBinding.instance.addPostFrameCallback((_) => {
-                    print("Show Error to user! :: " + snapshot.data.message),
+                  Log.d(tag, "Show Error to user! :: " + snapshot.data.message),
                     showSnackBar(context, "Error Title", snapshot.data.message, 5),
                   });
                   return ButtonYellow(text: "Continue", onPressed: () => signInClick());
                   break;
               }
             }
-            print("DEFAULT");
+            Log.d(tag, "DEFAULT");
             return ButtonYellow(text: "Continue", onPressed: () => signInClick());
           },
         ),
@@ -99,7 +100,6 @@ class _SignInPageState extends State<SignInPage> {
               SizedBox(height: 30),
               EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { _email = value }),
               PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { _password = value }, controller: controllerPassword),
-              SizedBox(height: 20.0),
               streamBuilderContainer(),
               SizedBox(height: 25),
               GestureDetector(
@@ -116,7 +116,7 @@ class _SignInPageState extends State<SignInPage> {
                   privacyText1: "By signing up you agree to our ",
                   privacyText2: "Privacy Policy and Terms",
                   onPrivacyCallback: () => privacyClick(),
-                  onSignCallback: () => signUpActionClick()),
+                  onActionCallback: () => signUpActionClick()),
             ],
           ),
         ),
@@ -125,18 +125,17 @@ class _SignInPageState extends State<SignInPage> {
   }
 
   privacyClick() {
-    print("privacyClick");
+    Log.i(tag, "privacyClick");
     UrlNavigation.navigateTo(context, Constants.privacyPolicyUrl);
   }
 
   signUpActionClick() {
-    print("signUpActionClick");
-    Navigation.to(SignUpPage(), null);
+    Log.i(tag, "signUpActionClick");
+    Navigation.toNamed(Routes.SIGN_UP, null);
   }
 
   forgotPasswordClick() {
-    print("forgotPasswordClick");
-    Navigation.to(ForgotPasswordPage(), null);
+    Log.i(tag, "forgotPasswordClick");
+    Navigation.toNamed(Routes.FORGOT_PASSWORD, null);
   }
-
 }

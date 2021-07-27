@@ -1,9 +1,9 @@
-import 'package:gl_charge_app/network/modern_networking/register_data%20.dart';
 import 'package:gl_charge_app/network/modern_networking/register_response.dart';
 import 'package:gl_charge_app/network/modern_networking/sign_in_response.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'TestUser.dart';
 import 'api_base_helper.dart';
+import 'register_data.dart';
 import 'sign_in_data .dart';
 
 class Repository {
