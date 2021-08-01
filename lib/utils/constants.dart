@@ -9,7 +9,7 @@ class Constants {
   static const String baseURL = liveBaseURL;
   static const String logInEndPoint = "/login";
   static const String registerEndPoint = "/register";
- // static const String forgotPassword = "/forgot-password";
+  static const String forgotPassword = "/resetPassword";
   static const String testEndPoint = "/users/1";
   String getBaseUrl(bool setTestUrl) {
     if(setTestUrl) return liveBaseURLTest;
