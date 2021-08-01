@@ -42,7 +42,7 @@ dependencies:
   flutter_icons: ^1.1.0
   flutter_native_splash: ^1.1.8+4
   circle_button: ^1.0.1
-  http: ^0.13.3
+  http: ^0.12.2
   another_flushbar: ^1.10.24
   json_annotation: ^2.0.0
   # State & Navigation Management

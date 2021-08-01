@@ -1,79 +1,90 @@
 import 'dart:io';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/utils/log.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'app_exceptions.dart';
 
 class ApiBaseHelper {
+  final tag = "ApiBaseHelper";
   final String _baseUrl = Constants().getBaseUrl();
+  Client client = http.Client();
 
   Future<dynamic> get(String url) async {
-    print('Api Get, url $_baseUrl + $url');
+    var mTag = "Http Get";
+    var urlPath = _baseUrl + url;
+    Log.d(tag, '$mTag, url $urlPath');
     var responseJson;
     try {
-      final response = await http.get(Uri(path: _baseUrl + url), headers: headers());
-      responseJson = _returnResponse(response);
+      Response response = await client.get(urlPath, headers: headers());
+      responseJson = _returnResponse(response, mTag);
     } on SocketException {
-      print('No network');
+      Log.d(tag, '$mTag, No network');
       throw FetchDataException('No Internet connection');
     }
-    print('Api Get Received!');
+    Log.d(tag, '$mTag, Completed');
     return responseJson;
   }
 
   Future<dynamic> post(String url, dynamic body) async {
-    print('Api Post, url $_baseUrl + $url');
+    var mTag = "Http Post";
+    var urlPath = _baseUrl + url;
+    Log.d(tag, '$mTag, url $urlPath');
     var responseJson;
     try {
-      final response = await http.post(Uri(path: _baseUrl + url), headers: headers(), body: body);
-      responseJson = _returnResponse(response);
+      Response response = await http.post(urlPath, headers: headers(), body: body);
+      responseJson = _returnResponse(response, mTag);
     } on SocketException {
-      print('No network');
+      Log.d(tag, '$mTag, No network');
       throw FetchDataException('No Internet connection');
     }
-    print('Api Post Completed!');
+    Log.d(tag, '$mTag, Completed');
     return responseJson;
   }
 
   Future<dynamic> put(String url, dynamic body) async {
-    print('Api Put, url $_baseUrl + $url');
+    var mTag = "Http Put";
+    var urlPath = _baseUrl + url;
+    Log.d(tag, '$mTag, url $urlPath');
     var responseJson;
     try {
-      final response = await http.put(Uri(path: _baseUrl + url), headers: headers(), body: body);
-      responseJson = _returnResponse(response);
+      Response response = await http.put(urlPath, headers: headers(), body: body);
+      responseJson = _returnResponse(response, mTag);
     } on SocketException {
-      print('No network');
+      Log.d(tag, '$mTag, No network');
       throw FetchDataException('No Internet connection');
     }
-    print('Api Put Completed!');
-    print(responseJson.toString());
+    Log.d(tag, '$mTag, Completed');
     return responseJson;
   }
 
   Future<dynamic> delete(String url) async {
-    print('Api delete, url $_baseUrl + $url');
+    var mTag = "Http Delete";
+    var urlPath = _baseUrl + url;
+    Log.d(tag, '$mTag, url $urlPath');
     var apiResponse;
     try {
-      final response = await http.delete(Uri(path: _baseUrl + url), headers: headers());
-      apiResponse = _returnResponse(response);
+      Response response = await http.delete(urlPath, headers: headers());
+      apiResponse = _returnResponse(response, mTag);
     } on SocketException {
-      print('No network');
+      Log.d(tag, '$mTag, No network');
       throw FetchDataException('No Internet connection');
     }
-    print('Api Delete Completed!');
+    Log.d(tag, '$mTag, Completed');
     return apiResponse;
   }
 }
 
-dynamic _returnResponse(http.Response response) {
+dynamic _returnResponse(http.Response response, String tag) {
   switch (response.statusCode) {
     case 200:
       var responseJson = json.decode(response.body.toString());
-      print(responseJson);
+      Log.d(tag, responseJson);
       return responseJson;
     case 400:
-      throw BadRequestException(response.body.toString());
+      throw BadRequestException(response.body.toString()); // TODO: maybe map every error into json
     case 401:
     case 403:
       throw UnauthorisedException(response.body.toString());
@@ -84,7 +95,7 @@ dynamic _returnResponse(http.Response response) {
 }
 
 headers() {
-  return <String, String>{
+  return <String, String> {
     'Content-Type': 'application/json; charset=UTF-8',
   };
 }

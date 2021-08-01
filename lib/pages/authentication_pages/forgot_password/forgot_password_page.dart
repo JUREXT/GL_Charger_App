@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
@@ -23,6 +24,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
 
    // final navigate = Provider.of<NavigationNotifier>(context);
+
+    var data = Get.arguments;
+    Log.d(tag, "Passed Data: $data");
 
     return WillPopScope(
       onWillPop: () async => backPressed(),

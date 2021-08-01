@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
 import 'package:gl_charge_app/network/modern_networking/authentication_bloc.dart';
 import 'package:gl_charge_app/network/modern_networking/sign_in_response.dart';
+import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_controller.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
@@ -24,7 +26,9 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+
   final tag = "SignInPage";
+  final controller = Get.find<SignInController>();
 
   final _formKey = new GlobalKey<FormState>();
   TextEditingController controllerPassword = new TextEditingController();
@@ -35,6 +39,7 @@ class _SignInPageState extends State<SignInPage> {
   void initState() {
     super.initState();
     _authenticationBloc = AuthenticationBloc();
+  //  controller.increment();
   }
 
   @override
@@ -42,6 +47,8 @@ class _SignInPageState extends State<SignInPage> {
 
     signInClick() {
       Log.i(tag, "signInClick");
+      controller.fetchTest("lokovsek.jure@gmail.com", "123456Jl");
+
      // _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
 
       // final form = _formKey.currentState;
@@ -55,7 +62,7 @@ class _SignInPageState extends State<SignInPage> {
       // }
     }
 
-    Widget streamBuilderContainer() {
+    Widget streamBuilderContainer1() {
       return Container(
         child: StreamBuilder<ApiResponse<SignInResponse>>(
           stream: _authenticationBloc.signInStream,
@@ -66,7 +73,7 @@ class _SignInPageState extends State<SignInPage> {
                   Log.d(tag, "LOADING");
                   return CircularLoader(text: "Signing In", visibleProgress: true);
                   break;
-                case Status.COMPLETED:
+                case Status.SUCCESS:
                   Log.d(tag, "COMPLETED");
                   return ButtonYellow(text: "Continue", onPressed: () => signInClick());
                   break;
@@ -84,6 +91,15 @@ class _SignInPageState extends State<SignInPage> {
             return ButtonYellow(text: "Continue", onPressed: () => signInClick());
           },
         ),
+      );
+    }
+
+    streamBuilderContainer() {
+      return Column(
+        children: [
+          ButtonYellow(text: "Continue", onPressed: () => signInClick()),
+          Container(height: 50, color: Colors.blue,  child: Obx(() => Text(controller.apiResponse.value.status.toString()))),
+        ],
       );
     }
 
@@ -136,6 +152,6 @@ class _SignInPageState extends State<SignInPage> {
 
   forgotPasswordClick() {
     Log.i(tag, "forgotPasswordClick");
-    Navigation.toNamed(Routes.FORGOT_PASSWORD, null);
+    Navigation.toNamed(Routes.FORGOT_PASSWORD, "test");
   }
 }

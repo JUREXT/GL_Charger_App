@@ -69,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   Log.d(tag, "LOADING");
                   return CircularLoader(text: "Registering", visibleProgress: true);
                   break;
-                case Status.COMPLETED:
+                case Status.SUCCESS:
                   Log.d(tag, "COMPLETED");
                   return ButtonYellow(text: "Create an account", onPressed: () => registerClick());
                   break;

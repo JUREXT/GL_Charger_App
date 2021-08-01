@@ -4,15 +4,14 @@ class ApiResponse<T> {
   String message;
 
   ApiResponse.loading(this.message) : status = Status.LOADING;
-
-  ApiResponse.completed(this.data) : status = Status.COMPLETED;
-
-  ApiResponse.error(this.message) : status = Status.ERROR;
+  ApiResponse.success(this.data) : status = Status.SUCCESS;
+  ApiResponse.idle() : status = Status.IDLE;
+  ApiResponse.error(this.data, this.message) : status = Status.ERROR;
 
   @override
   String toString() {
-    return "Status : $status \n Message : $message \n Data : $data";
+    return 'ApiResponse{status: $status, data: $data, message: $message}';
   }
 }
 
-enum Status { LOADING, COMPLETED, ERROR }
+enum Status { IDLE, LOADING, SUCCESS, ERROR }

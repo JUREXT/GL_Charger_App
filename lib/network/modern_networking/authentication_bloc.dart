@@ -33,36 +33,36 @@ class AuthenticationBloc {
   }
 
   getUser() async {
-    userSink.add(ApiResponse.loading('Fetching User'));
-    try {
-      TestUser data = await _repository.fetchUser();
-      userSink.add(ApiResponse.completed(data));
-    } catch (e) {
-      userSink.add(ApiResponse.error(e.toString()));
-      print(e);
-    }
+    // userSink.add(ApiResponse.loading('Fetching User'));
+    // try {
+    //   TestUser data = await _repository.fetchUser();
+    //   userSink.add(ApiResponse.success(data));
+    // } catch (e) {
+    //   userSink.add(ApiResponse.error(e.toString()));
+    //   print(e);
+    // }
   }
 
   signIn(String email, String password) async {
-    signInSink.add(ApiResponse.loading('Signing In'));
-    try {
-      SignInResponse data = await _repository.signIn(email, password);
-      signInSink.add(ApiResponse.completed(data));
-    } catch (e) {
-      signInSink.add(ApiResponse.error(e.toString())); // TODO: here later return an error to inform user what is wrong, parse error json and sen back and object
-      print(e);
-    }
+    // signInSink.add(ApiResponse.loading('Signing In'));
+    // try {
+    //   SignInResponse data = await _repository.signIn(email, password);
+    //   signInSink.add(ApiResponse.success(data));
+    // } catch (e) {
+    //   signInSink.add(ApiResponse.error(e.toString())); // TODO: here later return an error to inform user what is wrong, parse error json and sen back and object
+    //   print(e);
+    // }
   }
 
   register(String username, String firstname, String lastname, String email, String password) async {
-    registerSink.add(ApiResponse.loading('Registering'));
-    try {
-      RegisterResponse data = await _repository.register(username, firstname, lastname, email, password);
-      registerSink.add(ApiResponse.completed(data));
-    } catch (e) {
-      registerSink.add(ApiResponse.error(e.toString())); // TODO: here later return an error to inform user what is wrong, parse error json and sen back and object
-      print(e);
-    }
+    // registerSink.add(ApiResponse.loading('Registering'));
+    // try {
+    //   RegisterResponse data = await _repository.register(username, firstname, lastname, email, password);
+    //   registerSink.add(ApiResponse.success(data));
+    // } catch (e) {
+    //   registerSink.add(ApiResponse.error(e.toString())); // TODO: here later return an error to inform user what is wrong, parse error json and sen back and object
+    //   print(e);
+    // }
   }
 
   dispose() {
