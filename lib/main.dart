@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'routes/app_pages.dart';
+import 'translations/app_translations.dart';
 import 'utils/config.dart';
 import 'utils/log.dart';
 
@@ -36,6 +37,9 @@ class MyApp extends StatelessWidget {
       //initialBinding: MainBinding(),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      locale: Get.deviceLocale,
+      fallbackLocale: Locale("en", "US"),
+      translationsKeys: AppTranslation.translations,
     );
   }
 }

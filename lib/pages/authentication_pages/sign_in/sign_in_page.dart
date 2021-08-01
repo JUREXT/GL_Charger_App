@@ -68,7 +68,7 @@ class _SignInPageState extends State<SignInPage> {
               switch(result.value.status) {
                 case Status.IDLE:
                   Log.i(tag, "IDLE");
-                 return ButtonYellow(text: "Continue", onPressed: () => signInClick());
+                  ButtonYellow(text: "continue".tr, onPressed: () => signInClick());
                   break;
                 case Status.LOADING:
                   Log.i(tag, "LOADING");
@@ -80,7 +80,7 @@ class _SignInPageState extends State<SignInPage> {
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                      Navigation.toNamed(Routes.SELECT_CHARGER, null);
                   });
-                  return ButtonYellow(text: "Continue", onPressed: () => { });
+                  return ButtonYellow(text: "continue".tr, onPressed: () => {});
                   break;
                 case Status.ERROR:
                   var status = ""; // result.value.data as bool;
@@ -89,10 +89,10 @@ class _SignInPageState extends State<SignInPage> {
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                      Get.snackbar("Problem Signing In", message);
                   });
-                  return ButtonYellow(text: "Continue", onPressed: () => signInClick());
+                  return ButtonYellow(text: "continue".tr, onPressed: () => signInClick());
                   break;
               }
-              return ButtonYellow(text: "Continue", onPressed: () => signInClick());
+              return ButtonYellow(text: "continue".tr, onPressed: () => signInClick());
             },
           ));
     }
