@@ -1,4 +1,4 @@
-class TestUser {
+class SignInResponseModel {
   int id;
   String name;
   String username;
@@ -8,7 +8,7 @@ class TestUser {
   String website;
   Company company;
 
-  TestUser(
+  SignInResponseModel(
       {this.id,
         this.name,
         this.username,
@@ -18,7 +18,7 @@ class TestUser {
         this.website,
         this.company});
 
-  TestUser.fromJson(Map<String, dynamic> json) {
+  SignInResponseModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     username = json['username'];

@@ -60,11 +60,11 @@ class _SignInPageState extends State<SignInPage> {
       // }
     }
 
-    Widget signInContainer() {
+    Widget reactiveContainer() {
       return Container(
           child: GetX<SignInController>(
             builder: (_) {
-              var result = controller.apiResponseFetchTest;
+              var result = controller.apiSignInResponse;
               switch(result.value.status) {
                 case Status.IDLE:
                   Log.i(tag, "IDLE");
@@ -110,7 +110,7 @@ class _SignInPageState extends State<SignInPage> {
               SizedBox(height: 30),
               EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { _email = value }),
               PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { _password = value }, controller: controllerPassword),
-              signInContainer(),
+              reactiveContainer(),
               SizedBox(height: 25),
               GestureDetector(
                 onTap: () => forgotPasswordClick(),

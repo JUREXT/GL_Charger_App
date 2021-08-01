@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:gl_charge_app/network/modern_networking/TestUser.dart';
+import 'package:gl_charge_app/network/models/sign_in_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/register_response.dart';
 import 'api_response.dart';
 import 'repository.dart';
@@ -12,8 +12,8 @@ class AuthenticationBloc {
 
   // For test
   StreamController _userStreamController;
-  StreamSink<ApiResponse<TestUser>> get userSink => _userStreamController.sink;
-  Stream<ApiResponse<TestUser>> get userStream => _userStreamController.stream;
+  StreamSink<ApiResponse<SignInResponseModel>> get userSink => _userStreamController.sink;
+  Stream<ApiResponse<SignInResponseModel>> get userStream => _userStreamController.stream;
 
   // Sign In user
   StreamController _signInStreamController;
@@ -26,7 +26,7 @@ class AuthenticationBloc {
   Stream<ApiResponse<RegisterResponse>> get registerStream => _registerStreamController.stream;
 
   AuthenticationBloc() {
-    _userStreamController = StreamController<ApiResponse<TestUser>>();
+    _userStreamController = StreamController<ApiResponse<SignInResponseModel>>();
     _signInStreamController = StreamController<ApiResponse<SignInResponse>>();
     _registerStreamController = StreamController<ApiResponse<RegisterResponse>>();
     _repository = Repository();

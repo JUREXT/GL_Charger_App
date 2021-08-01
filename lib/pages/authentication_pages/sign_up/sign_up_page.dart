@@ -3,9 +3,10 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gl_charge_app/network/models/register_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
 import 'package:gl_charge_app/network/modern_networking/authentication_bloc.dart';
-import 'package:gl_charge_app/network/modern_networking/register_response.dart';
+import 'package:gl_charge_app/pages/authentication_pages/sign_up/sign_up_controller.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
@@ -16,6 +17,7 @@ import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/password_input.dart';
 import 'package:gl_charge_app/utils/Navigation.dart';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/utils/delay_helper.dart';
 import 'package:gl_charge_app/utils/log.dart';
 import 'package:gl_charge_app/utils/snack_bar.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
@@ -27,6 +29,7 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final tag = "SignUpPage";
+  final controller = Get.find<SignUpController>();
 
   final _formKey = new GlobalKey<FormState>();
   TextEditingController controllerPassword = new TextEditingController();
@@ -45,8 +48,8 @@ class _SignUpPageState extends State<SignUpPage> {
     registerClick() {
       Log.i(tag, "registerClick");
       var rand = Random();
-      var shit = rand.nextInt(100).toString();
-     // _authenticationBloc.register("username" + shit, "firstname" + shit, "lastname" + shit, shit + "test@test.si", "password" + shit); // TODO: HARD CODED FOR TEST
+      var randInt = rand.nextInt(100).toString();
+      controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, randInt + "test@test.si", "password" + randInt);
       // final form = _formKey.currentState;
       // if (form.validate()) {
       //   form.save();
@@ -58,36 +61,43 @@ class _SignUpPageState extends State<SignUpPage> {
       // }
     }
 
-    Widget streamBuilderContainer() {
+    Widget reactiveContainer() {
       return Container(
-        child: StreamBuilder<ApiResponse<RegisterResponse>>(
-          stream: _authenticationBloc.registerStream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              switch (snapshot.data.status) {
-                case Status.LOADING:
-                  Log.d(tag, "LOADING");
-                  return CircularLoader(text: "Registering", visibleProgress: true);
-                  break;
-                case Status.SUCCESS:
-                  Log.d(tag, "COMPLETED");
+          child: GetX<SignUpController>(
+            builder: (_) {
+              var result = controller.apiRegisterResponse;
+              switch(result.value.status) {
+                case Status.IDLE:
+                  Log.i(tag, "IDLE");
                   return ButtonYellow(text: "Create an account", onPressed: () => registerClick());
                   break;
+                case Status.LOADING:
+                  Log.i(tag, "LOADING");
+                  return CircularLoader(text: "Registering...", visibleProgress: true);
+                  break;
+                case Status.SUCCESS:
+                  var registerRes = result.value.data as RegisterResponseModel;
+                  Log.i(tag, "SUCCESS : " + registerRes.success.toString());
+                  WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+                    Get.snackbar("Account created", "You can sign in now!");
+                    await DelayHelper.delay(3);
+                    Navigation.toNamed(Routes.SIGN_IN, null); // TODO: pass email back to sign in
+                  });
+                  return ButtonYellow(text: "Create an account", onPressed: () => { });
+                  break;
                 case Status.ERROR:
-                  Log.d(tag, "ERROR");
-                  WidgetsBinding.instance.addPostFrameCallback((_) => {
-                    Log.d(tag, "Show Error to user! :: " + snapshot.data.message),
-                    showSnackBar(context, "Error Title", snapshot.data.message, 5),
+                  var status = ""; // result.value.data as bool;
+                  var message = result.value.message;
+                  Log.i(tag, "ERROR : " + status.toString() + " Message: " + message);
+                  WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                    Get.snackbar("Problem Registering", message);
                   });
                   return ButtonYellow(text: "Create an account", onPressed: () => registerClick());
                   break;
               }
-            }
-            Log.d(tag, "DEFAULT");
-            return ButtonYellow(text: "Create an account", onPressed: () => registerClick());
-          },
-        ),
-      );
+              return ButtonYellow(text: "Create an account", onPressed: () => registerClick());
+            },
+          ));
     }
 
     return WillPopScope(
@@ -102,7 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
               EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (email) => { print("Entered Email $email") }),
               PasswordInput(hintText: "Create a strong password", labelText: "Your password"),
               PasswordInput(hintText: "Repeat password", labelText: "Repeat password"),
-              streamBuilderContainer(),
+              reactiveContainer(),
               SizedBox(height: 30),
               AuthScreenBottomView(
                   accountText: "Already have an account?",

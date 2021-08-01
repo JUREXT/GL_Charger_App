@@ -10,7 +10,7 @@ import 'app_exceptions.dart';
 
 class ApiBaseHelper {
   final tag = "ApiBaseHelper";
-  final String _baseUrl = Constants().getBaseUrl(true);
+  final String _baseUrl = Constants().getBaseUrl(false);
   Client client = http.Client();
 
   Future<ApiPositiveNegativeResponse> get(String url) async {
@@ -35,7 +35,7 @@ class ApiBaseHelper {
     Log.d(tag, '$mTag, url $urlPath');
     var responseJson;
     try {
-      Response response = await http.post(urlPath, headers: headers(), body: body);
+      Response response = await http.post(urlPath, body: body);
       responseJson = _returnResponse(response, mTag);
     } on SocketException {
       Log.d(tag, '$mTag, No network');
