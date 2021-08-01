@@ -1,15 +1,15 @@
-class UserLogIn {
-  UserLogIn._();
-  factory UserLogIn.success(dynamic data) = UserLogInSuccessState;
-  factory UserLogIn.error(dynamic data) = UserLogInErrorState;
+class ApiResult {
+  ApiResult._();
+  factory ApiResult.success(var data) = SuccessState;
+  factory ApiResult.error(var data) = ErrorState;
 }
 
-class UserLogInErrorState extends UserLogIn {
-  UserLogInErrorState(this.data): super._();
-  final dynamic data;
+class ErrorState<T> extends ApiResult {
+  ErrorState(this.error): super._();
+  final T error;
 }
 
-class UserLogInSuccessState extends UserLogIn {
-  UserLogInSuccessState(this.data): super._();
-  final dynamic data;
+class SuccessState<T> extends ApiResult {
+  SuccessState(this.data): super._();
+  final T data;
 }

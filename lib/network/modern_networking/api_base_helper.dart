@@ -5,14 +5,15 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:async';
+import 'api_positive_negative_response.dart';
 import 'app_exceptions.dart';
 
 class ApiBaseHelper {
   final tag = "ApiBaseHelper";
-  final String _baseUrl = Constants().getBaseUrl();
+  final String _baseUrl = Constants().getBaseUrl(true);
   Client client = http.Client();
 
-  Future<dynamic> get(String url) async {
+  Future<ApiPositiveNegativeResponse> get(String url) async {
     var mTag = "Http Get";
     var urlPath = _baseUrl + url;
     Log.d(tag, '$mTag, url $urlPath');
@@ -77,20 +78,23 @@ class ApiBaseHelper {
   }
 }
 
-dynamic _returnResponse(http.Response response, String tag) {
+ApiPositiveNegativeResponse _returnResponse(http.Response response, String tag) {  // TODO: needs to be made better based on after some usage, to know what to change
   switch (response.statusCode) {
     case 200:
       var responseJson = json.decode(response.body.toString());
-      Log.d(tag, responseJson);
-      return responseJson;
+      Log.d(tag, responseJson.toString());
+      return ApiPositiveNegativeResponse.positive(responseJson);
     case 400:
-      throw BadRequestException(response.body.toString()); // TODO: maybe map every error into json
+     // throw BadRequestException(response.body.toString());
+      return ApiPositiveNegativeResponse.negative(json.decode(response.body.toString()));
     case 401:
     case 403:
-      throw UnauthorisedException(response.body.toString());
+      //throw UnauthorisedException(response.body.toString());
+    return ApiPositiveNegativeResponse.negative(json.decode(response.body.toString()));
     case 500:
     default:
-      throw FetchDataException('Error occurred while Communication with Server with StatusCode : ${response.statusCode}');
+     // throw FetchDataException('Error occurred while Communication with Server with StatusCode : ${response.statusCode}');
+    return ApiPositiveNegativeResponse.negative(json.decode(response.body.toString()));
   }
 }
 

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
 import 'package:gl_charge_app/network/modern_networking/authentication_bloc.dart';
 import 'package:gl_charge_app/network/modern_networking/sign_in_response.dart';
+import 'package:gl_charge_app/network/modern_networking/testing/test_obj.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_controller.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
@@ -48,9 +49,6 @@ class _SignInPageState extends State<SignInPage> {
     signInClick() {
       Log.i(tag, "signInClick");
       controller.fetchTest("lokovsek.jure@gmail.com", "123456Jl");
-
-     // _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
-
       // final form = _formKey.currentState;
       // if (form.validate()) {
       //   form.save();
@@ -62,45 +60,41 @@ class _SignInPageState extends State<SignInPage> {
       // }
     }
 
-    Widget streamBuilderContainer1() {
+    Widget signInContainer() {
       return Container(
-        child: StreamBuilder<ApiResponse<SignInResponse>>(
-          stream: _authenticationBloc.signInStream,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              switch (snapshot.data.status) {
+          child: GetX<SignInController>(
+            builder: (_) {
+              var result = controller.apiResponseFetchTest;
+              switch(result.value.status) {
+                case Status.IDLE:
+                  Log.i(tag, "IDLE");
+                 return ButtonYellow(text: "Continue", onPressed: () => signInClick());
+                  break;
                 case Status.LOADING:
-                  Log.d(tag, "LOADING");
-                  return CircularLoader(text: "Signing In", visibleProgress: true);
+                  Log.i(tag, "LOADING");
+                  return CircularLoader(text: "Signing In...", visibleProgress: true);
                   break;
                 case Status.SUCCESS:
-                  Log.d(tag, "COMPLETED");
-                  return ButtonYellow(text: "Continue", onPressed: () => signInClick());
+                  var ok = result.value.data as TestObj;
+                  Log.i(tag, "SUCCESS : " + ok.id.toString());
+                  WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                     Navigation.toNamed(Routes.SELECT_CHARGER, null);
+                  });
+                  return ButtonYellow(text: "Continue", onPressed: () => { });
                   break;
                 case Status.ERROR:
-                  Log.d(tag, "ERROR");
-                  WidgetsBinding.instance.addPostFrameCallback((_) => {
-                  Log.d(tag, "Show Error to user! :: " + snapshot.data.message),
-                    showSnackBar(context, "Error Title", snapshot.data.message, 5),
+                  var status = ""; // result.value.data as bool;
+                  var message = result.value.message;
+                  Log.i(tag, "ERROR : " + status.toString() + " Message: " + message);
+                  WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+                     Get.snackbar("Problem Signing In", message);
                   });
                   return ButtonYellow(text: "Continue", onPressed: () => signInClick());
                   break;
               }
-            }
-            Log.d(tag, "DEFAULT");
-            return ButtonYellow(text: "Continue", onPressed: () => signInClick());
-          },
-        ),
-      );
-    }
-
-    streamBuilderContainer() {
-      return Column(
-        children: [
-          ButtonYellow(text: "Continue", onPressed: () => signInClick()),
-          Container(height: 50, color: Colors.blue,  child: Obx(() => Text(controller.apiResponse.value.status.toString()))),
-        ],
-      );
+              return ButtonYellow(text: "Continue", onPressed: () => signInClick());
+            },
+          ));
     }
 
     return Scaffold(
@@ -116,7 +110,7 @@ class _SignInPageState extends State<SignInPage> {
               SizedBox(height: 30),
               EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { _email = value }),
               PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { _password = value }, controller: controllerPassword),
-              streamBuilderContainer(),
+              signInContainer(),
               SizedBox(height: 25),
               GestureDetector(
                 onTap: () => forgotPasswordClick(),

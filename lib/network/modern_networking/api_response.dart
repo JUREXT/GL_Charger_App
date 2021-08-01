@@ -3,9 +3,9 @@ class ApiResponse<T> {
   T data;
   String message;
 
+  ApiResponse.idle() : status = Status.IDLE;
   ApiResponse.loading(this.message) : status = Status.LOADING;
   ApiResponse.success(this.data) : status = Status.SUCCESS;
-  ApiResponse.idle() : status = Status.IDLE;
   ApiResponse.error(this.data, this.message) : status = Status.ERROR;
 
   @override
