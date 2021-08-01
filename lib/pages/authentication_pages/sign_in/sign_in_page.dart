@@ -48,7 +48,7 @@ class _SignInPageState extends State<SignInPage> {
 
     signInClick() {
       Log.i(tag, "signInClick");
-      controller.fetchTest("lokovsek.jure@gmail.com", "123456Jl");
+      controller.signIn("lokovsek.jure@gmail.com", "123456Jl");
       // final form = _formKey.currentState;
       // if (form.validate()) {
       //   form.save();

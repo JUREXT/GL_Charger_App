@@ -9,7 +9,7 @@ class Repository {
   var tag = "Repository";
   ApiBaseHelper api = ApiBaseHelper();
 
-  Future<ApiResult> fetchTest() async {
+  Future<ApiResult> fetchTest(String email, String password) async {
      var apiRes = await api.get(Constants.testEndPoint);
      if(apiRes.status == ResponseStatus.POSITIVE) {
        Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());

@@ -2,7 +2,7 @@ import 'package:get_storage/get_storage.dart';
 
 class Storage {
   var storage;
-  static const USERNAME = 'username';
+  static const SESSION_DATA = 'session_data'; // null can be stored and checked
 
   Storage() {
     storage = GetStorage();
