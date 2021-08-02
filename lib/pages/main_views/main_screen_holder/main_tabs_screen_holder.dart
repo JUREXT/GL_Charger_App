@@ -1,10 +1,15 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gl_charge_app/pages/main_views/charge_screen.dart';
-import 'package:gl_charge_app/pages/main_views/chargers_screen.dart';
+import 'package:gl_charge_app/pages/main_views/chargers_screen/chargers_controller.dart';
+import 'package:gl_charge_app/pages/main_views/chargers_screen/chargers_screen.dart';
 import 'package:gl_charge_app/pages/main_views/settings_screen.dart';
 import 'package:gl_charge_app/pages/main_views/shop_screen.dart';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/utils/log.dart';
+
+import 'main_screen_holder_controller.dart';
 
 class MainTabsScreenHolder extends StatefulWidget {
   @override
@@ -12,9 +17,17 @@ class MainTabsScreenHolder extends StatefulWidget {
 }
 
 class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
+  final tag = "MainTabsScreenHolder";
+  final controller = Get.find<MainScreenHolderController>();
+
 
   PageController _pageController = PageController(initialPage: 0);
   int currentIndex = 0;
+
+  @override
+  void setState(VoidCallback fn) {
+    super.setState(fn);
+  }
 
   @override
   void dispose() {
@@ -30,6 +43,10 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
 
   @override
   Widget build(BuildContext context) {
+
+    var data = Get.arguments;
+    Log.d(tag, "Passed Data: $data");
+
     return WillPopScope(
       onWillPop: () async => false, // TODO: this will disable back button press on android
       child: Scaffold(

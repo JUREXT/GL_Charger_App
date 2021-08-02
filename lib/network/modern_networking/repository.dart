@@ -1,3 +1,5 @@
+import 'package:gl_charge_app/network/models/all_chargers_by_user_data_model.dart';
+import 'package:gl_charge_app/network/models/all_chargers_by_user_response_model.dart';
 import 'package:gl_charge_app/network/models/forgot_password_data_model.dart';
 import 'package:gl_charge_app/network/models/forgot_password_response_model.dart';
 import 'package:gl_charge_app/network/models/register_data_model.dart';
@@ -42,6 +44,18 @@ class Repository {
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       return ApiResult.success(ForgotPasswordResponseModel.fromJson(apiRes.data));
+    } else {
+      Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
+      return ApiResult.error("Url problem");
+    }
+  }
+
+  Future<ApiResult> getAllChargersByUser(int userId) async {
+    var json = AllChargersByUserDataModel(userid: userId).toJson();
+    var apiRes = await api.post(Constants.getAllChargersByUser, json);
+    if(apiRes.status == ResponseStatus.POSITIVE) {
+      Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
+      return ApiResult.success(AllChargersByUserResponseModel.fromJson(apiRes.data));
     } else {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
       return ApiResult.error("Url problem");

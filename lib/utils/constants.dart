@@ -10,6 +10,7 @@ class Constants {
   static const String logInEndPoint = "/login";
   static const String registerEndPoint = "/register";
   static const String forgotPassword = "/resetPassword";
+  static const String getAllChargersByUser = "/charger/getAllByUser";
   static const String testEndPoint = "/users/1";
   String getBaseUrl(bool setTestUrl) {
     if(setTestUrl) return liveBaseURLTest;

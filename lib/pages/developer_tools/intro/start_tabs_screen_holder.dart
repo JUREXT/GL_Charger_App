@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'intro/select_charger_screen.dart';
-import 'intro/test_screen.dart';
+import 'select_charger_screen.dart';
+import 'test_screen.dart';
 
 class StartTabsScreenHolder extends StatefulWidget {
   @override

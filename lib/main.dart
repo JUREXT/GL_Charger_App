@@ -14,11 +14,6 @@ void main() {
   Log.i("main", "Started");
 }
 
-// return CircularProgressIndicator();
-// final tag = "MyApp";
-// Future<User> getUserData() => UserPreferences().getUser();
-// Log.d(tag, "getUserData");
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

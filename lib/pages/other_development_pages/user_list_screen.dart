@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/pages/main_views/user_tab_bar_pages/user_list_all_page.dart';
-import 'package:gl_charge_app/pages/main_views/user_tab_bar_pages/user_list_approved_page.dart';
-import 'package:gl_charge_app/pages/main_views/user_tab_bar_pages/user_list_pending_page.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import '../../utils/constants.dart';
+import 'user_tab_bar_pages/user_list_all_page.dart';
+import 'user_tab_bar_pages/user_list_approved_page.dart';
+import 'user_tab_bar_pages/user_list_pending_page.dart';
 
 class UserListScreen extends StatefulWidget {
   UserListScreen({Key key}) : super(key: key);

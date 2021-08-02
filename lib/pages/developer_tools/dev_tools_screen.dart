@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_black.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
@@ -6,12 +7,17 @@ import 'package:gl_charge_app/utils/constants.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:gl_charge_app/widgets/simple_snack_bar.dart';
 
+import 'dev_tools_controller.dart';
+
 class DevToolsScreen extends StatefulWidget {
   @override
   _ShopScreen createState() => _ShopScreen();
 }
 
 class _ShopScreen extends State<DevToolsScreen> {
+  final tag = "SignUpPage";
+  final controller = Get.find<DevToolsController>();
+
   var networkSubscription;
   var connectionResult;
 
@@ -26,8 +32,8 @@ class _ShopScreen extends State<DevToolsScreen> {
     });
   }
 
-  logOut(BuildContext context) {
-    simpleSnackBar(context, "User Signed Out!");
+  logOut(BuildContext context) { // TODO: all code needs update later
+   // simpleSnackBar(context, "User Signed Out!");
     // Route route =
     // MaterialPageRoute(builder: (context) => SignInPage());
     // Navigator.pushReplacement(context, route);
