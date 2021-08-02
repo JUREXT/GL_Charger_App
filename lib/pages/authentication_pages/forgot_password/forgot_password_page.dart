@@ -10,7 +10,7 @@ import 'package:gl_charge_app/stateless_widget_components/auth_screen_image_titl
 import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
 import 'package:gl_charge_app/stateless_widget_components/circular_loader.dart';
 import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
-import 'package:gl_charge_app/utils/Navigation.dart';
+import 'package:gl_charge_app/utils/navigation.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/delay_helper.dart';
 import 'package:gl_charge_app/utils/log.dart';

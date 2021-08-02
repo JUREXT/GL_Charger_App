@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/models/register_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
-import 'package:gl_charge_app/network/modern_networking/authentication_bloc.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_up/sign_up_controller.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
@@ -15,7 +14,7 @@ import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
 import 'package:gl_charge_app/stateless_widget_components/circular_loader.dart';
 import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/password_input.dart';
-import 'package:gl_charge_app/utils/Navigation.dart';
+import 'package:gl_charge_app/utils/navigation.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/delay_helper.dart';
 import 'package:gl_charge_app/utils/log.dart';
@@ -34,12 +33,10 @@ class _SignUpPageState extends State<SignUpPage> {
   final _formKey = new GlobalKey<FormState>();
   TextEditingController controllerPassword = new TextEditingController();
   String _email, _password;
-  AuthenticationBloc _authenticationBloc;
 
   @override
   void initState() {
     super.initState();
-    _authenticationBloc = AuthenticationBloc();
   }
 
   @override

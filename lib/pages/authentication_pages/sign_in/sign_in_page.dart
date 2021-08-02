@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
-import 'package:gl_charge_app/network/modern_networking/authentication_bloc.dart';
-import 'package:gl_charge_app/network/modern_networking/sign_in_response.dart';
 import 'package:gl_charge_app/network/modern_networking/testing/test_obj.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_controller.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
@@ -15,10 +13,9 @@ import 'package:gl_charge_app/stateless_widget_components/circular_loader.dart';
 import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/password_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
-import 'package:gl_charge_app/utils/Navigation.dart';
+import 'package:gl_charge_app/utils/navigation.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
-import 'package:gl_charge_app/utils/snack_bar.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
 
 class SignInPage extends StatefulWidget {
@@ -34,13 +31,10 @@ class _SignInPageState extends State<SignInPage> {
   final _formKey = new GlobalKey<FormState>();
   TextEditingController controllerPassword = new TextEditingController();
   String _email, _password;
-  AuthenticationBloc _authenticationBloc;
 
   @override
   void initState() {
     super.initState();
-    _authenticationBloc = AuthenticationBloc();
-  //  controller.increment();
   }
 
   @override
