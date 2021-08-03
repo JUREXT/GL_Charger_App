@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gl_charge_app/pages/main_views/charge_screen.dart';
+import 'package:gl_charge_app/pages/main_views/charge/charge_screen.dart';
 import 'package:gl_charge_app/pages/main_views/chargers_screen/chargers_controller.dart';
 import 'package:gl_charge_app/pages/main_views/chargers_screen/chargers_screen.dart';
-import 'package:gl_charge_app/pages/main_views/settings_screen.dart';
+import 'package:gl_charge_app/pages/main_views/settings/settings_screen.dart';
 import 'package:gl_charge_app/pages/main_views/shop_screen.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';

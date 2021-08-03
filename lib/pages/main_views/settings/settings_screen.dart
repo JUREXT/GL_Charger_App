@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gl_charge_app/pages/main_views/settings/settings_controller.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/settings_divider.dart';
 import 'package:gl_charge_app/stateless_widget_components/settings_list_item.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import '../../utils/constants.dart';
+import '../../../utils/constants.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -12,11 +14,18 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+
+  final tag = "SettingScreen";
+  final controller = Get.find<SettingsController>();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.test();
+  }
+
   @override
   Widget build(BuildContext context) {
-
-   // var navigate = Provider.of<NavigationNotifier>(context);
-
     return Scaffold(
       appBar: AppBar1(title: 'Settings'),
       backgroundColor: Constants.ColorLightGrey,
@@ -56,7 +65,9 @@ class _SettingScreenState extends State<SettingScreen> {
             // SettingsListItem(title: "Authentication", onSettingsItemCallback: () => { print("Authentication Clicked") }),
             // SettingsDivider(),
 
-            SettingsListItem(title: "Logout", onSettingsItemCallback: () => { }),
+            SettingsListItem(title: "Logout", onSettingsItemCallback: () => {
+              controller.test()
+            }),
             SettingsDivider(),
 
           ],

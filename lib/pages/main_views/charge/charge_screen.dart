@@ -1,11 +1,13 @@
 import 'package:circle_button/circle_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar2.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
+import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/container_box_decoration.dart';
 import 'package:gl_charge_app/widgets/spanned_text.dart';
 
-import '../../utils/constants.dart';
+import 'charge_controller.dart';
 
 class ChargeScreen extends StatefulWidget {
   ChargeScreen({Key key}) : super(key: key);
@@ -16,6 +18,9 @@ class ChargeScreen extends StatefulWidget {
 
 class _ChargeScreenState extends State<ChargeScreen> {
 
+  final tag = "ChargeScreen";
+  ChargeController controller = Get.find();
+
   double _startSliderValue = 30.0;
   String _currentSliderValue;
   String _chosenValue;
@@ -23,6 +28,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
   @override
   void initState() {
     super.initState();
+    controller.test();
     _currentSliderValue = _startSliderValue.toStringAsFixed(0);
   }
 
