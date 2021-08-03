@@ -21,7 +21,6 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   void initState() {
     super.initState();
-    controller.test();
   }
 
   @override
@@ -65,9 +64,7 @@ class _SettingScreenState extends State<SettingScreen> {
             // SettingsListItem(title: "Authentication", onSettingsItemCallback: () => { print("Authentication Clicked") }),
             // SettingsDivider(),
 
-            SettingsListItem(title: "Logout", onSettingsItemCallback: () => {
-              controller.test()
-            }),
+            SettingsListItem(title: "Logout", onSettingsItemCallback: () => controller.signOut()),
             SettingsDivider(),
 
           ],
