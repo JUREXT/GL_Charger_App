@@ -30,9 +30,10 @@ class _SignUpPageState extends State<SignUpPage> {
   final tag = "SignUpPage";
   final controller = Get.find<SignUpController>();
 
-  final _formKey = new GlobalKey<FormState>();
-  TextEditingController controllerPassword = new TextEditingController();
-  String _email, _password;
+  var _emailTextController = TextEditingController(text: "");
+  var _passwordTextController = TextEditingController(text: "");
+  var _passwordRepeatTextController = TextEditingController(text: "");
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -42,20 +43,16 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
 
-    registerClick() {
+    registerClick() async {
       Log.i(tag, "registerClick");
-      var rand = Random();
-      var randInt = rand.nextInt(100).toString();
-      controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, randInt + "test@test.si", "password" + randInt);
-      // final form = _formKey.currentState;
-      // if (form.validate()) {
-      //   form.save();
-      //   print("Email is valid $_email");
-      //   print("Password is valid $_password");
-      //   _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
-      // } else {
-      //   print("Form is invalid");
-      // }
+       var rand = Random();
+       var randInt = rand.nextInt(100).toString();
+      // controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, randInt + "test@test.si", "password" + randInt);
+      if (_formKey.currentState.validate() && _passwordTextController.text == _passwordRepeatTextController.text) {
+        await controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, _emailTextController.text, _passwordTextController.text); // username, firstname, lastname, email, password // TODO: needs api updated
+      } else {
+        Log.d(tag, "Input forms not valid!");
+      }
     }
 
     Widget reactiveContainer() {
@@ -103,26 +100,30 @@ class _SignUpPageState extends State<SignUpPage> {
         backgroundColor: Constants.ColorLightGrey,
         appBar: AppBarWithBackNavigation(onNavigateBackCallback: () => navigateBackClick()),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              AuthScreenImageTitle(title: "Create and account"),
-              EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (email) => { print("Entered Email $email") }),
-              PasswordInput(hintText: "Create a strong password", labelText: "Your password"),
-              PasswordInput(hintText: "Repeat password", labelText: "Repeat password"),
-              reactiveContainer(),
-              SizedBox(height: 30),
-              AuthScreenBottomView(
-                  accountText: "Already have an account?",
-                  accountClickText: "Sign In",
-                  privacyText1: "By signing up you agree to our ",
-                  privacyText2: "Privacy Policy and Terms",
-                  onPrivacyCallback: () => privacyClick(),
-                  onActionCallback: () => signInActionClick()),
-            ],
+          child: Form(
+            key: _formKey,
+            child: Obx(() {
+              return Column(
+              children: [
+                AuthScreenImageTitle(title: "Create and account"),
+                EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
+                PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
+                PasswordInput(hintText: "Repeat password", labelText: "Repeat password", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordRepeatTextController),
+                reactiveContainer(),
+                //SizedBox(height: 30), // TODO: updated this on other screens
+                AuthScreenBottomView(
+                    accountText: "Already have an account?",
+                    accountClickText: "Sign In",
+                    privacyText1: "By signing up you agree to our ",
+                    privacyText2: "Privacy Policy and Terms",
+                    onPrivacyCallback: () => privacyClick(),
+                    onActionCallback: () => signInActionClick()),
+                  ],
+                );
+              }),
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   navigateBackClick() {

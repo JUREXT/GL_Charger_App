@@ -11,7 +11,7 @@ class SignInController extends GetxController {
   final tag = "SignInController";
   Repository repository;
   var inputFormEnabled = true.obs;
- // var error = "";
+  // var error = "";
 
   Rx<ApiResponse> apiSignInResponse = Rx<ApiResponse>(ApiResponse.idle());
 
