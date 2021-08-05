@@ -13,14 +13,17 @@ class ButtonYellow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 16, right: 16),
-      width: double.infinity,
       height: 80,
-      child: RaisedButton(
-        child: TextCustom(text: text, textSize: 17.0, textColor: Constants.ColorBlack, decoration: TextDecoration.none),
+      width: double.infinity,
+      margin: EdgeInsets.only(left: 16, right: 16),
+      child: Material(
+        elevation: 5.0,
+        borderRadius: BorderRadius.circular(10),
         color: Constants.ColorYellow,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        onPressed: onPressed,
+        child: MaterialButton(
+          child: TextCustom(text: text, textSize: 17.0, textColor: Constants.ColorBlack, decoration: TextDecoration.none),
+          onPressed: onPressed,
+        ),
       ),
     );
   }
