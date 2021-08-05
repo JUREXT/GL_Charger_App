@@ -17,7 +17,7 @@ class EmailInput extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(left: 16, right: 16),
       width: double.infinity,
-      height: 90,
+      height: 80,
       child: Theme(
           data: ThemeData(
             primaryColor: Constants.ColorYellow,

@@ -8,6 +8,7 @@ import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_image_title.dart';
+import 'package:gl_charge_app/stateless_widget_components/button_text.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
 import 'package:gl_charge_app/stateless_widget_components/circular_loader.dart';
 import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
@@ -101,15 +102,9 @@ class _SignInPageState extends State<SignInPage> {
               EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
               PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
               reactiveContainer(),
-              SizedBox(height: 25),
-              GestureDetector(
-                onTap: () => forgotPasswordClick(),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Align(alignment: Alignment.centerLeft, child: TextCustom(text: "Forgot password?", textSize: 15.0, textColor: Constants.ColorYellow, decoration: TextDecoration.underline)),
-                ),
-              ),
-              SizedBox(height: 30),
+              SizedBox(height: 10),
+              Align(alignment: Alignment.centerLeft, child: ButtonText(text: "Forgot password?", onPressed: () => forgotPasswordClick())),
+              SizedBox(height: 20),
               AuthScreenBottomView(
                   accountText: "Don't have account?",
                   accountClickText: "Sign Up",
