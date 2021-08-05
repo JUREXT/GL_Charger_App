@@ -26,7 +26,7 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
   @override
   void initState() {
     super.initState();
-   // controller.getChargers(0);
+    controller.getAllChargersByUser(1);
   }
 
   @override

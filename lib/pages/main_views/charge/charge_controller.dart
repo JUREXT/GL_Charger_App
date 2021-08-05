@@ -8,8 +8,8 @@ class ChargeController extends GetxController {
   Repository repository;
   Rx<ApiResponse> apiChargersResponse = Rx<ApiResponse>(ApiResponse.idle());
 
-  test() async {
-    Log.d(tag, "Test OK");
+  startCharging() async {
+    repository.startCharging("", "");
   }
 
   @override

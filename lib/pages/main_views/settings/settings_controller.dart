@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
 import 'package:gl_charge_app/network/modern_networking/testing/api_result.dart';
+import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_page.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/utils/navigation.dart';
 import 'package:gl_charge_app/utils/storage.dart';
@@ -19,10 +20,10 @@ class SettingsController extends GetxController {
      // var data = res.data as SignOutResponseModel;
       Storage().write(Storage.SESSION_DATA, null);
      // apiSignOutResponse(ApiResponse.success(data));
-      Navigation.toNamed(Routes.SIGN_IN, null);
+      Navigation.offAll(SignInPage());
     } else if(res is ErrorState) {
       Storage().write(Storage.SESSION_DATA, null);
-      Navigation.toNamed(Routes.SIGN_IN, null);
+      Navigation.offAll(SignInPage());
      // var error = res.error as String;
      // apiSignOutResponse(ApiResponse.error(false, error));
      // await DelayHelper.delay(1);

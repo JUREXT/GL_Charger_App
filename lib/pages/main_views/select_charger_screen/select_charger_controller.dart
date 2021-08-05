@@ -7,6 +7,10 @@ class SelectChargerController extends GetxController {
   Repository repository;
   Rx<ApiResponse> apiChargersResponse = Rx<ApiResponse>(ApiResponse.idle());
 
+  getAllChargersByUser(int userId) async {
+    repository.getAllChargersByUser(userId);
+  }
+
   @override
   void onInit() {
     super.onInit();

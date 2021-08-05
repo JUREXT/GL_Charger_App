@@ -28,7 +28,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
   @override
   void initState() {
     super.initState();
-    controller.test();
+   // controller.test();
     _currentSliderValue = _startSliderValue.toStringAsFixed(0);
   }
 

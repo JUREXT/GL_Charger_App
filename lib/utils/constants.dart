@@ -7,11 +7,12 @@ class Constants {
   static const String liveBaseURL = "https://home.dev.glcharge.com/api/v1";
   static const String localBaseURL = "http://10.0.2.2:4000/api/v1";
   static const String baseURL = liveBaseURL;
-  static const String logInEndPoint = "/login";
-  static const String signOutEndPoint = "/logout";
-  static const String registerEndPoint = "/register";
-  static const String forgotPassword = "/resetPassword";
-  static const String getAllChargersByUser = "/charger/getAllByUser";
+  static const String logInEp = "/login";
+  static const String signOutEp = "/logout";
+  static const String registerEp = "/register";
+  static const String forgotPasswordEp = "/resetPassword";
+  static const String allChargersByUserEp = "/charger/getAllByUser";
+  static const String startChargingEp = "/charger/start";
   static const String testEndPoint = "/users/1";
   String getBaseUrl(bool setTestUrl) {
     if(setTestUrl) return liveBaseURLTest;
