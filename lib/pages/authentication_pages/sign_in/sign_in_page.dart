@@ -28,9 +28,9 @@ class _SignInPageState extends State<SignInPage> {
   final tag = "SignInPage";
   final controller = Get.find<SignInController>();
 
-  final _formKey = new GlobalKey<FormState>();
-  TextEditingController controllerPassword = new TextEditingController();
-  String _email, _password;
+  var _emailTextController = TextEditingController(text: "");
+  var _passwordTextController = TextEditingController(text: "");
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -39,19 +39,14 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    signInClick() {
+    signInClick() async {
       Log.i(tag, "signInClick");
-      controller.signIn("lokovsek.jure@gmail.com", "123456Jl");
-      // final form = _formKey.currentState;
-      // if (form.validate()) {
-      //   form.save();
-      //   Log.i(tag, "Email is valid $_email");
-      //   Log.i(tag,"Password is valid $_password");
-      //   _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
-      // } else {
-      //   print("Form is invalid");
-      // }
+      // await controller.signIn("lokovsek.jure@gmail.com", "123456Jl");
+      if (_formKey.currentState.validate()) {
+        await controller.signIn(_emailTextController.text, _passwordTextController.text);
+      } else {
+        Log.d(tag, "Input forms not valid!");
+      }
     }
 
     Widget reactiveContainer() {
@@ -97,13 +92,14 @@ class _SignInPageState extends State<SignInPage> {
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
-          child: Column(
+          child: Obx(() {
+          return Column(
             children: [
              // SizedBox(height: 20),
               AuthScreenImageTitle(title: "Sign In"),
               SizedBox(height: 30),
-              EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { _email = value }),
-              PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { _password = value }, controller: controllerPassword),
+              EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
+              PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
               reactiveContainer(),
               SizedBox(height: 25),
               GestureDetector(
@@ -121,11 +117,11 @@ class _SignInPageState extends State<SignInPage> {
                   privacyText2: "Privacy Policy and Terms",
                   onPrivacyCallback: () => privacyClick(),
                   onActionCallback: () => signUpActionClick()),
-            ],
+                ],
+              );
+            }),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   privacyClick() {

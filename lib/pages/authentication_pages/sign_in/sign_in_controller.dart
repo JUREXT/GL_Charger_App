@@ -10,11 +10,15 @@ import 'package:gl_charge_app/utils/storage.dart';
 class SignInController extends GetxController {
   final tag = "SignInController";
   Repository repository;
+  var inputFormEnabled = true.obs;
+ // var error = "";
+
   Rx<ApiResponse> apiSignInResponse = Rx<ApiResponse>(ApiResponse.idle());
 
   signIn(String email, String password) async {
+    inputFormEnabled(false);
     apiSignInResponse(ApiResponse.loading(""));
-    await DelayHelper.delay(1);
+    await DelayHelper.delay(2);
     var res = await repository.signIn(email, password);
     if(res is SuccessState) {
       var data = res.data as TestObj;
@@ -27,6 +31,7 @@ class SignInController extends GetxController {
       await DelayHelper.delay(1);
       apiSignInResponse(ApiResponse.idle());
     } else if(res is ErrorState) {
+      inputFormEnabled(true);
       var error = res.error as String;
       apiSignInResponse(ApiResponse.error(false, error));
       await DelayHelper.delay(1);

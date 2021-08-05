@@ -2,14 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/validation.dart';
 
-class PasswordInput extends StatelessWidget {
+class PasswordInput extends StatefulWidget {
 
   final String hintText;
   final String labelText;
   final bool autofocus;
+  final bool formEnabled;
   final Function(String) onValueCallback;
   final TextEditingController controller;
-  PasswordInput({@required this.hintText, @required this.labelText, this.autofocus = false, @required this.onValueCallback, this.controller});
+  PasswordInput({@required this.hintText, @required this.labelText, this.autofocus = false, @required this.onValueCallback, this.formEnabled, this.controller});
+
+  @override
+  _PasswordInputState createState() => _PasswordInputState();
+}
+
+class _PasswordInputState extends State<PasswordInput> {
+  var _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +32,27 @@ class PasswordInput extends StatelessWidget {
             hintColor: Constants.ColorLightPurple,
           ),
           child: TextFormField(
-            autofocus: autofocus,
+            enabled: widget.formEnabled,
+            autofocus: false,
             validator: (value) => Validations.validatePassword(value),
-            onSaved: (value) => onValueCallback(value),
-            obscureText: true,
-            controller: controller,
+            onSaved: (value) => widget.onValueCallback(value),
+            controller: widget.controller,
             style: TextStyle(color: Constants.ColorWhite, fontSize: 17),
             decoration: InputDecoration(
-                hintText: hintText,
-                labelText: labelText,
-                labelStyle: TextStyle(color: Constants.ColorYellow, fontSize: 14)),
-          )),
-    );
+                hintText: widget.hintText,
+                labelText: widget.labelText,
+                labelStyle: TextStyle(color: Constants.ColorYellow, fontSize: 14),
+                suffixIcon: IconButton(
+                  icon: Icon(_passwordVisible  ? Icons.visibility_off : Icons.visibility,
+                    color: Color.fromRGBO(50, 62, 72, 1.0),
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _passwordVisible = !_passwordVisible;
+                    });
+                  },
+                )),
+              obscureText: !_passwordVisible,
+          )));
   }
 }
