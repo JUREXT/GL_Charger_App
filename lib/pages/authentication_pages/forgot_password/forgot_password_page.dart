@@ -28,24 +28,23 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final tag = "ForgotPasswordPage";
   final controller = Get.find<ForgotPasswordController>();
 
+  var _emailTextController = TextEditingController(text: "");
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
 
     var data = Get.arguments;
     Log.d(tag, "Passed Data: $data");
 
-    forgotPasswordInClick() {
-      Log.i(tag, "signInClick");
-      controller.forgotPassword("lokovsek.jure@gmail.com");
-      // final form = _formKey.currentState;
-      // if (form.validate()) {
-      //   form.save();
-      //   Log.i(tag, "Email is valid $_email");
-      //   Log.i(tag,"Password is valid $_password");
-      //   _authenticationBloc.signIn("lokovsek.jure@gmail.com", "123456Jl"); // TODO: HARD CODED FOR TEST
-      // } else {
-      //   print("Form is invalid");
-      // }
+    forgotPasswordInClick() async {
+      Log.i(tag, "forgotPasswordInClick");
+     // await controller.forgotPassword("lokovsek.jure@gmail.com");
+      if (_formKey.currentState.validate()) {
+        await controller.forgotPassword(_emailTextController.text);
+      } else {
+        Log.d(tag, "Input forms not valid!");
+      }
     }
 
     Widget reactiveContainer() {
@@ -93,26 +92,30 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         backgroundColor: Constants.ColorLightGrey,
         appBar: AppBarWithBackNavigation(onNavigateBackCallback: () => navigateBackClick()),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-             // SizedBox(height: 20),
-              AuthScreenImageTitle(title: "Forgot Password"),
-              SizedBox(height: 100),
-              EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (email) => { print("Entered Email $email") }),
-              reactiveContainer(),
-              SizedBox(height: 100),
-              AuthScreenBottomView(
-                  accountText: "Already have an account?",
-                  accountClickText: "Sign In",
-                  privacyText1: "By signing up you agree to our ",
-                  privacyText2: "Privacy Policy and Terms",
-                  onPrivacyCallback: () => privacyClick(),
-                  onActionCallback: () => actionSignInClick()),
-            ],
-          ),
+          child: Form(
+            key: _formKey,
+            child: Obx(() {
+              return Column(
+              children: [
+               // SizedBox(height: 20),
+                AuthScreenImageTitle(title: "Forgot Password"),
+                SizedBox(height: 100),
+                EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
+                reactiveContainer(),
+                SizedBox(height: 100),
+                AuthScreenBottomView(
+                    accountText: "Already have an account?",
+                    accountClickText: "Sign In",
+                    privacyText1: "By signing up you agree to our ",
+                    privacyText2: "Privacy Policy and Terms",
+                    onPrivacyCallback: () => privacyClick(),
+                    onActionCallback: () => actionSignInClick()),
+              ],
+            );
+          }),
         ),
       ),
-    );
+    ));
   }
 
   navigateBackClick() {

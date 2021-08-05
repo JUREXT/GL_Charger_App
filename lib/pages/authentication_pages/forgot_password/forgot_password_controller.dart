@@ -8,9 +8,13 @@ import 'package:gl_charge_app/utils/delay_helper.dart';
 class ForgotPasswordController extends GetxController {
   final tag = "ForgotPasswordController";
   Repository repository;
+  var inputFormEnabled = true.obs;
+  // var error = "";
+
   Rx<ApiResponse> apiForgotPasswordResponse = Rx<ApiResponse>(ApiResponse.idle());
 
   forgotPassword(String email) async {
+    inputFormEnabled(false);
     apiForgotPasswordResponse(ApiResponse.loading(""));
     await DelayHelper.delay(1);
     var res = await repository.forgotPassword("", "");
@@ -20,6 +24,7 @@ class ForgotPasswordController extends GetxController {
       await DelayHelper.delay(1);
       apiForgotPasswordResponse(ApiResponse.idle());
     } else if(res is ErrorState) {
+      inputFormEnabled(true);
       var error = res.error as String;
       apiForgotPasswordResponse(ApiResponse.error(false, error));
       await DelayHelper.delay(1);
