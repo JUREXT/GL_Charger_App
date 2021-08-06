@@ -29,30 +29,36 @@ class AuthScreenBottomView extends StatelessWidget {
         width: double.infinity,
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Flexible(child: TextCustom(text: accountText, textSize: 17.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none)),
-                Flexible(child: ButtonText(text: accountClickText, onPressed: () => onActionCallback()))
-              ],
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Flexible(child: TextCustom(text: accountText, textSize: 17.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none)),
+                  Flexible(child: ButtonText(text: accountClickText, onPressed: () => onActionCallback()))
+                ],
+              ),
             ),
             SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Flexible(
-                    child: GestureDetector(
-                    onTap: () => onPrivacyCallback(),
-                    child: RichText(
-                      text: TextSpan(
-                        text: privacyText1,
-                        style: TextStyle(
-                            fontSize: 12, color: Constants.ColorLightPurple),
-                            children: <TextSpan>[TextSpan(text: privacyText2, style: TextStyle(fontSize: 12, decoration: TextDecoration.underline))],
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Flexible(
+                      child: GestureDetector(
+                      onTap: () => onPrivacyCallback(),
+                      child: RichText(
+                        text: TextSpan(
+                          text: privacyText1,
+                          style: TextStyle(
+                              fontSize: 12, color: Constants.ColorLightPurple),
+                              children: <TextSpan>[TextSpan(text: privacyText2, style: TextStyle(fontSize: 12, decoration: TextDecoration.underline))],
+                        ),
                       ),
-                    ),
-                )),
-              ],
+                  )),
+                ],
+              ),
             ),
             SizedBox(height: 20),
           ],
