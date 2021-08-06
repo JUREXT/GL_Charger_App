@@ -1,14 +1,13 @@
-import 'package:circle_button/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar2.dart';
+import 'package:gl_charge_app/stateless_widget_components/button_text.dart';
+import 'package:gl_charge_app/stateless_widget_components/charge_circle_button.dart';
 import 'package:gl_charge_app/stateless_widget_components/charge_e_card.dart';
 import 'package:gl_charge_app/stateless_widget_components/charge_session.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/widgets/container_box_decoration.dart';
-import 'package:gl_charge_app/widgets/spanned_text.dart';
-
+import 'package:gl_charge_app/utils/log.dart';
 import 'charge_controller.dart';
 
 class ChargeScreen extends StatefulWidget {
@@ -170,32 +169,12 @@ class _ChargeScreenState extends State<ChargeScreen> {
                   ),
                 ),
                 SizedBox(height: 5),
-                Container(
-                  //  color: Colors.green,
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        // just an empty SizedBox to add some spacing
-                        SizedBox(height: 10),
-                        Container(
-                          width: 175,
-                          height: 175,
-                          child: Center(
-                            child: CircleButton(
-                              onTap: () => {print("CircleButton Tap")},
-                              width: 175.0,
-                              height: 175.0,
-                              borderColor: Constants.ColorYellow,
-                              borderWidth: 10.0,
-                              borderStyle: BorderStyle.solid,
-                              backgroundColor: Constants.ColorGreenish,
-                              child: TextCustom(text: "Start", textSize: 24.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none)
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                Container(),
+                ChargeCircleButton(
+                    width: 150.0,
+                    height: 150.0,
+                    child: ButtonText(text: "START", onPressed: () => {}, textSize: 24.0, textColor: Constants.ColorWhite, textDecoration: TextDecoration.none),
+                    onTap: () => { Log.d(tag, "CircleButton Tap") },
                 ),
                 SizedBox(height: 20),
               ],
