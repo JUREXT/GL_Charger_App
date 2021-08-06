@@ -2,6 +2,8 @@ import 'package:circle_button/circle_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar2.dart';
+import 'package:gl_charge_app/stateless_widget_components/charge_e_card.dart';
+import 'package:gl_charge_app/stateless_widget_components/charge_session.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/widgets/container_box_decoration.dart';
@@ -43,109 +45,34 @@ class _ChargeScreenState extends State<ChargeScreen> {
             padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
             child: Column(
               children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 75,
-                  decoration: BoxDecoration(
-                    color: Constants.ColorBlack,
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(9, 9, 9, 9),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          TextCustom(text: "LAST SESSION", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
-                          SizedBox(height: 6),
-                          appSpannedText("Consumed Energy:", "150kW", 12.0, Constants.ColorWhite, Constants.ColorYellow),
-                          SizedBox(height: 6),
-                          appSpannedText("Duration:", "1h 30min", 12.0, Constants.ColorWhite, Constants.ColorYellow)
-                        ]),
-                  ),
-                ),
+                ChargeSession(consumedEnergy: "150", duration: "1h 30min"),
                 SizedBox(height: 15),
                 Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 162,
-                  // color: Constants.ColorWhite,
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            width: 150,
-                            height: 70,
-                            decoration: containerBoxDecoration(),
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 4),
-                                  TextCustom(text: "CURRENT", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
-                                  SizedBox(height: 5),
-                                  TextCustom(text: "$_currentSliderValue A", textSize: 24.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
-                                ],
-                              ),
-                            ),
-                          ),
-                        //  appEnergyCard("$_currentSliderValue", EnergyUnitNameType.CURRENT),
-                          Container(
-                            width: 150,
-                            height: 70,
-                            decoration: containerBoxDecoration(),
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 4),
-                                  TextCustom(text: "ENERGY", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
-                                  SizedBox(height: 5),
-                                  TextCustom(text: "$_currentSliderValue A", textSize: 24.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
-                                ],
-                              ),
-                            ),
-                          ),
+                          ChargeECard(title: "CURRENT", value: "$_currentSliderValue", valueSign: "A"),
+                          SizedBox(width: 10),
+                          ChargeECard(title: "ENERGY", value: "$_currentSliderValue", valueSign: "A"),
                         ],
                       ),
-                      SizedBox(height: 22),
+                      SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            width: 150,
-                            height: 70,
-                            decoration: containerBoxDecoration(),
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 4),
-                                  TextCustom(text: "POWER", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
-                                  SizedBox(height: 5),
-                                  TextCustom(text: "$_currentSliderValue A", textSize: 24.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
-                                ],
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 150,
-                            height: 70,
-                            decoration: containerBoxDecoration(),
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 4),
-                                  TextCustom(text: "DURATION", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
-                                  SizedBox(height: 5),
-                                  TextCustom(text: "$_currentSliderValue A", textSize: 24.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
-                                ],
-                              ),
-                            ),
-                          ),
+                          ChargeECard(title: "POWER", value: "$_currentSliderValue", valueSign: "A"),
+                          SizedBox(width: 10),
+                          ChargeECard(title: "DURATION", value: "$_currentSliderValue", valueSign: "A"),
                         ],
                       )
                     ],
                   ),
                 ),
+
                 SizedBox(height: 30),
+
                 Container(
                   // color: Colors.lightGreen,
                   child: Center(
