@@ -38,7 +38,7 @@ class Constants {
 
   // TODO: colors from figma
   static const ColorYellow = Color(0xFFE1E43B); // #E1E43B
-  static const ColorYellow1 = Color(0xFF696A08); // #E1E43B
+  static const ColorYellow1 = Color(0xFF696A08); // #696A08
   static const ColorWhite = Color(0xFFFCFCFA); // #FCFCFA
   static const ColorLightGrey = Color(0xFF212123); // #212123
   static const ColorBlack = Color(0xFF141414); // #141414

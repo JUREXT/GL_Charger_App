@@ -50,7 +50,6 @@ class _ChargeScreenState extends State<ChargeScreen> {
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ChargeECard(title: "CURRENT", value: "$_currentSliderValue", valueSign: "A"),
                           SizedBox(width: 10),
@@ -59,7 +58,6 @@ class _ChargeScreenState extends State<ChargeScreen> {
                       ),
                       SizedBox(height: 15),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ChargeECard(title: "POWER", value: "$_currentSliderValue", valueSign: "A"),
                           SizedBox(width: 10),
@@ -171,10 +169,10 @@ class _ChargeScreenState extends State<ChargeScreen> {
                 SizedBox(height: 5),
                 Container(),
                 ChargeCircleButton(
-                    width: 150.0,
-                    height: 150.0,
-                    child: ButtonText(text: "START", onPressed: () => {}, textSize: 24.0, textColor: Constants.ColorWhite, textDecoration: TextDecoration.none),
-                    onTap: () => { Log.d(tag, "CircleButton Tap") },
+                    width: 140.0,
+                    height: 140.0,
+                    child: ButtonText(text: "START", onPressed: () => { Log.d(tag, "CircleButton Tap") }, textSize: 22.0, textColor: Constants.ColorWhite, textDecoration: TextDecoration.none),
+                    //onTap: () => { Log.d(tag, "CircleButton Tap") },
                 ),
                 SizedBox(height: 20),
               ],
