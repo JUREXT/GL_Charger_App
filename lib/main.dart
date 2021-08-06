@@ -63,3 +63,5 @@ class MyApp extends StatelessWidget {
 // https://mightytechno.com/rounded-button-flutter/
 
 // GOOD: https://www.youtube.com/watch?v=V0oxG3tWiwk
+
+// FIGMA: https://www.figma.com/file/BElgazWy5gDg3Y4xuNM93I/Applications?node-id=0%3A1

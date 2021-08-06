@@ -106,9 +106,11 @@ class _SignUpPageState extends State<SignUpPage> {
               return Column(
               children: [
                 AuthScreenImageTitle(title: "Create and account"),
+                SizedBox(height: 20),
                 EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
                 PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
                 PasswordInput(hintText: "Repeat password", labelText: "Repeat password", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordRepeatTextController),
+                SizedBox(height: 20),
                 reactiveContainer(),
                 //SizedBox(height: 30), // TODO: updated this on other screens
                 AuthScreenBottomView(

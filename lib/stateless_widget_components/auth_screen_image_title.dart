@@ -12,20 +12,10 @@ class AuthScreenImageTitle extends StatelessWidget {
     return Column(
       children: [
         Container(
-          //color: Colors.black87,
-          height: 130, //150
-          child: Center(
-            child: Image.asset("assets/images/logo_25_size.png", height: 46))),
-        SizedBox(height: 10),
+          child: Center(child: Image.asset("assets/images/logo_25_size.png", height: 46))),
+        SizedBox(height: 50),
         Container(
-          //color: Colors.red,
-          height: 50,
-          child: Center(
-              child: TextCustom(
-                  text: title,
-                  textSize: 34.0,
-                  textColor: Constants.ColorYellow,
-                  decoration: TextDecoration.none)),
+          child: Center(child: TextCustom(text: title, textSize: 34.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none)),
         )
       ],
     );

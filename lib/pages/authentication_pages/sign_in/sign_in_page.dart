@@ -13,7 +13,6 @@ import 'package:gl_charge_app/stateless_widget_components/button_yellow.dart';
 import 'package:gl_charge_app/stateless_widget_components/circular_loader.dart';
 import 'package:gl_charge_app/stateless_widget_components/email_input.dart';
 import 'package:gl_charge_app/stateless_widget_components/password_input.dart';
-import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/navigation.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
@@ -36,6 +35,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   void initState() {
     super.initState();
+    // maybe run some checking later here
   }
 
   @override
@@ -96,7 +96,7 @@ class _SignInPageState extends State<SignInPage> {
           child: Obx(() {
           return Column(
             children: [
-             // SizedBox(height: 20),
+              SizedBox(height: 30),
               AuthScreenImageTitle(title: "Sign In"),
               SizedBox(height: 30),
               EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
