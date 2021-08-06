@@ -103,7 +103,7 @@ class _SignInPageState extends State<SignInPage> {
               PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
               reactiveContainer(),
               SizedBox(height: 10),
-              Align(alignment: Alignment.centerLeft, child: ButtonText(text: "Forgot password?", onPressed: () => forgotPasswordClick())),
+              Align(alignment: Alignment.centerLeft, child: ButtonText(text: "Forgot password?", onPressed: () => forgotPasswordClick(), textSize: 15.0, textColor: Constants.ColorYellow, textDecoration: TextDecoration.underline)),
               SizedBox(height: 20),
               AuthScreenBottomView(
                   accountText: "Don't have account?",

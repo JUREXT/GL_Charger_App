@@ -97,7 +97,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Obx(() {
               return Column(
               children: [
-               // SizedBox(height: 20),
+                SizedBox(height: 30),
                 AuthScreenImageTitle(title: "Forgot Password"),
                 SizedBox(height: 100),
                 EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),

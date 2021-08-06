@@ -34,8 +34,8 @@ class AuthScreenBottomView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Flexible(child: TextCustom(text: accountText, textSize: 17.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none)),
-                  Flexible(child: ButtonText(text: accountClickText, onPressed: () => onActionCallback()))
+                  Flexible(child: TextCustom(text: accountText, textSize: 18.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none)),
+                  Flexible(child: ButtonText(text: accountClickText, onPressed: () => onActionCallback(), textColor: Constants.ColorYellow, textSize: 15.0, textDecoration: TextDecoration.underline))
                 ],
               ),
             ),
