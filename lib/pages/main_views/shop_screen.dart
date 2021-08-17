@@ -26,16 +26,19 @@ class _ShopScreen extends State<ShopScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Constants.ColorLightGrey,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image.asset("assets/images/logo_25_size.png", width: 200),
-            SizedBox(height: 30),
-            ButtonYellow(text: "Continue to shop Web page", onPressed: () => UrlNavigation.navigateTo(context, Constants.shopUrl)),
-          ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Container(
+        color: Constants.ColorLightGrey,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset("assets/images/logo_25_size.png", width: 200),
+              SizedBox(height: 30),
+              ButtonYellow(text: "Continue to shop Web page", onPressed: () => UrlNavigation.navigateTo(context, Constants.shopUrl)),
+            ],
+          ),
         ),
       ),
     );

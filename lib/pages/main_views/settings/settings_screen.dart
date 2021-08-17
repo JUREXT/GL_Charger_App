@@ -25,49 +25,52 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar1(title: 'Settings'),
-      backgroundColor: Constants.ColorLightGrey,
-      body: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: ListView(
-          children: <Widget>[
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar1(title: 'Settings'),
+        backgroundColor: Constants.ColorLightGrey,
+        body: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: ListView(
+            children: <Widget>[
 
-            // SettingsListItem(title: "General Settings", onSettingsItemCallback: () => { print("General Settings Clicked") }),
-            // SettingsDivider(),
-            //
-            // SettingsListItem(title: "Account Settings", onSettingsItemCallback: () => { print("Account Settings Clicked") }),
-            // SettingsDivider(),
-            //
-            // ListTile(
-            //   leading: Icon(Icons.settings, color: Constants.ColorYellow),
-            //   title: TextCustom(text: "Notifications", textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
-            //   trailing: Consumer<ThemeNotifier>(
-            //     builder: (context, notifier, child) => CupertinoSwitch(
-            //       onChanged: (val) {
-            //         notifier.toggleTheme();
-            //       },
-            //       value: notifier.dark,
-            //       activeColor: Constants.ColorYellow,
-            //       trackColor: Constants.ColorLightPurple,
-            //     ),
-            //   ),
-            // ),
-            // SettingsDivider(),
-            //
-            // SettingsListItem(title: "Default Charger", onSettingsItemCallback: () => { print("Default Charger Clicked") }),
-            // SettingsDivider(),
-            //
-            // SettingsListItem(title: "Default Charging method", onSettingsItemCallback: () => { print("Default Charging method Clicked") }),
-            // SettingsDivider(),
-            //
-            // SettingsListItem(title: "Authentication", onSettingsItemCallback: () => { print("Authentication Clicked") }),
-            // SettingsDivider(),
+              // SettingsListItem(title: "General Settings", onSettingsItemCallback: () => { print("General Settings Clicked") }),
+              // SettingsDivider(),
+              //
+              // SettingsListItem(title: "Account Settings", onSettingsItemCallback: () => { print("Account Settings Clicked") }),
+              // SettingsDivider(),
+              //
+              // ListTile(
+              //   leading: Icon(Icons.settings, color: Constants.ColorYellow),
+              //   title: TextCustom(text: "Notifications", textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+              //   trailing: Consumer<ThemeNotifier>(
+              //     builder: (context, notifier, child) => CupertinoSwitch(
+              //       onChanged: (val) {
+              //         notifier.toggleTheme();
+              //       },
+              //       value: notifier.dark,
+              //       activeColor: Constants.ColorYellow,
+              //       trackColor: Constants.ColorLightPurple,
+              //     ),
+              //   ),
+              // ),
+              // SettingsDivider(),
+              //
+              // SettingsListItem(title: "Default Charger", onSettingsItemCallback: () => { print("Default Charger Clicked") }),
+              // SettingsDivider(),
+              //
+              // SettingsListItem(title: "Default Charging method", onSettingsItemCallback: () => { print("Default Charging method Clicked") }),
+              // SettingsDivider(),
+              //
+              // SettingsListItem(title: "Authentication", onSettingsItemCallback: () => { print("Authentication Clicked") }),
+              // SettingsDivider(),
 
-            SettingsListItem(title: "Logout", onSettingsItemCallback: () => controller.signOut()),
-            SettingsDivider(),
+              SettingsListItem(title: "Logout", onSettingsItemCallback: () async => await controller.signOut()),
+              SettingsDivider(),
 
-          ],
+            ],
+          ),
         ),
       ),
     );

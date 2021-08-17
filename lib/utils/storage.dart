@@ -8,15 +8,24 @@ class Storage {
     storage = GetStorage();
   }
 
-  void write(String key, String value) {
-    storage.write(key, value);
+  Future<void> write(String key, String value) async {
+    await storage.write(key, value);
   }
 
-  String read(String key) {
-    return storage.read(key);
+  Future<String> read(String key) async {
+    var val = await storage.read(key);
+    return val;
   }
 
-  void erase() {
-    storage.erase();
+  Future<void> erase() async {
+    await storage.erase();
+  }
+
+  Future<bool> hasSession() async {
+    if (await storage.read(SESSION_DATA) == null) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }

@@ -2,9 +2,9 @@ import 'package:fimber/fimber.dart';
 import 'package:get_storage/get_storage.dart';
 
 class Config {
-  static init() {
+  static init() async {
     Fimber.plantTree(DebugTree(useColors: true));
-    initGetStorage();
+    await initGetStorage();
   }
 
   static initGetStorage() async {

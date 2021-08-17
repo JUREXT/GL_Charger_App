@@ -23,9 +23,9 @@ class SignInController extends GetxController {
     if(res is SuccessState) {
       var data = res.data as TestObj;
 
-      Storage().write(Storage.SESSION_DATA, data.toJson().toString()); // TODO: update flow
+      await Storage().write(Storage.SESSION_DATA, data.toJson().toString()); // TODO: update flow
       await DelayHelper.delay(2);
-      Log.d(tag, "Session data ${Storage().read(Storage.SESSION_DATA)}");
+      Log.d(tag, "Session data ${await Storage().read(Storage.SESSION_DATA)}");
 
       apiSignInResponse(ApiResponse.success(data));
       await DelayHelper.delay(1);

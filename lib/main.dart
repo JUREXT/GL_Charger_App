@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_binding.dart';
+import 'package:gl_charge_app/utils/storage.dart';
 import 'routes/app_pages.dart';
 import 'translations/app_translations.dart';
 import 'utils/config.dart';
 import 'utils/log.dart';
 
-void main() {
+Future<void> main() async {
+  var tag ="main";
   WidgetsFlutterBinding.ensureInitialized();
-  Config.init();
-  runApp(MyApp());
+  await Config.init();
   Log.enableLogger(true);
-  Log.i("main", "Started");
+  Log.i(tag, "Main Started");
+  var startPage = (await Storage().hasSession()) ? Routes.MAIN_TAB_HOLDER : AppPages.INITIAL;
+  runApp(MyApp(startPage));
 }
 
 class MyApp extends StatelessWidget {
+  final String startPage;
+  MyApp (this.startPage);
+
   @override
   Widget build(BuildContext context) {
+    var tag ="MyApp";
+    Log.d(tag, "Start Screen Based on Session Availability: $startPage");
+
     return GetMaterialApp(
      // title: 'App',
       theme: ThemeData(
@@ -28,9 +38,9 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.cupertino,
       opaqueRoute: Get.isOpaqueRouteDefault,
       popGesture: Get.isPopGestureEnable,
-      transitionDuration: Duration(milliseconds: 750),
-      //initialBinding: MainBinding(),
-      initialRoute: AppPages.INITIAL,
+      transitionDuration: Duration(milliseconds: 500),
+      initialBinding: SignInBinding(),
+      initialRoute: startPage,
       getPages: AppPages.routes,
       locale: Get.deviceLocale,
       fallbackLocale: Locale("en", "US"),
