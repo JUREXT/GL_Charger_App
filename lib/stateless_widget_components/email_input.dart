@@ -27,7 +27,7 @@ class EmailInput extends StatelessWidget {
           child: TextFormField(
             enabled: formEnabled,
             autofocus: autofocus,
-            validator: (value) => Validations.validateEmail(value),
+            validator: (value) => Validations.validateEmail(value.trim()),
             onSaved: (value) => onValueCallback(value),
             controller: controller,
             style: TextStyle(color: Constants.ColorWhite, fontSize: 17),
