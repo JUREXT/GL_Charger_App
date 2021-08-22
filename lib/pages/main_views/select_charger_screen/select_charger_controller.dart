@@ -14,7 +14,7 @@ class SelectChargerController extends GetxController {
   List<Charger> get chargerList => this._chargerList.value;
   set chargerList(List<Charger> value) => this._chargerList.value = value;
 
-  getCountriesCode() async {
+  getChargerList() async {
     chargerList = await getAllChargersByUser();
   }
 

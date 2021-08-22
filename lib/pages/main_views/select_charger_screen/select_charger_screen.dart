@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/charger.dart';
-import 'package:gl_charge_app/network/fake_data.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/charger_list_item.dart';
@@ -24,7 +23,7 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
   @override
   void initState() {
     super.initState();
-    controller.getCountriesCode();
+    controller.getChargerList();
   }
 
   @override
