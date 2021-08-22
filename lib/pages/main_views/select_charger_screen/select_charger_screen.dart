@@ -21,12 +21,10 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
   final tag = "SelectChargerScreen";
   final controller = Get.find<SelectChargerController>();
 
-  List<Charger> list = listOfChargersFake;
-
   @override
   void initState() {
     super.initState();
-    controller.getAllChargersByUser(1);
+    controller.getCountriesCode();
   }
 
   @override
@@ -38,18 +36,20 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
         backgroundColor: Constants.ColorLightGrey,
         body: Padding(
           padding: EdgeInsets.all(10.0),
-          child: ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (context, index) {
-              return ChargerListItem(
-                charger: list[index],
-                onSelectedChargerCallback: (Charger charger) {
-                  Log.d(tag,"onSelectedChargerCallback: " + charger.toString());
-                  Navigation.toNamed(Routes.MAIN_TAB_HOLDER, charger);
-                },
-              );
-            },
-          ),
+          child: Obx(() {
+            return ListView.builder(
+              itemCount: controller.chargerList.length,
+              itemBuilder: (context, index) {
+                return ChargerListItem(
+                  charger: controller.chargerList[index],
+                  onSelectedChargerCallback: (Charger charger) {
+                    Log.d(tag,"onSelectedChargerCallback: " + charger.toString());
+                    Navigation.toNamed(Routes.MAIN_TAB_HOLDER, charger);
+                  },
+                );
+              },
+            );
+          }),
         ),
       ),
     );

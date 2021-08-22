@@ -75,3 +75,7 @@ class MyApp extends StatelessWidget {
 // GOOD: https://www.youtube.com/watch?v=V0oxG3tWiwk
 
 // FIGMA: https://www.figma.com/file/BElgazWy5gDg3Y4xuNM93I/Applications?node-id=0%3A1
+
+// INTRO: https://github.com/duytq94/flutter-intro-slider
+
+// POST DATA: https://www.youtube.com/watch?v=C0gz3Eg9cx4
