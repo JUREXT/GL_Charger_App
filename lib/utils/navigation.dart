@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 // https://medium.com/@iamrutudhvaj/getx-flutter-b3781be2b644
 class Navigation {
-  static void to(Widget destination, var args) {
+  static void to(Widget destination) {
     Get.to(() => destination);
   }
 

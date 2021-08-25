@@ -8,6 +8,7 @@ import 'package:gl_charge_app/stateless_widget_components/charger_list_item.dart
 import 'package:gl_charge_app/utils/Navigation.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
+import 'package:gl_charge_app/utils/storage.dart';
 import 'select_charger_controller.dart';
 
 class SelectChargerScreen extends StatefulWidget {
@@ -16,9 +17,9 @@ class SelectChargerScreen extends StatefulWidget {
 }
 
 class _SelectChargerScreenState extends State<SelectChargerScreen> {
-
   final tag = "SelectChargerScreen";
-  final controller = Get.find<SelectChargerController>();
+
+  SelectChargerController controller = Get.find();
 
   @override
   void initState() {
@@ -41,9 +42,10 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
               itemBuilder: (context, index) {
                 return ChargerListItem(
                   charger: controller.chargerList[index],
-                  onSelectedChargerCallback: (Charger charger) {
+                  onSelectedChargerCallback: (Charger charger) async {
                     Log.d(tag,"onSelectedChargerCallback: " + charger.toString());
-                    Navigation.toNamed(Routes.MAIN_TAB_HOLDER, charger);
+                    await Storage().write(Storage.CURRENT_CHARGER_DATA, Charger().chargerToJson(charger));
+                    Navigation.toNamed(Routes.MAIN_TAB_HOLDER, true.toString());
                   },
                 );
               },

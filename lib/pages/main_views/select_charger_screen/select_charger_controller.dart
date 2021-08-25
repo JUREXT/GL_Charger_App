@@ -14,13 +14,13 @@ class SelectChargerController extends GetxController {
   List<Charger> get chargerList => this._chargerList.value;
   set chargerList(List<Charger> value) => this._chargerList.value = value;
 
-  getChargerList() async {
+  void getChargerList() async {
     chargerList = await getAllChargersByUser();
   }
 
   Future<List<Charger>> getAllChargersByUser() async {
     var chargerList = listOfChargersFake;
-    await DelayHelper.delay(3);
+    await DelayHelper.delay(1);
     return chargerList;
   }
 

@@ -20,7 +20,7 @@ class ChargersController extends GetxController {
 
   Future<List<Charger>> getAllChargersByUser() async {
     var chargerList = listOfChargersFake;
-    await DelayHelper.delay(3);
+    await DelayHelper.delay(1);
     return chargerList;
   }
 

@@ -29,7 +29,6 @@ class _ChargeScreenState extends State<ChargeScreen> {
   @override
   void initState() {
     super.initState();
-   // controller.test();
     _currentSliderValue = _startSliderValue.toStringAsFixed(0);
   }
 
@@ -39,7 +38,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          appBar: AppBar2(title1: "Home", title2: "Charger 1"),
+          appBar: AppBar2(title1: "Home", title2: controller.chargerName.toString()),
           backgroundColor: Constants.ColorLightGrey,
           body: SingleChildScrollView(
             child: Padding(

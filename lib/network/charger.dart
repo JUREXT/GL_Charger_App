@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
 
 class Charger {
   String chargerName;
@@ -7,16 +7,36 @@ class Charger {
   String chargerLocation;
   String maxPower;
 
-  Charger({
-    @required this.chargerName,
-    @required this.isOnline,
-    @required this.chargingState,
-    @required this.chargerLocation,
-    @required this.maxPower,
-  });
+  Charger(
+      {this.chargerName,
+        this.isOnline,
+        this.chargingState,
+        this.chargerLocation,
+        this.maxPower});
+
+  Charger.fromJson(Map<String, dynamic> json) {
+    chargerName = json['chargerName'];
+    isOnline = json['isOnline'];
+    chargingState = json['chargingState'];
+    chargerLocation = json['chargerLocation'];
+    maxPower = json['maxPower'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['chargerName'] = this.chargerName;
+    data['isOnline'] = this.isOnline;
+    data['chargingState'] = this.chargingState;
+    data['chargerLocation'] = this.chargerLocation;
+    data['maxPower'] = this.maxPower;
+    return data;
+  }
+
+  Charger chargerFromJson(String str) => Charger.fromJson(json.decode(str));
+  String chargerToJson(Charger data) => json.encode(data.toJson());
 
   @override
   String toString() {
-    return 'ChargerModel{chargerName: $chargerName, isOnline: $isOnline, chargingState: $chargingState, chargerLocation: $chargerLocation, maxPower: $maxPower}';
+    return 'Charger{chargerName: $chargerName, isOnline: $isOnline, chargingState: $chargingState, chargerLocation: $chargerLocation, maxPower: $maxPower}';
   }
 }

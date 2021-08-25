@@ -3,6 +3,7 @@ import 'package:get_storage/get_storage.dart';
 class Storage {
   var storage;
   static const SESSION_DATA = 'session_data'; // null can be stored and checked
+  static const CURRENT_CHARGER_DATA = 'current_charger'; // null can be stored and checked
 
   Storage() {
     storage = GetStorage();

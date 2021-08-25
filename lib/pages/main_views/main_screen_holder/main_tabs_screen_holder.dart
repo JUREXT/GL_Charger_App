@@ -1,12 +1,12 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gl_charge_app/pages/main_views/charge/charge_controller.dart';
 import 'package:gl_charge_app/pages/main_views/charge/charge_screen.dart';
 import 'package:gl_charge_app/pages/main_views/chargers_screen/chargers_screen.dart';
 import 'package:gl_charge_app/pages/main_views/settings/settings_screen.dart';
 import 'package:gl_charge_app/pages/main_views/shop_screen.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/utils/log.dart';
 
 import 'main_screen_holder_controller.dart';
 
@@ -17,34 +17,27 @@ class MainTabsScreenHolder extends StatefulWidget {
 
 class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
   final tag = "MainTabsScreenHolder";
-  final controller = Get.find<MainScreenHolderController>();
 
-
-  PageController _pageController = PageController(initialPage: 0);
-  int currentIndex = 0;
-
-  @override
-  void setState(VoidCallback fn) {
-    super.setState(fn);
-  }
+  MainScreenHolderController controllerMain = Get.find();
+  ChargeController controllerCharge = Get.find();
+  int currentIndex = 1;
 
   @override
   void dispose() {
-    _pageController.dispose();
+    controllerMain.pageController.dispose();
     super.dispose();
   }
 
-  void whenOnTap(int index) {
+  void whenOnTap(int index, bool outSide) {
     log("WhenOnTap Index: $index");
     currentIndex = index;
-    _pageController.animateToPage(currentIndex,  duration: Duration(milliseconds: Constants.switchSpeedMainTabsScreenHolder), curve: Curves.linear);
+    controllerMain.goToChargeTab(currentIndex, false);
   }
 
   @override
   Widget build(BuildContext context) {
-
-    var data = Get.arguments;
-    Log.d(tag, "Passed Data: $data");
+    // var data = Get.arguments;
+    // Log.d(tag, "Passed Data: $data");
 
     return WillPopScope(
       onWillPop: () async => false, // TODO: this will disable back button press on android
@@ -55,7 +48,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
           unselectedItemColor: Constants.ColorWhite, // TODO: needs to be ColorLightGrey, but not looking good
           type: BottomNavigationBarType.fixed,
           currentIndex: currentIndex,
-          onTap: whenOnTap,
+          onTap: (index) => whenOnTap(index, false),
           items: [
             // BottomNavigationBarItem(
             //   icon: Icon(Icons.account_circle),
@@ -84,7 +77,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
           ],
         ),
         body: PageView(
-          controller: _pageController,
+          controller: controllerMain.pageController,
           onPageChanged: (page) {
             setState(() {
               currentIndex = page;
