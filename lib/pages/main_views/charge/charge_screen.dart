@@ -18,8 +18,8 @@ class ChargeScreen extends StatefulWidget {
 }
 
 class _ChargeScreenState extends State<ChargeScreen> {
-
   final tag = "ChargeScreen";
+
   ChargeController controller = Get.find();
 
   double _startSliderValue = 30.0;
@@ -38,7 +38,7 @@ class _ChargeScreenState extends State<ChargeScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          appBar: AppBar2(title1: "Home", title2: controller.chargerName.toString()),
+          appBar: AppBar2(title1: "Home", title2: controller.chargerNameObs.toString()),
           backgroundColor: Constants.ColorLightGrey,
           body: SingleChildScrollView(
             child: Padding(

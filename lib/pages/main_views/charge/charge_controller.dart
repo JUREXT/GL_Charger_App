@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
+import 'package:gl_charge_app/pages/main_views/main_screen_holder/main_screen_holder_controller.dart';
 import 'package:gl_charge_app/utils/log.dart';
-import 'package:gl_charge_app/utils/storage.dart';
 
 class ChargeController extends GetxController {
   final tag = "ChargeController";
@@ -14,27 +14,16 @@ class ChargeController extends GetxController {
   List<Charger> get chargerList => this._chargerList.value;
   set chargerList(List<Charger> value) => this._chargerList.value = value;
 
-  var chargerName = "".obs;
+  var chargerNameObs = "".obs;
 
-  startCharging() async {
-    repository.startCharging("", "");
+  void setData(String name) {
+    chargerNameObs.value = name;
+    Log.d(tag, "Set Data :: $name");
   }
 
-  void getChargerList() async {
-    String chargerJson = await Storage().read(Storage.CURRENT_CHARGER_DATA);
-    if (chargerJson != null) {
-      Charger charger = Charger().chargerFromJson(chargerJson);
-      Log.d(tag, "getChargerList() :: Data $charger");
-      List<Charger> list = <Charger>[];
-      list.add(charger);
-      chargerName.value = charger.chargerName;
-      // chargerName.update((val) {
-      //   Log.d(tag, "Update :: Data $val");
-      // });
-      chargerName.refresh();
-     // chargerList = list;
-    }
-  }
+  // startCharging() async {
+  //   repository.startCharging("", "");
+  // }
 
   @override
   void onInit() {

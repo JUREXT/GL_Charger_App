@@ -7,6 +7,8 @@ import 'package:gl_charge_app/pages/main_views/chargers_screen/chargers_screen.d
 import 'package:gl_charge_app/pages/main_views/settings/settings_screen.dart';
 import 'package:gl_charge_app/pages/main_views/shop_screen.dart';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/utils/delay_helper.dart';
+import 'package:gl_charge_app/utils/log.dart';
 
 import 'main_screen_holder_controller.dart';
 
@@ -23,22 +25,24 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
   int currentIndex = 1;
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void dispose() {
     controllerMain.pageController.dispose();
     super.dispose();
   }
 
-  void whenOnTap(int index, bool outSide) {
-    log("WhenOnTap Index: $index");
+  Future<void> switchTabOnTap(int index) async {
+    Log.d(tag, "Tab Index: $index");
     currentIndex = index;
-    controllerMain.goToChargeTab(currentIndex, false);
+    controllerMain.switchTabToNewIndex(index);
   }
 
   @override
   Widget build(BuildContext context) {
-    // var data = Get.arguments;
-    // Log.d(tag, "Passed Data: $data");
-
     return WillPopScope(
       onWillPop: () async => false, // TODO: this will disable back button press on android
       child: Scaffold(
@@ -48,7 +52,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
           unselectedItemColor: Constants.ColorWhite, // TODO: needs to be ColorLightGrey, but not looking good
           type: BottomNavigationBarType.fixed,
           currentIndex: currentIndex,
-          onTap: (index) => whenOnTap(index, false),
+          onTap: (index) => switchTabOnTap(index),
           items: [
             // BottomNavigationBarItem(
             //   icon: Icon(Icons.account_circle),

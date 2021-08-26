@@ -17,6 +17,7 @@ class ChargersScreen extends StatefulWidget {
 
 class _ChargersScreenState extends State<ChargersScreen> {
   final tag = "ChargersScreen";
+
   ChargersController controller = Get.find();
   MainScreenHolderController controllerMain = Get.find();
 
@@ -44,7 +45,7 @@ class _ChargersScreenState extends State<ChargersScreen> {
                   onSelectedChargerCallback: (Charger charger) async {
                     Log.d(tag, "onSelectedChargerCallback: " + charger.toString());
                     await Storage().write(Storage.CURRENT_CHARGER_DATA, Charger().chargerToJson(charger));
-                    controllerMain.goToChargeTab(1, false);
+                    controllerMain.switchTabToNewIndex(1);
                   },
                 );
               },

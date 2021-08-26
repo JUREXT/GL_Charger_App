@@ -45,7 +45,7 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
                   onSelectedChargerCallback: (Charger charger) async {
                     Log.d(tag,"onSelectedChargerCallback: " + charger.toString());
                     await Storage().write(Storage.CURRENT_CHARGER_DATA, Charger().chargerToJson(charger));
-                    Navigation.toNamed(Routes.MAIN_TAB_HOLDER, true.toString());
+                    Navigation.toNamed(Routes.MAIN_TAB_HOLDER, null);
                   },
                 );
               },
