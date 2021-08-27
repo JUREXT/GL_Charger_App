@@ -8,16 +8,28 @@ import 'package:gl_charge_app/stateless_widget_components/charge_session.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
+import 'package:provider/provider.dart';
 import 'charge_controller.dart';
+import 'charge_notifier.dart';
 
-class ChargeScreen extends StatefulWidget {
-  ChargeScreen({Key key}) : super(key: key);
-
+class ChargeScreen extends StatelessWidget {
   @override
-  _ChargeScreenState createState() => _ChargeScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+        create: (_) => ChargeNotifier(), child: ChargeScreen2()
+    );
+  }
 }
 
-class _ChargeScreenState extends State<ChargeScreen> {
+class ChargeScreen2 extends StatefulWidget {
+  ChargeScreen2({Key key}) : super(key: key);
+
+  @override
+  _ChargeScreen2State createState() => _ChargeScreen2State();
+}
+
+
+class _ChargeScreen2State extends State<ChargeScreen2> {
   final tag = "ChargeScreen";
 
   ChargeController controller = Get.find();
@@ -35,10 +47,12 @@ class _ChargeScreenState extends State<ChargeScreen> {
   @override
   Widget build(BuildContext context) {
 
+    final cn = Provider.of<ChargeNotifier>(context);
+
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          appBar: AppBar2(title1: "Home", title2: controller.chargerNameObs.toString()),
+          appBar: AppBar2(title1: "Home", title2: cn.chargerName),
           backgroundColor: Constants.ColorLightGrey,
           body: SingleChildScrollView(
             child: Padding(

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gl_charge_app/pages/main_views/charge/charge_controller.dart';
@@ -7,7 +6,6 @@ import 'package:gl_charge_app/pages/main_views/chargers_screen/chargers_screen.d
 import 'package:gl_charge_app/pages/main_views/settings/settings_screen.dart';
 import 'package:gl_charge_app/pages/main_views/shop_screen.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:gl_charge_app/utils/delay_helper.dart';
 import 'package:gl_charge_app/utils/log.dart';
 
 import 'main_screen_holder_controller.dart';
@@ -35,7 +33,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
     super.dispose();
   }
 
-  Future<void> switchTabOnTap(int index) async {
+  void switchTabOnTap(int index) {
     Log.d(tag, "Tab Index: $index");
     currentIndex = index;
     controllerMain.switchTabToNewIndex(index);

@@ -3,7 +3,6 @@ import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/network/fake_data.dart';
 import 'package:gl_charge_app/network/modern_networking/api_response.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
-import 'package:gl_charge_app/utils/delay_helper.dart';
 
 class SelectChargerController extends GetxController {
   final tag = "SelectChargerController";
@@ -20,7 +19,7 @@ class SelectChargerController extends GetxController {
 
   Future<List<Charger>> getAllChargersByUser() async {
     var chargerList = listOfChargersFake;
-    await DelayHelper.delay(1);
+    //await DelayHelper.delay(1);
     return chargerList;
   }
 
