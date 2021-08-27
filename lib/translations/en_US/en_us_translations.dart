@@ -1,4 +1,5 @@
-final Map<String, String> enUs = {
+final Map<String, String> enUS = {
   'test' : 'Test',
-  'continue' : 'Continue'
+  'continue' : 'Continue',
+  'logout' : 'Logout'
 };

@@ -1,9 +1,0 @@
-{
-  "hello": "¡ Hola !",
-  "fruits": {
-    "banana": "Plátano",
-    "apple": "Manzana",
-    "cherry": "Cereza"
-  },
-  "format": "Hola Sr. {name}."
-}

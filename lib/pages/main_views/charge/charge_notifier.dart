@@ -10,7 +10,7 @@ class ChargeNotifier extends ChangeNotifier {
     setNewCharger();
   }
 
-  String chargerName = "2";
+  String chargerName = "";
 
   Future<void> setNewCharger() async {
     Charger charger = await getData();

@@ -1,9 +1,0 @@
-{
-  "hello": "Hello !",
-  "fruits": {
-    "banana": "Banana",
-    "apple": "Apple",
-    "cherry": "Cherry"
-  },
-  "format": "Hello Mr. {name}."
-}

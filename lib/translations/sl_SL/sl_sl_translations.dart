@@ -1,4 +1,5 @@
 final Map<String, String> slSl = {
   'test' : 'Poskušanje',
-  'continue' : 'Nadaljuj'
+  'continue' : 'Nadaljuj',
+  'logout' : 'Izpis'
 };

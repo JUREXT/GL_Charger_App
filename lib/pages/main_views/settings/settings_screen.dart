@@ -5,8 +5,8 @@ import 'package:gl_charge_app/pages/main_views/settings/settings_controller.dart
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/settings_divider.dart';
 import 'package:gl_charge_app/stateless_widget_components/settings_list_item.dart';
+import 'package:gl_charge_app/translations/app_translations.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import '../../../utils/constants.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -18,9 +18,31 @@ class _SettingScreenState extends State<SettingScreen> {
   final tag = "SettingScreen";
   final controller = Get.find<SettingsController>();
 
-  @override
-  void initState() {
-    super.initState();
+  showLocaleDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+              title: Text("Choose lang"),
+              content: Container(
+                width: double.maxFinite,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                    itemBuilder: (context, index) => InkWell(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Text(locales[index]["name"]),
+                          ),
+                          onTap: () => { updatedLocale(locales[index]["locale"], context) },
+                        ),
+                    separatorBuilder: (context, index) => SettingsDivider(),
+                    itemCount: 2),
+              ),
+            ));
+  }
+
+  updatedLocale(Locale l, BuildContext ctx) {
+    Navigator.of(ctx).pop();
+    Get.updateLocale(l);
   }
 
   @override
@@ -66,7 +88,10 @@ class _SettingScreenState extends State<SettingScreen> {
               // SettingsListItem(title: "Authentication", onSettingsItemCallback: () => { print("Authentication Clicked") }),
               // SettingsDivider(),
 
-              SettingsListItem(title: "Logout", onSettingsItemCallback: () async => await controller.signOut()),
+              SettingsListItem(title: "Set Lang", onSettingsItemCallback: () => { showLocaleDialog(context) }),
+              SettingsDivider(),
+
+              SettingsListItem(title: "logout".tr, onSettingsItemCallback: () async => await controller.signOut()),
               SettingsDivider(),
 
             ],
