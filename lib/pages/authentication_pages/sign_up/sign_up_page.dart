@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +17,6 @@ import 'package:gl_charge_app/utils/navigation.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/delay_helper.dart';
 import 'package:gl_charge_app/utils/log.dart';
-import 'package:gl_charge_app/utils/snack_bar.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -63,33 +61,33 @@ class _SignUpPageState extends State<SignUpPage> {
               switch(result.value.status) {
                 case Status.IDLE:
                   Log.i(tag, "IDLE");
-                  return ButtonYellow(text: "Create an account", onPressed: () => registerClick());
+                  return ButtonYellow(text: "create_account".tr, onPressed: () => registerClick());
                   break;
                 case Status.LOADING:
                   Log.i(tag, "LOADING");
-                  return CircularLoader(text: "Registering...", visibleProgress: true);
+                  return CircularLoader(text: "registering".tr, visibleProgress: true);
                   break;
                 case Status.SUCCESS:
                   var registerRes = result.value.data as RegisterResponseModel;
                   Log.i(tag, "SUCCESS : " + registerRes.success.toString());
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-                    Get.snackbar("Account created", "You can sign in now!");
+                    Get.snackbar("account_created".tr, "account_created_sign_in".tr);
                     await DelayHelper.delay(3);
                     Navigation.toNamed(Routes.SIGN_IN, null); // TODO: pass email back to sign in
                   });
-                  return ButtonYellow(text: "Create an account", onPressed: () => { });
+                  return ButtonYellow(text: "create_account".tr, onPressed: () => { });
                   break;
                 case Status.ERROR:
                   var status = ""; // result.value.data as bool;
                   var message = result.value.message;
                   Log.i(tag, "ERROR : " + status.toString() + " Message: " + message);
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                    Get.snackbar("Problem Registering", message);
+                    Get.snackbar("problem_registering".tr, "");
                   });
-                  return ButtonYellow(text: "Create an account", onPressed: () => registerClick());
+                  return ButtonYellow(text: "create_account".tr, onPressed: () => registerClick());
                   break;
               }
-              return ButtonYellow(text: "Create an account", onPressed: () => registerClick());
+              return ButtonYellow(text: "create_account".tr, onPressed: () => registerClick());
             },
           ));
     }
@@ -106,18 +104,18 @@ class _SignUpPageState extends State<SignUpPage> {
               return Column(
               children: [
                 SizedBox(height: 30),
-                AuthScreenImageTitle(title: "Create and account"),
+                AuthScreenImageTitle(title: "create_an_account".tr),
                 SizedBox(height: 30),
-                EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
-                PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
-                PasswordInput(hintText: "Repeat password", labelText: "Repeat password", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordRepeatTextController),
+                EmailInput(hintText: "your_email_hint".tr, labelText: "your_email".tr, autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
+                PasswordInput(hintText: "create_strong_password_hint".tr, labelText: "your_password".tr, autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
+                PasswordInput(hintText: "repeat_password_hint".tr, labelText: "repeat_password".tr, autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordRepeatTextController),
                 reactiveContainer(),
                 SizedBox(height: 20),
                 AuthScreenBottomView(
-                    accountText: "Already have an account?",
-                    accountClickText: "Sign In",
-                    privacyText1: "By signing up you agree to our ",
-                    privacyText2: "Privacy Policy and Terms",
+                    accountText: "already_account".tr,
+                    accountClickText: "sign_up".tr,
+                    privacyText1: "privacy_policy_1".tr,
+                    privacyText2: "privacy_policy_2".tr,
                     onPrivacyCallback: () => privacyClick(),
                     onActionCallback: () => signInActionClick()),
                   ],

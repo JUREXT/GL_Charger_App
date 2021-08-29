@@ -62,7 +62,7 @@ class _SignInPageState extends State<SignInPage> {
                   break;
                 case Status.LOADING:
                   Log.i(tag, "LOADING");
-                  return CircularLoader(text: "Signing In...", visibleProgress: true);
+                  return CircularLoader(text: "signing_in".tr, visibleProgress: true);
                   break;
                 case Status.SUCCESS:
                   var ok = result.value.data as TestObj;
@@ -77,7 +77,7 @@ class _SignInPageState extends State<SignInPage> {
                   var message = result.value.message;
                   Log.i(tag, "ERROR : " + status.toString() + " Message: " + message);
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                     Get.snackbar("Problem Signing In", message);
+                     Get.snackbar("signing_in_error".tr, "");
                   });
                   return ButtonYellow(text: "continue".tr, onPressed: () => signInClick());
                   break;
@@ -97,19 +97,19 @@ class _SignInPageState extends State<SignInPage> {
           return Column(
             children: [
               SizedBox(height: 30),
-              AuthScreenImageTitle(title: "Sign In"),
+              AuthScreenImageTitle(title: "sig_in".tr),
               SizedBox(height: 30),
-              EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
-              PasswordInput(hintText: "Create a strong password", labelText: "Your password", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
+              EmailInput(hintText: "your_email_hint".tr, labelText: "your_email".tr, autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
+              PasswordInput(hintText: "create_strong_password_hint".tr, labelText: "your_password".tr, autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
               reactiveContainer(),
               SizedBox(height: 10),
-              Align(alignment: Alignment.centerLeft, child: ButtonText(text: "Forgot password?", onPressed: () => forgotPasswordClick(), textSize: 15.0, textColor: Constants.ColorYellow, textDecoration: TextDecoration.underline)),
+              Align(alignment: Alignment.centerLeft, child: ButtonText(text: "forgot_password".tr, onPressed: () => forgotPasswordClick(), textSize: 15.0, textColor: Constants.ColorYellow, textDecoration: TextDecoration.underline)),
               SizedBox(height: 20),
               AuthScreenBottomView(
-                  accountText: "Don't have account?",
-                  accountClickText: "Sign Up",
-                  privacyText1: "By signing up you agree to our ",
-                  privacyText2: "Privacy Policy and Terms",
+                  accountText: "no_account".tr,
+                  accountClickText: "sign_up".tr,
+                  privacyText1: "privacy_policy_1".tr,
+                  privacyText2: "privacy_policy_2".tr,
                   onPrivacyCallback: () => privacyClick(),
                   onActionCallback: () => signUpActionClick()),
                 ],
@@ -131,6 +131,6 @@ class _SignInPageState extends State<SignInPage> {
 
   forgotPasswordClick() {
     Log.i(tag, "forgotPasswordClick");
-    Navigation.toNamed(Routes.FORGOT_PASSWORD, "test");
+    Navigation.toNamed(Routes.FORGOT_PASSWORD, "test"); // TODO: check and update
   }
 }

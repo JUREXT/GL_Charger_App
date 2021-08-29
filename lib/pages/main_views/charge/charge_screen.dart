@@ -52,7 +52,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          appBar: AppBar2(title1: "Home", title2: cn.chargerName),
+          appBar: AppBar2(title1: "Home", title2: cn.chargerName), // TODO: later when charger will be defined, update title in toolbar
           backgroundColor: Constants.ColorLightGrey,
           body: SingleChildScrollView(
             child: Padding(
@@ -66,17 +66,17 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                       children: [
                         Row(
                           children: [
-                            ChargeECard(title: "CURRENT", value: "$_currentSliderValue", valueSign: "A"),
+                            ChargeECard(title: "charge_current".tr, value: "$_currentSliderValue", valueSign: "A"),
                             SizedBox(width: 10),
-                            ChargeECard(title: "ENERGY", value: "$_currentSliderValue", valueSign: "A"),
+                            ChargeECard(title: "charge_energy".tr, value: "$_currentSliderValue", valueSign: "A"),
                           ],
                         ),
                         SizedBox(height: 15),
                         Row(
                           children: [
-                            ChargeECard(title: "POWER", value: "$_currentSliderValue", valueSign: "A"),
+                            ChargeECard(title: "charge_power".tr, value: "$_currentSliderValue", valueSign: "A"),
                             SizedBox(width: 10),
-                            ChargeECard(title: "DURATION", value: "$_currentSliderValue", valueSign: "A"),
+                            ChargeECard(title: "charge_duration".tr, value: "$_currentSliderValue", valueSign: "A"),
                           ],
                         )
                       ],
@@ -92,10 +92,11 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          TextCustom(text: "Charging Current:", textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                          TextCustom(text: "charge_charging_current".tr, textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                           SizedBox(width: 3),
-                          TextCustom(text: "$_currentSliderValue A", textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
-                          TextCustom(text: "A", textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                          TextCustom(text: "$_currentSliderValue", textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                          SizedBox(width: 3),
+                          TextCustom(text: "charge_amp_unit".tr, textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                         ],
                       ),
                     ),
@@ -139,8 +140,8 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          TextCustom(text: "MIN", textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
-                          TextCustom(text: "MAX", textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
+                          TextCustom(text: "charge_min".tr, textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
+                          TextCustom(text: "charge_max".tr, textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
                         ],
                       ),
                     ),
@@ -163,14 +164,14 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                      // elevation: 16,
                      // style: TextStyle(color: Colors.black),
                       items: <String>[
-                        'MAX POWER',
-                        'Economy',
+                        'charge_option_max_power'.tr,
+                        'charge_option_economy'.tr,
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: TextCustom(text: value, textSize: 14.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none));
                       }).toList(),
-                      hint: TextCustom(text: "Charging Profile", textSize: 14.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
+                      hint: TextCustom(text: "charge_charging_profile".tr, textSize: 14.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
                       onChanged: (String value) {
                         setState(() {
                           _chosenValue = value;
@@ -186,7 +187,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                   ChargeCircleButton(
                       width: 140.0,
                       height: 140.0,
-                      child: ButtonText(text: "START", onPressed: () => { Log.d(tag, "CircleButton Tap") }, textSize: 22.0, textColor: Constants.ColorWhite, textDecoration: TextDecoration.none),
+                      child: ButtonText(text: "charge_start".tr, onPressed: () => { Log.d(tag, "CircleButton Tap") }, textSize: 22.0, textColor: Constants.ColorWhite, textDecoration: TextDecoration.none),
                       //onTap: () => { Log.d(tag, "CircleButton Tap") },
                   ),
                   SizedBox(height: 20),

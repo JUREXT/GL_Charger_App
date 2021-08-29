@@ -15,7 +15,6 @@ import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/delay_helper.dart';
 import 'package:gl_charge_app/utils/log.dart';
 import 'package:gl_charge_app/utils/url_navigation.dart';
-
 import 'forgot_password_controller.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -55,11 +54,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               switch(result.value.status) {
                 case Status.IDLE:
                   Log.i(tag, "IDLE");
-                  return ButtonYellow(text: "Continue", onPressed: () => forgotPasswordInClick());
+                  return ButtonYellow(text: "continue".tr, onPressed: () => forgotPasswordInClick());
                   break;
                 case Status.LOADING:
                   Log.i(tag, "LOADING");
-                  return CircularLoader(text: "Resetting password...", visibleProgress: true);
+                  return CircularLoader(text: "resetting_password".tr, visibleProgress: true);
                   break;
                 case Status.SUCCESS:
                   var forgotPasswordRes = result.value.data as ForgotPasswordResponseModel;
@@ -69,7 +68,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     await DelayHelper.delay(3);
                     Navigation.toNamed(Routes.SIGN_IN, null); // TODO: pass email back to sign in
                   });
-                  return ButtonYellow(text: "Continue", onPressed: () => { });
+                  return ButtonYellow(text: "continue".tr, onPressed: () => { });
                   break;
                 case Status.ERROR:
                   var status = ""; // result.value.data as bool;
@@ -78,10 +77,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                     Get.snackbar("Problem Signing In", message);
                   });
-                  return ButtonYellow(text: "Continue", onPressed: () => forgotPasswordInClick());
+                  return ButtonYellow(text: "continue".tr, onPressed: () => forgotPasswordInClick());
                   break;
               }
-              return ButtonYellow(text: "Continue", onPressed: () => forgotPasswordInClick());
+              return ButtonYellow(text: "continue".tr, onPressed: () => forgotPasswordInClick());
             },
           ));
     }
@@ -98,16 +97,16 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               return Column(
               children: [
                 SizedBox(height: 30),
-                AuthScreenImageTitle(title: "Forgot Password"),
+                AuthScreenImageTitle(title: "forgot_password".tr),
                 SizedBox(height: 100),
-                EmailInput(hintText: "your@gmail.com", labelText: "Your Email", autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
+                EmailInput(hintText: "your_email_hint".tr, labelText: "your_email".tr, autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
                 reactiveContainer(),
                 SizedBox(height: 100),
                 AuthScreenBottomView(
-                    accountText: "Already have an account?",
-                    accountClickText: "Sign In",
-                    privacyText1: "By signing up you agree to our ",
-                    privacyText2: "Privacy Policy and Terms",
+                    accountText: "already_account".tr,
+                    accountClickText: "sign_in".tr,
+                    privacyText1: "privacy_policy_1".tr,
+                    privacyText2: "privacy_policy_2".tr,
                     onPrivacyCallback: () => privacyClick(),
                     onActionCallback: () => actionSignInClick()),
               ],

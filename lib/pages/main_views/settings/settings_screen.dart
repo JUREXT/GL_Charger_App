@@ -22,7 +22,7 @@ class _SettingScreenState extends State<SettingScreen> {
     showDialog(
         context: context,
         builder: (_) => AlertDialog(
-              title: Text("Choose lang"),
+              title: Text("choose_lang".tr),
               content: Container(
                 width: double.maxFinite,
                 child: ListView.separated(
@@ -30,9 +30,9 @@ class _SettingScreenState extends State<SettingScreen> {
                     itemBuilder: (context, index) => InkWell(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text(locales[index]["name"]),
+                            child: Text(AppTranslation.locales[index]["name"]),
                           ),
-                          onTap: () => { updatedLocale(locales[index]["locale"], context) },
+                          onTap: () => { updatedLocale(AppTranslation.locales[index]["locale"], context) },
                         ),
                     separatorBuilder: (context, index) => SettingsDivider(),
                     itemCount: 2),
@@ -50,7 +50,7 @@ class _SettingScreenState extends State<SettingScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        appBar: AppBar1(title: 'Settings'),
+        appBar: AppBar1(title: 'title_settings'.tr),
         backgroundColor: Constants.ColorLightGrey,
         body: Padding(
           padding: EdgeInsets.all(10.0),
@@ -88,7 +88,7 @@ class _SettingScreenState extends State<SettingScreen> {
               // SettingsListItem(title: "Authentication", onSettingsItemCallback: () => { print("Authentication Clicked") }),
               // SettingsDivider(),
 
-              SettingsListItem(title: "Set Lang", onSettingsItemCallback: () => { showLocaleDialog(context) }),
+              SettingsListItem(title: "language".tr, onSettingsItemCallback: () => { showLocaleDialog(context) }),
               SettingsDivider(),
 
               SettingsListItem(title: "logout".tr, onSettingsItemCallback: () async => await controller.signOut()),

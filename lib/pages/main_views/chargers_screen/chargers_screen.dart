@@ -32,7 +32,7 @@ class _ChargersScreenState extends State<ChargersScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        appBar: AppBar1(title: "Chargers"),
+        appBar: AppBar1(title: "title_chargers".tr),
         backgroundColor: Constants.ColorLightGrey,
         body: Padding(
           padding: EdgeInsets.all(10.0),

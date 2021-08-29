@@ -7,7 +7,6 @@ import 'package:gl_charge_app/pages/main_views/settings/settings_screen.dart';
 import 'package:gl_charge_app/pages/main_views/shop_screen.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
-
 import 'main_screen_holder_controller.dart';
 
 class MainTabsScreenHolder extends StatefulWidget {
@@ -21,11 +20,6 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
   MainScreenHolderController controllerMain = Get.find();
   ChargeController controllerCharge = Get.find();
   int currentIndex = 1;
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -58,15 +52,15 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
             // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.battery_alert_sharp),
-              label: "Chargers",
+              label: "tab_chargers".tr,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.power),
-              label: "Charge",
+              label: "tab_charge".tr,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              label: "Settings",
+              label: "tab_settings".tr,
             ),
             // BottomNavigationBarItem(
             //   icon: Icon(Icons.keyboard),
@@ -74,7 +68,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
             // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_basket),
-              label: "Shop",
+              label: "tab_shop".tr,
             ),
           ],
         ),

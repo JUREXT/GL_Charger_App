@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-
+import 'package:get/get.dart';
 import '../utils/constants.dart';
 
 class ChargerListItem extends StatelessWidget {
 
   final Charger charger;
   final Function(Charger) onSelectedChargerCallback;
-  //final VoidCallback onSelectedVoidCallback;
-
   const ChargerListItem({@required this.charger, @required this.onSelectedChargerCallback});
 
   // Add click ripple -> https://flutter.dev/docs/cookbook/gestures/ripples
@@ -43,9 +41,9 @@ class ChargerListItem extends StatelessWidget {
                         // color: Constants.ColorYellow,
                         child: Padding(
                             padding: EdgeInsets.all(3.0),
-                            child: TextCustom(text: charger.isOnline ? "ONLINE" : "OFFLINE", textSize: 12.0, textColor: Constants.ColorBlack, decoration: TextDecoration.none))),
+                            child: TextCustom(text: charger.isOnline ? "charger_list_item_online".tr : "charger_list_item_off_online".tr, textSize: 12.0, textColor: Constants.ColorBlack, decoration: TextDecoration.none))),
                     SizedBox(width: 5),
-                    TextCustom(text: charger.chargingState ? "Charging" : "Not Charging", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
+                    TextCustom(text: charger.chargingState ? "charger_charging_state_true".tr : "charger_charging_state_false".tr, textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
                   ],
                 ),
               ),
@@ -58,7 +56,7 @@ class ChargerListItem extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.location_on, color: Constants.ColorYellow),
                 title: TextCustom(text: charger.chargerLocation, textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
-                subtitle: TextCustom(text: "Max Power: " + charger.maxPower + " kW", textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
+                subtitle: TextCustom(text: "charger_max_power".tr + charger.maxPower + "charger_max_power_unit".tr, textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
               ),
             ],
           ),
