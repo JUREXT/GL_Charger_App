@@ -15,17 +15,20 @@ Future<void> main() async {
   Log.enableLogger(true);
   Log.i(tag, "Main Started");
   var startPage = (await Storage().hasSession()) ? Routes.MAIN_TAB_HOLDER : AppPages.INITIAL;
-  runApp(MyApp(startPage));
+  Locale locale = await Storage().getLocale();
+  runApp(MyApp(startPage, locale));
 }
 
 class MyApp extends StatelessWidget {
   final String startPage;
-  MyApp (this.startPage);
+  final Locale locale;
+  MyApp (this.startPage, this.locale);
 
   @override
   Widget build(BuildContext context) {
     var tag ="MyApp";
     Log.d(tag, "Start Screen Based on Session Availability: $startPage");
+    Log.d(tag, "Current Locale: $locale");
 
     return GetMaterialApp(
      // title: 'App',
@@ -42,8 +45,8 @@ class MyApp extends StatelessWidget {
       initialBinding: SignInBinding(),
       initialRoute: startPage,
       getPages: AppPages.routes,
-      locale: Get.deviceLocale,
-      fallbackLocale: Locale("en", "US"),
+      locale: locale,
+      fallbackLocale: AppTranslation.enLocale, // Locale("en", "US"),
       translationsKeys: AppTranslation.translations,
     );
   }

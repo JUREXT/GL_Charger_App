@@ -10,8 +10,13 @@ abstract class AppTranslation {
     'sl_SI': slSl
   };
 
+  static const localeNameUS = 'English';
+  static const localeNameSI = 'Slovenian';
+  static const Locale enLocale = Locale("en", "US");
+  static const Locale slLocale = Locale("sl", "SI");
+
   static const locales = [
-    {"name": "English", "locale": Locale("en", "US")},
-    {"name": "Slovenian", "locale": Locale("sl", "SI")}
+    {"name": localeNameUS, "locale": enLocale },
+    {"name": localeNameSI, "locale": slLocale }
   ];
 }

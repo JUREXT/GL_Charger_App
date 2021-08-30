@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gl_charge_app/translations/app_translations.dart';
 
 class Storage {
   var storage;
   static const SESSION_DATA = 'session_data'; // null can be stored and checked
   static const CURRENT_CHARGER_DATA = 'current_charger'; // null can be stored and checked
+  static const CURRENT_LOCALE_DATA = 'current_locale'; // null can be stored and checked
 
   Storage() {
     storage = GetStorage();
@@ -27,6 +30,25 @@ class Storage {
       return false;
     } else {
       return true;
+    }
+  }
+
+  Future<void> setLocale(String localeName) async {
+    await Storage().write(Storage.CURRENT_LOCALE_DATA, localeName);
+  }
+
+  Future<Locale> getLocale() async {
+    String localeName = await Storage().read(Storage.CURRENT_LOCALE_DATA);
+    if (localeName != null) {
+      if (localeName == AppTranslation.localeNameUS) {
+        return AppTranslation.enLocale;
+      } else if (localeName == AppTranslation.localeNameSI) {
+        return AppTranslation.slLocale;
+      } else {
+        return AppTranslation.enLocale;
+      }
+    } else {
+      return AppTranslation.enLocale;
     }
   }
 }

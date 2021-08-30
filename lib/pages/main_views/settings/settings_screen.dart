@@ -7,6 +7,7 @@ import 'package:gl_charge_app/stateless_widget_components/settings_divider.dart'
 import 'package:gl_charge_app/stateless_widget_components/settings_list_item.dart';
 import 'package:gl_charge_app/translations/app_translations.dart';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/utils/storage.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -32,7 +33,10 @@ class _SettingScreenState extends State<SettingScreen> {
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: Text(AppTranslation.locales[index]["name"]),
                           ),
-                          onTap: () => { updatedLocale(AppTranslation.locales[index]["locale"], context) },
+                          onTap: () async => {
+                            updatedLocale(AppTranslation.locales[index]["locale"], context),
+                            await Storage().setLocale(AppTranslation.locales[index]["name"])
+                          },
                         ),
                     separatorBuilder: (context, index) => SettingsDivider(),
                     itemCount: 2),
