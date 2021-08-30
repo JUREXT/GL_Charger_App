@@ -5,7 +5,7 @@ import 'package:gl_charge_app/pages/main_views/settings/settings_controller.dart
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/settings_divider.dart';
 import 'package:gl_charge_app/stateless_widget_components/settings_list_item.dart';
-import 'package:gl_charge_app/translations/app_translations.dart';
+import 'package:gl_charge_app/translations/app_locale.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/storage.dart';
 
@@ -31,11 +31,11 @@ class _SettingScreenState extends State<SettingScreen> {
                     itemBuilder: (context, index) => InkWell(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: Text(AppTranslation.locales[index]["name"]),
+                            child: Text(AppLocaleList.locales[index]["name"]),
                           ),
                           onTap: () async => {
-                            updatedLocale(AppTranslation.locales[index]["locale"], context),
-                            await Storage().setLocale(AppTranslation.locales[index]["name"])
+                            updatedLocale(AppLocaleList.locales[index]["locale"], context),
+                            await Storage().setLocale(AppLocaleList.locales[index]["name"])
                           },
                         ),
                     separatorBuilder: (context, index) => SettingsDivider(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_binding.dart';
+import 'package:gl_charge_app/translations/app_locale.dart';
 import 'package:gl_charge_app/utils/storage.dart';
 import 'routes/app_pages.dart';
 import 'translations/app_translations.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
       initialRoute: startPage,
       getPages: AppPages.routes,
       locale: locale,
-      fallbackLocale: AppTranslation.enLocale, // Locale("en", "US"),
+      fallbackLocale: AppLocaleList.localeUS.locale,
       translationsKeys: AppTranslation.translations,
     );
   }

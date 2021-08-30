@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:gl_charge_app/translations/app_translations.dart';
+import 'package:gl_charge_app/translations/app_locale.dart';
 
 class Storage {
   var storage;
@@ -40,15 +40,15 @@ class Storage {
   Future<Locale> getLocale() async {
     String localeName = await Storage().read(Storage.CURRENT_LOCALE_DATA);
     if (localeName != null) {
-      if (localeName == AppTranslation.localeNameUS) {
-        return AppTranslation.enLocale;
-      } else if (localeName == AppTranslation.localeNameSI) {
-        return AppTranslation.slLocale;
+      if (localeName == AppLocaleList.localeUS.localeName) {
+        return AppLocaleList.localeUS.locale;
+      } else if (localeName == AppLocaleList.localeSI.localeName) {
+        return AppLocaleList.localeSI.locale;
       } else {
-        return AppTranslation.enLocale;
+        return AppLocaleList.localeSI.locale;
       }
     } else {
-      return AppTranslation.enLocale;
+      return AppLocaleList.localeSI.locale;
     }
   }
 }
