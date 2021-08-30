@@ -72,6 +72,9 @@ final Map<String, String> slSl = {
   // Shop Screen
   'shop_web_page': 'Nadaljujte z nakupovanjem na spletni strani',
 
+  // Select Charger Screen
+  'title_select_charger': 'Seznam polnilnikov',
+
   // Navigation tabs
   'tab_chargers': 'Polnilniki',
   'tab_charge': 'Polnilec',

@@ -63,7 +63,6 @@ final Map<String, String> enUS = {
   'session_unit': 'kW',
   'session_duration': 'Duration:',
 
-
   // Setting Screen
   'choose_lang': 'Choose Language',
   'title_settings': 'Settings',
@@ -72,6 +71,9 @@ final Map<String, String> enUS = {
 
   // Shop Screen
   'shop_web_page': 'Continue to shop Web page',
+
+  // Select Charger Screen
+  'title_select_charger': 'Charger List',
 
   // Navigation tabs
   'tab_chargers': 'Chargers',
