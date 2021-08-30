@@ -47,7 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
        var randInt = rand.nextInt(100).toString();
       // controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, randInt + "test@test.si", "password" + randInt);
       if (_formKey.currentState.validate() && _passwordTextController.text == _passwordRepeatTextController.text) {
-        await controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, _emailTextController.text, _passwordTextController.text); // username, firstname, lastname, email, password // TODO: needs api updated
+       // await controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, _emailTextController.text, _passwordTextController.text); // username, firstname, lastname, email, password // TODO: needs api updated
       } else {
         Log.d(tag, "Input forms not valid!");
       }

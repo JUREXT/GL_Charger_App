@@ -40,7 +40,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       Log.i(tag, "forgotPasswordInClick");
      // await controller.forgotPassword("lokovsek.jure@gmail.com");
       if (_formKey.currentState.validate()) {
-        await controller.forgotPassword(_emailTextController.text);
+       // await controller.forgotPassword(_emailTextController.text);
       } else {
         Log.d(tag, "Input forms not valid!");
       }
