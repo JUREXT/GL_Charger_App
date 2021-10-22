@@ -49,6 +49,9 @@ final Map<String, String> enUS = {
   // Chargers Screen
   'title_chargers': 'Chargers',
 
+  // Charge Session History
+  'title_charger_session': 'Sessions',
+
   // Charger List Item
   'charger_list_item_online': 'ONLINE',
   'charger_list_item_off_online': 'OFFLINE',
@@ -80,4 +83,5 @@ final Map<String, String> enUS = {
   'tab_charge': 'Charge',
   'tab_settings': 'Settings',
   'tab_shop': 'Shop',
+  'tab_charge_session_history': 'Session',
 };

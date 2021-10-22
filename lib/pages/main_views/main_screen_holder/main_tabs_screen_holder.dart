@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:gl_charge_app/pages/main_views/charge/charge_controller.dart';
 import 'package:gl_charge_app/pages/main_views/charge/charge_screen.dart';
 import 'package:gl_charge_app/pages/main_views/chargers_screen/chargers_screen.dart';
+import 'package:gl_charge_app/pages/main_views/session_history/charge_session_screen.dart';
 import 'package:gl_charge_app/pages/main_views/settings/settings_screen.dart';
-import 'package:gl_charge_app/pages/main_views/shop_screen.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
 import 'main_screen_holder_controller.dart';
@@ -48,7 +48,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
           items: [
             // BottomNavigationBarItem(
             //   icon: Icon(Icons.account_circle),
-            //   label: "Users", // TODO: string need to be translated later
+            //   label: "Users",
             // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.battery_alert_sharp),
@@ -68,7 +68,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
             // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_basket),
-              label: "tab_shop".tr,
+              label: "tab_charge_session_history".tr,
             ),
           ],
         ),
@@ -85,7 +85,8 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
             ChargeScreen(),
             SettingScreen(),
            // DevToolsScreen(),
-            ShopScreen()
+            ChargeSessionScreen()
+           // ShopScreen()
           ],
         ),
       ),

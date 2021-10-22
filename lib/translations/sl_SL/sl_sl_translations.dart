@@ -49,6 +49,9 @@ final Map<String, String> slSl = {
   // Chargers Screen
   'title_chargers': 'Polnilniki',
 
+  // Charge Session History
+  'title_charger_session': 'Seje',
+
   // Charger List Item
   'charger_list_item_online': 'ONLINE',
   'charger_list_item_off_online': 'OFFLINE',
@@ -80,4 +83,5 @@ final Map<String, String> slSl = {
   'tab_charge': 'Polnilec',
   'tab_settings': 'Nastavitve',
   'tab_shop': 'Trgovina',
+  'tab_charge_session_history': 'Seje',
 };
