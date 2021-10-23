@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
-import 'package:gl_charge_app/network/modern_networking/api_response.dart';
+import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
 import 'package:gl_charge_app/utils/log.dart';
 
 class ChargeController extends GetxController {
   final tag = "ChargeController";
   Repository repository;
-  Rx<ApiResponse> apiChargersResponse = Rx<ApiResponse>(ApiResponse.idle());
+  Rx<Resource> apiChargersResponse = Rx<Resource>(Resource.idle());
 
   // startCharging() async {
   //   repository.startCharging("", "");
@@ -28,6 +28,6 @@ class ChargeController extends GetxController {
   @override
   void onClose() {
     Log.d(tag, "onClose");
-    apiChargersResponse(ApiResponse.idle());
+    apiChargersResponse(Resource.idle());
   }
 }

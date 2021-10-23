@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/models/forgot_password_response_model.dart';
-import 'package:gl_charge_app/network/modern_networking/api_response.dart';
+import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
 import 'package:gl_charge_app/stateless_widget_components/auth_screen_bottom_view.dart';

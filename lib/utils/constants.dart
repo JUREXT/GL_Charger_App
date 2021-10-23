@@ -1,26 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+enum BaseApiUrlType {
+  PRODUCTION, DEVELOPER
+}
 class Constants {
   // REST Api related strings
-  static const String liveBaseURLTest = "https://jsonplaceholder.typicode.com";
-  static const String liveBaseURL = "https://home.dev.glcharge.com/api/v1";
   static const String localBaseURL = "http://10.0.2.2:4000/api/v1";
-  static const String baseURL = liveBaseURL;
+
+  static const String baseUrlTest = "https://jsonplaceholder.typicode.com";
+
+  static const String chargeSessionByUserEp = "/posts";
+  static const String startChargingEp = "/charger/start";
+  static const String userEp = "https://reqres.in/api/login"; // https://reqres.in/api/login
+  static const String userOutEp = "https://reqres.in/api/users?delay=3";
+
+  static const String liveBaseUrlProduction = "https://home.dev.glcharge.com/api/v1";
+
   static const String logInEp = "/login";
   static const String signOutEp = "/logout";
   static const String registerEp = "/register";
   static const String forgotPasswordEp = "/resetPassword";
   static const String allChargersByUserEp = "/charger/getAllByUser";
-  static const String startChargingEp = "/charger/start";
-  static const String testEndPoint = "/users/1";
-  String getBaseUrl(bool setTestUrl) {
-    if(setTestUrl) return liveBaseURLTest;
-    return baseURL;
+
+
+
+  String getBaseUrl(BaseApiUrlType type) {
+    if (type == BaseApiUrlType.PRODUCTION) {
+      return liveBaseUrlProduction;
+    }
+    return baseUrlTest;
   }
 
   // App related strings
-  static String appName = "GL Charger";
+  static String appName = "GL Charge";
   // Privacy and shop related strings
   static const shopUrl = "https://www.google.com/";
   static const privacyPolicyUrl = "https://www.google.com/";

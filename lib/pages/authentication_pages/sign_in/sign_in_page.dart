@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gl_charge_app/network/modern_networking/api_response.dart';
-import 'package:gl_charge_app/network/modern_networking/testing/test_obj.dart';
+import 'package:gl_charge_app/network/models/sign_in_response_model.dart';
+import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_controller.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
@@ -65,8 +65,8 @@ class _SignInPageState extends State<SignInPage> {
                   return CircularLoader(text: "signing_in".tr, visibleProgress: true);
                   break;
                 case Status.SUCCESS:
-                  var ok = result.value.data as TestObj;
-                  Log.i(tag, "SUCCESS : " + ok.id.toString());
+                  var ok = result.value.data as SignInResponseModel;
+                  Log.i(tag, "SUCCESS : " + ok.toString());
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                      Navigation.toNamed(Routes.SELECT_CHARGER, null);
                   });

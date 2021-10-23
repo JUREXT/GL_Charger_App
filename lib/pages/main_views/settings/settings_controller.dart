@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
-import 'package:gl_charge_app/network/modern_networking/testing/api_result.dart';
+import 'package:gl_charge_app/network/modern_networking/api_result.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_page.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/utils/log.dart';

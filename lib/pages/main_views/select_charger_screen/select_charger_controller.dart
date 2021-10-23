@@ -1,13 +1,13 @@
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/network/fake_data.dart';
-import 'package:gl_charge_app/network/modern_networking/api_response.dart';
+import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
 
 class SelectChargerController extends GetxController {
   final tag = "SelectChargerController";
   Repository repository;
-  Rx<ApiResponse> apiChargersResponse = Rx<ApiResponse>(ApiResponse.idle());
+  Rx<Resource> apiChargersResponse = Rx<Resource>(Resource.idle());
 
   final _chargerList = <Charger>[].obs;
   List<Charger> get chargerList => this._chargerList.value;
@@ -37,6 +37,6 @@ class SelectChargerController extends GetxController {
 
   @override
   void onClose() {
-    apiChargersResponse(ApiResponse.idle());
+    apiChargersResponse(Resource.idle());
   }
 }

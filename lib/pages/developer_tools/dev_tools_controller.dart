@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:gl_charge_app/network/modern_networking/api_response.dart';
+import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
 
 class DevToolsController extends GetxController {
   final tag = "DevToolsController";
   Repository repository;
-  Rx<ApiResponse> apiRegisterResponse = Rx<ApiResponse>(ApiResponse.idle());
+  Rx<Resource> apiRegisterResponse = Rx<Resource>(Resource.idle());
 
   @override
   void onInit() {
@@ -20,6 +20,6 @@ class DevToolsController extends GetxController {
 
   @override
   void onClose() {
-    apiRegisterResponse(ApiResponse.idle());
+    apiRegisterResponse(Resource.idle());
   }
 }

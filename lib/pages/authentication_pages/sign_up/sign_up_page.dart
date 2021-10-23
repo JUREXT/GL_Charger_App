@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/models/register_response_model.dart';
-import 'package:gl_charge_app/network/modern_networking/api_response.dart';
+import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_up/sign_up_controller.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar_with_back_navigation.dart';
