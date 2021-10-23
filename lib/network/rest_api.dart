@@ -1,6 +1,6 @@
 import 'package:gl_charge_app/network/user.dart';
 import 'package:http/http.dart';
-import 'modern_networking/api_response.dart';
+import 'modern_networking/resource.dart';
 
 class RestAPI {
 

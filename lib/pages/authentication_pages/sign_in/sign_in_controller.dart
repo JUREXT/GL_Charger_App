@@ -22,9 +22,8 @@ class SignInController extends GetxController {
     var res = await repository.signIn(email, password);
     if(res is SuccessState) {
       var data = res.data as SignInResponseModel;
-
       await Storage().write(Storage.SESSION_DATA, data.toJson().toString()); // TODO: update flow
-      await DelayHelper.delay(2);
+     // await DelayHelper.delay(2);
       Log.d(tag, "Session data ${await Storage().read(Storage.SESSION_DATA)}");
       Log.d(tag, "Data ${data.toString()}");
 

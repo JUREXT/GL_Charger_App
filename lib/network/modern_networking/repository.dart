@@ -22,7 +22,8 @@ class Repository {
 
   Future<ApiResult> signIn(String email, String password) async {
     var paramJson = SignInDataModel(email: email, password: password).toJson();
-    var apiResource = await api.post(Constants.userEp, paramJson);
+    Log.d(tag, "PARAMS: " + paramJson.toString());
+    var apiResource = await api.post(Constants.LOG_IN, paramJson);
     if (apiResource.status == ResponseStatus.POSITIVE) {
       return ApiResult.success(SignInResponseModel.fromJson(apiResource.data));
     } else if (apiResource.status == ResponseStatus.NEGATIVE) {
@@ -33,7 +34,7 @@ class Repository {
   }
 
   Future<ApiResult> signOut() async {
-    var apiRes = await api.post(Constants.userOutEp, null);
+    var apiRes = await api.post(Constants.LOG_OUT, null);
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       return ApiResult.success(SignOutResponseModel.fromJson(apiRes.data));
@@ -45,7 +46,7 @@ class Repository {
 
   Future<ApiResult> register(String username, String firstname, String lastname, String email, String password) async {
     var json = RegisterDataModel(username: username, firstname: firstname, lastname: lastname, email: email, password: password).toJson();
-    var apiRes = await api.post(Constants.registerEp, json);
+    var apiRes = await api.post(Constants.REGISTER, json);
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       return ApiResult.success(RegisterResponseModel.fromJson(apiRes.data));
@@ -57,7 +58,7 @@ class Repository {
 
   Future<ApiResult> forgotPassword(String resetPasswordToken, String password) async {
     var json = ForgotPasswordDataModel(resetPasswordToken: resetPasswordToken, password: password).toJson();
-    var apiRes = await api.post(Constants.forgotPasswordEp, json);
+    var apiRes = await api.post(Constants.RESET_PASSWORD, json);
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       return ApiResult.success(ForgotPasswordResponseModel.fromJson(apiRes.data));
@@ -69,7 +70,7 @@ class Repository {
 
   Future<ApiResult> getAllChargersByUser(int userId) async {
     var json = AllChargersByUserDataModel(userid: userId).toJson();
-    var apiRes = await api.post(Constants.allChargersByUserEp, json);
+    var apiRes = await api.post(Constants.ALL_CHARGERS_BY_USER, json);
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       return ApiResult.success(AllChargersByUserResponseModel.fromJson(apiRes.data));
@@ -81,7 +82,7 @@ class Repository {
 
   Future<ApiResult> startCharging(String id, String profileId) async {
     var json = StartChargingDataModel(id: id, profileId: profileId).toJson();
-    var apiRes = await api.post(Constants.startChargingEp, json);
+    var apiRes = await api.post(/*Constants.startChargingEp*/ "", json); // TODO:
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
@@ -93,7 +94,7 @@ class Repository {
 
   Future<ApiResult> getChargeSessions(int id) async {
     //var json = ChargeSessionDataModel(id: id).toJson();
-    var apiResource = await api.get(Constants.chargeSessionByUserEp);
+    var apiResource = await api.get(/*Constants.chargeSessionByUserEp*/""); // TODO:
     // Log.d(tag, "DIRECT: " + apiRes.data);
 
     //final parsed = jsonDecode(apiRes.data).cast<Map<String, dynamic>>();

@@ -1,15 +1,32 @@
 class SignInResponseModel {
-  String token;
+  String accessToken;
+  String refreshToken;
+  String email;
+  String id;
+  int accessTokenExpiration;
 
-  SignInResponseModel({this.token});
+  SignInResponseModel(
+      {this.accessToken,
+        this.refreshToken,
+        this.email,
+        this.id,
+        this.accessTokenExpiration});
 
   SignInResponseModel.fromJson(Map<String, dynamic> json) {
-    token = json['token'];
+    accessToken = json['accessToken'];
+    refreshToken = json['refreshToken'];
+    email = json['email'];
+    id = json['id'];
+    accessTokenExpiration = json['accessTokenExpiration'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['token'] = this.token;
+    data['accessToken'] = this.accessToken;
+    data['refreshToken'] = this.refreshToken;
+    data['email'] = this.email;
+    data['id'] = this.id;
+    data['accessTokenExpiration'] = this.accessTokenExpiration;
     return data;
   }
 }

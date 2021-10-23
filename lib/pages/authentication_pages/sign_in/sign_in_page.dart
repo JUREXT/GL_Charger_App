@@ -65,8 +65,8 @@ class _SignInPageState extends State<SignInPage> {
                   return CircularLoader(text: "signing_in".tr, visibleProgress: true);
                   break;
                 case Status.SUCCESS:
-                  var ok = result.value.data as SignInResponseModel;
-                  Log.i(tag, "SUCCESS : " + ok.toString());
+                  //var ok = result.value.data as SignInResponseModel;
+                  // Log.i(tag, "SUCCESS : " + ok.toString());
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
                      Navigation.toNamed(Routes.SELECT_CHARGER, null);
                   });

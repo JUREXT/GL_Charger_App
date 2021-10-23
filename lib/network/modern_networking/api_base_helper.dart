@@ -10,7 +10,7 @@ import 'app_exceptions.dart';
 
 class ApiBaseHelper {
   final tag = "ApiBaseHelper";
-  final String _baseUrl = Constants().getBaseUrl(BaseApiUrlType.DEVELOPER);
+  final String _baseUrl = Constants().getBaseUrl();
   Client client = http.Client();
 
   Future<ApiResponseResource> get(String url) async {
@@ -19,7 +19,7 @@ class ApiBaseHelper {
     Log.d(tag, '$mTag, url $urlPath');
     var apiResource = ApiResponseResource.negative("400");
     try {
-      Response response = await client.get(url, headers: headers()); // TODO: url for testing should be urlPath
+      Response response = await client.get(urlPath, headers: headers());
       apiResource = getApiResponseResourceWithDecodedJson(response, mTag);
     } on SocketException {
       Log.d(tag, '$mTag, No Internet connection');
@@ -35,11 +35,13 @@ class ApiBaseHelper {
     Log.d(tag, '$mTag, url $urlPath');
     var apiResource = ApiResponseResource.negative("400");
     try {
-      Response response = await http.post(url, body: body); // TODO: url for testing should be urlPath
+      Response response = await http.post(urlPath, body: body);
       apiResource = getApiResponseResourceWithDecodedJson(response, mTag);
     } on SocketException {
       Log.d(tag, '$mTag, No Internet connection');
       apiResource = ApiResponseResource.negative('No Internet connection');
+    } on Exception {
+      apiResource = ApiResponseResource.negative('End Point Error');
     }
     Log.d(tag, '$mTag, Completed');
     return apiResource;
