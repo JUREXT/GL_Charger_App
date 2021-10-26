@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:gl_charge_app/network/models/charger_session_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/network/modern_networking/charge_session.dart';

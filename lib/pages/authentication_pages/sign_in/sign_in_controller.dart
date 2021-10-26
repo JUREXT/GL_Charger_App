@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
-import 'package:gl_charge_app/network/models/sign_in_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
+import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/utils/delay_helper.dart';
-import 'package:gl_charge_app/utils/log.dart';
-import 'package:gl_charge_app/utils/storage.dart';
+import 'package:gl_charge_app/utils/navigation.dart';
 
 class SignInController extends GetxController {
   final tag = "SignInController";
@@ -18,18 +17,10 @@ class SignInController extends GetxController {
   signIn(String email, String password) async {
     inputFormEnabled(true);
     apiSignInResponse(Resource.loading(""));
-   // await DelayHelper.delay(2);
-    var res = await repository.signIn(email, password);
+    var res = await repository.signIn(email, password)
     if(res is SuccessState) {
-      var data = res.data as SignInResponseModel;
-      await Storage().write(Storage.SESSION_DATA, data.toJson().toString()); // TODO: update flow
-     // await DelayHelper.delay(2);
-      Log.d(tag, "Session data ${await Storage().read(Storage.SESSION_DATA)}");
-      Log.d(tag, "Data ${data.toString()}");
-
-      apiSignInResponse(Resource.success(data));
-      await DelayHelper.delay(1);
-      //apiSignInResponse(Resource.idle());
+      apiSignInResponse(Resource.success(true));  // TODO: refactor later: no data is needed here to be returned
+      Navigation.toNamed(Routes.SELECT_CHARGER, null);
     } else if(res is ErrorState) {
       inputFormEnabled(true);
       var error = res.error as String;

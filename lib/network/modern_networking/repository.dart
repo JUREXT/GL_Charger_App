@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:gl_charge_app/network/models/all_chargers_by_user_data_model.dart';
 import 'package:gl_charge_app/network/models/all_chargers_by_user_response_model.dart';
 import 'package:gl_charge_app/network/models/charger_session_response_model.dart';
@@ -7,12 +9,14 @@ import 'package:gl_charge_app/network/models/register_data_model.dart';
 import 'package:gl_charge_app/network/models/register_response_model.dart';
 import 'package:gl_charge_app/network/models/sign_in_data_model.dart';
 import 'package:gl_charge_app/network/models/sign_in_response_model.dart';
+import 'package:gl_charge_app/network/models/sign_out_data_model.dart';
 import 'package:gl_charge_app/network/models/sign_out_response_model.dart';
 import 'package:gl_charge_app/network/models/start_charging_data_model.dart';
 import 'package:gl_charge_app/network/models/start_charging_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
+import 'package:gl_charge_app/utils/storage.dart';
 import 'api_base_helper.dart';
 import 'api_response_resource.dart';
 
@@ -21,11 +25,20 @@ class Repository {
   ApiBaseHelper api = ApiBaseHelper();
 
   Future<ApiResult> signIn(String email, String password) async {
-    var paramJson = SignInDataModel(email: email, password: password).toJson();
+
+    // try {
+    //
+    // } catch() {
+    //
+    // }
+
+    var paramJson = SignInDataModel(email: email, password: password).toJson(); // add try cathh
     Log.d(tag, "PARAMS: " + paramJson.toString());
     var apiResource = await api.post(Constants.LOG_IN, paramJson);
     if (apiResource.status == ResponseStatus.POSITIVE) {
-      return ApiResult.success(SignInResponseModel.fromJson(apiResource.data));
+      var model = SignInResponseModel.fromJson(apiResource.data);
+      await Storage().write(Storage.SESSION_DATA, SignInResponseModel().modelToJson(model));
+      return ApiResult.success(true);
     } else if (apiResource.status == ResponseStatus.NEGATIVE) {
       String error = apiResource.error;
       return ApiResult.error(error);
@@ -34,13 +47,26 @@ class Repository {
   }
 
   Future<ApiResult> signOut() async {
-    var apiRes = await api.post(Constants.LOG_OUT, null);
-    if(apiRes.status == ResponseStatus.POSITIVE) {
-      Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
-      return ApiResult.success(SignOutResponseModel.fromJson(apiRes.data));
+    SignInResponseModel signInResponseModel;
+    String signInResponseModelJson = await Storage().read(Storage.SESSION_DATA);
+
+    if (signInResponseModelJson != null) {
+        signInResponseModel = SignInResponseModel().modelFromJson(signInResponseModelJson);
+        var paramJson = SignOutDataModel(refreshToken: signInResponseModel.refreshToken).toJson();
+       // Log.d(tag, "PARAMS: " + paramJson.toString());
+
+        var apiResource = await api.post(Constants.LOG_OUT, paramJson);
+        if(apiResource.status == ResponseStatus.POSITIVE) {
+          await Storage().write(Storage.SESSION_DATA, null);
+          return ApiResult.success(true);
+        } else {
+          await Storage().write(Storage.SESSION_DATA, null);
+          String error = apiResource.error;
+          return ApiResult.error(error);
+        }
     } else {
-      Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
-      return ApiResult.error("Url problem");
+      await Storage().write(Storage.SESSION_DATA, null);
+      return ApiResult.error("No session data");
     }
   }
 

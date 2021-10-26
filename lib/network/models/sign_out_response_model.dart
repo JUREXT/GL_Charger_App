@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
+
 class SignOutResponseModel {
   bool success;
 
-  SignOutResponseModel({this.success});
+  SignOutResponseModel({@required this.success});
 
   SignOutResponseModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];

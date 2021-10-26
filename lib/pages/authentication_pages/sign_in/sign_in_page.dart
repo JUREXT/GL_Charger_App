@@ -68,12 +68,12 @@ class _SignInPageState extends State<SignInPage> {
                   //var ok = result.value.data as SignInResponseModel;
                   // Log.i(tag, "SUCCESS : " + ok.toString());
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                     Navigation.toNamed(Routes.SELECT_CHARGER, null);
+                    // Navigation.toNamed(Routes.SELECT_CHARGER, null);
                   });
                   return ButtonYellow(text: "continue".tr, onPressed: () => {});
                   break;
                 case Status.ERROR:
-                  var status = ""; // result.value.data as bool;
+                  var status = result.value.data as bool;
                   var message = result.value.message;
                   Log.i(tag, "ERROR : " + status.toString() + " Message: " + message);
                   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {

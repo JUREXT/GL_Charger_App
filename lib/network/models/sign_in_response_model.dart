@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class SignInResponseModel {
   String accessToken;
   String refreshToken;
@@ -28,5 +30,13 @@ class SignInResponseModel {
     data['id'] = this.id;
     data['accessTokenExpiration'] = this.accessTokenExpiration;
     return data;
+  }
+
+  SignInResponseModel modelFromJson(String str) => SignInResponseModel.fromJson(json.decode(str));
+  String modelToJson(SignInResponseModel data) => json.encode(data.toJson());
+
+  @override
+  String toString() {
+    return 'SignInResponseModel{accessToken: $accessToken, refreshToken: $refreshToken, email: $email, id: $id, accessTokenExpiration: $accessTokenExpiration}';
   }
 }
