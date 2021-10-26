@@ -8,6 +8,7 @@ final Map<String, String> slSl = {
   'privacy_policy_1': 'S prijavo se strinjate z našo ',
   'privacy_policy_2': 'Politika zasebnosti in pogoji',
   'create_strong_password_hint': 'Ustvarite močno geslo',
+  'enter_password_hint': 'Vnesi geslo',
   'already_account': 'Že imate račun?',
 
   // ForgotPassword

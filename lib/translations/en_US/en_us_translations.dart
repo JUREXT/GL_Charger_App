@@ -8,6 +8,7 @@ final Map<String, String> enUS = {
   'privacy_policy_1': 'By signing up you agree to our ',
   'privacy_policy_2': 'Privacy Policy and Terms',
   'create_strong_password_hint': 'Create a strong password',
+  'enter_password_hint': 'Enter password',
   'already_account': 'Already have an account?',
 
   // ForgotPassword

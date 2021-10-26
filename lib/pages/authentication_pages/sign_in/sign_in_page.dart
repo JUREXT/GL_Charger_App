@@ -100,7 +100,7 @@ class _SignInPageState extends State<SignInPage> {
               AuthScreenImageTitle(title: "sig_in".tr),
               SizedBox(height: 30),
               EmailInput(hintText: "your_email_hint".tr, labelText: "your_email".tr, autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value, controller: _emailTextController),
-              PasswordInput(hintText: "create_strong_password_hint".tr, labelText: "your_password".tr, autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
+              PasswordInput(hintText: "enter_password_hint".tr, labelText: "your_password".tr, autofocus: false, onValueCallback: (value) => { }, formEnabled: controller.inputFormEnabled.value , controller: _passwordTextController),
               reactiveContainer(),
               SizedBox(height: 10),
               Align(alignment: Alignment.centerLeft, child: ButtonText(text: "forgot_password".tr, onPressed: () => forgotPasswordClick(), textSize: 15.0, textColor: Constants.ColorYellow, textDecoration: TextDecoration.underline)),
