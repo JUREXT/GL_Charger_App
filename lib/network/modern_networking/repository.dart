@@ -25,25 +25,22 @@ class Repository {
   ApiBaseHelper api = ApiBaseHelper();
 
   Future<ApiResult> signIn(String email, String password) async {
-
-    // try {
-    //
-    // } catch() {
-    //
-    // }
-
-    var paramJson = SignInDataModel(email: email, password: password).toJson(); // add try cathh
-    Log.d(tag, "PARAMS: " + paramJson.toString());
-    var apiResource = await api.post(Constants.LOG_IN, paramJson);
-    if (apiResource.status == ResponseStatus.POSITIVE) {
-      var model = SignInResponseModel.fromJson(apiResource.data);
-      await Storage().write(Storage.SESSION_DATA, SignInResponseModel().modelToJson(model));
-      return ApiResult.success(true);
-    } else if (apiResource.status == ResponseStatus.NEGATIVE) {
-      String error = apiResource.error;
-      return ApiResult.error(error);
+    try {
+      var paramJson = SignInDataModel(email: email, password: password).toJson();
+      Log.d(tag, "PARAMS: " + paramJson.toString());
+      var apiResource = await api.post(Constants.LOG_IN, paramJson);
+      if (apiResource.status == ResponseStatus.POSITIVE) {
+        var model = SignInResponseModel.fromJson(apiResource.data);
+        await Storage().write(Storage.SESSION_DATA, SignInResponseModel().modelToJson(model));
+        return ApiResult.success(true);
+      } else if (apiResource.status == ResponseStatus.NEGATIVE) {
+        String error = apiResource.error;
+        return ApiResult.error(error);
+      }
+      return ApiResult.error("-1");
+    } catch (ex) {
+      return ApiResult.error("-1");
     }
-    return ApiResult.error("-1");
   }
 
   Future<ApiResult> signOut() async {
