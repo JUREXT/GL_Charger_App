@@ -44,13 +44,14 @@ class Repository {
   }
 
   Future<ApiResult> signOut() async {
-    SignInResponseModel signInResponseModel;
-    String signInResponseModelJson = await Storage().read(Storage.SESSION_DATA);
+    try {
+      SignInResponseModel signInResponseModel;
+      String signInResponseModelJson = await Storage().read(Storage.SESSION_DATA);
 
-    if (signInResponseModelJson != null) {
+      if (signInResponseModelJson != null) {
         signInResponseModel = SignInResponseModel().modelFromJson(signInResponseModelJson);
         var paramJson = SignOutDataModel(refreshToken: signInResponseModel.refreshToken).toJson();
-       // Log.d(tag, "PARAMS: " + paramJson.toString());
+        // Log.d(tag, "PARAMS: " + paramJson.toString());
 
         var apiResource = await api.post(Constants.LOG_OUT, paramJson);
         if(apiResource.status == ResponseStatus.POSITIVE) {
@@ -61,7 +62,11 @@ class Repository {
           String error = apiResource.error;
           return ApiResult.error(error);
         }
-    } else {
+      } else {
+        await Storage().write(Storage.SESSION_DATA, null);
+        return ApiResult.error("No session data");
+      }
+    } catch(ex) {
       await Storage().write(Storage.SESSION_DATA, null);
       return ApiResult.error("No session data");
     }
