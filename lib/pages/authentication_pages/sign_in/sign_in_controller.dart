@@ -21,12 +21,11 @@ class SignInController extends GetxController {
     if(res is SuccessState) {
       apiSignInResponse(Resource.success(true));  // TODO: refactor later: no data is needed here to be returned
       Navigation.toNamed(Routes.SELECT_CHARGER, null);
+      apiSignInResponse(Resource.idle());
     } else if(res is ErrorState) {
       inputFormEnabled(true);
       var error = res.error as String;
       apiSignInResponse(Resource.error(false, error));
-      await DelayHelper.delay(1);
-      apiSignInResponse(Resource.idle());
     }
   }
 
@@ -42,7 +41,5 @@ class SignInController extends GetxController {
   }
 
   @override
-  void onClose() {
-    apiSignInResponse(Resource.idle());
-  }
+  void onClose() { }
 }

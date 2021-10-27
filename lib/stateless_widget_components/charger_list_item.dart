@@ -9,7 +9,9 @@ class ChargerListItem extends StatelessWidget {
 
   final Charger charger;
   final Function(Charger) onSelectedChargerCallback;
-  const ChargerListItem({@required this.charger, @required this.onSelectedChargerCallback});
+  final bool reservedIconVisibility;
+  final GestureTapCallback onReservedIconPressed;
+  const ChargerListItem({@required this.charger, @required this.onSelectedChargerCallback, this.reservedIconVisibility, this.onReservedIconPressed});
 
   // Add click ripple -> https://flutter.dev/docs/cookbook/gestures/ripples
   // Add a click event to any widget of -> https://dev.to/rkowase/how-to-add-a-click-event-to-any-widget-of-flutter-2len
@@ -31,6 +33,8 @@ class ChargerListItem extends StatelessWidget {
             children: [
               ListTile(
                 leading: Container(height: 60, width: 60, child: CircleAvatar(child: Image.asset('assets/images/charging_station.png'), backgroundColor: Constants.ColorYellow)),
+                //trailing: Visibility(visible: true, child: Container(child: IconButton(icon: Icon(Icons.lock_outline), iconSize: 20, color: Colors.green))),
+                trailing: Visibility(visible: reservedIconVisibility, child: Container(child: Material(color: Colors.transparent, child: IconButton(icon: Icon(Icons.lock_clock, color: Colors.white), onPressed: onReservedIconPressed)))),
                 title: TextCustom(text: charger.chargerName, textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                 subtitle: Row(
                   children: [

@@ -42,6 +42,7 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
               itemBuilder: (context, index) {
                 return ChargerListItem(
                   charger: controller.chargerList[index],
+                  reservedIconVisibility: false,
                   onSelectedChargerCallback: (Charger charger) async {
                     Log.d(tag,"onSelectedChargerCallback: " + charger.toString());
                     await Storage().write(Storage.CURRENT_CHARGER_DATA, Charger().chargerToJson(charger));

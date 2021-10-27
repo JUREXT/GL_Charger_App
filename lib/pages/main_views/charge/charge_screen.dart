@@ -83,7 +83,6 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                       ],
                     ),
                   ),
-
                   SizedBox(height: 30),
                   Container(
                     // color: Colors.lightGreen,

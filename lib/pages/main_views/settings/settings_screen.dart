@@ -35,7 +35,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           ),
                           onTap: () async => {
                             updatedLocale(AppLocaleList.locales[index]["locale"], context),
-                            await Storage().setLocale(AppLocaleList.locales[index]["name"])
+                            await Storage().setLocale(AppLocaleList.locales[index]["name"]) // TODO: create a helper later for easy handling code in one place
                           },
                         ),
                     separatorBuilder: (context, index) => SettingsDivider(),

@@ -26,6 +26,7 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
             itemBuilder: (context, index) {
               return ChargerListItem(
                 charger: list[index],
+                reservedIconVisibility: false,
                 onSelectedChargerCallback: (Charger charger) {
                   print("onSelectedChargerCallback: " + charger.toString());
                  // navigate(context);
