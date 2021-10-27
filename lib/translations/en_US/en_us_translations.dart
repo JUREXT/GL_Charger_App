@@ -35,6 +35,7 @@ final Map<String, String> enUS = {
   // Charge Screen
   'charge_current': 'CURRENT',
   'charge_energy': 'ENERGY',
+  'charge_billing': 'BILLING',
   'charge_power': 'POWER',
   'charge_duration': 'DURATION',
   'charge_charging_current': 'Charging Current:',

@@ -59,7 +59,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
               padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
               child: Column(
                 children: [
-                  ChargeSession(consumedEnergy: "150", duration: "1h 30min"),
+                 // ChargeSession(consumedEnergy: "150", duration: "1h 30min"),
                   SizedBox(height: 15),
                   Container(
                     child: Column(
@@ -68,7 +68,8 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                           children: [
                             ChargeECard(title: "charge_current".tr, value: "$_currentSliderValue", valueSign: "A"),
                             SizedBox(width: 10),
-                            ChargeECard(title: "charge_energy".tr, value: "$_currentSliderValue", valueSign: "A"),
+                           // ChargeECard(title: "charge_energy".tr, value: "$_currentSliderValue", valueSign: "A"),
+                            ChargeECard(title: "charge_billing".tr, value: "$_currentSliderValue", valueSign: "€"), // TODO: se rabi še end point
                           ],
                         ),
                         SizedBox(height: 15),
@@ -84,7 +85,6 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                   ),
 
                   SizedBox(height: 30),
-
                   Container(
                     // color: Colors.lightGreen,
                     child: Center(
@@ -92,7 +92,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          TextCustom(text: "charge_charging_current".tr, textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                          TextCustom(text: "charge_charging_current".tr, textSize: 22.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                           SizedBox(width: 3),
                           TextCustom(text: "$_currentSliderValue", textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                           SizedBox(width: 3),
@@ -102,91 +102,91 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                     ),
                   ),
                   SizedBox(height: 30),
-                  Container(
-                    height: 30,
-                   // color: Colors.blue,
-                    child: SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        activeTrackColor: Constants.ColorGreenish,
-                        inactiveTrackColor: Constants.ColorGreenish,
-                        trackShape: RoundedRectSliderTrackShape(),
-                        trackHeight: 13.0,
-                        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                        thumbColor: Constants.ColorYellow,
-                        overlayColor: Constants.ColorYellow,
-                        overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
-                        tickMarkShape: RoundSliderTickMarkShape()
-                      ),
-                      child: Slider(
-                        value: _startSliderValue,
-                        min: 0,
-                        max: 100,
-                       // label: "Value: $_currentSliderValue",
-                        //divisions: 10,
-                        onChanged: (newValue) {
-                          print("Slider Value: " + newValue.toStringAsFixed(0));
-                          setState(() {
-                             _startSliderValue = newValue;
-                             _currentSliderValue = _startSliderValue.toStringAsFixed(0);
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                  Container(
-                   // color: Colors.blue,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          TextCustom(text: "charge_min".tr, textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
-                          TextCustom(text: "charge_max".tr, textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 5),
-            Container(
-             // color: Colors.red,
-             // height: 20,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: Theme(
-                    data: Theme.of(context).copyWith(
-                      canvasColor: Constants.ColorGreenish,
-                    ),
-                    child: DropdownButton<String>(
-                      value: _chosenValue,
-                      isExpanded: true,
-                     // elevation: 16,
-                     // style: TextStyle(color: Colors.black),
-                      items: <String>[
-                        'charge_option_max_power'.tr,
-                        'charge_option_economy'.tr,
-                      ].map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: TextCustom(text: value, textSize: 14.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none));
-                      }).toList(),
-                      hint: TextCustom(text: "charge_charging_profile".tr, textSize: 14.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
-                      onChanged: (String value) {
-                        setState(() {
-                          _chosenValue = value;
-                        });
-                      },
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   height: 30,
+                  //  // color: Colors.blue,
+                  //   child: SliderTheme(
+                  //     data: SliderTheme.of(context).copyWith(
+                  //       activeTrackColor: Constants.ColorGreenish,
+                  //       inactiveTrackColor: Constants.ColorGreenish,
+                  //       trackShape: RoundedRectSliderTrackShape(),
+                  //       trackHeight: 13.0,
+                  //       thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                  //       thumbColor: Constants.ColorYellow,
+                  //       overlayColor: Constants.ColorYellow,
+                  //       overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
+                  //       tickMarkShape: RoundSliderTickMarkShape()
+                  //     ),
+                  //     child: Slider(
+                  //       value: _startSliderValue,
+                  //       min: 0,
+                  //       max: 100,
+                  //      // label: "Value: $_currentSliderValue",
+                  //       //divisions: 10,
+                  //       onChanged: (newValue) {
+                  //         print("Slider Value: " + newValue.toStringAsFixed(0));
+                  //         setState(() {
+                  //            _startSliderValue = newValue;
+                  //            _currentSliderValue = _startSliderValue.toStringAsFixed(0);
+                  //         });
+                  //       },
+                  //     ),
+                  //   ),
+                  // ),
+                  // Container(
+                  //  // color: Colors.blue,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(left: 30, right: 30),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //       children: [
+                  //         TextCustom(text: "charge_min".tr, textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
+                  //         TextCustom(text: "charge_max".tr, textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  SizedBox(height: 30),
+            // Container(
+            //  //// color: Colors.red,
+            //  //// height: 20,
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(8.0),
+            //     child: Container(
+            //       padding: const EdgeInsets.only(left: 20, right: 20),
+            //       child: Theme(
+            //         data: Theme.of(context).copyWith(
+            //           canvasColor: Constants.ColorGreenish,
+            //         ),
+            //         child: DropdownButton<String>(
+            //           value: _chosenValue,
+            //           isExpanded: true,
+            //          // elevation: 16,
+            //          // style: TextStyle(color: Colors.black),
+            //           items: <String>[
+            //             'charge_option_max_power'.tr,
+            //             'charge_option_economy'.tr,
+            //           ].map<DropdownMenuItem<String>>((String value) {
+            //             return DropdownMenuItem<String>(
+            //               value: value,
+            //               child: TextCustom(text: value, textSize: 14.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none));
+            //           }).toList(),
+            //           hint: TextCustom(text: "charge_charging_profile".tr, textSize: 14.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
+            //           onChanged: (String value) {
+            //             setState(() {
+            //               _chosenValue = value;
+            //             });
+            //           },
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
                   SizedBox(height: 5),
                   Container(),
                   ChargeCircleButton(
-                      width: 140.0,
-                      height: 140.0,
+                      width: 200.0,
+                      height: 200.0,
                       child: ButtonText(text: "charge_start".tr, onPressed: () => { Log.d(tag, "CircleButton Tap") }, textSize: 22.0, textColor: Constants.ColorWhite, textDecoration: TextDecoration.none),
                       //onTap: () => { Log.d(tag, "CircleButton Tap") },
                   ),

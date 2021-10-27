@@ -42,15 +42,15 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
 
     registerClick() async {
-      Log.i(tag, "registerClick");
-       var rand = Random();
-       var randInt = rand.nextInt(100).toString();
-      // controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, randInt + "test@test.si", "password" + randInt);
-      if (_formKey.currentState.validate() && _passwordTextController.text == _passwordRepeatTextController.text) {
-       // await controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, _emailTextController.text, _passwordTextController.text); // username, firstname, lastname, email, password // TODO: needs api updated
-      } else {
-        Log.d(tag, "Input forms not valid!");
-      }
+      // Log.i(tag, "registerClick");
+      //  var rand = Random();
+      //  var randInt = rand.nextInt(100).toString();
+      // // controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, randInt + "test@test.si", "password" + randInt);
+      // if (_formKey.currentState.validate() && _passwordTextController.text == _passwordRepeatTextController.text) {
+      //  // await controller.register("username" + randInt, "firstname" + randInt, "lastname" + randInt, _emailTextController.text, _passwordTextController.text); // username, firstname, lastname, email, password // TODO: needs api updated
+      // } else {
+      //   Log.d(tag, "Input forms not valid!");
+      // }
     }
 
     Widget reactiveContainer() {

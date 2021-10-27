@@ -35,6 +35,7 @@ final Map<String, String> slSl = {
   // Charge Screen
   'charge_current': 'TOK',
   'charge_energy': 'ENERGIJA',
+  'charge_billing': 'CENA',
   'charge_power': 'ENERGIJA',
   'charge_duration': 'TRAJANJE',
   'charge_charging_current': 'Polnilni tok:',
