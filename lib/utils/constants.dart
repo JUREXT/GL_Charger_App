@@ -18,6 +18,7 @@ class Constants {
   static const String REGISTER = "/register";
   static const String RESET_PASSWORD = "/resetPassword";
   static const String ALL_CHARGERS_BY_USER = "/charger/getAllByUser";
+  static const String BILLING = ""; //"""/login";
 
   String getBaseUrl() {
     return liveBaseUrlProduction;

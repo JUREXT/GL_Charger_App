@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:gl_charge_app/network/models/all_chargers_by_user_data_model.dart';
 import 'package:gl_charge_app/network/models/all_chargers_by_user_response_model.dart';
+import 'package:gl_charge_app/network/models/billing_data_model.dart';
+import 'package:gl_charge_app/network/models/billing_response_model.dart';
 import 'package:gl_charge_app/network/models/charger_session_response_model.dart';
 import 'package:gl_charge_app/network/models/forgot_password_data_model.dart';
 import 'package:gl_charge_app/network/models/forgot_password_response_model.dart';
@@ -93,6 +95,24 @@ class Repository {
     } else {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
       return ApiResult.error("Url problem");
+    }
+  }
+
+  Future<ApiResult> billing(String id) async {
+    try {
+      var paramJson = BillingDataModel(email: "eve.holt@reqres.in", password: "cityslicka").toJson();
+      Log.d(tag, "PARAMS: " + paramJson.toString());
+      var apiResource = await api.post(Constants.BILLING, paramJson);
+      if (apiResource.status == ResponseStatus.POSITIVE) {
+        var model = BillingResponseModel.fromJson(apiResource.data);
+        return ApiResult.success(model);
+      } else if (apiResource.status == ResponseStatus.NEGATIVE) {
+        String error = apiResource.error;
+        return ApiResult.error(error);
+      }
+      return ApiResult.error("-1");
+    } catch (ex) {
+      return ApiResult.error("-1");
     }
   }
 

@@ -41,6 +41,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
   @override
   void initState() {
     super.initState();
+    controller.billing();
     _currentSliderValue = _startSliderValue.toStringAsFixed(0);
   }
 
@@ -93,9 +94,9 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                         children: [
                           TextCustom(text: "charge_charging_current".tr, textSize: 22.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                           SizedBox(width: 3),
-                          TextCustom(text: "$_currentSliderValue", textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                          TextCustom(text: "$_currentSliderValue", textSize: 22.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                           SizedBox(width: 3),
-                          TextCustom(text: "charge_amp_unit".tr, textSize: 16.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                          TextCustom(text: "charge_amp_unit".tr, textSize: 22.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                         ],
                       ),
                     ),
