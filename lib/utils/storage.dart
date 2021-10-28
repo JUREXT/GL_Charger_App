@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gl_charge_app/network/models/sign_in_response_model.dart';
 import 'package:gl_charge_app/translations/app_locale.dart';
 
 class Storage {
@@ -8,6 +9,7 @@ class Storage {
   static const CURRENT_CHARGER_DATA = 'current_charger'; // null can be stored and checked
   static const CURRENT_LOCALE_DATA = 'current_locale'; // null can be stored and checked
 
+  //#region Storage handling
   Storage() {
     storage = GetStorage();
   }
@@ -24,7 +26,9 @@ class Storage {
   Future<void> erase() async {
     await storage.erase();
   }
+  //#endregion
 
+  //#region Session handling
   Future<bool> hasSession() async {
     if (await storage.read(SESSION_DATA) == null) {
       return false;
@@ -33,6 +37,26 @@ class Storage {
     }
   }
 
+  Future<void> storeSession(SignInResponseModel model) async {
+    await Storage().write(Storage.SESSION_DATA, SignInResponseModel().modelToJson(model));
+  }
+
+  Future<SignInResponseModel> readSession() async {
+    String signInResponseModelJson = await Storage().read(Storage.SESSION_DATA);
+    if (signInResponseModelJson != null) {
+      SignInResponseModel signInResponseModel = SignInResponseModel().modelFromJson(signInResponseModelJson);
+      return signInResponseModel;
+    } else {
+      return null;
+    }
+  }
+
+  Future<void> destroySession() async {
+    await Storage().write(Storage.SESSION_DATA, null);
+  }
+  //#endregion
+
+  //#region Locale handling
   Future<void> setLocale(String localeName) async {
     await Storage().write(Storage.CURRENT_LOCALE_DATA, localeName);
   }
@@ -45,10 +69,14 @@ class Storage {
       } else if (localeName == AppLocaleList.localeSI.localeName) {
         return AppLocaleList.localeSI.locale;
       } else {
-        return AppLocaleList.localeSI.locale;
+        //return AppLocaleList.localeSI.locale;
+        return AppLocaleList.localeUS.locale; // TODO: force en locale, temporary
       }
     } else {
-      return AppLocaleList.localeSI.locale;
+      //return AppLocaleList.localeSI.locale;
+      return AppLocaleList.localeUS.locale; // TODO: force en locale, temporary
     }
   }
+//#endregion
+
 }

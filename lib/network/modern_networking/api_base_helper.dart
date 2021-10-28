@@ -1,25 +1,25 @@
 import 'dart:io';
-import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'dart:async';
+import 'api_end_point.dart';
 import 'api_response_resource.dart';
 import 'app_exceptions.dart';
 
 class ApiBaseHelper {
   final tag = "ApiBaseHelper";
-  final String _baseUrl = Constants().getBaseUrl();
+  final String _baseUrl = Api_V1.BASE_URL_PRODUCTION;
   Client client = http.Client();
 
-  Future<ApiResponseResource> get(String url) async {
+  Future<ApiResponseResource> get(String url, Map<String, String> header) async {
     var mTag = "Http Get";
     var urlPath = _baseUrl + url;
     Log.d(tag, '$mTag, url $urlPath');
     var apiResource = ApiResponseResource.negative("400");
     try {
-      Response response = await client.get(urlPath, headers: headers());
+      Response response = await client.get(urlPath, headers: header);
       apiResource = getApiResponseResourceWithDecodedJson(response, mTag);
     } on SocketException {
       Log.d(tag, '$mTag, No Internet connection');
@@ -29,13 +29,13 @@ class ApiBaseHelper {
     return apiResource;
   }
 
-  Future<dynamic> post(String url, dynamic body) async {
+  Future<dynamic> post(String url, dynamic body, Map<String, String> header) async {
     var mTag = "Http Post";
     var urlPath = _baseUrl + url;
     Log.d(tag, '$mTag, url $urlPath');
     var apiResource = ApiResponseResource.negative("400");
     try {
-      Response response = await http.post(urlPath, body: body);
+      Response response = await http.post(urlPath, body: body, headers: header);
       apiResource = getApiResponseResourceWithDecodedJson(response, mTag);
     } on SocketException {
       Log.d(tag, '$mTag, No Internet connection');
@@ -47,13 +47,13 @@ class ApiBaseHelper {
     return apiResource;
   }
 
-  Future<dynamic> put(String url, dynamic body) async {
+  Future<dynamic> put(String url, dynamic body, Map<String, String> header) async {
     var mTag = "Http Put";
     var urlPath = _baseUrl + url;
     Log.d(tag, '$mTag, url $urlPath');
     var responseJson;
     try {
-      Response response = await http.put(urlPath, headers: headers(), body: body);
+      Response response = await http.put(urlPath, headers: header, body: body);
       responseJson = getApiResponseResourceWithDecodedJson(response, mTag);
     } on SocketException {
       Log.d(tag, '$mTag, No network');
@@ -63,13 +63,13 @@ class ApiBaseHelper {
     return responseJson;
   }
 
-  Future<dynamic> delete(String url) async {
+  Future<dynamic> delete(String url, Map<String, String> header) async {
     var mTag = "Http Delete";
     var urlPath = _baseUrl + url;
     Log.d(tag, '$mTag, url $urlPath');
     var apiResponse;
     try {
-      Response response = await http.delete(urlPath, headers: headers());
+      Response response = await http.delete(urlPath, headers: header);
       apiResponse = getApiResponseResourceWithDecodedJson(response, mTag);
     } on SocketException {
       Log.d(tag, '$mTag, No network');
@@ -98,10 +98,5 @@ ApiResponseResource getApiResponseResourceWithDecodedJson(http.Response response
      // throw FetchDataException('Error occurred while Communication with Server with StatusCode : ${response.statusCode}');
     return ApiResponseResource.negative("500");
   }
-}
 
-headers() {
-  return <String, String> {
-    'Content-Type': 'application/json; charset=UTF-8',
-  };
 }

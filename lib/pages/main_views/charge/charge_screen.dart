@@ -41,7 +41,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
   @override
   void initState() {
     super.initState();
-    controller.billing();
+   // controller.billing();
     _currentSliderValue = _startSliderValue.toStringAsFixed(0);
   }
 

@@ -20,7 +20,7 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
 
   final tag = "SettingScreen";
-  final controller = Get.find<SettingsController>();
+  SettingsController controller = Get.find();
 
   showLocaleDialog(BuildContext context) {
     showDialog(
@@ -113,6 +113,9 @@ class _SettingScreenState extends State<SettingScreen> {
               SettingsDivider(),
 
               SettingsListItem(title: "Test Hmac", onSettingsItemCallback: () async => { testHMAC() }),
+              SettingsDivider(),
+
+              SettingsListItem(title: "Test Get All User Chargers", onSettingsItemCallback: () async => { controller.test() }),
               SettingsDivider(),
 
             ],

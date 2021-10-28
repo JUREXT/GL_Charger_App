@@ -1,28 +1,6 @@
 import 'package:flutter/material.dart';
 
 class Constants {
-  // REST Api related strings
-  // static const String localBaseURL = "http://10.0.2.2:4000/api/v1";
-  //
-  //static const String baseUrlTest = "https://jsonplaceholder.typicode.com";
-
-  // static const String chargeSessionByUserEp = "/posts";
-  // static const String startChargingEp = "/charger/start";
-  // static const String userEp = "https://reqres.in/api/login"; // https://reqres.in/api/login
-  // static const String userOutEp = "https://reqres.in/api/users?delay=3";
-
-  static const String liveBaseUrlProduction = "https://home.dev.glcharge.com/api/v1";
-
-  static const String LOG_IN = "/login";
-  static const String LOG_OUT = "/logout";
-  static const String REGISTER = "/register";
-  static const String RESET_PASSWORD = "/resetPassword";
-  static const String ALL_CHARGERS_BY_USER = "/charger/getAllByUser";
-  static const String BILLING = ""; //"""/login";
-
-  String getBaseUrl() {
-    return liveBaseUrlProduction;
-  }
 
   // App related strings
   static String appName = "GL Charge";
