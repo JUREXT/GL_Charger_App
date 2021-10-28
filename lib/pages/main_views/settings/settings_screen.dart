@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,6 +45,17 @@ class _SettingScreenState extends State<SettingScreen> {
                     itemCount: 2),
               ),
             ));
+  }
+
+  testHMAC() {
+    // https://pub.dev/packages/crypto
+    var key = utf8.encode('p@ssw0rd');
+    var bytes = utf8.encode("foobar");
+    var hmacSha256 = Hmac(sha256, key); // HMAC-SHA256
+    var digest = hmacSha256.convert(bytes);
+
+    print("HMAC digest as bytes: ${digest.bytes}");
+    print("HMAC digest as hex string: $digest");
   }
 
   updatedLocale(Locale l, BuildContext ctx) {
@@ -96,6 +110,9 @@ class _SettingScreenState extends State<SettingScreen> {
               SettingsDivider(),
 
               SettingsListItem(title: "logout".tr, onSettingsItemCallback: () async => await controller.signOut()),
+              SettingsDivider(),
+
+              SettingsListItem(title: "Test Hmac", onSettingsItemCallback: () async => { testHMAC() }),
               SettingsDivider(),
 
             ],
