@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/network/models/all_user_chargers_response_model.dart';
 import 'package:gl_charge_app/utils/log.dart';
 import 'package:gl_charge_app/utils/storage.dart';
@@ -13,7 +14,7 @@ class ChargeNotifier extends ChangeNotifier {
   String chargerName = "";
 
   Future<void> setNewCharger() async {
-    AllUserChargersResponseModel charger = await getData();
+    Charger charger = await getData();
     Log.d(tag, "SetNewCharger: $charger");
     if(charger != null) {
       chargerName = charger.name;
@@ -21,8 +22,8 @@ class ChargeNotifier extends ChangeNotifier {
     }
   }
 
-  Future<AllUserChargersResponseModel> getData() async {
-    var charger = await Storage().getData();
+  Future<Charger> getData() async {
+    var charger = await Storage().getSelectedChargerData();
     return charger;
   }
 }

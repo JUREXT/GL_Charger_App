@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/charger.dart';
-import 'package:gl_charge_app/network/models/all_user_chargers_response_model.dart';
 import 'package:gl_charge_app/pages/main_views/main_screen_holder/main_screen_holder_controller.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_black_small.dart';
@@ -70,9 +69,9 @@ class _ChargersScreenState extends State<ChargersScreen> {
                     Log.d("WHAT", "Click OK");
                     _showDialog(context, controller.chargerList[index].name);
                   },
-                  onSelectedChargerCallback: (AllUserChargersResponseModel charger) async {
+                  onSelectedChargerCallback: (Charger charger) async {
                     Log.d(tag, "onSelectedChargerCallback: " + charger.toString());
-                    //await Storage().write(Storage.CURRENT_CHARGER_DATA, Charger().chargerToJson(charger));
+                     await Storage().setSelectedChargerData(charger);
                     controllerMain.switchTabToNewIndex(1);
                   },
                 );

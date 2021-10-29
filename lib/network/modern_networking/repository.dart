@@ -17,6 +17,7 @@ import 'package:gl_charge_app/network/models/start_charging_response_model.dart'
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
 import 'package:gl_charge_app/utils/log.dart';
 import 'package:gl_charge_app/utils/storage.dart';
+import '../charger.dart';
 import 'api_base_helper.dart';
 import 'api_end_point.dart';
 import 'api_response_resource.dart';
@@ -123,9 +124,13 @@ class Repository {
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       List<AllUserChargersResponseModel> list = AllUserChargersResponseModel.parseList(apiRes.data);
-      List<AllUserChargersResponseModel> listNew = AllUserChargersResponseModel.modifyListAddNameIfNull(list);
-      listNew.forEach((element) {
-        Log.d(tag, "Charger ID:" + element.id + " Name: " + element.name);
+      list.forEach((it) {
+        //Log.d(tag, "OLD :: Charger ID:" + it.id + " Name: " + it.name + " ocppId: " + it.ocppId);
+        Log.d(tag, "OLD :: Charger ID:" + it.id);
+      });
+      List<Charger> listNew = AllUserChargersResponseModel.modifyListAndConvert(list);
+      listNew.forEach((it) {
+        Log.d(tag, "NEW :: Charger ID:" + it.id + " Name: " + it.name + " ocppId: " + it.ocppId);
       });
       return ApiResult.success(listNew);
     } else {

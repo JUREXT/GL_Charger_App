@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/network/models/all_user_chargers_response_model.dart';
 import 'package:gl_charge_app/network/models/sign_in_response_model.dart';
 import 'package:gl_charge_app/translations/app_locale.dart';
@@ -85,21 +86,21 @@ class Storage {
 
 //#region Selected Charger For Charging handling
 
-  Future<AllUserChargersResponseModel> getData() async {
+  Future<Charger> getSelectedChargerData() async {
     String chargerJson = await Storage().read(Storage.CURRENT_CHARGER_DATA);
     if (chargerJson != null) {
-      AllUserChargersResponseModel charger = AllUserChargersResponseModel().chargerFromJson(chargerJson);
+      Charger charger = Charger.chargerFromJson(chargerJson);
       Log.d(tag, "getData Charger :: ${charger.id} || ${charger.name}");
       return charger;
     } else {
       return null;
     }
   }
-  //
 
-  Future<void> setData(AllUserChargersResponseModel charger) async {
+  Future<void> setSelectedChargerData(Charger charger) async {
     Log.d(tag, "setData Charger :: ${charger.id} || ${charger.name}");
-    await Storage().write(Storage.CURRENT_CHARGER_DATA, AllUserChargersResponseModel().chargerToJson(charger));
+    await Storage()
+        .write(Storage.CURRENT_CHARGER_DATA, Charger.chargerToJson(charger));
   }
 //#endregion
 

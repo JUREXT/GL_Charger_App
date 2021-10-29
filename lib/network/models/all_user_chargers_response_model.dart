@@ -1,5 +1,9 @@
 import 'dart:convert';
 
+import 'package:gl_charge_app/utils/log.dart';
+
+import '../charger.dart';
+
 class AllUserChargersResponseModel {
   String id;
   Null energyMeterId;
@@ -130,14 +134,23 @@ class AllUserChargersResponseModel {
     return jsonResponseList.map((it) => AllUserChargersResponseModel.fromJson(it)).toList();
   }
 
-  static List<AllUserChargersResponseModel> modifyListAddNameIfNull(List<AllUserChargersResponseModel> list) { // updated null names
-    List<AllUserChargersResponseModel> updatedList = [];
+  static List<Charger> modifyListAndConvert(List<AllUserChargersResponseModel> list) { // updated null names and other problems
+    List<Charger> updatedList = [];
     int chargerIndex = 1;
     for (var it in list) {
+      //Log.d("ModifyListAndConvert", "Charger ID:" + it.id + " Name: " + it.name + " ocppId: " + it.ocppId);
       if(it.name == null) {
-        it.name = "Charger $chargerIndex";
+        String id = it.id.toString();
+        String name = "Charger $chargerIndex";
+        bool isOnline = false;
+        bool chargingState = false;
+        String chargerLocation = "Location $chargerIndex";
+        String maxPower = it.maxPower.toString();
+        String ocppId = it.ocppId.toString();
         chargerIndex++;
-        updatedList.add(it);
+        var char = Charger(id, name, isOnline, chargingState, chargerLocation, maxPower, ocppId);
+       // var char = Charger("1", "name", false, false, "chargerLocation", "maxPower", "ocppId");
+        updatedList.add(char);
       }
     }
     return updatedList;

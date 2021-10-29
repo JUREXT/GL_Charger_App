@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gl_charge_app/network/models/all_user_chargers_response_model.dart';
+import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar1.dart';
 import 'package:gl_charge_app/stateless_widget_components/charger_list_item.dart';
@@ -42,9 +42,9 @@ class _SelectChargerScreenState extends State<SelectChargerScreen> {
                 return ChargerListItem(
                   charger: controller.chargerList[index],
                   reservedIconVisibility: false,
-                  onSelectedChargerCallback: (AllUserChargersResponseModel charger) async {
+                  onSelectedChargerCallback: (Charger charger) async {
                     Log.d(tag,"onSelectedChargerCallback: " + charger.toString());
-                    await Storage().setData(charger);
+                    await Storage().setSelectedChargerData(charger);
                     Navigation.toNamed(Routes.MAIN_TAB_HOLDER, null);
                   },
                 );
