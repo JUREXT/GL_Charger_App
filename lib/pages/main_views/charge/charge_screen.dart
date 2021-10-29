@@ -45,6 +45,12 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
     _currentSliderValue = _startSliderValue.toStringAsFixed(0);
   }
 
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -187,9 +193,8 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                   ChargeCircleButton(
                       width: 200.0,
                       height: 200.0,
-                      child: ButtonText(text: "charge_start".tr, onPressed: () => { Log.d(tag, "CircleButton Tap") }, textSize: 22.0, textColor: Constants.ColorWhite, textDecoration: TextDecoration.none),
+                      child:  Obx(() { return ButtonText(text: controller.isCharging.value == false ? "charge_start".tr : "charge_stop".tr,  onPressed: () => { controller.startStopChargingToggle() }, textSize: 22.0, textColor: Constants.ColorWhite, textDecoration: TextDecoration.none); })),
                       //onTap: () => { Log.d(tag, "CircleButton Tap") },
-                  ),
                   SizedBox(height: 20),
                 ],
               ),

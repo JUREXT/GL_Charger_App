@@ -115,7 +115,10 @@ class _SettingScreenState extends State<SettingScreen> {
               SettingsListItem(title: "Test Hmac", onSettingsItemCallback: () async => { testHMAC() }),
               SettingsDivider(),
 
-              SettingsListItem(title: "Test Get All User Chargers", onSettingsItemCallback: () async => { controller.test() }),
+              SettingsListItem(title: "Test Get All User Chargers", onSettingsItemCallback: () async => { controller.getAllChargersByUser() }),
+              SettingsDivider(),
+
+              SettingsListItem(title: "Start Stop Charging", onSettingsItemCallback: () async => { controller.startStopCharging() }),
               SettingsDivider(),
 
             ],

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/models/billing_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
@@ -9,16 +11,40 @@ class ChargeController extends GetxController {
   final tag = "ChargeController";
   Repository repository;
 
+  var isCharging = false.obs;
+  var updateCard = false.obs;
+  // var isStopped = false; //global
+
   Rx<Resource> apiStartChargingResponse = Rx<Resource>(Resource.idle());
   Rx<Resource> apiStopChargingResponse = Rx<Resource>(Resource.idle());
   Rx<Resource> apiBillingResponse = Rx<Resource>(Resource.idle());
 
+  startStopChargingToggle() {
+    var isChargingState = isCharging.value == false ? true : false;
+    isCharging(isChargingState);
+  }
+
+  // startTimer() {
+  //   Timer.periodic(Duration(seconds: 2), (timer) {
+  //     if (isStopped) {
+  //       timer.cancel();
+  //     }
+  //     Log.d(tag, "Time run");
+  //     var isChargingState = updateCard.value == false ? true : false;
+  //     updateCard(isChargingState);
+  //   });
+  // }
+
+  // stopTimer() {
+  //   isStopped = true;
+  // }
+
   startCharging() async {
-    repository.startCharging("", "");
+    repository.startStopCharging("", "");
   }
 
   stopCharging() async {
-    repository.startCharging("", "");
+    repository.startStopCharging("", "");
   }
 
   // getChargerList() async {
@@ -44,6 +70,7 @@ class ChargeController extends GetxController {
   void onInit() {
     super.onInit();
     repository = Repository();
+    //startTimer();
     Log.d(tag, "onInit");
   }
 
@@ -56,5 +83,6 @@ class ChargeController extends GetxController {
   @override
   void onClose() {
     Log.d(tag, "onClose");
+   // stopTimer();
   }
 }

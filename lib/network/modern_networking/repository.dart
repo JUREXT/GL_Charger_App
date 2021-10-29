@@ -135,8 +135,13 @@ class Repository {
     }
   }
 
-  Future<ApiResult> startCharging(String id, String profileId) async {
-    var json = StartChargingDataModel(id: id, profileId: profileId).toJson();
+  Future<ApiResult> startStopCharging(String id, String profileId) async {
+    SignInResponseModel session = await Storage().readSession();
+    Log.d(tag, "startStopCharging Session: " + session.toString());
+
+    var parameters = Parameters(current: "");
+    var data = Data(command: "co", ocppId: "", userUUID: "", parameters: parameters);
+    var json = StartChargingDataModel(app: "App", ).toJson();
     var apiRes = await api.post(/*Constants.startChargingEp*/ "", json, Headers.headers()); // TODO: in progress
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());

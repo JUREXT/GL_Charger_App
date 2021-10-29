@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gl_charge_app/network/charger.dart';
-import 'package:gl_charge_app/network/models/all_user_chargers_response_model.dart';
 import 'package:gl_charge_app/utils/log.dart';
 import 'package:gl_charge_app/utils/storage.dart';
 
