@@ -145,7 +145,7 @@ class AllUserChargersResponseModel {
         bool isOnline = false;
         bool chargingState = false;
         String chargerLocation = "Location $chargerIndex";
-        String maxPower = it.maxPower.toString();
+        String maxPower = it.maxPower == null ? "Not available" : it.maxPower.toString();
         String ocppId = it.ocppId.toString();
         chargerIndex++;
         var char = Charger(id, name, isOnline, chargingState, chargerLocation, maxPower, ocppId);

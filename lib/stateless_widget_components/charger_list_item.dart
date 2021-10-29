@@ -34,7 +34,7 @@ class ChargerListItem extends StatelessWidget {
                 leading: Container(height: 60, width: 60, child: CircleAvatar(child: Image.asset('assets/images/charging_station.png'), backgroundColor: Constants.ColorYellow)),
                 //trailing: Visibility(visible: true, child: Container(child: IconButton(icon: Icon(Icons.lock_outline), iconSize: 20, color: Colors.green))),
                 trailing: Visibility(visible: reservedIconVisibility, child: Container(child: Material(color: Colors.transparent, child: IconButton(icon: Icon(Icons.lock_clock, color: Colors.white), onPressed: onReservedIconPressed)))),
-                title: TextCustom(text: "ok", textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                title: TextCustom(text: charger.name, textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                 subtitle: Row(
                   children: [
                     Container(
@@ -44,9 +44,9 @@ class ChargerListItem extends StatelessWidget {
                         // color: Constants.ColorYellow,
                         child: Padding(
                             padding: EdgeInsets.all(3.0),
-                            child: TextCustom(text: true ? "charger_list_item_online".tr : "charger_list_item_off_online".tr, textSize: 12.0, textColor: Constants.ColorBlack, decoration: TextDecoration.none))),
+                            child: TextCustom(text: charger.isOnline ? "charger_list_item_online".tr : "charger_list_item_off_online".tr, textSize: 12.0, textColor: Constants.ColorBlack, decoration: TextDecoration.none))),
                     SizedBox(width: 5),
-                    TextCustom(text: true ? "charger_charging_state_true".tr : "charger_charging_state_false".tr, textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
+                    TextCustom(text: charger.chargingState ? "charger_charging_state_true".tr : "charger_charging_state_false".tr, textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
                   ],
                 ),
               ),
@@ -58,8 +58,8 @@ class ChargerListItem extends StatelessWidget {
 
               ListTile(
                 leading: Icon(Icons.location_on, color: Constants.ColorYellow),
-                title: TextCustom(text: "charger.chargerLocation" , textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
-                subtitle: TextCustom(text: "charger_max_power".tr + "charger.maxPower" + "charger_max_power_unit".tr, textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
+                title: TextCustom(text: charger.chargerLocation , textSize: 15.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                subtitle: TextCustom(text: "charger_max_power".tr + " ${charger.maxPower} " + "charger_max_power_unit".tr, textSize: 12.0, textColor: Constants.ColorLightPurple, decoration: TextDecoration.none),
               ),
             ],
           ),

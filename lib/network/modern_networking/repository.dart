@@ -124,10 +124,6 @@ class Repository {
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       List<AllUserChargersResponseModel> list = AllUserChargersResponseModel.parseList(apiRes.data);
-      list.forEach((it) {
-        //Log.d(tag, "OLD :: Charger ID:" + it.id + " Name: " + it.name + " ocppId: " + it.ocppId);
-        Log.d(tag, "OLD :: Charger ID:" + it.id);
-      });
       List<Charger> listNew = AllUserChargersResponseModel.modifyListAndConvert(list);
       listNew.forEach((it) {
         Log.d(tag, "NEW :: Charger ID:" + it.id + " Name: " + it.name + " ocppId: " + it.ocppId);

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gl_charge_app/network/charger.dart';
-import 'package:gl_charge_app/network/models/all_user_chargers_response_model.dart';
 import 'package:gl_charge_app/network/models/sign_in_response_model.dart';
 import 'package:gl_charge_app/translations/app_locale.dart';
 
@@ -82,10 +81,9 @@ class Storage {
       return AppLocaleList.localeUS.locale; // TODO: force en locale, temporary
     }
   }
-//#endregion
+ //#endregion
 
-//#region Selected Charger For Charging handling
-
+ //#region Selected Charger For Charging handling
   Future<Charger> getSelectedChargerData() async {
     String chargerJson = await Storage().read(Storage.CURRENT_CHARGER_DATA);
     if (chargerJson != null) {
@@ -99,9 +97,8 @@ class Storage {
 
   Future<void> setSelectedChargerData(Charger charger) async {
     Log.d(tag, "setData Charger :: ${charger.id} || ${charger.name}");
-    await Storage()
-        .write(Storage.CURRENT_CHARGER_DATA, Charger.chargerToJson(charger));
+    await Storage().write(Storage.CURRENT_CHARGER_DATA, Charger.chargerToJson(charger));
   }
-//#endregion
+ //#endregion
 
 }

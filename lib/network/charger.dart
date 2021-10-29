@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 class Charger {
   String id;
   String name;

@@ -53,7 +53,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-          appBar: AppBar2(title1: "Home", title2: cn.chargerName), // TODO: later when charger will be defined, update title in toolbar
+          appBar: AppBar2(title1: "Charger", title2: cn.chargerName), // TODO: later when charger will be defined, update title in toolbar
           backgroundColor: Constants.ColorLightGrey,
           body: SingleChildScrollView(
             child: Padding(
