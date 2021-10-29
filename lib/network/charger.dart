@@ -32,7 +32,7 @@ class Charger {
     return data;
   }
 
-  Charger chargerFromJson(String str) => Charger.fromJson(json.decode(str));
+  Charger chargerFromJson(String str) => Charger.fromJson(json.decode(str)); // used to store into local storage
   String chargerToJson(Charger data) => json.encode(data.toJson());
 
   @override

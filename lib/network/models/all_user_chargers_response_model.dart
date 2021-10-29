@@ -1,9 +1,11 @@
+import 'dart:convert';
+
 class AllUserChargersResponseModel {
   String id;
   Null energyMeterId;
   Null maxCurrent;
   Null voltage;
-  Null name;
+  String name; // was Null type before
   Null publicIpv4;
   Null publicIpv6;
   Null port;
@@ -16,7 +18,7 @@ class AllUserChargersResponseModel {
   String ocppId;
   Null chargePointId;
   Null minPower;
-  Null maxPower;
+  String maxPower; // was Null type before
   Null numberOfConnectors;
   Null currentFirmwareVersion;
   Null chargePointVendor;
@@ -57,6 +59,8 @@ class AllUserChargersResponseModel {
         this.deleted,
         this.createdAt,
         this.updatedAt});
+
+  AllUserChargersResponseModel.fake(this.id, this.name);
 
   AllUserChargersResponseModel.fromJson(Map<String, dynamic> json) { // == null ? null : json["key1"],
     id = json['id'];
@@ -126,8 +130,25 @@ class AllUserChargersResponseModel {
     return jsonResponseList.map((it) => AllUserChargersResponseModel.fromJson(it)).toList();
   }
 
+  static List<AllUserChargersResponseModel> modifyListAddNameIfNull(List<AllUserChargersResponseModel> list) { // updated null names
+    List<AllUserChargersResponseModel> updatedList = [];
+    int chargerIndex = 1;
+    for (var it in list) {
+      if(it.name == null) {
+        it.name = "Charger $chargerIndex";
+        chargerIndex++;
+        updatedList.add(it);
+      }
+    }
+    return updatedList;
+  }
+
+  // Used to store into local storage.
+  AllUserChargersResponseModel chargerFromJson(String str) => AllUserChargersResponseModel.fromJson(json.decode(str));
+  String chargerToJson(AllUserChargersResponseModel data) => json.encode(data.toJson());
+
   @override
   String toString() {
-    return 'AllUserChargersResponseModel{id: $id}';
+    return 'AllUserChargersResponseModel{id: $id, name: $name, ocppId: $ocppId}';
   }
 }

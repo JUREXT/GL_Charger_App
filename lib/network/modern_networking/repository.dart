@@ -42,7 +42,7 @@ class Repository {
       }
       return ApiResult.error("-1");
     } catch (ex) {
-      return ApiResult.error("-1");
+      return ApiResult.error("-1" + ex.toString());
     }
   }
 
@@ -123,10 +123,11 @@ class Repository {
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       List<AllUserChargersResponseModel> list = AllUserChargersResponseModel.parseList(apiRes.data);
-      list.forEach((element) {
-        Log.d(tag, "Charger ID:" + element.id);
+      List<AllUserChargersResponseModel> listNew = AllUserChargersResponseModel.modifyListAddNameIfNull(list);
+      listNew.forEach((element) {
+        Log.d(tag, "Charger ID:" + element.id + " Name: " + element.name);
       });
-      return ApiResult.success(list);
+      return ApiResult.success(listNew);
     } else {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
       return ApiResult.error("Url problem");
@@ -135,7 +136,7 @@ class Repository {
 
   Future<ApiResult> startCharging(String id, String profileId) async {
     var json = StartChargingDataModel(id: id, profileId: profileId).toJson();
-    var apiRes = await api.post(/*Constants.startChargingEp*/ "", json, Headers.headers()); // TODO:
+    var apiRes = await api.post(/*Constants.startChargingEp*/ "", json, Headers.headers()); // TODO: in progress
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));

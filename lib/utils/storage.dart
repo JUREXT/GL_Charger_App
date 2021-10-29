@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gl_charge_app/network/models/all_user_chargers_response_model.dart';
 import 'package:gl_charge_app/network/models/sign_in_response_model.dart';
 import 'package:gl_charge_app/translations/app_locale.dart';
 
+import 'log.dart';
+
 class Storage {
+  var tag = "Storage";
   var storage;
   static const SESSION_DATA = 'session_data'; // null can be stored and checked
   static const CURRENT_CHARGER_DATA = 'current_charger'; // null can be stored and checked
@@ -76,6 +80,26 @@ class Storage {
       //return AppLocaleList.localeSI.locale;
       return AppLocaleList.localeUS.locale; // TODO: force en locale, temporary
     }
+  }
+//#endregion
+
+//#region Selected Charger For Charging handling
+
+  Future<AllUserChargersResponseModel> getData() async {
+    String chargerJson = await Storage().read(Storage.CURRENT_CHARGER_DATA);
+    if (chargerJson != null) {
+      AllUserChargersResponseModel charger = AllUserChargersResponseModel().chargerFromJson(chargerJson);
+      Log.d(tag, "getData Charger :: ${charger.id} || ${charger.name}");
+      return charger;
+    } else {
+      return null;
+    }
+  }
+  //
+
+  Future<void> setData(AllUserChargersResponseModel charger) async {
+    Log.d(tag, "setData Charger :: ${charger.id} || ${charger.name}");
+    await Storage().write(Storage.CURRENT_CHARGER_DATA, AllUserChargersResponseModel().chargerToJson(charger));
   }
 //#endregion
 

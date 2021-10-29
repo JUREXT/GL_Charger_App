@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gl_charge_app/network/fake_data.dart';
 import 'package:gl_charge_app/network/user.dart';
 import 'package:gl_charge_app/stateless_widget_components/user_list_item.dart';
 import 'package:gl_charge_app/utils/constants.dart';
@@ -12,7 +11,10 @@ class UserListAllPage extends StatefulWidget {
 
 class _UserListAllPageState extends State<UserListAllPage> {
 
-  List<User> list = listOfUsersFake;
+  List<User> list = [
+    User.createUser(1, "Name", "Email", "123", "Type", "Token", "lol"),
+    User.createUser(1, "Name", "Email", "123", "Type", "Token", "lol")
+  ];
 
   @override
   Widget build(BuildContext context) {
