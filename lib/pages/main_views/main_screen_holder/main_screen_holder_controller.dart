@@ -9,7 +9,7 @@ class MainScreenHolderController extends GetxController {
   final tag = "SignUpController";
 
   Repository repository;
-  Rx<Resource> apiRegisterResponse = Rx<Resource>(Resource.idle());
+  //Rx<Resource> apiRegisterResponse = Rx<Resource>(Resource.idle());
   ChargeController controllerCharge = Get.find();
 
   int currentIndex = 1;
@@ -33,6 +33,6 @@ class MainScreenHolderController extends GetxController {
 
   @override
   void onClose() {
-    apiRegisterResponse(Resource.idle());
+   // apiRegisterResponse(Resource.idle());
   }
 }

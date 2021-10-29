@@ -4,7 +4,6 @@ import 'package:gl_charge_app/stateless_widget_components/app_bar2.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_text.dart';
 import 'package:gl_charge_app/stateless_widget_components/charge_circle_button.dart';
 import 'package:gl_charge_app/stateless_widget_components/charge_e_card.dart';
-import 'package:gl_charge_app/stateless_widget_components/charge_session.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
@@ -42,13 +41,14 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
   void initState() {
     super.initState();
    // controller.billing();
+    controller.startTimer();
     _currentSliderValue = _startSliderValue.toStringAsFixed(0);
   }
 
-
   @override
-  void dispose() {
-    super.dispose();
+  void deactivate() {
+    controller.stopTimer();
+    super.deactivate();
   }
 
   @override

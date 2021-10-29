@@ -13,7 +13,7 @@ class ChargeController extends GetxController {
 
   var isCharging = false.obs;
   var updateCard = false.obs;
-  // var isStopped = false; //global
+  var isTimerStopped = false;
 
   Rx<Resource> apiStartChargingResponse = Rx<Resource>(Resource.idle());
   Rx<Resource> apiStopChargingResponse = Rx<Resource>(Resource.idle());
@@ -24,20 +24,22 @@ class ChargeController extends GetxController {
     isCharging(isChargingState);
   }
 
-  // startTimer() {
-  //   Timer.periodic(Duration(seconds: 2), (timer) {
-  //     if (isStopped) {
-  //       timer.cancel();
-  //     }
-  //     Log.d(tag, "Time run");
-  //     var isChargingState = updateCard.value == false ? true : false;
-  //     updateCard(isChargingState);
-  //   });
-  // }
+  startTimer() {
+    isTimerStopped = false;
+    Timer.periodic(Duration(seconds: 2), (timer) {
+      if (isTimerStopped) {
+        timer.cancel();
+      }
+      var isChargingState = updateCard.value == false ? true : false;
+      Log.d(tag, "Timer runs :: isChargingState: " + isChargingState.toString());
+      updateCard(isChargingState);
+    });
+  }
 
-  // stopTimer() {
-  //   isStopped = true;
-  // }
+  stopTimer() {
+    Log.d(tag, "Timer Stop");
+    isTimerStopped = true;
+  }
 
   startCharging() async {
     repository.startStopCharging("", "");
