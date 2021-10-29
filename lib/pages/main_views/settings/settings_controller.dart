@@ -28,12 +28,12 @@ class SettingsController extends GetxController {
   }
 
   startStopCharging() async {
-    var res = await repository.startStopCharging("", "");
-    if (res is SuccessState) {
-      var data = res.data as List<Charger>;
-    } else if (res is ErrorState) {
-      var error = res.error as String;
-    }
+    var res = await repository.startCharging();
+    // if (res is SuccessState) {
+    //   var data = res.data as List<Charger>;
+    // } else if (res is ErrorState) {
+    //   var error = res.error as String;
+    // }
   }
 
   @override

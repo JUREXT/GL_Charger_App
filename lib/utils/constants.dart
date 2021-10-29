@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class Constants {
 
   // App related strings
-  static String appName = "GL Charge";
+  static const String APP_NAME = "app_gl_charge";
+  static const String START_CHARGING_COMMAND = "RemoteStartTransaction";
+  static const String STOP_CHARGING_COMMAND = "RemoteStopTransaction";
+
   // Privacy and shop related strings
   static const shopUrl = "https://www.google.com/";
   static const privacyPolicyUrl = "https://www.google.com/";

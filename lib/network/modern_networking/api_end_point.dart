@@ -7,5 +7,6 @@ mixin Api_V1 {
   static const String REGISTER = "/register";
   static const String RESET_PASSWORD = "/resetPassword";
   static const String ALL_CHARGERS_BY_USER = "/charger/getAll";
+  static const String REMOTE_COMMAND_CHARGING = "/integration/charger/remoteCommand";
   static const String BILLING = "";
 }

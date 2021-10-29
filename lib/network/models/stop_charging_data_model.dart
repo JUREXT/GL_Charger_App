@@ -1,12 +1,12 @@
-class StartChargingDataModel {
+class StopChargingDataModel {
   String app;
-  DataStart data;
+  DataStop data;
 
-  StartChargingDataModel({this.app, this.data});
+  StopChargingDataModel({this.app, this.data});
 
-  StartChargingDataModel.fromJson(Map<String, dynamic> json) {
+  StopChargingDataModel.fromJson(Map<String, dynamic> json) {
     app = json['app'];
-    data = json['data'] != null ? new DataStart.fromJson(json['data']) : null;
+    data = json['data'] != null ? new DataStop.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -19,20 +19,20 @@ class StartChargingDataModel {
   }
 }
 
-class DataStart {
+class DataStop {
   String ocppId;
   String userUUID;
   String command;
-  ParametersStart parameters;
+  ParametersStop parameters;
 
-  DataStart({this.ocppId, this.userUUID, this.command, this.parameters});
+  DataStop({this.ocppId, this.userUUID, this.command, this.parameters});
 
-  DataStart.fromJson(Map<String, dynamic> json) {
+  DataStop.fromJson(Map<String, dynamic> json) {
     ocppId = json['ocppId'];
     userUUID = json['userUUID'];
     command = json['command'];
     parameters = json['parameters'] != null
-        ? new ParametersStart.fromJson(json['parameters'])
+        ? new ParametersStop.fromJson(json['parameters'])
         : null;
   }
 
@@ -48,18 +48,18 @@ class DataStart {
   }
 }
 
-class ParametersStart {
-  String current;
+class ParametersStop {
+  String transactionId;
 
-  ParametersStart({this.current});
+  ParametersStop({this.transactionId});
 
-  ParametersStart.fromJson(Map<String, dynamic> json) {
-    current = json['current'];
+  ParametersStop.fromJson(Map<String, dynamic> json) {
+    transactionId = json['transactionId'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['current'] = this.current;
+    data['transactionId'] = this.transactionId;
     return data;
   }
 }

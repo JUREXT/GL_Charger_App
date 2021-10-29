@@ -42,12 +42,12 @@ class ChargeController extends GetxController {
   }
 
   startCharging() async {
-    repository.startStopCharging("", "");
+    repository.startCharging();
   }
 
-  stopCharging() async {
-    repository.startStopCharging("", "");
-  }
+  // stopCharging() async {
+  //   repository.startCharging("", "");
+  // }
 
   // getChargerList() async {
   //   chargerList = await getAllChargersByUser();

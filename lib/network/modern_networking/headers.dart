@@ -11,4 +11,10 @@ class Headers {
       //'Content-Type': 'application/json; charset=UTF-8',
     };
   }
+
+  static headersSHA256(String sha256Value) {
+    return <String, String>{
+      'X-Request-Signature-SHA-256': sha256Value,
+    };
+  }
 }

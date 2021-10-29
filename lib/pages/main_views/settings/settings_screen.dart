@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +7,8 @@ import 'package:gl_charge_app/stateless_widget_components/settings_divider.dart'
 import 'package:gl_charge_app/stateless_widget_components/settings_list_item.dart';
 import 'package:gl_charge_app/translations/app_locale.dart';
 import 'package:gl_charge_app/utils/constants.dart';
+import 'package:gl_charge_app/utils/log.dart';
+import 'package:gl_charge_app/utils/sha256.dart';
 import 'package:gl_charge_app/utils/storage.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -48,14 +47,8 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   testHMAC() {
-    // https://pub.dev/packages/crypto
-    var key = utf8.encode('p@ssw0rd');
-    var bytes = utf8.encode("foobar");
-    var hmacSha256 = Hmac(sha256, key); // HMAC-SHA256
-    var digest = hmacSha256.convert(bytes);
-
-    print("HMAC digest as bytes: ${digest.bytes}");
-    print("HMAC digest as hex string: $digest");
+    // var sig = SHA256.getSHA256Signature();
+    // Log.d(tag, "Signature: $sig");
   }
 
   updatedLocale(Locale l, BuildContext ctx) {
@@ -118,7 +111,7 @@ class _SettingScreenState extends State<SettingScreen> {
               SettingsListItem(title: "Test Get All User Chargers", onSettingsItemCallback: () async => { controller.getAllChargersByUser() }),
               SettingsDivider(),
 
-              SettingsListItem(title: "Start Stop Charging", onSettingsItemCallback: () async => { controller.startStopCharging() }),
+              SettingsListItem(title: "Start Charging", onSettingsItemCallback: () async => { controller.startStopCharging() }),
               SettingsDivider(),
 
             ],
