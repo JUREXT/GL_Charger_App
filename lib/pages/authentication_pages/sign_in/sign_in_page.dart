@@ -42,12 +42,12 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     signInClick() async {
       Log.i(tag, "signInClick");
-      // await controller.signIn("lokovsek.jure@gmail.com", "123456Jl");
-      if (_formKey.currentState.validate()) {
-        await controller.signIn(_emailTextController.text, _passwordTextController.text);
-      } else {
-        Log.d(tag, "Input forms not valid!");
-      }
+       await controller.signIn("test@test.si", "123456789_W");
+      // if (_formKey.currentState.validate()) {
+      //   await controller.signIn(_emailTextController.text, _passwordTextController.text);
+      // } else {
+      //   Log.d(tag, "Input forms not valid!");
+      // }
     }
 
     Widget reactiveContainer() {
