@@ -3,7 +3,7 @@ import 'package:crypto/crypto.dart';
 
 class SHA256 {
   static String getSHA256Signature(String jsonAsString) {
-    String key1 = "appSecret";
+    String key1 = "appSecret"; // TODO: is this real key
     // https://pub.dev/packages/crypto
     var key = utf8.encode(key1); // password
     var bytes = utf8.encode(jsonAsString);
