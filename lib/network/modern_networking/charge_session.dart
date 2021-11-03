@@ -1,4 +1,4 @@
-class ChargeSessionDTO {
+class ChargeSessionDTO { // TODO: delete later
   int id;
   String param1;
   String param2;
