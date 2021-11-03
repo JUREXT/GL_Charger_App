@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gl_charge_app/network/models/sign_in_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_controller.dart';
 import 'package:gl_charge_app/routes/app_pages.dart';
@@ -42,12 +41,12 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     signInClick() async {
       Log.i(tag, "signInClick");
-       await controller.signIn("test@test.si", "123456789_W");
-      // if (_formKey.currentState.validate()) {
-      //   await controller.signIn(_emailTextController.text, _passwordTextController.text);
-      // } else {
-      //   Log.d(tag, "Input forms not valid!");
-      // }
+      // await controller.signIn("test@test.si", "123456789_W");
+      if (_formKey.currentState.validate()) {
+        await controller.signIn(_emailTextController.text.trim(), _passwordTextController.text.trim());
+      } else {
+        Log.d(tag, "Input forms not valid!");
+      }
     }
 
     Widget reactiveContainer() {

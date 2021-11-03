@@ -49,4 +49,9 @@ class StartChargingResponseModel {
     data['timestamp'] = this.timestamp;
     return data;
   }
+
+  @override
+  String toString() {
+    return 'StartChargingResponseModel{transactionId: $transactionId, chargePointOcppId: $chargePointOcppId, status: $status}';
+  }
 }

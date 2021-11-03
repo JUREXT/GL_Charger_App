@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="company.gl.gl_charge_app">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
    <application
         android:label="GL Charge"
         android:icon="@mipmap/launcher_icon">

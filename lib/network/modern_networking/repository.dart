@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:get/get.dart';
 import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/network/models/all_user_chargers_data_model.dart';
 import 'package:gl_charge_app/network/models/all_user_chargers_response_model.dart';
@@ -11,6 +15,7 @@ import 'package:gl_charge_app/network/models/sign_in_data_model.dart';
 import 'package:gl_charge_app/network/models/sign_in_response_model.dart';
 import 'package:gl_charge_app/network/models/sign_out_data_model.dart';
 import 'package:gl_charge_app/network/models/start_charging_data_model.dart';
+import 'package:gl_charge_app/network/models/start_charging_response_model.dart';
 import 'package:gl_charge_app/network/models/stop_charging_data_model.dart';
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
 import 'package:gl_charge_app/utils/constants.dart';
@@ -21,6 +26,7 @@ import 'api_base_helper.dart';
 import 'api_end_point.dart';
 import 'api_response_resource.dart';
 import 'headers.dart';
+import 'package:http/http.dart' as http;
 
 class Repository {
   var tag = "Repository";
@@ -136,37 +142,58 @@ class Repository {
 
   Future<ApiResult> startCharging() async {
     var session = await Storage().readSession();
-    Log.d(tag, "startStopCharging Session: " + session.toString());
+   // Log.d(tag, "Session: " + session.toString());
     var charger = await Storage().getSelectedChargerData();
+   //Log.d(tag, "Charger: " + charger.toString());
 
-    var data = DataStart(ocppId: charger.ocppId, userUUID: session.id+"*1", command: Constants.START_CHARGING_COMMAND, parameters:  ParametersStart(current: "15"));
+    var userUUID = "f1acf4d5-8e63-42a3-b27e-c0e328867421"; // hardcoded or session.id
+    var ocppId = "SI*VIZ*E123456*1230*1"; // dobis iz liste or  charger.ocppId + "*1"
+
+    var data = DataStart(ocppId: ocppId, userUUID: userUUID, command: Constants.START_CHARGING_COMMAND, parameters:  ParametersStart(current: "15"));
     var json = StartChargingDataModel(app: Constants.APP_NAME, data: data).toJson();
-    //Log.d(tag, "Start Charge Data: $json");
-    var sig = SHA256.getSHA256Signature(json.toString());
-    Log.d(tag, "Signature: $sig");
+    Log.d(tag, "Start Charge Data: $json");
+    var signature = SHA256.getSHA256Signature(json.toString());
+    Log.d(tag, "Signature: $signature");
 
-    // var apiRes = await api.post(Api_V1.REMOTE_COMMAND_CHARGING, json, Headers.headersSHA256(sig)); // TODO: in progress
-    // if(apiRes.status == ResponseStatus.POSITIVE) {
-    //   Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
-    //   return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
-    // } else {
-    //   Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
-    //   return ApiResult.error("Url problem");
-    // }
+    var headers = {
+      'X-Request-Signature-SHA-256': '$signature',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${session.accessToken}'
+    };
+    Log.d(tag, "Header: " + headers.toString());
+
+    var apiRes = await api.post(Api_V1.REMOTE_COMMAND_CHARGING, jsonEncode(json), headers);
+
+    if(apiRes.status == ResponseStatus.POSITIVE) {
+      Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
+      var model = StartChargingResponseModel.fromJson(apiRes.data);
+      Log.d(tag, "Model data: " + model.toString());
+
+     // var transactionId = await Storage().getSelectedChargerTransactionId();
+      //return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
+     // return ApiResult.error("Url problem");
+    } else if(apiRes.status == ResponseStatus.NEGATIVE) {
+      Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.error);
+      //return ApiResult.error("Url problem");
+    }
 
     return ApiResult.error("Url problem");
   }
 
-  Future<ApiResult> stopCharging(String transactionId) async { // transactionId comes from start response
+  Future<ApiResult> stopCharging() async { // transactionId comes from start response
     var session = await Storage().readSession();
-    Log.d(tag, "startStopCharging Session: " + session.toString());
+   // Log.d(tag, "startStopCharging Session: " + session.toString());
     var charger = await Storage().getSelectedChargerData();
+    var transactionId = await Storage().getSelectedChargerTransactionId();
+    if(transactionId == null) {
+      Log.d(tag, "Transaction Id is null - not good");
+    }
 
     var data = DataStop(ocppId: charger.ocppId, userUUID: session.id+"*", command: Constants.STOP_CHARGING_COMMAND, parameters: ParametersStop(transactionId: transactionId));
     var json = StopChargingDataModel(app: Constants.APP_NAME, data: data).toJson();
-    //Log.d(tag, "Start Charge Data: $json");
+    Log.d(tag, "Start Charge Data: $json");
     var sig = SHA256.getSHA256Signature(json.toString());
-    Log.d(tag, "Signature: $sig");
+   // Log.d(tag, "Signature: $sig");
 
     //var apiRes = await api.post(Api_V1.REMOTE_COMMAND_CHARGING, json, Headers.headersSHA256(sig)); // TODO: in progress
     // if(apiRes.status == ResponseStatus.POSITIVE) {

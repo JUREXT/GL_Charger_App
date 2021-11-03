@@ -12,6 +12,7 @@ class Storage {
   static const SESSION_DATA = 'session_data'; // null can be stored and checked
   static const CURRENT_CHARGER_DATA = 'current_charger'; // null can be stored and checked
   static const CURRENT_LOCALE_DATA = 'current_locale'; // null can be stored and checked
+  static const CURRENT_TRANSACTION_ID = 'transactionId'; // null can be stored and checked
 
   //#region Storage handling
   Storage() {
@@ -100,5 +101,22 @@ class Storage {
     await Storage().write(Storage.CURRENT_CHARGER_DATA, Charger.chargerToJson(charger));
   }
  //#endregion
+
+//#region Response transaction Id for stop charging
+  Future<String> getSelectedChargerTransactionId() async {
+    String transactionId = await Storage().read(Storage.CURRENT_TRANSACTION_ID);
+    if (transactionId != null) {
+      Log.d(tag, "Get Transaction Id :: $transactionId");
+      return transactionId;
+    } else {
+      return null;
+    }
+  }
+
+  Future<void> setSelectedChargerTransactionId(String transactionId) async {
+    Log.d(tag, "Set Transaction Id :: $transactionId");
+    await Storage().write(Storage.CURRENT_TRANSACTION_ID, transactionId);
+  }
+//#endregion
 
 }
