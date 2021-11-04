@@ -82,6 +82,7 @@ class ApiBaseHelper {
 
 ApiResponseResource getApiResponseResourceWithDecodedJson(http.Response response, String tag) {  // TODO: needs to be made better based on after some usage, to know what to change
   Log.d(tag, "Response code: ${response.statusCode}");
+  Log.d(tag, "Response body: ${response.body}");
   switch (response.statusCode) {
     case 200:
       var decodedJson = json.decode(response.body);

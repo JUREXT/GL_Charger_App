@@ -1,7 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
-
-import 'package:get/get.dart';
 import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/network/models/all_user_chargers_data_model.dart';
 import 'package:gl_charge_app/network/models/all_user_chargers_response_model.dart';
@@ -26,7 +23,6 @@ import 'api_base_helper.dart';
 import 'api_end_point.dart';
 import 'api_response_resource.dart';
 import 'headers.dart';
-import 'package:http/http.dart' as http;
 
 class Repository {
   var tag = "Repository";
@@ -141,24 +137,27 @@ class Repository {
   }
 
   Future<ApiResult> startCharging() async {
-    var session = await Storage().readSession();
+   // var session = await Storage().readSession();
    // Log.d(tag, "Session: " + session.toString());
-    var charger = await Storage().getSelectedChargerData();
+   // var charger = await Storage().getSelectedChargerData();
    //Log.d(tag, "Charger: " + charger.toString());
 
     var userUUID = "f1acf4d5-8e63-42a3-b27e-c0e328867421"; // hardcoded or session.id
-    var ocppId = "SI*VIZ*E123456*1230*1"; // dobis iz liste or  charger.ocppId + "*1"
+    var ocppId = "SI*GLC*E123456*1001*1"; // dobis iz liste or  charger.ocppId + "*1"
 
     var data = DataStart(ocppId: ocppId, userUUID: userUUID, command: Constants.START_CHARGING_COMMAND, parameters:  ParametersStart(current: "15"));
     var json = StartChargingDataModel(app: Constants.APP_NAME, data: data).toJson();
     Log.d(tag, "Start Charge Data: $json");
-    var signature = SHA256.getSHA256Signature(json.toString());
+
+    final jsonEncoder = JsonEncoder();
+    var jsonConverted = jsonEncoder.convert(json);
+    var signature = SHA256.getSHA256Signature(jsonConverted);
     Log.d(tag, "Signature: $signature");
 
     var headers = {
       'X-Request-Signature-SHA-256': '$signature',
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ${session.accessToken}'
+      //'Authorization': 'Bearer ${session.accessToken}'
     };
     Log.d(tag, "Header: " + headers.toString());
 
