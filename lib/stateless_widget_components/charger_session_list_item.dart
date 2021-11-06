@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gl_charge_app/network/charger_session.dart';
 import 'package:gl_charge_app/stateless_widget_components/text_custom.dart';
 import 'package:gl_charge_app/utils/constants.dart';
-import 'package:get/get.dart';
 import 'package:gl_charge_app/utils/time_util.dart';
 
 class ChargerSessionListItem extends StatelessWidget {

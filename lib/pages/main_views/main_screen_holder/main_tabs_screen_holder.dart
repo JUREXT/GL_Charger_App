@@ -59,6 +59,10 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
               label: "tab_charge".tr,
             ),
             BottomNavigationBarItem(
+              icon: Icon(Icons.list),
+              label: "tab_charge_session_history".tr,
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.settings),
               label: "tab_settings".tr,
             ),
@@ -66,10 +70,7 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
             //   icon: Icon(Icons.keyboard),
             //   label: "Dev Tools",
             // ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_basket),
-              label: "tab_charge_session_history".tr,
-            ),
+
           ],
         ),
         body: PageView(
@@ -83,9 +84,10 @@ class _MainTabsScreenHolderState extends State<MainTabsScreenHolder> {
            // UserListScreen(),
             ChargersScreen(),
             ChargeScreen(),
+            ChargeSessionScreen(),
             SettingScreen(),
            // DevToolsScreen(),
-            ChargeSessionScreen()
+
            // ShopScreen()
           ],
         ),
