@@ -64,7 +64,7 @@ class AllUserChargersResponseModel {
         this.createdAt,
         this.updatedAt});
 
-  AllUserChargersResponseModel.fake(this.id, this.name);
+  AllUserChargersResponseModel.fake(this.id, this.name); // TODO: delete later
 
   AllUserChargersResponseModel.fromJson(Map<String, dynamic> json) { // == null ? null : json["key1"],
     id = json['id'];

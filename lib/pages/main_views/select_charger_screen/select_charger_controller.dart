@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
+import 'package:gl_charge_app/network/modern_networking/fake_data.dart';
 import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
 
@@ -24,6 +25,10 @@ class SelectChargerController extends GetxController {
     }
   }
 
+  void getAllChargersByUserFake() async {
+      chargerList = listOfFakeChargers;
+  }
+
   @override
   void onInit() {
     super.onInit();
@@ -33,7 +38,8 @@ class SelectChargerController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    getAllChargersByUser();
+    //getAllChargersByUser();
+    getAllChargersByUserFake();
   }
 
   @override

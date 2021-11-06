@@ -69,11 +69,11 @@ flutter_native_splash:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/full_battery_charge.jpg"
+  image_path: "assets/images/ic_app.png"
 
-#https://pub:dev/packages/flutter_app_name
+#flutter pub run flutter_app_name
 flutter_app_name:
-  name: "GL Charge"
+  name: "GLCharge"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -96,6 +96,7 @@ flutter:
     - assets/images/ic_user.png
     - assets/images/ic_clear_24px.png
     - assets/images/ic_done_24px.png
+    - assets/images/ic_app.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

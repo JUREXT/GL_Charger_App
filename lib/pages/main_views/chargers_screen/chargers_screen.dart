@@ -26,7 +26,8 @@ class _ChargersScreenState extends State<ChargersScreen> {
   @override
   void initState() {
     super.initState();
-    controller.getAllChargersByUser();
+    //controller.getAllChargersByUser();
+    controller.getAllChargersByUserFake();
   }
 
   void _showDialog(BuildContext context, String chargerName) {

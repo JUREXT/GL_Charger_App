@@ -8,8 +8,8 @@ import 'package:gl_charge_app/stateless_widget_components/settings_list_item.dar
 import 'package:gl_charge_app/translations/app_locale.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
-import 'package:gl_charge_app/utils/sha256.dart';
 import 'package:gl_charge_app/utils/storage.dart';
+import 'package:gl_charge_app/utils/time_util.dart';
 
 class SettingScreen extends StatefulWidget {
   @override
@@ -46,14 +46,14 @@ class _SettingScreenState extends State<SettingScreen> {
             ));
   }
 
-  testHMAC() {
-    // var sig = SHA256.getSHA256Signature();
-    // Log.d(tag, "Signature: $sig");
-  }
-
   updatedLocale(Locale l, BuildContext ctx) {
     Navigator.of(ctx).pop();
     Get.updateLocale(l);
+  }
+
+  test() {
+    var format = TimeUtil.formattedTime(200); // 200 minutes
+    Log.d("TEST", "Formatted: $format");
   }
 
   @override
@@ -102,10 +102,7 @@ class _SettingScreenState extends State<SettingScreen> {
               SettingsListItem(title: "language".tr, onSettingsItemCallback: () => { showLocaleDialog(context) }),
               SettingsDivider(),
 
-              SettingsListItem(title: "logout".tr, onSettingsItemCallback: () async => await controller.signOut()),
-              SettingsDivider(),
-
-              SettingsListItem(title: "Test Hmac", onSettingsItemCallback: () async => { testHMAC() }),
+              SettingsListItem(title: "logout".tr, onSettingsItemCallback: () async => await controller.signOutFake()),
               SettingsDivider(),
 
               SettingsListItem(title: "Test Get All User Chargers", onSettingsItemCallback: () async => { controller.getAllChargersByUser() }),
@@ -115,6 +112,9 @@ class _SettingScreenState extends State<SettingScreen> {
               SettingsDivider(),
 
               SettingsListItem(title: "Stop Charging", onSettingsItemCallback: () async => { controller.stopCharging() }),
+              SettingsDivider(),
+
+              SettingsListItem(title: "Test time format", onSettingsItemCallback: () async => { test() }),
               SettingsDivider(),
 
             ],

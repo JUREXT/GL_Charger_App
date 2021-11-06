@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/network/models/all_user_chargers_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
+import 'package:gl_charge_app/network/modern_networking/fake_data.dart';
 import 'package:gl_charge_app/network/modern_networking/resource.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
 
@@ -22,6 +23,10 @@ class ChargersController extends GetxController {
     } else if (res is ErrorState) {
       var error = res.error as String;
     }
+  }
+
+  void getAllChargersByUserFake() async {
+      chargerList = listOfFakeChargers;
   }
 
   @override

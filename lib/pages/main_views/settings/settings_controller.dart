@@ -3,6 +3,7 @@ import 'package:gl_charge_app/network/charger.dart';
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_page.dart';
+import 'package:gl_charge_app/utils/delay_helper.dart';
 import 'package:gl_charge_app/utils/navigation.dart';
 
 class SettingsController extends GetxController {
@@ -16,6 +17,11 @@ class SettingsController extends GetxController {
     if(res is SuccessState || res is ErrorState) {
       Navigation.offAll(SignInPage());
     }
+  }
+
+  signOutFake() async {
+    await DelayHelper.delay(1);
+    Navigation.offAll(SignInPage());
   }
 
   getAllChargersByUser() async {

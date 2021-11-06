@@ -149,7 +149,7 @@ class Repository {
     var json = StartChargingDataModel(app: Constants.APP_NAME, data: data).toJson();
     Log.d(tag, "Start Charge Data: $json");
 
-    final jsonEncoder = JsonEncoder();
+    final jsonEncoder = JsonEncoder(); // TODO: put this into getSHA256Signature function and document how it works
     var jsonConverted = jsonEncoder.convert(json);
     var signature = SHA256.getSHA256Signature(jsonConverted);
     Log.d(tag, "Signature: $signature");

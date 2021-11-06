@@ -29,6 +29,15 @@ class SignInController extends GetxController {
     }
   }
 
+  signInFake(String email, String password) async {
+    inputFormEnabled(true);
+    apiSignInResponse(Resource.loading(""));
+    await DelayHelper.delay(2);
+    apiSignInResponse(Resource.success(true));
+    Navigation.toNamed(Routes.SELECT_CHARGER, null);
+    apiSignInResponse(Resource.idle());
+  }
+
   @override
   void onInit() {
     super.onInit();
