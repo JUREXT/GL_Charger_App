@@ -33,16 +33,15 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
 
   ChargeController controller = Get.find();
 
-  double _startSliderValue = 30.0;
+  //double _startSliderValue = 30.0;
   String _currentSliderValue;
-  String _chosenValue;
 
   @override
   void initState() {
     super.initState();
    // controller.billing();
     controller.startTimer();
-    _currentSliderValue = _startSliderValue.toStringAsFixed(0);
+   // _currentSliderValue = _startSliderValue.toStringAsFixed(0);
   }
 
   @override
@@ -73,18 +72,18 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                       children: [
                         Row(
                           children: [
-                            ChargeECard(title: "charge_current".tr, value: "$_currentSliderValue", valueSign: "A"),
+                            Obx(() { return ChargeECard(title: "charge_current".tr, value: controller.currentValue.value.toString(), valueSign: "A"); }),
                             SizedBox(width: 10),
                            // ChargeECard(title: "charge_energy".tr, value: "$_currentSliderValue", valueSign: "A"),
-                            ChargeECard(title: "charge_billing".tr, value: "$_currentSliderValue", valueSign: "€"), // TODO: se rabi še end point
+                            Obx(() { return ChargeECard(title: "charge_billing".tr, value: controller.billing.value.toString(), valueSign: "€"); }), // TODO: se rabi še end point
                           ],
                         ),
                         SizedBox(height: 15),
                         Row(
                           children: [
-                            ChargeECard(title: "charge_power".tr, value: "$_currentSliderValue", valueSign: "A"),
+                            Obx(() { return ChargeECard(title: "charge_power".tr, value: controller.power.value.toString(), valueSign: "kW"); }),
                             SizedBox(width: 10),
-                            ChargeECard(title: "charge_duration".tr, value: "$_currentSliderValue", valueSign: "A"),
+                            Obx(() { return ChargeECard(title: "charge_duration".tr, value: controller.duration.value.toString(), valueSign: "min"); }),
                           ],
                         )
                       ],
@@ -100,7 +99,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                         children: [
                           TextCustom(text: "charge_charging_current".tr, textSize: 22.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                           SizedBox(width: 3),
-                          TextCustom(text: "$_currentSliderValue", textSize: 22.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
+                          Obx(() { return TextCustom(text: controller.currentValue.value.toString(), textSize: 22.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none); }),
                           SizedBox(width: 3),
                           TextCustom(text: "charge_amp_unit".tr, textSize: 22.0, textColor: Constants.ColorWhite, decoration: TextDecoration.none),
                         ],
@@ -193,7 +192,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                   ChargeCircleButton(
                       width: 200.0,
                       height: 200.0,
-                      child:  Obx(() { return ButtonText(text: controller.isCharging.value == false ? "charge_start".tr : "charge_stop".tr,  onPressed: () => { controller.startStopChargingToggle() }, textSize: 22.0, textColor: Constants.ColorWhite, textDecoration: TextDecoration.none); })),
+                      child: Obx(() { return ButtonText(text: controller.isCharging.value == false ? "charge_start".tr : "charge_stop".tr,  onPressed: () => { controller.startStopChargingToggle() }, textSize: 22.0, textColor: Constants.ColorWhite, textDecoration: TextDecoration.none); })),
                       //onTap: () => { Log.d(tag, "CircleButton Tap") },
                   SizedBox(height: 20),
                 ],

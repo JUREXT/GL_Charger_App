@@ -15,6 +15,12 @@ class ChargeController extends GetxController {
   var updateCard = false.obs;
   var isTimerStopped = false;
 
+  //
+  var currentValue = "0".obs;
+  var duration = "0".obs;
+  var power = "0".obs;
+  var billing = "0".obs;
+
   Rx<Resource> apiStartChargingResponse = Rx<Resource>(Resource.idle());
   Rx<Resource> apiStopChargingResponse = Rx<Resource>(Resource.idle());
   Rx<Resource> apiBillingResponse = Rx<Resource>(Resource.idle());
@@ -22,6 +28,21 @@ class ChargeController extends GetxController {
   startStopChargingToggle() {
     var isChargingState = isCharging.value == false ? true : false;
     isCharging(isChargingState);
+    fakeSettingData(isChargingState);
+  }
+
+  fakeSettingData(bool setFake) {
+    if (setFake) {
+      currentValue("10");
+      duration("30");
+      power("10");
+      billing("0");
+    } else {
+      currentValue("0");
+      duration("0");
+      power("0");
+      billing("0");
+    }
   }
 
   startTimer() {
@@ -53,7 +74,7 @@ class ChargeController extends GetxController {
   //   chargerList = await getAllChargersByUser();
   // }
 
-  billing() async {
+  billing1() async {
     Log.d(tag, "Start Billing");
     apiBillingResponse(Resource.loading(""));
     var res = await repository.billing("");
