@@ -81,7 +81,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
                         SizedBox(height: 15),
                         Row(
                           children: [
-                            Obx(() { return ChargeECard(title: "charge_power".tr, value: controller.power.value.toString(), valueSign: "kW"); }),
+                            Obx(() { return ChargeECard(title: "charge_power".tr, value: controller.power.value.toString(), valueSign: "kWh"); }),
                             SizedBox(width: 10),
                             Obx(() { return ChargeECard(title: "charge_duration".tr, value: controller.duration.value.toString(), valueSign: "min"); }),
                           ],
