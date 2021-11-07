@@ -44,7 +44,7 @@ class ChargerSessionListItem extends StatelessWidget {
                         // color: Constants.ColorYellow,
                         child: Padding(
                             padding: EdgeInsets.all(3.0),
-                            child: TextCustom(text: session.consumed + "kW", textSize: 12.0, textColor: Constants.ColorBlack, decoration: TextDecoration.none))),
+                            child: TextCustom(text: session.consumed + "kWh", textSize: 12.0, textColor: Constants.ColorBlack, decoration: TextDecoration.none))),
                     SizedBox(width: 5),
                     TextCustom(text: session.average.toString() + "kW", textSize: 12.0, textColor: Constants.ColorYellow, decoration: TextDecoration.none),
                   ],
