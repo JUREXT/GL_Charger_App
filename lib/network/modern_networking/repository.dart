@@ -14,6 +14,8 @@ import 'package:gl_charge_app/network/models/sign_out_data_model.dart';
 import 'package:gl_charge_app/network/models/start_charging_data_model.dart';
 import 'package:gl_charge_app/network/models/start_charging_response_model.dart';
 import 'package:gl_charge_app/network/models/stop_charging_data_model.dart';
+import 'package:gl_charge_app/network/models/verify_if_charging_data_model.dart';
+import 'package:gl_charge_app/network/models/verify_if_charging_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
 import 'package:gl_charge_app/network/modern_networking/json_encoder_helper.dart';
 import 'package:gl_charge_app/utils/constants.dart';
@@ -206,6 +208,33 @@ class Repository {
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
      // return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
+    } else {
+      Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
+      //return ApiResult.error("Url problem");
+    }
+
+    return ApiResult.error("Url problem");
+  }
+
+  Future<ApiResult> getTransactionByOcppId() async {
+    SignInResponseModel session = await Storage().readSession();
+    Log.d(tag, "User ID: " + session.id);
+
+    var ocppId = "SI*GLC*E123456*1003";
+    var json = VerifyIfChargingDataModel(ocppId: ocppId).toJson();
+
+    var apiRes = await api.post(Api_V1.GET_TRANSACTION_BY_OCPP_ID, /*jsonEncode(json)*/ json, Headers.authHeader(session.accessToken));
+
+    if(apiRes.status == ResponseStatus.POSITIVE) {
+      Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
+      var model = VerifyIfChargingResponseModel.fromJson(apiRes.data);
+      Log.d(tag, model.toString());
+      // return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
+      if(model.stopReason == null) {
+        Log.d(tag, "Charger is running!");
+      } else {
+        Log.d(tag, "Charger is not running!");
+      }
     } else {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
       //return ApiResult.error("Url problem");

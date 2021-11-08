@@ -117,6 +117,9 @@ class _SettingScreenState extends State<SettingScreen> {
               SettingsListItem(title: "Test time format", onSettingsItemCallback: () async => { test() }),
               SettingsDivider(),
 
+              SettingsListItem(title: "Get Tr By id", onSettingsItemCallback: () async => { controller.getTransactionByOcppId() }),
+              SettingsDivider(),
+
             ],
           ),
         ),

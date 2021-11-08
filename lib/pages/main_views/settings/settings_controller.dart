@@ -51,6 +51,16 @@ class SettingsController extends GetxController {
     // }
   }
 
+  getTransactionByOcppId() async {
+    var res = await repository.getTransactionByOcppId();
+    // if (res is SuccessState) {
+    //   var data = res.data as List<Charger>;
+    // } else if (res is ErrorState) {
+    //   var error = res.error as String;
+    // }
+  }
+
+
   @override
   void onInit() {
     super.onInit();
