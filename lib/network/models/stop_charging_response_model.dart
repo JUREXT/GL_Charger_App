@@ -1,4 +1,4 @@
-class StartChargingResponseModel { // TODO: get real json example
+class StartChargingResponseModel {
   int transactionId;
   String chargePointId;
   String chargePointOcppId;

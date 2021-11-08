@@ -42,8 +42,8 @@ class _SignInPageState extends State<SignInPage> {
 
     signInClick() async {
       Log.i(tag, "signInClick");
-       // await controller.signIn("test@test.si", "123456789_W");
-       await controller.signInFake("test@test.si", "123456789_W");
+        await controller.signIn("test@test.si", "123456789_W");
+     //  await controller.signInFake("test@test.si", "123456789_W");
       // if (_formKey.currentState.validate()) {
       //   await controller.signIn(_emailTextController.text.trim(), _passwordTextController.text.trim());
       // } else {
