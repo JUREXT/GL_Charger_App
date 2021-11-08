@@ -15,6 +15,7 @@ import 'package:gl_charge_app/network/models/start_charging_data_model.dart';
 import 'package:gl_charge_app/network/models/start_charging_response_model.dart';
 import 'package:gl_charge_app/network/models/stop_charging_data_model.dart';
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
+import 'package:gl_charge_app/network/modern_networking/json_encoder_helper.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
 import 'package:gl_charge_app/utils/sha256.dart';
@@ -151,16 +152,10 @@ class Repository {
     var json = StartChargingDataModel(app: Constants.APP_NAME, data: data).toJson();
     Log.d(tag, "Start Charge Data: $json");
 
-    final jsonEncoder = JsonEncoder(); // TODO: put this into getSHA256Signature function and document how it works
-    var jsonConverted = jsonEncoder.convert(json);
+    var jsonConverted = JsonEncoderHelper.convertJson(json);
     var signature = SHA256.getSHA256Signature(jsonConverted);
     Log.d(tag, "Signature: $signature");
-
-    var headers = {
-      'X-Request-Signature-SHA-256': '$signature',
-      'Content-Type': 'application/json',
-      //'Authorization': 'Bearer ${session.accessToken}'
-    };
+    var headers = Headers.headerWithSignature(signature);
     Log.d(tag, "Header: " + headers.toString());
 
     var apiRes = await api.post(Api_V1.REMOTE_COMMAND_CHARGING, jsonEncode(json), headers);
@@ -200,16 +195,10 @@ class Repository {
     var json = StopChargingDataModel(app: Constants.APP_NAME, data: data).toJson();
     Log.d(tag, "Start Charge Data: $json");
 
-    final jsonEncoder = JsonEncoder(); // TODO: put this into getSHA256Signature function and document how it works
-    var jsonConverted = jsonEncoder.convert(json);
+    var jsonConverted = JsonEncoderHelper.convertJson(json);
     var signature = SHA256.getSHA256Signature(jsonConverted);
     Log.d(tag, "Signature: $signature");
-
-    var headers = {
-      'X-Request-Signature-SHA-256': '$signature',
-      'Content-Type': 'application/json',
-      //'Authorization': 'Bearer ${session.accessToken}'
-    };
+    var headers = Headers.headerWithSignature(signature);
     Log.d(tag, "Header: " + headers.toString());
 
     var apiRes = await api.post(Api_V1.REMOTE_COMMAND_CHARGING, jsonEncode(json), headers);
