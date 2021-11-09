@@ -50,7 +50,7 @@ class VerifyIfChargingResponseModel {
     meterStop = json['meterStop'];
     maxPower = json['maxPower'];
     status = json['status'];
-    stopReason = json['stopReason'] == null ? null : json['stopReason']; // Used to verify is charging or not, null is charging, any thing else
+    stopReason = json['stopReason'] == null ? null : json['stopReason']; // Used to verify is charging or not, null is charging, any thing else is not
     timestamp = json['timestamp'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];

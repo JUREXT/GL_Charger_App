@@ -29,6 +29,11 @@ class ChargeController extends GetxController {
     var isChargingState = isCharging.value == false ? true : false;
     isCharging(isChargingState);
     fakeSettingData(isChargingState);
+    if(isCharging.value) {
+      stopCharging();
+    } else {
+      startCharging();
+    }
   }
 
   fakeSettingData(bool setFake) {
@@ -42,6 +47,67 @@ class ChargeController extends GetxController {
       duration("0");
       power("0");
       billing("0");
+    }
+  }
+
+  startCharging() async {
+    var res = await repository.startCharging();
+    if (res is SuccessState) {
+      var hasStartedCharging = res.data as bool;
+      Log.d(tag, "Has Started Charging: $hasStartedCharging");
+      isCharging(hasStartedCharging);
+    } else if (res is ErrorState) {
+      var error = res.error as String;
+      Log.d(tag, "Has Started Charging Error: $error");
+      isCharging(false);
+    }
+  }
+
+  stopCharging() async {
+    var res = await repository.stopCharging();
+    if (res is SuccessState) {
+      var hasStoppedCharging = res.data as bool;
+      Log.d(tag, "Has Stopped Charging: $hasStoppedCharging");
+      isCharging(hasStoppedCharging);
+    } else if (res is ErrorState) {
+      var error = res.error as String;
+      Log.d(tag, "Has Stopped Charging Error: $error");
+      isCharging(false);
+    }
+  }
+
+  // stopCharging() async {
+  //   repository.startCharging("", "");
+  // }
+
+  // getChargerList() async {
+  //   chargerList = await getAllChargersByUser();
+  // }
+
+  // billing1() async {
+  //   Log.d(tag, "Start Billing");
+  //   apiBillingResponse(Resource.loading(""));
+  //   var res = await repository.billing("");
+  //   if(res is SuccessState) {
+  //     var data = res.data as BillingResponseModel; // TODO: when api is available
+  //     Log.d(tag, "Data Billing: " + data.toString());
+  //     apiBillingResponse(Resource.success(data));
+  //     apiBillingResponse(Resource.idle());
+  //   } else if(res is ErrorState) {
+  //     var error = res.error as String;
+  //     apiBillingResponse(Resource.error(false, error));
+  //   }
+  // }
+
+  getTransactionByOcppId() async {
+    var res = await repository.getTransactionByOcppId();
+    if (res is SuccessState) {
+      var isChargingStatus = res.data as bool;
+      Log.d(tag, "Is charging: $isChargingStatus");
+      isCharging(isChargingStatus);
+    } else if (res is ErrorState) {
+      var error = res.error as String;
+      Log.d(tag, "Is charging error:  $error");
     }
   }
 
@@ -60,45 +126,6 @@ class ChargeController extends GetxController {
   stopTimer() {
     Log.d(tag, "Timer Stop");
     isTimerStopped = true;
-  }
-
-  startCharging() async {
-    repository.startCharging();
-  }
-
-  // stopCharging() async {
-  //   repository.startCharging("", "");
-  // }
-
-  // getChargerList() async {
-  //   chargerList = await getAllChargersByUser();
-  // }
-
-  billing1() async {
-    Log.d(tag, "Start Billing");
-    apiBillingResponse(Resource.loading(""));
-    var res = await repository.billing("");
-    if(res is SuccessState) {
-      var data = res.data as BillingResponseModel; // TODO: when api is available
-      Log.d(tag, "Data Billing: " + data.toString());
-      apiBillingResponse(Resource.success(data));
-      apiBillingResponse(Resource.idle());
-    } else if(res is ErrorState) {
-      var error = res.error as String;
-      apiBillingResponse(Resource.error(false, error));
-    }
-  }
-
-  getTransactionByOcppId() async {
-    var res = await repository.getTransactionByOcppId();
-    if (res is SuccessState) {
-      var isChargingStatus = res.data as bool;
-      Log.d(tag, "Is charging: $isChargingStatus");
-      isCharging(isChargingStatus);
-    } else if (res is ErrorState) {
-      var error = res.error as String;
-      Log.d(tag, "Is charging error:  $error");
-    }
   }
 
   @override

@@ -169,12 +169,14 @@ class Repository {
       await Storage().setSelectedChargerTransactionId(model.transactionId.toString());
 
       //var transactionId = await Storage().getSelectedChargerTransactionId();
-
       //return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
      // return ApiResult.error("Url problem");
+
+      return ApiResult.success(true);
     } else if(apiRes.status == ResponseStatus.NEGATIVE) {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.error);
-      //return ApiResult.error("Url problem");
+      //return ApiResult.error("Some problem");
+      return ApiResult.success(false);
     }
 
     return ApiResult.error("Url problem");
@@ -191,8 +193,8 @@ class Repository {
     var transactionId = await Storage().getSelectedChargerTransactionId();
     if(transactionId == null) {
       Log.d(tag, "Transaction Id is null - not good");
-    }
-
+      return ApiResult.success(false);
+    } else {
     var data = DataStop(ocppId: ocppId, userUUID: userUUID, command: Constants.STOP_CHARGING_COMMAND, parameters: ParametersStop(transactionId: transactionId));
     var json = StopChargingDataModel(app: Constants.APP_NAME, data: data).toJson();
     Log.d(tag, "Start Charge Data: $json");
@@ -208,12 +210,14 @@ class Repository {
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
      // return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
+      return ApiResult.success(true);
     } else {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
       //return ApiResult.error("Url problem");
+      return ApiResult.success(false);
+      }
     }
-
-    return ApiResult.error("Url problem");
+    //return ApiResult.error("Url problem");
   }
 
   Future<ApiResult> getTransactionByOcppId() async {
@@ -239,7 +243,8 @@ class Repository {
       }
     } else {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
-      return ApiResult.error("Some problem");
+     //return ApiResult.error("Some problem");
+      return ApiResult.success(false);
     }
   }
 

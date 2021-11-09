@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gl_charge_app/app_life_cycle/life_cycle_event_handler.dart';
 import 'package:gl_charge_app/stateless_widget_components/app_bar2.dart';
 import 'package:gl_charge_app/stateless_widget_components/button_text.dart';
 import 'package:gl_charge_app/stateless_widget_components/charge_circle_button.dart';
@@ -28,7 +29,7 @@ class ChargeScreen2 extends StatefulWidget {
 }
 
 
-class _ChargeScreen2State extends State<ChargeScreen2> {
+class _ChargeScreen2State extends State<ChargeScreen2> with WidgetsBindingObserver {
   final tag = "ChargeScreen";
 
   ChargeController controller = Get.find();
@@ -39,15 +40,47 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
   @override
   void initState() {
     super.initState();
+    Log.d(tag, "initState");
+    WidgetsBinding.instance.addObserver(this);
+    controller.getTransactionByOcppId();
+
    // controller.billing();
    // controller.startTimer();
-    controller.getTransactionByOcppId();
    // _currentSliderValue = _startSliderValue.toStringAsFixed(0);
+  //  LifecycleEventHandler(onDetachedCallBack: )
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    Log.d(tag, "dispose");
+    super.dispose();
+  }
+
+  // https://dev.to/pedromassango/onresume-and-onpause-for-widgets-on-flutter-27k2
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    switch (state) {
+      case AppLifecycleState.inactive:
+        Log.d(tag, "AppLifecycleState.inactive");
+        break;
+      case AppLifecycleState.paused:
+        Log.d(tag, "AppLifecycleState.paused");
+        break;
+      case AppLifecycleState.detached:
+        Log.d(tag, "AppLifecycleState.detached");
+        break;
+      case AppLifecycleState.resumed:
+        Log.d(tag, "AppLifecycleState.resumed");
+        controller.getTransactionByOcppId();
+        break;
+    }
   }
 
   @override
   void deactivate() {
    // controller.stopTimer();
+    Log.d(tag, "deactivate");
     super.deactivate();
   }
 
