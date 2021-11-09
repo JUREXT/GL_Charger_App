@@ -89,6 +89,18 @@ class ChargeController extends GetxController {
     }
   }
 
+  getTransactionByOcppId() async {
+    var res = await repository.getTransactionByOcppId();
+    if (res is SuccessState) {
+      var isChargingStatus = res.data as bool;
+      Log.d(tag, "Is charging: $isChargingStatus");
+      isCharging(isChargingStatus);
+    } else if (res is ErrorState) {
+      var error = res.error as String;
+      Log.d(tag, "Is charging error:  $error");
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();

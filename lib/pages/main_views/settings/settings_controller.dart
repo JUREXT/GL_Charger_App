@@ -4,6 +4,7 @@ import 'package:gl_charge_app/network/modern_networking/api_result.dart';
 import 'package:gl_charge_app/network/modern_networking/repository.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_page.dart';
 import 'package:gl_charge_app/utils/delay_helper.dart';
+import 'package:gl_charge_app/utils/log.dart';
 import 'package:gl_charge_app/utils/navigation.dart';
 
 class SettingsController extends GetxController {
@@ -53,11 +54,13 @@ class SettingsController extends GetxController {
 
   getTransactionByOcppId() async {
     var res = await repository.getTransactionByOcppId();
-    // if (res is SuccessState) {
-    //   var data = res.data as List<Charger>;
-    // } else if (res is ErrorState) {
-    //   var error = res.error as String;
-    // }
+    if (res is SuccessState) {
+      var data = res.data as bool;
+      Log.d(tag, "Is charging: $data");
+    } else if (res is ErrorState) {
+      var error = res.error as String;
+      Log.d(tag, "Is charging error:  $error");
+    }
   }
 
 

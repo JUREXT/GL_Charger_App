@@ -40,13 +40,14 @@ class _ChargeScreen2State extends State<ChargeScreen2> {
   void initState() {
     super.initState();
    // controller.billing();
-    controller.startTimer();
+   // controller.startTimer();
+    controller.getTransactionByOcppId();
    // _currentSliderValue = _startSliderValue.toStringAsFixed(0);
   }
 
   @override
   void deactivate() {
-    controller.stopTimer();
+   // controller.stopTimer();
     super.deactivate();
   }
 

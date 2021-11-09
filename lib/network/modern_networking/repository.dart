@@ -232,15 +232,15 @@ class Repository {
       // return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
       if(model.stopReason == null) {
         Log.d(tag, "Charger is running!");
+        return ApiResult.success(true);
       } else {
         Log.d(tag, "Charger is not running!");
+        return ApiResult.success(false);
       }
     } else {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
-      //return ApiResult.error("Url problem");
+      return ApiResult.error("Some problem");
     }
-
-    return ApiResult.error("Url problem");
   }
 
   Future<ApiResult> getChargeSessions(int id) async {
