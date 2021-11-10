@@ -17,6 +17,7 @@ import 'package:gl_charge_app/network/models/stop_charging_data_model.dart';
 import 'package:gl_charge_app/network/models/verify_if_charging_data_model.dart';
 import 'package:gl_charge_app/network/models/verify_if_charging_response_model.dart';
 import 'package:gl_charge_app/network/modern_networking/api_result.dart';
+import 'package:gl_charge_app/network/modern_networking/charge_status.dart';
 import 'package:gl_charge_app/network/modern_networking/json_encoder_helper.dart';
 import 'package:gl_charge_app/utils/constants.dart';
 import 'package:gl_charge_app/utils/log.dart';
@@ -30,6 +31,9 @@ import 'headers.dart';
 class Repository {
   var tag = "Repository";
   ApiBaseHelper api = ApiBaseHelper();
+
+  var userUUID = "f1acf4d5-8e63-42a3-b27e-c0e328867421";
+  var ocppId = "SI*GLC*E123456*1003";
 
   Future<ApiResult> signIn(String email, String password) async {
     try {
@@ -145,12 +149,12 @@ class Repository {
    // var charger = await Storage().getSelectedChargerData();
    //Log.d(tag, "Charger: " + charger.toString());
 
-    var userUUID = "f1acf4d5-8e63-42a3-b27e-c0e328867421"; // hardcoded or session.id
+   // var userUUID = "f1acf4d5-8e63-42a3-b27e-c0e328867421"; // hardcoded or session.id
    // var userUUID = session.id;
     //var ocppId = "SI*GLC*E123456*1001*1"; // dobis iz liste or  charger.ocppId + "*1"
-    var ocppId = "SI*GLC*E123456*1003*1";
+   // var ocppId = "SI*GLC*E123456*1003*1";
 
-    var data = DataStart(ocppId: ocppId, userUUID: userUUID, command: Constants.START_CHARGING_COMMAND, parameters:  ParametersStart(current: "15"));
+    var data = DataStart(ocppId: ocppId + "*1", userUUID: userUUID, command: Constants.START_CHARGING_COMMAND, parameters:  ParametersStart(current: "15"));
     var json = StartChargingDataModel(app: Constants.APP_NAME, data: data).toJson();
     Log.d(tag, "Start Charge Data: $json");
 
@@ -160,23 +164,28 @@ class Repository {
     var headers = Headers.headerWithSignature(signature);
     Log.d(tag, "Header: " + headers.toString());
 
-    var apiRes = await api.post(Api_V1.REMOTE_COMMAND_CHARGING, jsonEncode(json), headers);
+    var apiRes = await api.post(Api_V1.REMOTE_COMMAND_CHARGING, jsonEncode(json), headers); // TODO: transactionId: 387158531
 
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       var model = StartChargingResponseModel.fromJson(apiRes.data);
       Log.d(tag, "Model data: " + model.toString());
-      await Storage().setSelectedChargerTransactionId(model.transactionId.toString());
 
       //var transactionId = await Storage().getSelectedChargerTransactionId();
       //return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
      // return ApiResult.error("Url problem");
 
-      return ApiResult.success(true);
+      if(model.transactionId != null) {
+        await Storage().setSelectedChargerTransactionId(model.transactionId.toString());
+        return ApiResult.success(ChargeStatus.CHARGING_STARTED);
+      } else {
+        return ApiResult.success(ChargeStatus.NONE);
+      }
+
     } else if(apiRes.status == ResponseStatus.NEGATIVE) {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.error);
       //return ApiResult.error("Some problem");
-      return ApiResult.success(false);
+      return ApiResult.success(ChargeStatus.NONE);
     }
 
     return ApiResult.error("Url problem");
@@ -187,17 +196,18 @@ class Repository {
    // Log.d(tag, "startStopCharging Session: " + session.toString());
    // var charger = await Storage().getSelectedChargerData();
 
-    var userUUID = "f1acf4d5-8e63-42a3-b27e-c0e328867421"; // hardcoded or session.id
-    var ocppId = "SI*GLC*E123456*1003*1";
+    // var userUUID = "f1acf4d5-8e63-42a3-b27e-c0e328867421"; // hardcoded or session.id
+    // var ocppId = "SI*GLC*E123456*1003*1";
 
     var transactionId = await Storage().getSelectedChargerTransactionId();
+    Log.d(tag, "Stop Send Trans ID: $transactionId");
     if(transactionId == null) {
       Log.d(tag, "Transaction Id is null - not good");
       return ApiResult.success(false);
     } else {
-    var data = DataStop(ocppId: ocppId, userUUID: userUUID, command: Constants.STOP_CHARGING_COMMAND, parameters: ParametersStop(transactionId: transactionId));
+    var data = DataStop(ocppId: ocppId +"*1", userUUID: userUUID, command: Constants.STOP_CHARGING_COMMAND, parameters: ParametersStop(transactionId: transactionId));
     var json = StopChargingDataModel(app: Constants.APP_NAME, data: data).toJson();
-    Log.d(tag, "Start Charge Data: $json");
+    Log.d(tag, "Stop Charge Data: $json");
 
     var jsonConverted = JsonEncoderHelper.convertJson(json);
     var signature = SHA256.getSHA256Signature(jsonConverted);
@@ -210,11 +220,11 @@ class Repository {
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
      // return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
-      return ApiResult.success(true);
+      return ApiResult.success(ChargeStatus.CHARGING_STOPPED);
     } else {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
       //return ApiResult.error("Url problem");
-      return ApiResult.success(false);
+      return ApiResult.success(ChargeStatus.NONE);
       }
     }
     //return ApiResult.error("Url problem");
@@ -224,7 +234,7 @@ class Repository {
     SignInResponseModel session = await Storage().readSession();
     Log.d(tag, "User ID: " + session.id);
 
-    var ocppId = "SI*GLC*E123456*1003";
+   // var ocppId = "SI*GLC*E123456*1003";
     var json = VerifyIfChargingDataModel(ocppId: ocppId).toJson();
 
     var apiRes = await api.post(Api_V1.GET_TRANSACTION_BY_OCPP_ID, /*jsonEncode(json)*/ json, Headers.authHeader(session.accessToken));
@@ -232,19 +242,24 @@ class Repository {
     if(apiRes.status == ResponseStatus.POSITIVE) {
       Log.d(tag, "ResponseStatus.POSITIVE: " + apiRes.data.toString());
       var model = VerifyIfChargingResponseModel.fromJson(apiRes.data);
-      Log.d(tag, model.toString());
-      // return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
-      if(model.stopReason == null) {
-        Log.d(tag, "Charger is running!");
-        return ApiResult.success(true);
-      } else {
-        Log.d(tag, "Charger is not running!");
-        return ApiResult.success(false);
+      Log.d(tag, "GOT ByOcppId Trans ID: ${model.transactionId}");
+      if(model.transactionId != null) {
+        await Storage().setSelectedChargerTransactionId(model.transactionId.toString());
+        Log.d(tag, model.toString());
+        // return ApiResult.success(StartChargingResponseModel.fromJson(apiRes.data));
+        if(model.stopReason == null) {
+          Log.d(tag, "Charger is running!");
+          return ApiResult.success(ChargeStatus.IS_CHARGING_NOW);
+        } else {
+          Log.d(tag, "Charger is not running!");
+          return ApiResult.success(ChargeStatus.NONE);
+        }
       }
+
     } else {
       Log.d(tag, "ResponseStatus.NEGATIVE: " + apiRes.data.toString());
      //return ApiResult.error("Some problem");
-      return ApiResult.success(false);
+      return ApiResult.success(ChargeStatus.NONE);
     }
   }
 

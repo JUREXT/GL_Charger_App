@@ -63,6 +63,7 @@ class _ChargeScreen2State extends State<ChargeScreen2> with WidgetsBindingObserv
     switch (state) {
       case AppLifecycleState.inactive:
         Log.d(tag, "AppLifecycleState.inactive");
+       // controller.signOut();
         break;
       case AppLifecycleState.paused:
         Log.d(tag, "AppLifecycleState.paused");

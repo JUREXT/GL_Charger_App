@@ -108,11 +108,11 @@ class _SettingScreenState extends State<SettingScreen> {
               SettingsListItem(title: "Test Get All User Chargers", onSettingsItemCallback: () async => { controller.getAllChargersByUser() }),
               SettingsDivider(),
 
-              SettingsListItem(title: "Start Charging", onSettingsItemCallback: () async => { controller.startCharging() }),
-              SettingsDivider(),
-
-              SettingsListItem(title: "Stop Charging", onSettingsItemCallback: () async => { controller.stopCharging() }),
-              SettingsDivider(),
+              // SettingsListItem(title: "Start Charging", onSettingsItemCallback: () async => { controller.startCharging() }),
+              // SettingsDivider(),
+              //
+              // SettingsListItem(title: "Stop Charging", onSettingsItemCallback: () async => { controller.stopCharging() }),
+              // SettingsDivider(),
 
               SettingsListItem(title: "Test time format", onSettingsItemCallback: () async => { test() }),
               SettingsDivider(),

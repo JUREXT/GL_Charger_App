@@ -34,23 +34,23 @@ class SettingsController extends GetxController {
     }
   }
 
-  startCharging() async {
-    var res = await repository.startCharging();
-    // if (res is SuccessState) {
-    //   var data = res.data as List<Charger>;
-    // } else if (res is ErrorState) {
-    //   var error = res.error as String;
-    // }
-  }
-
-  stopCharging() async {
-    var res = await repository.stopCharging();
-    // if (res is SuccessState) {
-    //   var data = res.data as List<Charger>;
-    // } else if (res is ErrorState) {
-    //   var error = res.error as String;
-    // }
-  }
+  // startCharging() async {
+  //   var res = await repository.startCharging();
+  //   // if (res is SuccessState) {
+  //   //   var data = res.data as List<Charger>;
+  //   // } else if (res is ErrorState) {
+  //   //   var error = res.error as String;
+  //   // }
+  // }
+  //
+  // stopCharging() async {
+  //   var res = await repository.stopCharging();
+  //   // if (res is SuccessState) {
+  //   //   var data = res.data as List<Charger>;
+  //   // } else if (res is ErrorState) {
+  //   //   var error = res.error as String;
+  //   // }
+  // }
 
   getTransactionByOcppId() async {
     var res = await repository.getTransactionByOcppId();

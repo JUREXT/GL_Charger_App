@@ -7,7 +7,7 @@ class ChargeNotifier extends ChangeNotifier {
   final tag = "ChargeNotifier";
 
   ChargeNotifier() {
-    setNewCharger();
+   // setNewCharger();
   }
 
   String chargerName = "";
