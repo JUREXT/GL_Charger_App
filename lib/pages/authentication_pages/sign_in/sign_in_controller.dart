@@ -20,7 +20,8 @@ class SignInController extends GetxController {
     var res = await repository.signIn(email, password);
     if(res is SuccessState) {
       apiSignInResponse(Resource.success(true));  // TODO: refactor later: no data is needed here to be returned
-      Navigation.toNamed(Routes.SELECT_CHARGER, null);
+     // Navigation.toNamed(Routes.SELECT_CHARGER, null);
+      Navigation.toNamed(Routes.START_STOP_CHARGING, null);
       apiSignInResponse(Resource.idle());
     } else if(res is ErrorState) {
       inputFormEnabled(true);

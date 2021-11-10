@@ -15,7 +15,8 @@ Future<void> main() async {
   await Config.init();
   Log.enableLogger(true);
   Log.i(tag, "Main Started");
-  var startPage = (await Storage().hasSession()) ? Routes.MAIN_TAB_HOLDER : AppPages.INITIAL;
+  //var startPage = (await Storage().hasSession()) ? Routes.MAIN_TAB_HOLDER : AppPages.INITIAL;
+  var startPage = (await Storage().hasSession()) ? Routes.START_STOP_CHARGING : AppPages.INITIAL;
   Locale locale = await Storage().getLocale();
   runApp(MyApp(startPage, locale));
 }

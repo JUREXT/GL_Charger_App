@@ -6,6 +6,8 @@ import 'package:gl_charge_app/pages/authentication_pages/sign_in/sign_in_page.da
 import 'package:gl_charge_app/pages/authentication_pages/sign_up/sign_up_binding.dart';
 import 'package:gl_charge_app/pages/authentication_pages/sign_up/sign_up_page.dart';
 import 'package:gl_charge_app/pages/developer_tools/dev_tools_screen.dart';
+import 'package:gl_charge_app/pages/main_views/charge/charge_binding.dart';
+import 'package:gl_charge_app/pages/main_views/charge/charge_screen.dart';
 import 'package:gl_charge_app/pages/main_views/main_screen_holder/main_screen_holder_binding.dart';
 import 'package:gl_charge_app/pages/main_views/main_screen_holder/main_tabs_screen_holder.dart';
 import 'package:gl_charge_app/pages/main_views/select_charger_screen/select_charger_binding.dart';
@@ -40,6 +42,11 @@ class AppPages {
       name: Routes.MAIN_TAB_HOLDER,
       page: () => MainTabsScreenHolder(),
       binding: MainScreenHolderBinding(),
+    ),
+    GetPage(
+      name: Routes.START_STOP_CHARGING,
+      page: () => ChargeScreen(),
+      binding: ChargeBinding(),
     ),
     GetPage(
       name: Routes.DEVELOPER_TOOLS,

@@ -122,16 +122,16 @@ class _SignInPageState extends State<SignInPage> {
 
   privacyClick() {
     Log.i(tag, "privacyClick");
-    UrlNavigation.navigateTo(context, Constants.privacyPolicyUrl);
+   // UrlNavigation.navigateTo(context, Constants.privacyPolicyUrl);
   }
 
   signUpActionClick() {
     Log.i(tag, "signUpActionClick");
-    Navigation.toNamed(Routes.SIGN_UP, null);
+   // Navigation.toNamed(Routes.SIGN_UP, null);
   }
 
   forgotPasswordClick() {
     Log.i(tag, "forgotPasswordClick");
-    Navigation.toNamed(Routes.FORGOT_PASSWORD, "test"); // TODO: check and update
+   // Navigation.toNamed(Routes.FORGOT_PASSWORD, "test"); // TODO: check and update
   }
 }
