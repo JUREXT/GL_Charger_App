@@ -254,6 +254,8 @@ class Repository {
           Log.d(tag, "Charger is not running!");
           return ApiResult.success(ChargeStatus.NONE);
         }
+      } else {
+        return ApiResult.success(ChargeStatus.NONE);
       }
 
     } else {
