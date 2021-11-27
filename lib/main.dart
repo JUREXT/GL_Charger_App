@@ -84,3 +84,6 @@ class MyApp extends StatelessWidget {
 // INTRO: https://github.com/duytq94/flutter-intro-slider
 
 // POST DATA: https://www.youtube.com/watch?v=C0gz3Eg9cx4
+
+// https://pub.dev/packages/disable_battery_optimization/example
+// https://medium.com/vrt-digital-studio/flutter-workmanager-81e0cfbd6f6e
