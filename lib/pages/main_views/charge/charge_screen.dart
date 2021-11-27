@@ -41,13 +41,19 @@ class _ChargeScreen2State extends State<ChargeScreen2> with WidgetsBindingObserv
   void initState() {
     super.initState();
     Log.d(tag, "initState");
-    WidgetsBinding.instance.addObserver(this);
+   // WidgetsBinding.instance.addObserver(this);
     controller.getTransactionByOcppId();
 
    // controller.billing();
    // controller.startTimer();
    // _currentSliderValue = _startSliderValue.toStringAsFixed(0);
   //  LifecycleEventHandler(onDetachedCallBack: )
+    WidgetsBinding.instance.addObserver(LifecycleEventHandler(
+      onInactiveCallBack: () => { Log.d(tag, "AppLifecycleState.inactive") },
+      onPausedCallBack: () => { Log.d(tag, "AppLifecycleState.paused") },
+      onResumedCallBack: () => { Log.d(tag, "AppLifecycleState.resumed") },
+      onDetachedCallBack: () => { Log.d(tag, "AppLifecycleState.detached") }
+    ));
   }
 
   @override
@@ -58,25 +64,26 @@ class _ChargeScreen2State extends State<ChargeScreen2> with WidgetsBindingObserv
   }
 
   // https://dev.to/pedromassango/onresume-and-onpause-for-widgets-on-flutter-27k2
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.inactive:
-        Log.d(tag, "AppLifecycleState.inactive");
-       // controller.signOut();
-        break;
-      case AppLifecycleState.paused:
-        Log.d(tag, "AppLifecycleState.paused");
-        break;
-      case AppLifecycleState.detached:
-        Log.d(tag, "AppLifecycleState.detached");
-        break;
-      case AppLifecycleState.resumed:
-        Log.d(tag, "AppLifecycleState.resumed");
-        controller.getTransactionByOcppId();
-        break;
-    }
-  }
+  // TODO: part of old flow, use above: LifecycleEventHandler
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   switch (state) {
+  //     case AppLifecycleState.inactive:
+  //       Log.d(tag, "AppLifecycleState.inactive");
+  //      // controller.signOut();
+  //       break;
+  //     case AppLifecycleState.paused:
+  //       Log.d(tag, "AppLifecycleState.paused");
+  //       break;
+  //     case AppLifecycleState.detached:
+  //       Log.d(tag, "AppLifecycleState.detached");
+  //       break;
+  //     case AppLifecycleState.resumed:
+  //       Log.d(tag, "AppLifecycleState.resumed");
+  //       controller.getTransactionByOcppId();
+  //       break;
+  //   }
+  // }
 
   @override
   void deactivate() {
